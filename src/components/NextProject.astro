@@ -1,0 +1,4 @@
+---
+const { project } = Astro.props;
+---
+<a class="next-project" data-kind={project.kind} href={`/work/${project.slug}/`}><span class="eyebrow">NEXT PROJECT</span><strong>{project.name} <span aria-hidden="true">→</span></strong></a>

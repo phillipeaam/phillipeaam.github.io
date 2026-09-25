@@ -1,0 +1,7 @@
+---
+const { title = 'System relationship', nodes = ['Input', 'Processing', 'Output'] } = Astro.props;
+---
+<figure class="system-diagram">
+  <figcaption>{title} <span>Conceptual model</span></figcaption>
+  <ol class="diagram-nodes">{nodes.map((node: string, index: number) => <li><span class="diagram-index">0{index + 1}</span><span>{node}</span></li>)}</ol>
+</figure>

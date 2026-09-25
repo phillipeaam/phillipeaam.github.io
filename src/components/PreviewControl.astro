@@ -1,0 +1,6 @@
+---
+const { accessibleLabel = 'Play preview state' } = Astro.props;
+---
+<button class="preview-control" type="button" data-preview-control aria-pressed="false" aria-label={accessibleLabel}>
+  <span data-control-label>Preview</span><span aria-hidden="true" data-control-icon>▶</span>
+</button>

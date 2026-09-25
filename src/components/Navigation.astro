@@ -1,0 +1,57 @@
+---
+const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '/#experience' }, { label: 'Contact', href: '/#contact' }];
+---
+<header class="site-header">
+  <nav class="nav-shell content-width" aria-label="Main navigation">
+    <a class="wordmark" href="/" aria-label="Phillipe Augusto, home">Phillipe Augusto</a>
+    <div class="nav-desktop">
+      {items.map((item) => <a class="nav-link" href={item.href}>{item.label}</a>)}
+      <!-- TODO: enable Resume after the approved Notion PDF is copied into public/resume/. -->
+      <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
+    </div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation menu">
+      <span></span><span></span>
+    </button>
+    <div class="nav-mobile" id="mobile-navigation" hidden>
+      {items.map((item) => <a class="nav-link" href={item.href}>{item.label}</a>)}
+      <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
+    </div>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-navigation');
+  const closeMenu = () => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+    menu.hidden = true;
+  };
+  toggle?.addEventListener('click', () => {
+    if (!toggle || !menu) return;
+    const opening = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(opening));
+    toggle.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
+    menu.hidden = !opening;
+  });
+  menu?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
+  const syncAnchor = () => {
+    const active = window.location.pathname === '/' ? window.location.hash : '';
+    document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach((link) => {
+      const selected = active && link.hash === active;
+      link.classList.toggle('is-current', Boolean(selected));
+      if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+    });
+  };
+  window.addEventListener('hashchange', syncAnchor);
+  syncAnchor();
+</script>

@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+import type { Experience } from '../data/experience';
+const { item, index } = Astro.props as { item: Experience; index: number };
+---
+<article class="experience-entry">
+  <div class="experience-marker"><span>{String(index).padStart(2, '0')}</span><Icon name={item.icon} size={19} /></div>
+  <div class="experience-main">
+    <div class="experience-topline"><p class="experience-company">{item.organization}</p><p class="experience-period"><Icon name="calendar" size={14} />{item.dates}</p></div>
+    <h3>{item.role}</h3>
+    <p class="experience-context">{item.context}</p>
+    <ul class="experience-highlights">{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
+    {item.related.length > 0 && <div class="experience-related"><span>RELATED WORK</span>{item.related.map((link) => link.href ? <a href={link.href}>{link.label} <Icon name="arrow" size={15} /></a> : <span class="related-unlinked">{link.label}</span>)}</div>}
+  </div>
+</article>

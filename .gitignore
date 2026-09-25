@@ -1,0 +1,23 @@
+# Dependencies
+/node_modules/
+
+# Astro build output and generated cache
+/dist/
+/.astro/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# macOS metadata
+.DS_Store
+
+# Temporary browser captures; keep artifacts/penpot exports and project assets tracked
+/artifacts/screenshots/
+
+# Package manager debug logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

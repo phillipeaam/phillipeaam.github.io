@@ -1,0 +1,5 @@
+---
+const { context, tags = [] } = Astro.props;
+---
+{context && <p class="project-context">{context}</p>}
+{tags.length > 0 && <ul class="tag-list" aria-label="Project topics">{tags.map((tag: string) => <li>{tag}</li>)}</ul>}
