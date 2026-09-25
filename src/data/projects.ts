@@ -69,9 +69,18 @@ export const pathless: Project = {
 };
 
 export const moreProfessional = [
-  { id: 'flui', name: 'Flui — A Cidade das Palavras', type: 'Unity · Commercial literacy game', context: 'Long-lived professional game development', detail: 'Contributed to minigames, progression, and ongoing gameplay maintenance.', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
-  { id: 'craque-da-leitura', name: 'Craque da Leitura', type: 'Unity · Interactive reading product', context: 'Professional product work', detail: 'Worked on book content, catalog, and reading flows.', mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
-  { id: 'tabuada-na-fazenda', name: 'Tabuada na Fazenda', type: 'Unity · Commercial math game', context: 'Professional game development', detail: 'Contributed to minigames, progression, and production support.', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
+  { id: 'tabuada-na-fazenda', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Unity · Commercial math game', context: 'Professional game development', detail: 'Contributed to minigames, progression, and production support.', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
+  { id: 'craque-da-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Unity · Interactive reading product', context: 'Professional product work', detail: 'Worked on book content, catalog, and reading flows.', mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
+  { id: 'flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Unity · Commercial literacy game', context: 'Long-lived professional game development', detail: 'Contributed to minigames, progression, and ongoing gameplay maintenance.', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
+];
+
+export const otherWork = [
+  {
+    id: 'pathless', name: pathless.name, period: '2026', type: 'Independent · Unity 6 · WebGL',
+    detail: pathless.product, context: pathless.contribution, mediaLabel: 'RESCUE GAMEPLAY — PATHLESS',
+    href: 'https://phillipeaam.itch.io/pathless', linkLabel: 'Play Pathless', kind: pathless.kind, highlight: true,
+  },
+  ...moreProfessional.map((item) => ({ ...item, linkLabel: 'Official product page' })),
 ];
 
 export const supportingWork = [

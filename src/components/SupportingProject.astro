@@ -1,12 +1,12 @@
 ---
 import MediaPoster from './MediaPoster.astro';
 import Icon from './Icon.astro';
-const { id, number, name, type, detail, context, mediaLabel, href, linkLabel = 'View product', kind = 'neutral', recent = false } = Astro.props;
+const { id, number, period, name, type, detail, context, mediaLabel, href, linkLabel = 'View product', kind = 'neutral', recent = false, highlight = false } = Astro.props;
 ---
-<article class:list={['supporting-card', recent && 'supporting-card--recent']} id={id}>
+<article class:list={['supporting-card', recent && 'supporting-card--recent', highlight && 'supporting-card--highlight']} id={id}>
   <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} kind={kind} compact />
   <div class="supporting-card-copy">
-    <p class="supporting-card-meta"><span>{number}</span>{type}</p>
+    <p class="supporting-card-meta"><span>{number}{period && ` / ${period}`}</span><span>{type}</span></p>
     <h3>{name}</h3>
     <p class="supporting-card-detail">{detail}</p>
     {context && <p class="supporting-card-context">{context}</p>}
