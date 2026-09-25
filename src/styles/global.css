@@ -577,6 +577,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .supporting-card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; margin-top: 9px; color: var(--accent); font-size: 13px; }
 .supporting-card-link svg { transition: transform var(--motion-cta) var(--ease); }
 .supporting-card-link:hover svg { transform: translate(2px,-2px); }
+.other-work .supporting-card-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .supporting-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
 .supporting-card-tags li { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.25; letter-spacing: .035em; }
 .supporting-card:target { border-top-color: var(--accent); }
@@ -587,9 +588,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .other-work .supporting-card .media-poster::after { display: none; }
 .other-work .supporting-card-copy { min-width: 0; }
 .other-work .supporting-card h3 { min-height: 1.2em; margin-bottom: 8px; }
-.other-work .supporting-history-link { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; color: var(--accent); font-size: 13px; white-space: nowrap; }
-.other-work .supporting-history-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-.other-work .supporting-history-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.other-work .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-top: 10px; }
+.other-work .project-actions .supporting-card-link { min-height: 34px; margin-top: 0; }
+.other-work .project-actions .supporting-card-link + .supporting-card-link::before { content: '|'; margin-right: 10px; color: var(--line-strong); }
 .other-work .supporting-card:target { outline: 1px solid var(--accent); outline-offset: 10px; }
 .supporting-grid--recent { grid-template-columns: minmax(0,1fr); }
 .supporting-card--recent { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr); align-items: center; gap: 32px; padding-top: 18px; }
@@ -623,7 +624,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 @media (max-width: 699px) {
   .other-work .supporting-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }
   .other-work .supporting-card { padding: 0; }
-  .other-work .supporting-history-link { white-space: normal; }
 }
 
 /* Stage 11A.4: concise human context and source-linked peer recommendations. */

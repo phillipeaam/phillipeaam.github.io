@@ -71,9 +71,9 @@ import { experience } from '../data/experience';
   </section>
 
   <section class="section-block content-width other-work" id="other-work" aria-labelledby="other-work-title">
-    <header class="section-heading"><div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="other-work-title">Other Work</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p><a class="supporting-history-link" href="https://www.linkedin.com/in/phillipe-augusto/details/projects/" target="_blank" rel="noreferrer">Project history on LinkedIn <Icon name="external" size={14} /></a></header>
+    <header class="section-heading"><div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="other-work-title">Other Work</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p></header>
     <div class="supporting-grid">
-      {otherWork.map((item) => <SupportingProject {...item} showMeta={false} />)}
+      {otherWork.map((item) => <SupportingProject {...item} showMeta={false} showContext={false} />)}
     </div>
   </section>
 
