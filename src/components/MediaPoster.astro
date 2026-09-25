@@ -1,6 +1,6 @@
 ---
 import PreviewControl from './PreviewControl.astro';
-const { label, alt = label, kind = 'neutral', caption, demoPreview = false, compact = false, posterLabel } = Astro.props;
+const { label, alt = label, kind = 'neutral', caption, demoPreview = false, compact = false, posterLabel, posterSrc, previewSrc } = Astro.props;
 const kindClass = `proxy-${kind}`;
 const posterLabels: Record<string, string> = {
   ilhas: 'GAMEPLAY POSTER — ILHAS',
@@ -12,7 +12,8 @@ const posterLabels: Record<string, string> = {
 };
 ---
 <figure class:list={['media-figure', compact && 'media-compact']}>
-  <div class:list={['media-poster', kindClass]} role="group" aria-label={alt} data-media-poster data-state="poster" data-demo-preview={demoPreview ? 'true' : 'false'}>
+  <div class:list={['media-poster', kindClass]} role="group" aria-label={alt} data-media-poster data-state="poster" data-demo-preview={demoPreview ? 'true' : 'false'} data-poster-src={posterSrc} data-preview-src={previewSrc}>
+    {posterSrc && <img class="media-poster-image" src={posterSrc} alt="" loading="lazy" />}
     <div class="proxy-scene" aria-hidden="true">
       {kind === 'wallace' && <div class="proxy-grid"><i></i><i></i><i></i></div>}
       {kind === 'ilhas' && <div class="proxy-minigame"><i></i><i></i><i></i></div>}
