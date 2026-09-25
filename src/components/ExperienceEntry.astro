@@ -10,6 +10,6 @@ const { item, index } = Astro.props as { item: Experience; index: number };
     <h3>{item.role}</h3>
     <p class="experience-context">{item.context}</p>
     <ul class="experience-highlights">{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
-    {item.related.length > 0 && <div class="experience-related"><span>RELATED WORK</span>{item.related.map((link) => link.href ? <a href={link.href}>{link.label} <Icon name="arrow" size={15} /></a> : <span class="related-unlinked">{link.label}</span>)}</div>}
+    {item.related.length > 0 && <div class="experience-related"><span>RELATED WORK</span>{item.related.map((link) => link.href && <a href={link.href}>{link.label} <Icon name="arrow" size={15} /></a>)}</div>}
   </div>
 </article>

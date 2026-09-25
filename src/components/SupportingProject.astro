@@ -1,10 +1,10 @@
 ---
 import MediaPoster from './MediaPoster.astro';
-import Icon from './Icon.astro';
-const { id, number, period, name, type, detail, context, tags = [], mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, showMeta = true, showContext = true } = Astro.props;
+import ExternalLink from './ExternalLink.astro';
+const { id, anchorId, number, period, name, type, detail, context, tags = [], mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, showMeta = true, showContext = true } = Astro.props;
 const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
 ---
-<article class:list={['supporting-card', recent && 'supporting-card--recent']} id={id}>
+<article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
   <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />
   <div class="supporting-card-copy">
     {showMeta && (number || period || type) && <p class="supporting-card-meta"><span>{number}{period && ` / ${period}`}</span><span>{type}</span></p>}
@@ -13,8 +13,8 @@ const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
     {showContext && context && <p class="supporting-card-context">{context}</p>}
     {tags.length > 0 && <ul class="supporting-card-tags" aria-label={`${name} technologies and context`}>{tags.map((tag: string) => <li>{tag}</li>)}</ul>}
     {actions && projectActions.length > 0 && <div class="project-actions" aria-label={`${name} links`}>
-      {projectActions.slice(0, 2).map((action: { href: string; label: string }) => <a class="supporting-card-link" href={action.href}>{action.label} <Icon name="external" size={15} /></a>)}
+      {projectActions.slice(0, 2).map((action: { href: string; label: string }) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
     </div>}
-    {!actions && href && <a class="supporting-card-link" href={href}>{linkLabel} <Icon name="external" size={15} /></a>}
+    {!actions && href && <ExternalLink class="supporting-card-link" href={href} icon>{linkLabel}</ExternalLink>}
   </div>
 </article>

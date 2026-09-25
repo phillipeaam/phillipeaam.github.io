@@ -69,9 +69,9 @@ export const pathless: Project = {
 };
 
 export const moreProfessional = [
-  { id: 'tabuada-na-fazenda', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing production support for a farm-themed math game.', tags: ['Unity', 'Minigames', 'Math game'], mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
-  { id: 'craque-da-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', context: 'Instituto Alfa e Beto · professional product work', detail: 'Interactive reading product with book content, catalog, and guided reading flows.', tags: ['Reading', 'Catalog', 'Interactive product'], mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
-  { id: 'flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial literacy game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing maintenance of a literacy game.', tags: ['Unity', 'Minigames', 'Progression'], mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
+  { id: 'tabuada-na-fazenda', anchorId: 'work-tabuada', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing production support for a farm-themed math game.', tags: ['Unity', 'Minigames', 'Math game'], mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
+  { id: 'craque-da-leitura', anchorId: 'work-craque-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', context: 'Instituto Alfa e Beto · professional product work', detail: 'Interactive reading product with book content, catalog, and guided reading flows.', tags: ['Reading', 'Catalog', 'Interactive product'], mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
+  { id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial literacy game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing maintenance of a literacy game.', tags: ['Unity', 'Minigames', 'Progression'], mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
 ];
 
 // Public Other Work set for Stage 11A.4. Project-specific LinkedIn detail URLs
@@ -88,32 +88,47 @@ export const otherWork = [
     actions: [{ href: 'https://phillipeaam.itch.io/sweets-and-shadows', label: 'Play on itch.io' }], kind: 'neutral',
   },
   { ...moreProfessional[0], actions: [{ href: moreProfessional[0].href, label: 'Official product' }], kind: 'neutral' },
-  { ...moreProfessional[1], actions: [{ href: moreProfessional[1].href, label: 'Official product' }], kind: 'neutral' },
-  { ...moreProfessional[2], actions: [{ href: moreProfessional[2].href, label: 'Official product' }], kind: 'neutral' },
+  { ...moreProfessional[1], actions: [
+    { href: moreProfessional[1].href, label: 'Official product' },
+    { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1497806737/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
+  ], kind: 'neutral' },
+  { ...moreProfessional[2], actions: [
+    { href: moreProfessional[2].href, label: 'Official product' },
+    { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1945254108/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
+  ], kind: 'neutral' },
+  {
+    id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Learn With Ello', type: 'Learning platform · product continuation',
+    detail: 'A later Ello learning-platform continuation, extending its reading experience into early math and adaptive learning.',
+    tags: ['Learning platform', 'Reading & math', 'Product continuation'], mediaLabel: 'PRODUCT MEDIA — LEARN WITH ELLO',
+    actions: [{ href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1354869267/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }], kind: 'ello',
+  },
   {
     id: 'avaliacao-diagnostica', period: 'Undated', type: 'Digital school-assessment platform', name: 'Avaliação Diagnóstica',
     detail: 'A school assessment platform with Portuguese and math workflows, offline use, synchronization, and reporting.', context: 'Instituto Alfa e Beto · professional product', tags: ['Assessment', 'Offline', 'Reporting'], mediaLabel: 'ASSESSMENT PLATFORM — AVALIAÇÃO DIAGNÓSTICA',
-    actions: [{ href: 'https://alfaebeto.org.br/conheca-a-alfa-e-beto-avaliacao/', label: 'Official product overview' }], kind: 'neutral',
+    anchorId: 'work-avaliacao-diagnostica', actions: [
+      { href: 'https://alfaebeto.org.br/conheca-a-alfa-e-beto-avaliacao/', label: 'Official product overview' },
+      { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1520869873/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
+    ], kind: 'neutral',
   },
   {
     id: 'avaliacao-lingua-portuguesa', name: 'Avaliação da Língua Portuguesa', period: 'Undated', type: 'Unity interactive assessment',
-    detail: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work', tags: ['Unity', 'Assessment', 'Interactive'], mediaLabel: 'UNITY ASSESSMENT — LÍNGUA PORTUGUESA', kind: 'neutral',
+    detail: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work', tags: ['Unity', 'Assessment', 'Interactive'], mediaLabel: 'UNITY ASSESSMENT — LÍNGUA PORTUGUESA', kind: 'neutral', anchorId: 'work-avaliacao-lingua-portuguesa',
   },
   {
     id: 'iab-digital-zero-a-quatro', name: 'IAB Digital: Zero a Quatro na Palma da Mão', period: 'Undated', type: 'Early-childhood education platform',
-    detail: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context', tags: ['Education platform', 'Mobile', 'Digital learning'], mediaLabel: 'EDUCATION PLATFORM — IAB DIGITAL', kind: 'neutral',
+    detail: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context', tags: ['Education platform', 'Mobile', 'Digital learning'], mediaLabel: 'EDUCATION PLATFORM — IAB DIGITAL', kind: 'neutral', anchorId: 'work-iab-digital',
   },
   {
     id: 'iab-testes', name: 'IAB Testes', period: 'Undated', type: 'Tablet assessment platform',
-    detail: 'A tablet-based digital assessment product for school literacy workflows.', context: 'Cedro Technologies · professional product context', tags: ['Assessment', 'Tablet', 'Education'], mediaLabel: 'TABLET ASSESSMENT — IAB TESTES', kind: 'neutral',
+    detail: 'A tablet-based digital assessment product for school literacy workflows.', context: 'Cedro Technologies · professional product context', tags: ['Assessment', 'Tablet', 'Education'], mediaLabel: 'TABLET ASSESSMENT — IAB TESTES', kind: 'neutral', anchorId: 'work-iab-testes',
   },
   {
     id: 'mypush', name: 'MyPush', period: 'Undated', type: 'B2B mobile product',
-    detail: 'Professional mobile software work involving client applications and service integrations.', context: 'Earlier professional software experience', tags: ['Mobile', 'APIs', 'B2B'], mediaLabel: 'MOBILE PRODUCT — MYPUSH', kind: 'neutral',
+    detail: 'Professional mobile software work involving client applications and service integrations.', context: 'Earlier professional software experience', tags: ['Mobile', 'APIs', 'B2B'], mediaLabel: 'MOBILE PRODUCT — MYPUSH', kind: 'neutral', anchorId: 'work-mypush',
   },
   {
     id: 'morada-verde-inventory-flow', name: 'Morada Verde Inventory Flow', period: 'Undated', type: 'Client operational software',
-    detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', tags: ['Client software', 'Inventory', 'Workflow'], mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral',
+    detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', tags: ['Client software', 'Inventory', 'Workflow'], mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral', anchorId: 'work-morada-verde',
   },
 ];
 

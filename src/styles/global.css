@@ -386,9 +386,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .experience-highlights { display: grid; gap: 7px; max-width: 86ch; margin: 0 0 20px; padding: 0; list-style: none; color: var(--secondary); font-size: 15px; }
 .experience-highlights li { position: relative; padding-left: 18px; }
 .experience-highlights li::before { content: ''; position: absolute; left: 0; top: .73em; width: 6px; height: 1px; background: var(--accent); }
-.experience-related { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; }
+.experience-related { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 14px; min-width: 0; }
 .experience-related > span { margin-right: 4px; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .085em; }
-.experience-related a { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; color: var(--accent); font-size: 14px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
+.experience-related a { display: inline-flex; align-items: center; gap: 5px; min-height: 34px; color: var(--accent); font-size: 13px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
 .experience-related a:hover { text-decoration-color: currentColor; }
 .experience-related .related-unlinked { min-height: 32px; display: inline-flex; align-items: center; padding-inline: 8px; color: var(--secondary); font-size: 12px; }
 .recent-index-link { margin-left: 24px; }

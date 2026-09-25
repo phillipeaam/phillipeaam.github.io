@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+
+const { href, class: className, title, ariaLabel, icon = false, iconSize = 15 } = Astro.props;
+---
+<a href={href} class={className} title={title} aria-label={ariaLabel} target="_blank" rel="noopener noreferrer">
+  <slot />{icon && <> <Icon name="external" size={iconSize} /></>}
+</a>

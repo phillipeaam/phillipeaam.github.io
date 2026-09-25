@@ -17,7 +17,7 @@ export const experience: Experience[] = [
       'Worked on book-library UI and loading paths; adapted GraphQL client tooling.',
       'Contributed to frequent iOS releases, including preparation and submission tasks.',
     ],
-    related: [{ label: 'Read With Ello', href: '/work/read-with-ello/' }, { label: 'Learn With Ello' }],
+    related: [{ label: 'Read With Ello', href: '/work/read-with-ello/' }, { label: 'Learn With Ello', href: '/#work-learn-with-ello' }],
   },
   {
     role: 'Senior Unity Game Developer', organization: 'Instituto Alfa e Beto', dates: 'Aug 2017 — Oct 2022', icon: 'gamepad',
@@ -30,9 +30,11 @@ export const experience: Experience[] = [
     related: [
       { label: 'Ilhas do Alfabeto', href: '/work/ilhas-do-alfabeto/' },
       { label: 'Craque da Fluência', href: '/work/craque-da-fluencia/' },
-      { label: 'Flui', href: '/#flui' },
-      { label: 'Craque da Leitura', href: '/#craque-da-leitura' },
-      { label: 'Tabuada na Fazenda', href: '/#tabuada-na-fazenda' },
+      { label: 'Tabuada na Fazenda', href: '/#work-tabuada' },
+      { label: 'Craque da Leitura', href: '/#work-craque-leitura' },
+      { label: 'Flui — A Cidade das Palavras', href: '/#work-flui' },
+      { label: 'Avaliação Diagnóstica', href: '/#work-avaliacao-diagnostica' },
+      { label: 'Avaliação da Língua Portuguesa', href: '/#work-avaliacao-lingua-portuguesa' },
     ],
   },
   {
@@ -42,6 +44,10 @@ export const experience: Experience[] = [
       'Worked on mobile interface flows and client-side behavior.',
       'Integrated application screens with APIs and local persistence.',
     ],
-    related: [],
+    related: [
+      { label: 'IAB Testes', href: '/#work-iab-testes' },
+      { label: 'MyPush', href: '/#work-mypush' },
+      { label: 'Morada Verde Inventory Flow', href: '/#work-morada-verde' },
+    ],
   },
 ];

@@ -4,6 +4,7 @@ import FeaturedProject from '../components/FeaturedProject.astro';
 import ExperienceEntry from '../components/ExperienceEntry.astro';
 import Icon from '../components/Icon.astro';
 import SupportingProject from '../components/SupportingProject.astro';
+import ExternalLink from '../components/ExternalLink.astro';
 import { featuredProjects, otherWork } from '../data/projects';
 import { experience } from '../data/experience';
 ---
@@ -13,10 +14,10 @@ import { experience } from '../data/experience';
     <p class="hero-statement">I build gameplay systems, architecture, and tools that turn game ideas into polished, memorable experiences.</p>
     <p class="hero-experience">8+ years in software development across commercial Unity games, live interactive products, and independent projects.</p>
     <nav class="hero-social" aria-label="Profiles">
-      <a href="https://github.com/phillipeaam"><img src="/icons/github.svg" alt="" width="20" height="20" /><span>GitHub</span></a>
-      <a href="https://www.linkedin.com/in/phillipe-augusto/"><img src="/icons/linkedin.svg" alt="" width="20" height="20" /><span>LinkedIn</span></a>
-      <a href="https://phillipeaam.itch.io/"><img src="/icons/itchio.svg" alt="" width="20" height="20" /><span>itch.io</span></a>
-      <a href="https://www.youtube.com/@phillipeaam"><img src="/icons/youtube.svg" alt="" width="20" height="20" /><span>YouTube</span></a>
+      <ExternalLink href="https://github.com/phillipeaam" icon iconSize={13}><img src="/icons/github.svg" alt="" width="20" height="20" /><span>GitHub</span></ExternalLink>
+      <ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/" icon iconSize={13}><img src="/icons/linkedin.svg" alt="" width="20" height="20" /><span>LinkedIn</span></ExternalLink>
+      <ExternalLink href="https://phillipeaam.itch.io/" icon iconSize={13}><img src="/icons/itchio.svg" alt="" width="20" height="20" /><span>itch.io</span></ExternalLink>
+      <ExternalLink href="https://www.youtube.com/@phillipeaam" icon iconSize={13}><img src="/icons/youtube.svg" alt="" width="20" height="20" /><span>YouTube</span></ExternalLink>
     </nav>
     <div class="hero-system-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </section>
@@ -48,19 +49,19 @@ import { experience } from '../data/experience';
   </section>
 
   <section class="section-block content-width recommendations-section" id="recommendations" aria-labelledby="recommendations-title">
-    <header class="section-heading"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h2 id="recommendations-title">What teammates say</h2></div><a href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/">All LinkedIn recommendations <Icon name="external" size={15} /></a></header>
+    <header class="section-heading"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h2 id="recommendations-title">What teammates say</h2></div><ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/" icon>All LinkedIn recommendations</ExternalLink></header>
     <div class="recommendation-list" role="region" aria-label="LinkedIn recommendations. On small screens, scroll horizontally to read each recommendation." tabindex="0">
       <figure class="recommendation-card">
         <blockquote>“His care for detail, thorough support and feedbacks certainly inspired me to be a better engineer.”</blockquote>
-        <figcaption><span class="recommendation-name">João Borges</span><span>Senior Software Engineer · Ello teammate</span><a href="https://www.linkedin.com/in/thatjoaoguy/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        <figcaption><span class="recommendation-name">João Borges</span><span>Senior Software Engineer · Ello teammate</span><ExternalLink href="https://www.linkedin.com/in/thatjoaoguy/" icon>View on LinkedIn</ExternalLink></figcaption>
       </figure>
       <figure class="recommendation-card">
         <blockquote>“Phillipe (a.k.a. the master) did an exceptional job on all Alfa e Beto Institute products.”</blockquote>
-        <figcaption><span class="recommendation-name">Douglas Otoni</span><span>Tech Lead / Full-stack Programmer, Grupo Paranaíba · former manager</span><a href="https://www.linkedin.com/in/douglasotoni/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        <figcaption><span class="recommendation-name">Douglas Otoni</span><span>Tech Lead / Full-stack Programmer, Grupo Paranaíba · former manager</span><ExternalLink href="https://www.linkedin.com/in/douglasotoni/" icon>View on LinkedIn</ExternalLink></figcaption>
       </figure>
       <figure class="recommendation-card">
         <blockquote>“I am proof of his skills with Unity Game Engine, Native Android and Database development.”</blockquote>
-        <figcaption><span class="recommendation-name">Marllon Vilano</span><span>Staff / Lead Unity Engineer · teammate</span><a href="https://www.linkedin.com/in/sandolkakos/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        <figcaption><span class="recommendation-name">Marllon Vilano</span><span>Staff / Lead Unity Engineer · teammate</span><ExternalLink href="https://www.linkedin.com/in/sandolkakos/" icon>View on LinkedIn</ExternalLink></figcaption>
       </figure>
     </div>
   </section>
@@ -77,5 +78,5 @@ import { experience } from '../data/experience';
     </div>
   </section>
 
-  <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="content-width contact-inner"><div class="contact-heading"><p class="eyebrow">LET’S CONNECT</p><h2 id="contact-title">Looking for a Gameplay Engineer?<br /><span>Let’s talk.</span></h2><p>Unity gameplay systems, production engineering, and independent combat prototyping.</p></div><div class="contact-actions"><a class="contact-primary" href="mailto:phillipe.a.a.mendonca@gmail.com"><Icon name="mail" size={19} /> Email Phillipe <Icon name="arrow" size={19} /></a><a class="contact-secondary" href="https://www.linkedin.com/in/phillipe-augusto/"><span class="contact-linkedin-label"><img src="/icons/linkedin.svg" alt="" width="18" height="18" />Connect on LinkedIn</span><Icon name="external" size={17} /></a></div></div></section>
+  <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="content-width contact-inner"><div class="contact-heading"><p class="eyebrow">LET’S CONNECT</p><h2 id="contact-title">Looking for a Gameplay Engineer?<br /><span>Let’s talk.</span></h2><p>Unity gameplay systems, production engineering, and independent combat prototyping.</p></div><div class="contact-actions"><a class="contact-primary" href="mailto:phillipe.a.a.mendonca@gmail.com"><Icon name="mail" size={19} /> Email Phillipe <Icon name="arrow" size={19} /></a><ExternalLink class="contact-secondary" href="https://www.linkedin.com/in/phillipe-augusto/" ariaLabel="Connect on LinkedIn (opens in a new tab)"><span class="contact-linkedin-label"><img src="/icons/linkedin.svg" alt="" width="18" height="18" />Connect on LinkedIn</span><Icon name="external" size={17} /></ExternalLink></div></div></section>
 </BaseLayout>
