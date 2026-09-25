@@ -32,6 +32,44 @@ import { experience } from '../data/experience';
     <div class="experience-list">{experience.map((item, index) => <ExperienceEntry item={item} index={index + 1} />)}</div>
   </section>
 
+  <section class="section-block content-width human-section" id="about-phillipe" aria-labelledby="about-title">
+    <header class="section-heading"><div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p></header>
+    <div class="human-profile">
+      <figure class="profile-portrait"><img src="/images/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Gameplay Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
+      <div class="profile-content">
+        <div class="profile-copy">
+          <p>I’m interested in the systems behind responsive mechanics and meaningful player feedback.</p>
+          <p>I enjoy shaping gameplay architecture and tools that help teams iterate, keep code understandable, and carry features from implementation toward production. The details players may never notice still matter when they change how an experience feels.</p>
+        </div>
+        <aside class="care-note" aria-labelledby="care-title">
+          <p class="eyebrow" id="care-title">WHAT I CARE ABOUT</p>
+          <ul>
+            <li>Gameplay that feels deliberate.</li>
+            <li>Systems that stay understandable as they grow.</li>
+            <li>Engineering choices players can feel, even when they never see them.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+    <div class="recommendations" aria-labelledby="recommendations-title">
+      <header class="recommendations-heading"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h3 id="recommendations-title">What teammates say</h3></div><a href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/">All LinkedIn recommendations <Icon name="external" size={15} /></a></header>
+      <div class="recommendation-list" role="region" aria-label="LinkedIn recommendations. On small screens, scroll horizontally to read each recommendation." tabindex="0">
+        <figure class="recommendation-card">
+          <blockquote>“His care for detail, thorough support and feedbacks certainly inspired me to be a better engineer.”</blockquote>
+          <figcaption><span class="recommendation-name">João Borges</span><span>Senior Software Engineer · Ello teammate</span><a href="https://www.linkedin.com/in/thatjoaoguy/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        </figure>
+        <figure class="recommendation-card">
+          <blockquote>“Phillipe (a.k.a. the master) did an exceptional job on all Alfa e Beto Institute products.”</blockquote>
+          <figcaption><span class="recommendation-name">Douglas Otoni</span><span>Tech Lead / Full-stack Programmer, Grupo Paranaíba · former manager</span><a href="https://www.linkedin.com/in/douglasotoni/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        </figure>
+        <figure class="recommendation-card">
+          <blockquote>“I am proof of his skills with Unity Game Engine, Native Android and Database development.”</blockquote>
+          <figcaption><span class="recommendation-name">Marllon Vilano</span><span>Staff / Lead Unity Engineer · teammate</span><a href="https://www.linkedin.com/in/sandolkakos/">View on LinkedIn <Icon name="external" size={14} /></a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="section-block content-width shipped-work" id="more-shipped-unity-work" aria-labelledby="shipped-title">
     <header class="section-heading"><div><p class="eyebrow">PROFESSIONAL PROJECT BREADTH <span class="heading-count">/ 03</span></p><h2 id="shipped-title">More shipped Unity work</h2></div><p>Additional products from my professional Unity work, kept intentionally compact.</p></header>
     <ShippedUnityWork />
