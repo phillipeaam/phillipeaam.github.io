@@ -23,12 +23,12 @@ import { experience } from '../data/experience';
   </section>
 
   <section class="section-block content-width" id="work" aria-labelledby="featured-title">
-    <header class="section-heading"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
+    <header class="section-heading section-heading--major"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
     <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
   </section>
 
   <section class="section-block content-width human-section" id="about-phillipe" aria-labelledby="about-title">
-    <header class="section-heading"><div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p></header>
+    <header class="section-heading section-heading--major"><div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p></header>
     <div class="human-profile">
       <figure class="profile-portrait"><img src="/images/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Gameplay Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
       <div class="profile-content">
@@ -49,7 +49,7 @@ import { experience } from '../data/experience';
   </section>
 
   <section class="section-block content-width recommendations-section" id="recommendations" aria-labelledby="recommendations-title">
-    <header class="section-heading"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h2 id="recommendations-title">What teammates say</h2></div><ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/" icon>All LinkedIn recommendations</ExternalLink></header>
+    <header class="section-heading section-heading--major"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h2 id="recommendations-title">What teammates say</h2></div><ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/" icon>All LinkedIn recommendations</ExternalLink></header>
     <div class="recommendation-list" role="region" aria-label="LinkedIn recommendations. On small screens, scroll horizontally to read each recommendation." tabindex="0">
       <figure class="recommendation-card">
         <blockquote>“His care for detail, thorough support and feedbacks certainly inspired me to be a better engineer.”</blockquote>
@@ -67,12 +67,12 @@ import { experience } from '../data/experience';
   </section>
 
   <section class="section-block content-width experience-preview" id="experience" aria-labelledby="experience-title">
-    <header class="section-heading"><div><p class="eyebrow">PROFESSIONAL HISTORY <span class="heading-count">/ 03</span></p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>
+    <header class="section-heading section-heading--major"><div><p class="eyebrow">PROFESSIONAL HISTORY <span class="heading-count">/ 03</span></p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>
     <div class="experience-list">{experience.map((item, index) => <ExperienceEntry item={item} index={index + 1} />)}</div>
   </section>
 
   <section class="section-block content-width other-work" id="other-work" aria-labelledby="other-work-title">
-    <header class="section-heading"><div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="other-work-title">Other Work</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p></header>
+    <header class="section-heading section-heading--major"><div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="other-work-title">Other Work</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p></header>
     <div class="supporting-grid">
       {otherWork.map((item) => <SupportingProject {...item} showMeta={false} showContext={false} />)}
     </div>
