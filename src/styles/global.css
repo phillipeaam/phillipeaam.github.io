@@ -576,8 +576,15 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .supporting-card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; margin-top: 9px; color: var(--accent); font-size: 13px; }
 .supporting-card-link svg { transition: transform var(--motion-cta) var(--ease); }
 .supporting-card-link:hover svg { transform: translate(2px,-2px); }
+.supporting-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+.supporting-card-tags li { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.25; letter-spacing: .035em; }
 .supporting-card:target { border-top-color: var(--accent); }
-.other-work .supporting-card--highlight { border-top-color: var(--accent); }
+.other-work .supporting-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px 24px; }
+.other-work .supporting-card { padding-top: 0; border-top: 0; }
+.other-work .supporting-card--highlight { position: relative; }
+.other-work .supporting-card--highlight::before { position: absolute; top: 0; left: 0; width: 38px; height: 2px; background: var(--accent); content: ''; }
+.other-work .supporting-card--highlight .media-figure { padding-top: 8px; }
+.other-work .supporting-card:target { outline: 1px solid var(--accent); outline-offset: 10px; }
 .supporting-grid--recent { grid-template-columns: minmax(0,1fr); }
 .supporting-card--recent { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr); align-items: center; gap: 32px; padding-top: 18px; }
 .supporting-card--recent .media-figure { margin: 0; }
@@ -602,6 +609,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .human-section > .section-heading::before,
   .recommendations-section > .section-heading::before,
   .other-work > .section-heading::before { left: 70px; }
+}
+
+@media (min-width: 601px) and (max-width: 1099px) {
+  .other-work .supporting-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 30px 22px; }
+}
+@media (max-width: 600px) {
+  .other-work .supporting-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .other-work .supporting-card { padding: 0; }
 }
 
 /* Stage 11A.4: concise human context and source-linked peer recommendations. */

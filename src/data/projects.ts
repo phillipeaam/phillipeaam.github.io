@@ -69,16 +69,16 @@ export const pathless: Project = {
 };
 
 export const moreProfessional = [
-  { id: 'tabuada-na-fazenda', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Unity · Commercial math game', context: 'Professional game development', detail: 'Contributed to minigames, progression, and production support.', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
-  { id: 'craque-da-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Unity · Interactive reading product', context: 'Professional product work', detail: 'Worked on book content, catalog, and reading flows.', mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
-  { id: 'flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Unity · Commercial literacy game', context: 'Long-lived professional game development', detail: 'Contributed to minigames, progression, and ongoing gameplay maintenance.', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
+  { id: 'tabuada-na-fazenda', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to minigames and ongoing production support.', tags: ['Unity', 'Minigames', 'Production'], mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
+  { id: 'craque-da-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', context: 'Instituto Alfa e Beto · professional product work', detail: 'Worked on book content, the catalog, and reading flows.', tags: ['Unity', 'Reading flows', 'Catalog'], mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
+  { id: 'flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial literacy game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to minigames and ongoing gameplay maintenance.', tags: ['Unity', 'Minigames', 'Live product'], mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
 ];
 
 export const otherWork = [
   {
-    id: 'pathless', name: pathless.name, period: '2026', type: 'Independent · Unity 6 · WebGL',
-    detail: pathless.product, context: pathless.contribution, mediaLabel: 'RESCUE GAMEPLAY — PATHLESS',
-    href: 'https://phillipeaam.itch.io/pathless', linkLabel: 'Play Pathless', kind: pathless.kind, highlight: true,
+    id: 'pathless', name: pathless.name, period: '2026', type: 'Game jam · Unity 6 · WebGL',
+    detail: pathless.product, context: pathless.contribution, tags: ['Unity 6', 'WebGL', '3-person team'], mediaLabel: 'RESCUE GAMEPLAY — PATHLESS',
+    href: 'https://phillipeaam.itch.io/pathless', linkLabel: 'Play on itch.io', kind: pathless.kind, highlight: true,
   },
   ...moreProfessional.map((item) => ({ ...item, linkLabel: 'Official product page' })),
 ];
