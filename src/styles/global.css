@@ -146,11 +146,13 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .media-compact .media-poster { border-radius: 4px; }
 .contact-section { position: relative; margin-top: var(--s-32); padding: var(--s-24) 0 var(--s-24); background: var(--elevated); }
 .contact-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--section-divider); }
-.site-footer { padding: 25px 0; color: var(--muted); font-size: 13px; }
-.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
-.footer-inner a { min-height: 44px; display: inline-flex; align-items: center; }
-.footer-inner a span { display: inline-block; margin-left: var(--s-1); transition: transform var(--motion-cta) var(--ease); }
-.footer-inner a:hover span { transform: translateY(-3px); }
+.site-footer { border-top: 1px solid var(--line); padding: 34px 0 24px; color: var(--muted); font-size: 13px; }
+.footer-inner { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 48px; }
+.footer-column .eyebrow { margin-bottom: 8px; color: var(--muted); font-size: 10px; }
+.footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; margin: 0; padding: 0; list-style: none; }
+.footer-links a { min-height: 40px; display: inline-flex; align-items: center; color: var(--secondary); text-decoration: none !important; transition: color var(--motion-nav) var(--ease); }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--text); }
+.footer-bottom { grid-column: 1 / -1; margin-top: 0; padding-top: 8px; color: var(--muted); font-size: 12px; }
 .page-hero { padding-top: clamp(76px, 9vw, 120px); padding-bottom: var(--s-12); }
 .page-hero + .section-block { padding-top: var(--s-16); }
 .page-hero h1 { margin: 0 0 18px; font-size: clamp(44px, 6vw, 68px); }
@@ -267,7 +269,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .recent-project { grid-template-columns: minmax(0,1fr); gap: 22px; }
   .contact-section { margin-top: var(--s-24); padding: var(--s-16) 0; }
   .contact-inner h2 { font-size: 35px; }
-  .footer-inner { flex-direction: column; gap: 8px; }
+  .footer-inner { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .site-footer { padding: 20px 0 16px; }
+  .footer-column .eyebrow { margin-bottom: 8px; }
+  .footer-links { gap: 0 16px; }
+  .footer-links a { min-height: 44px; }
+  .footer-bottom { grid-column: auto; padding-top: 0; }
   .page-hero { padding-top: 72px; padding-bottom: 34px; }
   .page-hero + .section-block { padding-top: var(--s-12); }
   .page-hero h1 { font-size: 46px; }
