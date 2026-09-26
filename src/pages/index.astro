@@ -26,14 +26,14 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">WORK, IN DEPTH</p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
+    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">WORK, IN DEPTH</p><h2 id="featured-title">Selected work</h2></div><p><span class="section-support-line">Commercial gameplay, independent combat systems, and</span> <span class="section-support-line">production Unity engineering.</span></p></header>
     <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
     <header class="section-heading section-heading--major nav-anchor-target" id="projects">
       <span class="nav-anchor-alias" id="other-work" aria-hidden="true"></span>
-      <div><p class="eyebrow">BREADTH, AT A GLANCE</p><h2 id="projects-title">More Projects</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p>
+      <div><p class="eyebrow">BREADTH, AT A GLANCE</p><h2 id="projects-title">More Projects</h2></div><p><span class="section-support-line">Professional products, independent games, and technical</span> <span class="section-support-line">work beyond the selected case studies.</span></p>
     </header>
     <div class="supporting-grid">
       {otherWork.map((item) => <SupportingProject {...item} showMeta={false} showContext={false} />)}
@@ -66,7 +66,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="experience"><div><p class="eyebrow">CAREER, IN PRACTICE</p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>
+    <header class="section-heading section-heading--major nav-anchor-target" id="experience"><div><p class="eyebrow">CAREER, IN PRACTICE</p><h2 id="experience-title">Experience</h2></div><p><span class="section-support-line">Unity product engineering, commercial game development,</span> <span class="section-support-line">and earlier mobile software work.</span></p></header>
     <div class="experience-list">{experience.map((item) => <ExperienceEntry item={item} />)}</div>
     <div class="experience-provenance"><ExternalLink class="experience-linkedin provenance-link" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon>See all experience on LinkedIn</ExternalLink></div>
   </section>
