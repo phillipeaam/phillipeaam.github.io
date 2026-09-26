@@ -484,7 +484,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .contact-heading h2 { letter-spacing: -.055em; }
 .contact-action--copy { width: 100%; min-width: 0; justify-content: space-between; gap: var(--s-3); padding-inline: var(--s-4); color: var(--muted); background: linear-gradient(145deg, rgba(154,167,255,.025), rgba(25,28,35,.08) 58%, rgba(140,219,173,.015)), var(--bg); text-align: left; white-space: normal; appearance: none; cursor: pointer; font-family: inherit; }
 .contact-action--copy .contact-copy-address { min-width: 0; overflow-wrap: anywhere; line-height: 1.4; font-size: 13px; }
-.contact-copy-feedback { display: inline-flex; flex: none; align-items: center; justify-content: flex-end; min-width: 20px; color: var(--muted); font-size: 11px; }
+.contact-copy-feedback { display: inline-flex; flex: none; align-items: center; justify-content: flex-end; inline-size: 44px; min-inline-size: 44px; color: var(--muted); font-size: 11px; }
 .contact-action--copy:hover .contact-copy-feedback, .contact-action--copy:focus-visible .contact-copy-feedback { color: var(--accent); }
 [data-copy-icon] { display: inline-flex; }
 [data-copy-icon] svg { display: block; }
