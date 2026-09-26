@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectRecord from '../../components/ProjectRecord.astro';
+import { projectInventoryGroups } from '../../data/projects';
+
+const homePath = import.meta.env.BASE_URL;
+---
+<BaseLayout title="Projects — Phillipe Augusto" description="A broader inventory of Phillipe Augusto’s professional Unity work, software products, independent games, and studies.">
+  <section class="page-hero content-width project-inventory-hero" aria-labelledby="project-inventory-title">
+    <a class="text-link project-inventory-back" href={`${homePath}#projects`}>Back to selected work <span aria-hidden="true">←</span></a>
+    <p class="eyebrow">PROJECT INVENTORY</p>
+    <h1 id="project-inventory-title">Projects</h1>
+    <p>A broader record of professional Unity work, interactive products, independent games, collaborations, and technical studies.</p>
+  </section>
+  <div class="content-width project-inventory-list">
+    {projectInventoryGroups.map((group, groupIndex) => group.projects.length > 0 && <section class="project-inventory-group" aria-labelledby={`inventory-group-${group.id}`}>
+      <header class="project-inventory-heading">
+        <p class="eyebrow">{group.eyebrow} <span aria-hidden="true">/ {String(groupIndex + 1).padStart(2, '0')}</span></p>
+        <h2 id={`inventory-group-${group.id}`}>{group.title}</h2>
+      </header>
+      <ol class="project-record-list">
+        {group.projects.map((project) => <ProjectRecord project={project} homePath={homePath} />)}
+      </ol>
+    </section>)}
+  </div>
+</BaseLayout>

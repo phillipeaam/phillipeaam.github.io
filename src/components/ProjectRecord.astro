@@ -1,0 +1,33 @@
+---
+import ExternalLink from './ExternalLink.astro';
+import type { ProjectInventoryEntry } from '../data/projects';
+
+const { project, homePath = '/' } = Astro.props as { project: ProjectInventoryEntry; homePath?: string };
+const recordId = project.anchorId ?? project.id;
+const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
+---
+<li class="project-record" id={recordId}>
+  <article>
+    <div class="project-record-meta">
+      <p class="eyebrow">{project.period ?? 'PROJECT'}</p>
+      <p>{project.type}</p>
+    </div>
+    <div class="project-record-copy">
+      <h3>{project.name}</h3>
+      <p class="project-record-product">{project.product}</p>
+      {project.contribution && <p class="project-record-contribution">{project.contribution}</p>}
+      {project.context && <p class="project-record-context">{project.context}</p>}
+      {(caseHref || project.actions?.length) && <nav class="project-record-actions" aria-label={`${project.name} links`}>
+        {caseHref && <a class="text-link" href={caseHref}>Read case study <span aria-hidden="true">→</span></a>}
+        {project.actions?.map((action) => <ExternalLink class="text-link" href={action.href} icon>{action.label}</ExternalLink>)}
+      </nav>}
+      {project.media?.map((media) => <figure class="project-record-media">
+        {media.type === 'image' && <img src={media.src} alt={media.alt ?? ''} loading="lazy" />}
+        {media.type === 'gif' && <img src={media.src} alt={media.alt ?? ''} loading="lazy" />}
+        {media.type === 'video' && <video controls preload="metadata" aria-label={media.title ?? media.alt ?? project.name}><source src={media.src} /></video>}
+        {media.type === 'youtube' && <iframe src={media.src} title={media.title ?? `${project.name} video`} loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
+        {media.caption && <figcaption>{media.caption}</figcaption>}
+      </figure>)}
+    </div>
+  </article>
+</li>

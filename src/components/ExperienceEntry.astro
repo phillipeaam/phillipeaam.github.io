@@ -3,8 +3,9 @@ import Icon from './Icon.astro';
 import type { Experience } from '../data/experience';
 import { resolveExperienceWork } from '../data/projects';
 const { item } = Astro.props as { item: Experience };
+const homePath = import.meta.env.BASE_URL;
 const selectedWork = item.selectedWork.map((reference) => {
-  const project = resolveExperienceWork(reference.projectId);
+  const project = resolveExperienceWork(reference.projectId, homePath);
   return { ...project, label: reference.label ?? project.name };
 });
 ---
