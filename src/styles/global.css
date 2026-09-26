@@ -523,6 +523,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .human-section > .section-heading,
 .recommendations-section > .section-heading,
 .other-work > .section-heading { padding-bottom: 23px; margin-bottom: 34px; }
+.experience-preview > .section-heading { margin-bottom: var(--s-1); }
 .section-heading > div { min-width: 0; }
 .experience-preview { padding-top: var(--s-16); }
 .recommendations-section { padding-top: var(--s-8); }
@@ -580,6 +581,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .human-section > .section-heading,
   .recommendations-section > .section-heading,
   .other-work > .section-heading { padding-bottom: 20px; margin-bottom: 26px; }
+  .experience-preview > .section-heading { margin-bottom: var(--s-1); }
 }
 
 @media (min-width: 700px) and (max-width: 1099px) {
