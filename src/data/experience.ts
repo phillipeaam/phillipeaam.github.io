@@ -1,53 +1,47 @@
 export type Experience = {
   role: string;
   organization: string;
+  companyUrl: string;
+  companyMark: string;
   dates: string;
   context: string;
   highlights: string[];
   related: { label: string; href?: string }[];
-  icon: 'systems' | 'gamepad' | 'mobile';
 };
 
 export const experience: Experience[] = [
   {
-    role: 'Unity Software Engineer', organization: 'Ello', dates: 'Oct 2022 — Dec 2025', icon: 'systems',
-    context: 'Unity product engineering across progression and reward systems, reusable architecture, backend integration, mobile performance, and production delivery.',
+    role: 'Unity Software Engineer', organization: 'Ello', companyUrl: 'https://www.linkedin.com/company/elloinc', companyMark: 'E', dates: 'Oct 2022 — Dec 2025',
+    context: 'Unity engineering for a commercial reading product, spanning game-inspired progression, client systems, service integration, and iOS production work.',
     highlights: [
-      'Worked on quest flows, objectives, and reward presentation.',
-      'Worked on book-library UI and loading paths; adapted GraphQL client tooling.',
+      'Helped implement quest flows, objectives, and reward presentation for the reading experience.',
+      'Worked on book-library UI and loading paths; adapted GraphQL client tooling for Unity features.',
       'Contributed to frequent iOS releases, including preparation and submission tasks.',
     ],
     related: [{ label: 'Read With Ello', href: '/work/read-with-ello/' }, { label: 'Learn With Ello', href: '/#work-learn-with-ello' }],
   },
   {
-    role: 'Senior Unity Game Developer', organization: 'Instituto Alfa e Beto', dates: 'Aug 2017 — Oct 2022', icon: 'gamepad',
-    context: 'Commercial Unity games and learning products, with technical coordination and developer-support responsibilities.',
+    role: 'Senior Unity Game Developer', organization: 'Instituto Alfa e Beto', companyUrl: 'https://br.linkedin.com/company/instituto-alfa-e-beto', companyMark: 'IAB', dates: 'Aug 2017 — Oct 2022',
+    context: 'Sustained commercial Unity game development across multi-minigame products, with technical coordination and developer-support responsibilities.',
     highlights: [
-      'Designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.',
-      'Maintained shared gameplay behavior, activity flows, and production variants.',
-      'Worked on assessment state and speech-recognition integration in Craque da Fluência.',
+      'Contributed substantially to Desafio dos Sons Iguais, including gameplay flow and supporting systems.',
+      'Implemented and maintained gameplay across multiple minigames and shared activity systems.',
+      'Adapted Craque da Fluência assessment flows for speech-recognition integration.',
     ],
     related: [
       { label: 'Ilhas do Alfabeto', href: '/work/ilhas-do-alfabeto/' },
       { label: 'Craque da Fluência', href: '/work/craque-da-fluencia/' },
-      { label: 'Tabuada na Fazenda', href: '/#work-tabuada' },
-      { label: 'Craque da Leitura', href: '/#work-craque-leitura' },
-      { label: 'Flui — A Cidade das Palavras', href: '/#work-flui' },
-      { label: 'Avaliação Diagnóstica', href: '/#work-avaliacao-diagnostica' },
-      { label: 'Avaliação da Língua Portuguesa', href: '/#work-avaliacao-lingua-portuguesa' },
     ],
   },
   {
-    role: 'Mobile Analyst Developer', organization: 'Cedro Technologies', dates: 'Jun 2015 — Aug 2017', icon: 'mobile',
-    context: 'Mobile client-application development before moving into Unity game development.',
+    role: 'Mobile Analyst Developer', organization: 'Cedro Technologies', companyUrl: 'https://www.linkedin.com/company/cedro-technologies/', companyMark: 'C', dates: 'Jun 2015 — Aug 2017',
+    context: 'Earlier professional foundation in mobile client-application development.',
     highlights: [
-      'Worked on mobile interface flows and client-side behavior.',
-      'Integrated application screens with APIs and local persistence.',
+      'Developed client-side UI flows and business logic for mobile applications.',
+      'Integrated client features with REST APIs and data-access layers.',
     ],
     related: [
       { label: 'IAB Testes', href: '/#work-iab-testes' },
-      { label: 'MyPush', href: '/#work-mypush' },
-      { label: 'Morada Verde Inventory Flow', href: '/#work-morada-verde' },
     ],
   },
 ];

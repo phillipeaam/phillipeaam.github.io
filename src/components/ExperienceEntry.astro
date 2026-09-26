@@ -4,12 +4,19 @@ import type { Experience } from '../data/experience';
 const { item, index } = Astro.props as { item: Experience; index: number };
 ---
 <article class="experience-entry">
-  <div class="experience-marker"><span>{String(index).padStart(2, '0')}</span><Icon name={item.icon} size={19} /></div>
-  <div class="experience-main">
-    <div class="experience-topline"><p class="experience-company">{item.organization}</p><p class="experience-period"><Icon name="calendar" size={14} />{item.dates}</p></div>
+  <header class="experience-entry-header">
+    <p class="experience-marker"><span>{String(index).padStart(2, '0')}</span><span aria-hidden="true">/ CAREER</span></p>
+    <a class="experience-company" href={item.companyUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.organization} on LinkedIn, opens in a new tab`}>
+      <span class="experience-company-mark" aria-hidden="true">{item.companyMark}</span>
+      <span class="experience-company-name">{item.organization}</span>
+      <Icon name="external" size={14} />
+    </a>
+    <p class="experience-period"><Icon name="calendar" size={14} />{item.dates}</p>
     <h3>{item.role}</h3>
+  </header>
+  <div class="experience-main">
     <p class="experience-context">{item.context}</p>
     <ul class="experience-highlights">{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
-    {item.related.length > 0 && <div class="experience-related"><span>RELATED WORK</span>{item.related.map((link) => link.href && <a href={link.href}>{link.label} <Icon name="arrow" size={15} /></a>)}</div>}
+    {item.related.length > 0 && <nav class="experience-related" aria-label={`Related work at ${item.organization}`}><span>RELATED WORK</span>{item.related.map((link) => link.href && <a href={link.href}>{link.label} <Icon name="arrow" size={15} /></a>)}</nav>}
   </div>
 </article>
