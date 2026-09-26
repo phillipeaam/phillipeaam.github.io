@@ -7,7 +7,7 @@ export type Experience = {
   dates: string;
   context: string;
   highlights: string[];
-  selectedWork: { label: string; href: string }[];
+  selectedWork: { projectId: string; label?: string }[];
 };
 
 export const experience: Experience[] = [
@@ -20,8 +20,8 @@ export const experience: Experience[] = [
       'Contributed to frequent iOS releases, including preparation and submission tasks.',
     ],
     selectedWork: [
-      { label: 'Read With Ello', href: '/work/read-with-ello/' },
-      { label: 'Learn With Ello', href: '/#work-learn-with-ello' },
+      { projectId: 'read-with-ello' },
+      { projectId: 'learn-with-ello' },
     ],
   },
   {
@@ -33,13 +33,13 @@ export const experience: Experience[] = [
       'Adapted Craque da Fluência assessment flows for speech-recognition integration.',
     ],
     selectedWork: [
-      { label: 'Ilhas do Alfabeto', href: '/work/ilhas-do-alfabeto/' },
-      { label: 'Craque da Fluência', href: '/work/craque-da-fluencia/' },
-      { label: 'Avaliação da Língua Portuguesa', href: '/#work-avaliacao-lingua-portuguesa' },
-      { label: 'Avaliação Diagnóstica', href: '/#work-avaliacao-diagnostica' },
-      { label: 'Flui — A Cidade das Palavras', href: '/#work-flui' },
-      { label: 'Craque da Leitura', href: '/#work-craque-leitura' },
-      { label: 'Tabuada na Fazenda', href: '/#work-tabuada' },
+      { projectId: 'ilhas-do-alfabeto' },
+      { projectId: 'flui', label: 'Flui' },
+      { projectId: 'craque-da-fluencia' },
+      { projectId: 'craque-da-leitura' },
+      { projectId: 'avaliacao-diagnostica' },
+      { projectId: 'tabuada-na-fazenda' },
+      { projectId: 'avaliacao-lingua-portuguesa' },
     ],
   },
   {
@@ -50,10 +50,10 @@ export const experience: Experience[] = [
       'Integrated client features with REST APIs and data-access layers.',
     ],
     selectedWork: [
-      { label: 'IAB Testes', href: '/#work-iab-testes' },
-      { label: 'MyPush', href: '/#work-mypush' },
-      { label: 'MVIF', href: '/#work-morada-verde' },
-      { label: 'Zero a Quatro', href: '/#work-iab-digital' },
+      { projectId: 'iab-testes' },
+      { projectId: 'iab-digital-zero-a-quatro' },
+      { projectId: 'morada-verde-inventory-flow', label: 'MVIF' },
+      { projectId: 'mypush' },
     ],
   },
 ];

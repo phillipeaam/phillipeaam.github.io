@@ -97,7 +97,7 @@ export const otherWork = [
     { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1945254108/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
   ], kind: 'neutral' },
   {
-    id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Learn With Ello', type: 'Learning platform · product continuation',
+    id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Ello 2.0: Learn Reading & Math', type: 'Learning platform · product continuation',
     detail: 'A later Ello learning-platform continuation, extending its reading experience into early math and adaptive learning.',
     tags: ['Learning platform', 'Reading & math', 'Product continuation'], mediaLabel: 'PRODUCT MEDIA — LEARN WITH ELLO',
     actions: [{ href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1354869267/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }], kind: 'ello',
@@ -131,6 +131,18 @@ export const otherWork = [
     detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', tags: ['Client software', 'Inventory', 'Workflow'], mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral', anchorId: 'work-morada-verde',
   },
 ];
+
+export function resolveExperienceWork(projectId: string) {
+  const caseProject = featuredProjects.find((project) => project.slug === projectId);
+  if (caseProject) return { name: caseProject.name, href: `/work/${caseProject.slug}/` };
+
+  const project = otherWork.find((entry) => entry.id === projectId);
+  if (project && 'anchorId' in project && project.anchorId) {
+    return { name: project.name, href: `/#${project.anchorId}` };
+  }
+
+  throw new Error(`Experience Selected Work references an unknown project: ${projectId}`);
+}
 
 // Preserve these project records for internal/future review; they are not rendered publicly.
 export const deferredOtherWork = [

@@ -1,7 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import type { Experience } from '../data/experience';
+import { resolveExperienceWork } from '../data/projects';
 const { item } = Astro.props as { item: Experience };
+const selectedWork = item.selectedWork.map((reference) => {
+  const project = resolveExperienceWork(reference.projectId);
+  return { ...project, label: reference.label ?? project.name };
+});
 ---
 <article class="experience-entry">
   <header class="experience-entry-header">
@@ -23,6 +28,6 @@ const { item } = Astro.props as { item: Experience };
     <p class="experience-context">{item.context}</p>
     <p class="experience-subheading">Selected highlights</p>
     <ul class="experience-highlights">{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
-    {item.selectedWork.length > 0 && <nav class="experience-selected-work" aria-label={`Selected work at ${item.organization}`}><span class="experience-subheading">Selected work</span><ul class="experience-work-list">{item.selectedWork.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul></nav>}
+    {selectedWork.length > 0 && <nav class="experience-selected-work" aria-label={`Selected work at ${item.organization}`}><span class="experience-subheading">Selected work</span><ul class="experience-work-list">{selectedWork.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul></nav>}
   </div>
 </article>
