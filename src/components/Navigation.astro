@@ -1,11 +1,21 @@
 ---
-const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '/#experience' }, { label: 'Contact', href: '/#contact' }];
+const items = [
+  { id: 'work', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'recommendations', label: 'Teammates' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+const homePath = import.meta.env.BASE_URL;
+const isHome = Astro.url.pathname === homePath;
+const itemHref = (id: string) => isHome ? `#${id}` : `${homePath}#${id}`;
 ---
 <header class="site-header">
   <nav class="nav-shell content-width" aria-label="Main navigation">
     <a class="wordmark" href="/" aria-label="Phillipe Augusto, home">Phillipe Augusto</a>
     <div class="nav-desktop">
-      {items.map((item) => <a class="nav-link" href={item.href}>{item.label}</a>)}
+      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
       <!-- TODO: enable Resume after the approved Notion PDF is copied into public/resume/. -->
       <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
     </div>
@@ -13,7 +23,7 @@ const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '
       <span></span><span></span>
     </button>
     <div class="nav-mobile" id="mobile-navigation" hidden>
-      {items.map((item) => <a class="nav-link" href={item.href}>{item.label}</a>)}
+      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
       <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
     </div>
   </nav>
@@ -21,11 +31,24 @@ const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
   const menu = document.querySelector<HTMLElement>('#mobile-navigation');
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link[data-section]'));
+  const homeSections = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-section]'));
+  let activeSection: string | null = null;
+  const updateActiveLink = (sectionId: string | null) => {
+    activeSection = sectionId;
+    navLinks.forEach((link) => {
+      const selected = Boolean(sectionId && link.dataset.section === sectionId);
+      link.classList.toggle('is-current', selected);
+      if (selected && link.getClientRects().length > 0) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
   const closeMenu = () => {
     if (!toggle || !menu) return;
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open navigation menu');
     menu.hidden = true;
+    updateActiveLink(activeSection);
   };
   toggle?.addEventListener('click', () => {
     if (!toggle || !menu) return;
@@ -33,6 +56,7 @@ const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '
     toggle.setAttribute('aria-expanded', String(opening));
     toggle.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
     menu.hidden = !opening;
+    updateActiveLink(activeSection);
   });
   menu?.addEventListener('click', (event) => {
     if ((event.target as HTMLElement).closest('a')) closeMenu();
@@ -44,14 +68,58 @@ const items = [{ label: 'Work', href: '/#work' }, { label: 'Experience', href: '
     }
   });
   window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
-  const syncAnchor = () => {
-    const active = window.location.pathname === '/' ? window.location.hash : '';
-    document.querySelectorAll<HTMLAnchorElement>('.nav-link').forEach((link) => {
-      const selected = active && link.hash === active;
-      link.classList.toggle('is-current', Boolean(selected));
-      if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
-    });
-  };
-  window.addEventListener('hashchange', syncAnchor);
-  syncAnchor();
+  updateActiveLink(null);
+
+  if (window.location.pathname === import.meta.env.BASE_URL && homeSections.length > 0 && 'IntersectionObserver' in window) {
+    let sectionObserver: IntersectionObserver | undefined;
+    let resizeFrame = 0;
+    let lastSectionBeforeFooter: string | null = null;
+    let footerIsActive = false;
+    const footer = document.querySelector<HTMLElement>('.site-footer');
+
+    const observeReadingPosition = () => {
+      sectionObserver?.disconnect();
+      const rootStyle = getComputedStyle(document.documentElement);
+      const headerOffset = Number.parseFloat(rootStyle.getPropertyValue('--anchor-offset')) || 104;
+      const bandBottom = Math.max(headerOffset + 1, Math.round(window.innerHeight * 0.38));
+      sectionObserver = new IntersectionObserver((entries) => {
+        const entering = entries.filter((entry) => entry.isIntersecting);
+        if (entering.length > 0) {
+          entering.sort((a, b) => Math.abs(a.boundingClientRect.top - headerOffset) - Math.abs(b.boundingClientRect.top - headerOffset));
+          updateActiveLink((entering[0].target as HTMLElement).dataset.navSection ?? null);
+          return;
+        }
+        const activeEntry = entries.find((entry) => (entry.target as HTMLElement).dataset.navSection === activeSection);
+        if (activeEntry && activeEntry.boundingClientRect.top >= bandBottom) updateActiveLink(null);
+      }, { rootMargin: `-${headerOffset}px 0px -${window.innerHeight - bandBottom}px 0px`, threshold: 0 });
+      homeSections.forEach((section) => sectionObserver?.observe(section));
+    };
+
+    observeReadingPosition();
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(observeReadingPosition);
+    }, { passive: true });
+
+    if (footer) {
+      const footerObserver = new IntersectionObserver((entries) => {
+        const footerVisible = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.5);
+        if (footerVisible && !footerIsActive) {
+          lastSectionBeforeFooter = activeSection;
+          footerIsActive = true;
+          updateActiveLink('contact');
+        } else if (!footerVisible && footerIsActive) {
+          footerIsActive = false;
+          const rootStyle = getComputedStyle(document.documentElement);
+          const readingLine = Number.parseFloat(rootStyle.getPropertyValue('--anchor-offset')) || 104;
+          const sectionAtReadingLine = homeSections.find((section) => {
+            const rect = section.getBoundingClientRect();
+            return rect.top <= readingLine && rect.bottom > readingLine;
+          });
+          updateActiveLink(sectionAtReadingLine?.dataset.navSection ?? lastSectionBeforeFooter);
+        }
+      }, { threshold: 0.5 });
+      footerObserver.observe(footer);
+    }
+  }
 </script>

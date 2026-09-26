@@ -23,13 +23,28 @@ import { experience } from '../data/experience';
     <div class="hero-system-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </section>
 
-  <section class="section-block content-width" id="work" aria-labelledby="featured-title">
-    <header class="section-heading section-heading--major"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
+  <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
+    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
     <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
   </section>
 
-  <section class="section-block content-width human-section" id="about-phillipe" aria-labelledby="about-title">
-    <header class="section-heading section-heading--major"><div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p></header>
+  <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
+    <header class="section-heading section-heading--major nav-anchor-target" id="projects">
+      <span class="nav-anchor-alias" id="other-work" aria-hidden="true"></span>
+      <div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="projects-title">More Projects</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p>
+    </header>
+    <div class="supporting-grid">
+      {otherWork.map((item) => <SupportingProject {...item} showMeta={false} showContext={false} />)}
+    </div>
+  </section>
+
+  <TestimonialsSection />
+
+  <section class="section-block content-width human-section" data-nav-section="about" aria-labelledby="about-title">
+    <header class="section-heading section-heading--major nav-anchor-target" id="about">
+      <span class="nav-anchor-alias" id="about-phillipe" aria-hidden="true"></span>
+      <div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p>
+    </header>
     <div class="human-profile">
       <figure class="profile-portrait"><img src="/images/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Gameplay Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
       <div class="profile-content">
@@ -49,19 +64,10 @@ import { experience } from '../data/experience';
     </div>
   </section>
 
-  <TestimonialsSection />
-
-  <section class="section-block content-width experience-preview" id="experience" aria-labelledby="experience-title">
-    <header class="section-heading section-heading--major"><div><p class="eyebrow">PROFESSIONAL HISTORY <span class="heading-count">/ 03</span></p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>
+  <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
+    <header class="section-heading section-heading--major nav-anchor-target" id="experience"><div><p class="eyebrow">PROFESSIONAL HISTORY <span class="heading-count">/ 03</span></p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>
     <div class="experience-list">{experience.map((item, index) => <ExperienceEntry item={item} index={index + 1} />)}</div>
   </section>
 
-  <section class="section-block content-width other-work" id="other-work" aria-labelledby="other-work-title">
-    <header class="section-heading section-heading--major"><div><p class="eyebrow">SUPPORTING PROJECTS <span class="heading-count">/ {String(otherWork.length).padStart(2, '0')}</span></p><h2 id="other-work-title">Other Work</h2></div><p>Professional products, independent games, and technical work beyond the selected case studies.</p></header>
-    <div class="supporting-grid">
-      {otherWork.map((item) => <SupportingProject {...item} showMeta={false} showContext={false} />)}
-    </div>
-  </section>
-
-  <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="content-width contact-inner"><div class="contact-heading"><p class="eyebrow">LET’S CONNECT</p><h2 id="contact-title">Looking for a Gameplay Engineer?<br /><span>Let’s talk.</span></h2><p>Unity gameplay systems, production engineering, and independent combat prototyping.</p></div><div class="contact-actions"><a class="contact-primary" href="mailto:phillipe.a.a.mendonca@gmail.com"><Icon name="mail" size={19} /> Email Phillipe <Icon name="arrow" size={19} /></a><ExternalLink class="contact-secondary" href="https://www.linkedin.com/in/phillipe-augusto/" ariaLabel="Connect on LinkedIn (opens in a new tab)"><span class="contact-linkedin-label"><img src="/icons/linkedin.svg" alt="" width="18" height="18" />Connect on LinkedIn</span><Icon name="external" size={17} /></ExternalLink></div></div></section>
+  <section class="contact-section" data-nav-section="contact" aria-labelledby="contact-title"><div class="content-width contact-inner"><div class="contact-heading nav-anchor-target" id="contact"><p class="eyebrow">LET’S CONNECT</p><h2 id="contact-title">Looking for a Gameplay Engineer?<br /><span>Let’s talk.</span></h2><p>Unity gameplay systems, production engineering, and independent combat prototyping.</p></div><div class="contact-actions"><a class="contact-primary" href="mailto:phillipe.a.a.mendonca@gmail.com"><Icon name="mail" size={19} /> Email Phillipe <Icon name="arrow" size={19} /></a><ExternalLink class="contact-secondary" href="https://www.linkedin.com/in/phillipe-augusto/" ariaLabel="Connect on LinkedIn (opens in a new tab)"><span class="contact-linkedin-label"><img src="/icons/linkedin.svg" alt="" width="18" height="18" />Connect on LinkedIn</span><Icon name="external" size={17} /></ExternalLink></div></div></section>
 </BaseLayout>
