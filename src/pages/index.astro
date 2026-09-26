@@ -8,19 +8,21 @@ import ExternalLink from '../components/ExternalLink.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
 import { featuredProjects, otherWork } from '../data/projects';
 import { experience } from '../data/experience';
+const homePath = import.meta.env.BASE_URL;
+const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 ---
 <BaseLayout title="Phillipe Augusto — Gameplay Engineer | Unity & C#" description="Gameplay engineering work by Phillipe Augusto: commercial Unity games, player-facing systems, and an independent tactical RPG prototype.">
-  <section class="home-hero content-width" aria-labelledby="hero-title">
+  <section class="home-hero content-width nav-anchor-target" id="top" data-nav-section="home" aria-labelledby="hero-title">
     <h1 id="hero-title">Gameplay Engineer <span>— Unity &amp; C#</span></h1>
     <p class="hero-statement">I build gameplay systems, architecture, and tools that turn game ideas into polished, memorable experiences.</p>
     <p class="hero-experience">8+ years in software development across commercial Unity games, live interactive products, and independent projects.</p>
-    <nav class="hero-social" aria-label="Profiles">
-      <ExternalLink href="https://github.com/phillipeaam" icon iconSize={13}><img src="/icons/github.svg" alt="" width="20" height="20" /><span>GitHub</span></ExternalLink>
-      <ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/" icon iconSize={13}><img src="/icons/linkedin.svg" alt="" width="20" height="20" /><span>LinkedIn</span></ExternalLink>
-      <ExternalLink href="https://phillipeaam.itch.io/" icon iconSize={13}><img src="/icons/itchio.svg" alt="" width="20" height="20" /><span>itch.io</span></ExternalLink>
-      <ExternalLink href="https://www.youtube.com/@phillipeaam" icon iconSize={13}><img src="/icons/youtube.svg" alt="" width="20" height="20" /><span>YouTube</span></ExternalLink>
+    <nav class="hero-social" aria-label="Resume and profiles">
+      <a class="hero-action hero-action--resume" href={resumeHref} target="_blank" rel="noopener noreferrer" aria-label="Resume (opens in a new tab)"><Icon name="resume" size={19} /><span>Resume</span></a>
+      <a class="hero-action" href="https://www.linkedin.com/in/phillipe-augusto/" target="_blank" rel="noopener noreferrer"><img src={`${homePath}icons/linkedin.svg`} alt="" width="20" height="20" /><span>LinkedIn</span></a>
+      <a class="hero-action" href="https://github.com/phillipeaam" target="_blank" rel="noopener noreferrer"><img src={`${homePath}icons/github.svg`} alt="" width="20" height="20" /><span>GitHub</span></a>
+      <a class="hero-action" href="https://phillipeaam.itch.io/" target="_blank" rel="noopener noreferrer"><img src={`${homePath}icons/itchio.svg`} alt="" width="20" height="20" /><span>itch.io</span></a>
+      <a class="hero-action" href="https://www.youtube.com/@phillipeaam" target="_blank" rel="noopener noreferrer"><img src={`${homePath}icons/youtube.svg`} alt="" width="20" height="20" /><span>YouTube</span></a>
     </nav>
-    <div class="hero-system-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </section>
 
   <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">

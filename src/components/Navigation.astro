@@ -1,5 +1,6 @@
 ---
 const items = [
+  { id: 'home', label: 'Home' },
   { id: 'work', label: 'Work' },
   { id: 'projects', label: 'Projects' },
   { id: 'recommendations', label: 'Teammates' },
@@ -9,22 +10,21 @@ const items = [
 ];
 const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
-const itemHref = (id: string) => isHome ? `#${id}` : `${homePath}#${id}`;
+const itemHref = (id: string) => id === 'home'
+  ? (isHome ? '#top' : `${homePath}#top`)
+  : (isHome ? `#${id}` : `${homePath}#${id}`);
 ---
 <header class="site-header">
   <nav class="nav-shell content-width" aria-label="Main navigation">
-    <a class="wordmark" href="/" aria-label="Phillipe Augusto, home">Phillipe Augusto</a>
+    <a class="wordmark" href={homePath} aria-label="Phillipe Augusto, home">Phillipe Augusto</a>
     <div class="nav-desktop">
       {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
-      <!-- TODO: enable Resume after the approved Notion PDF is copied into public/resume/. -->
-      <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
     </div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation menu">
       <span></span><span></span>
     </button>
     <div class="nav-mobile" id="mobile-navigation" hidden>
       {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
-      <button class="nav-action resume-action" type="button" disabled aria-disabled="true" title="Resume PDF is not available locally yet">Resume</button>
     </div>
   </nav>
 </header>
