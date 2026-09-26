@@ -391,7 +391,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .experience-selected-work > .experience-subheading { display: block; margin-bottom: 8px; }
 .experience-work-list a { display: inline; color: var(--accent); font-size: 13px; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .experience-work-list a:hover, .experience-work-list a:focus-visible { text-decoration-color: currentColor; }
-.experience-provenance { display: flex; justify-content: flex-end; margin-top: var(--s-6); }
+.experience-provenance { display: flex; justify-content: flex-end; margin-top: var(--s-4); }
 .provenance-link { min-height: 40px; display: inline-flex; align-items: center; gap: 7px; color: var(--secondary); font-size: 13px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: color var(--motion-nav) var(--ease), text-decoration-color var(--motion-nav) var(--ease); }
 .provenance-link:hover, .provenance-link:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
 .recent-index-link { margin-left: 24px; }
@@ -608,7 +608,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .experience-preview > .section-heading { margin-bottom: 30px; }
   .section-heading--major { display: block; }
   .section-heading--major > p { width: 100%; max-width: 44ch; justify-self: start; margin-top: var(--s-3); text-align: left; }
-  .experience-provenance { justify-content: flex-start; margin-top: var(--s-6); }
+  .experience-provenance { justify-content: flex-start; margin-top: var(--s-4); }
 }
 
 @media (max-width: 480px) {
