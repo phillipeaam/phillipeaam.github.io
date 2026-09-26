@@ -28,7 +28,6 @@ export const experience: Experience[] = [
     role: 'Senior Unity Game Developer', organization: 'Instituto Alfa e Beto', companyUrl: 'https://br.linkedin.com/company/instituto-alfa-e-beto', companyMark: 'IAB', companyLogo: '/images/companies/instituto-alfa-e-beto.jpeg', dates: 'Aug 2017 — Oct 2022',
     context: 'Sustained commercial Unity game development across multi-minigame products, with technical coordination and developer-support responsibilities.',
     highlights: [
-      'Contributed substantially to Desafio dos Sons Iguais, including gameplay flow and supporting systems.',
       'Implemented and maintained gameplay across multiple minigames and shared activity systems.',
       'Adapted Craque da Fluência assessment flows for speech-recognition integration.',
     ],
