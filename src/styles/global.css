@@ -456,8 +456,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .contact-action { text-decoration: none !important; }
 .contact-action--primary { border-color: color-mix(in srgb, var(--accent) 62%, var(--line)); color: var(--text); background: linear-gradient(145deg, rgba(154,167,255,.12), rgba(25,28,35,.1) 58%, rgba(140,219,173,.035)), var(--elevated); }
 .contact-action--primary:hover, .contact-action--primary:focus-visible { border-color: var(--accent); background: linear-gradient(145deg, rgba(154,167,255,.2), rgba(55,62,91,.22) 58%, rgba(140,219,173,.06)), var(--interactive); }
-.contact-action--primary svg:last-child { transition: transform 200ms cubic-bezier(.2,.8,.2,1); }
-.contact-action--primary:hover svg:last-child, .contact-action--primary:focus-visible svg:last-child { transform: translateX(3px); }
 #work { padding-bottom: 28px; margin-bottom: 44px; }
 .shipped-work { padding-top: var(--s-16); }
 .shipped-work .section-heading { margin-bottom: var(--s-8); }
@@ -514,7 +512,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .01ms; }
   .hero-action { transform: none; transition-duration: .01ms; }
   .contact-action.hero-action:hover, .contact-action.hero-action:focus-visible { transform: none; }
-  .contact-action--primary:hover svg:last-child, .contact-action--primary:focus-visible svg:last-child { transform: none; }
   .hero-action--resume::after { transition-duration: .01ms; }
   .hero-action--resume:hover::before, .hero-action--resume:focus-visible::before { animation: none; }
 }
