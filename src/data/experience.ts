@@ -21,7 +21,7 @@ export const experience: Experience[] = [
     ],
     selectedWork: [
       { projectId: 'read-with-ello' },
-      { projectId: 'learn-with-ello' },
+      { projectId: 'learn-with-ello', label: 'Ello 2.0' },
     ],
   },
   {
