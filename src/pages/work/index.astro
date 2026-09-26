@@ -5,7 +5,7 @@ import { caseStudies } from '../../data/cases';
 import { supportingWork, pathless } from '../../data/projects';
 import ShippedUnityWork from '../../components/ShippedUnityWork.astro';
 ---
-<BaseLayout title="Work — Phillipe Augusto | Gameplay Engineer" description="Case studies in commercial Unity games, tactical gameplay, reading products, and assessment systems.">
+<BaseLayout title="Work — Phillipe Augusto | Game Engineer" description="Case studies in commercial Unity games, tactical gameplay, reading products, and assessment systems.">
   <header class="page-hero content-width"><p class="eyebrow">COMPLETE PROJECT INDEX</p><h1>Work</h1><p>A quick directory of full cases, professional Unity products, and independent technical work. The selected projects are presented in depth on <a class="inline-link" href="/#work">Home</a>.</p></header>
   <section class="section-block content-width" aria-labelledby="selected-work"><div class="section-heading"><h2 id="selected-work">Full case studies</h2><p>Four projects with bounded contributions and engineering stories.</p></div>
     <div class="work-index-list">{caseStudies.map((item, index) => <article class="work-index-entry" data-kind={item.project.kind}><span class="work-index-number">{String(index + 1).padStart(2, '0')}</span><div><p class="eyebrow">{item.project.context}</p><h3><a href={`/work/${item.slug}/`}>{item.project.name}</a></h3><p>{item.project.contribution}</p></div><a class="work-index-action" href={`/work/${item.slug}/`} aria-label={`Read ${item.project.name} case study`}>Read case <span aria-hidden="true">→</span></a></article>)}</div>
