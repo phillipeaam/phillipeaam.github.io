@@ -1,7 +1,8 @@
 ---
-import { moreProfessional } from '../data/projects';
+import { otherWork } from '../data/projects';
 import SupportingProject from './SupportingProject.astro';
+const projects = otherWork.filter((item) => ['tabuada-na-fazenda', 'craque-da-leitura', 'flui'].includes(item.id));
 ---
 <div class="supporting-grid">
-  {moreProfessional.map((item, index) => <SupportingProject {...item} number={`0${index + 1}`} linkLabel="Official product page" />)}
+  {projects.map((item, index) => <SupportingProject {...item} number={`0${index + 1}`} linkLabel="Official product page" />)}
 </div>

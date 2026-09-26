@@ -1,7 +1,7 @@
 ---
 import MediaPoster from './MediaPoster.astro';
 import ExternalLink from './ExternalLink.astro';
-const { id, anchorId, number, period, name, type, detail, context, tags = [], mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, showMeta = true, showContext = true } = Astro.props;
+const { id, anchorId, number, period, name, type, detail, product = detail, contribution, context, mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, showMeta = true, showContext = true } = Astro.props;
 const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
 ---
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
@@ -9,9 +9,9 @@ const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
   <div class="supporting-card-copy">
     {showMeta && (number || period || type) && <p class="supporting-card-meta"><span>{number}{period && ` / ${period}`}</span><span>{type}</span></p>}
     <h3>{name}</h3>
-    <p class="supporting-card-detail">{detail}</p>
+    <p class="supporting-card-detail">{product}</p>
+    {contribution && <p class="supporting-card-contribution"><span>My contribution</span>{contribution}</p>}
     {showContext && context && <p class="supporting-card-context">{context}</p>}
-    {tags.length > 0 && <ul class="supporting-card-tags" aria-label={`${name} technologies and context`}>{tags.map((tag: string) => <li>{tag}</li>)}</ul>}
     {actions && projectActions.length > 0 && <div class="project-actions" aria-label={`${name} links`}>
       {projectActions.slice(0, 2).map((action: { href: string; label: string }) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
     </div>}

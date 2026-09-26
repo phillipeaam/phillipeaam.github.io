@@ -57,54 +57,43 @@ export const featuredProjects: Project[] = [
   },
 ];
 
-export const pathless: Project = {
-  slug: 'pathless',
-  name: 'Pathless',
-  context: 'Brackeys Game Jam 2026.2 · Team of 3',
-  kind: 'pathless',
-  product: 'A playable Unity 6 rescue game built in one week and released for WebGL.',
-  contribution: 'Search for survivors, manage supplies, and reach the evacuation point.',
-  tags: ['Unity 6', 'WebGL'],
-  evidenceLabel: 'Pathless · rescue gameplay',
-};
-
 export const moreProfessional = [
-  { id: 'tabuada-na-fazenda', anchorId: 'work-tabuada', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing production support for a farm-themed math game.', tags: ['Unity', 'Minigames', 'Math game'], mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
-  { id: 'craque-da-leitura', anchorId: 'work-craque-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', context: 'Instituto Alfa e Beto · professional product work', detail: 'Interactive reading product with book content, catalog, and guided reading flows.', tags: ['Reading', 'Catalog', 'Interactive product'], mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
-  { id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial literacy game', context: 'Instituto Alfa e Beto · professional product work', detail: 'Contributed to gameplay minigames and ongoing maintenance of a literacy game.', tags: ['Unity', 'Minigames', 'Progression'], mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
+  { id: 'tabuada-na-fazenda', anchorId: 'work-tabuada', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', product: 'A commercial Unity math game set around an interactive farm and themed learning activities.', contribution: 'Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html' },
+  { id: 'craque-da-leitura', anchorId: 'work-craque-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', context: 'Instituto Alfa e Beto · professional product work', detail: 'Interactive reading product with book content, catalog, and guided reading flows.', mediaLabel: 'READING PRODUCT MEDIA — CRAQUE DA LEITURA', href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html' },
+  { id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial Unity game', context: 'Instituto Alfa e Beto · professional product work', product: 'A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.', contribution: 'Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html' },
 ];
 
 // Public Other Work set for Stage 11A.4. Project-specific LinkedIn detail URLs
 // were not verified, so only direct official/play destinations are exposed.
 export const otherWork = [
   {
-    id: 'pathless', name: pathless.name, period: '2026-08', type: 'Game jam · Unity 6 · WebGL',
-    detail: 'A playable third-person rescue game built in one week for Brackeys Game Jam 2026.2.', context: 'Team of 3 · survivor rescue, limited supplies, and changing routes', tags: ['Unity 6', 'WebGL', 'Game Jam'], mediaLabel: 'RESCUE GAMEPLAY — PATHLESS',
-    actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }], kind: pathless.kind,
+    id: 'pathless', name: 'Pathless', period: '2026', type: 'Brackeys Game Jam 2026.2 · Unity 6 · WebGL',
+    detail: 'A third-person rescue game made in one week and released as a playable WebGL build.', contribution: 'Contributed to implementation and integration within a three-person team under the one-week jam constraint.', context: 'Three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1,
+    actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }], kind: 'pathless',
   },
   {
     id: 'sweets-and-shadows', name: 'Sweets and Shadows', period: '2023-10', type: 'Unity game jam collaboration',
-    detail: 'A 72-hour action game made with a teammate for Mini Jam 144.', context: 'Development and design · witch-boss encounter', tags: ['Unity', 'Game Jam', 'Team project'], mediaLabel: 'ACTION GAMEPLAY — SWEETS AND SHADOWS',
+    detail: 'A 72-hour action game made with a teammate for Mini Jam 144.', context: 'Development and design · witch-boss encounter', mediaLabel: 'ACTION GAMEPLAY — SWEETS AND SHADOWS',
     actions: [{ href: 'https://phillipeaam.itch.io/sweets-and-shadows', label: 'Play on itch.io' }], kind: 'neutral',
   },
-  { ...moreProfessional[0], actions: [{ href: moreProfessional[0].href, label: 'Official product' }], kind: 'neutral' },
+  { ...moreProfessional[0], showOnHome: true, homeOrder: 3, actions: [{ href: moreProfessional[0].href, label: 'Official product' }], kind: 'neutral' },
   { ...moreProfessional[1], actions: [
     { href: moreProfessional[1].href, label: 'Official product' },
     { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1497806737/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
   ], kind: 'neutral' },
-  { ...moreProfessional[2], actions: [
+  { ...moreProfessional[2], showOnHome: true, homeOrder: 2, actions: [
     { href: moreProfessional[2].href, label: 'Official product' },
     { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1945254108/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
   ], kind: 'neutral' },
   {
     id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Ello 2.0: Learn Reading & Math', type: 'Learning platform · product continuation',
     detail: 'A later Ello learning-platform continuation, extending its reading experience into early math and adaptive learning.',
-    tags: ['Learning platform', 'Reading & math', 'Product continuation'], mediaLabel: 'PRODUCT MEDIA — LEARN WITH ELLO',
+    mediaLabel: 'PRODUCT MEDIA — LEARN WITH ELLO',
     actions: [{ href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1354869267/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }], kind: 'ello',
   },
   {
     id: 'avaliacao-diagnostica', period: 'Undated', type: 'Digital school-assessment platform', name: 'Avaliação Diagnóstica',
-    detail: 'A school assessment platform with Portuguese and math workflows, offline use, synchronization, and reporting.', context: 'Instituto Alfa e Beto · professional product', tags: ['Assessment', 'Offline', 'Reporting'], mediaLabel: 'ASSESSMENT PLATFORM — AVALIAÇÃO DIAGNÓSTICA',
+    detail: 'A school assessment platform with Portuguese and math workflows, offline use, synchronization, and reporting.', context: 'Instituto Alfa e Beto · professional product', mediaLabel: 'ASSESSMENT PLATFORM — AVALIAÇÃO DIAGNÓSTICA',
     anchorId: 'work-avaliacao-diagnostica', actions: [
       { href: 'https://alfaebeto.org.br/conheca-a-alfa-e-beto-avaliacao/', label: 'Official product overview' },
       { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1520869873/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
@@ -112,25 +101,29 @@ export const otherWork = [
   },
   {
     id: 'avaliacao-lingua-portuguesa', name: 'Avaliação da Língua Portuguesa', period: 'Undated', type: 'Unity interactive assessment',
-    detail: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work', tags: ['Unity', 'Assessment', 'Interactive'], mediaLabel: 'UNITY ASSESSMENT — LÍNGUA PORTUGUESA', kind: 'neutral', anchorId: 'work-avaliacao-lingua-portuguesa',
+    detail: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work', mediaLabel: 'UNITY ASSESSMENT — LÍNGUA PORTUGUESA', kind: 'neutral', anchorId: 'work-avaliacao-lingua-portuguesa',
   },
   {
     id: 'iab-digital-zero-a-quatro', name: 'Zero a Quatro', period: 'Undated', type: 'Early-childhood education platform',
-    detail: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context', tags: ['Education platform', 'Mobile', 'Digital learning'], mediaLabel: 'EDUCATION PLATFORM — IAB DIGITAL', kind: 'neutral', anchorId: 'work-iab-digital',
+    detail: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context', mediaLabel: 'EDUCATION PLATFORM — IAB DIGITAL', kind: 'neutral', anchorId: 'work-iab-digital',
   },
   {
     id: 'iab-testes', name: 'IAB Testes', period: 'Undated', type: 'Tablet assessment platform',
-    detail: 'A tablet-based digital assessment product for school literacy workflows.', context: 'Cedro Technologies · professional product context', tags: ['Assessment', 'Tablet', 'Education'], mediaLabel: 'TABLET ASSESSMENT — IAB TESTES', kind: 'neutral', anchorId: 'work-iab-testes',
+    detail: 'A tablet-based digital assessment product for school literacy workflows.', context: 'Cedro Technologies · professional product context', mediaLabel: 'TABLET ASSESSMENT — IAB TESTES', kind: 'neutral', anchorId: 'work-iab-testes',
   },
   {
     id: 'mypush', name: 'MyPush', period: 'Undated', type: 'B2B mobile product',
-    detail: 'Professional mobile software work involving client applications and service integrations.', context: 'Earlier professional software experience', tags: ['Mobile', 'APIs', 'B2B'], mediaLabel: 'MOBILE PRODUCT — MYPUSH', kind: 'neutral', anchorId: 'work-mypush',
+    detail: 'Professional mobile software work involving client applications and service integrations.', context: 'Earlier professional software experience', mediaLabel: 'MOBILE PRODUCT — MYPUSH', kind: 'neutral', anchorId: 'work-mypush',
   },
   {
     id: 'morada-verde-inventory-flow', name: 'MVIF - Morada Verde Inventory Flow', period: 'Undated', type: 'Client operational software',
-    detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', tags: ['Client software', 'Inventory', 'Workflow'], mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral', anchorId: 'work-morada-verde',
+    detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral', anchorId: 'work-morada-verde',
   },
 ];
+
+export const homeSupportingProjects = otherWork
+  .filter((project) => project.showOnHome)
+  .sort((a, b) => (a.homeOrder ?? Number.MAX_SAFE_INTEGER) - (b.homeOrder ?? Number.MAX_SAFE_INTEGER));
 
 export function resolveExperienceWork(projectId: string) {
   const caseProject = featuredProjects.find((project) => project.slug === projectId);
