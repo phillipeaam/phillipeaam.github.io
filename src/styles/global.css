@@ -451,14 +451,19 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .hero-statement { max-width: 63ch; margin-top: 28px; color: var(--text); font-size: clamp(20px, 2.15vw, 24px); line-height: 1.45; }
 .hero-experience { max-width: 68ch; margin: 16px 0 0; color: var(--secondary); font-size: 16px; line-height: 1.55; }
 .hero-social { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 26px 0 0; }
-.hero-action { min-height: 46px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid color-mix(in srgb, var(--line-strong) 48%, var(--line)); border-radius: 4px; color: var(--secondary); background: linear-gradient(145deg, rgba(154,167,255,.055), rgba(25,28,35,.12) 58%, rgba(140,219,173,.035)), var(--elevated); font-size: 14px; font-weight: 500; white-space: nowrap; transition: color var(--motion-cta) var(--ease), border-color var(--motion-cta) var(--ease), background var(--motion-cta) var(--ease); }
-.hero-action:hover { color: var(--text); border-color: color-mix(in srgb, var(--accent) 72%, var(--line)); background: linear-gradient(145deg, rgba(154,167,255,.1), rgba(25,28,35,.08) 58%, rgba(140,219,173,.06)), var(--interactive); }
-.hero-action:focus-visible { color: var(--text); border-color: var(--accent); }
+.hero-action { min-height: 46px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid color-mix(in srgb, var(--line-strong) 48%, var(--line)); border-radius: 4px; color: var(--secondary); background: linear-gradient(145deg, rgba(154,167,255,.055), rgba(25,28,35,.12) 58%, rgba(140,219,173,.035)), var(--elevated); font-size: 14px; font-weight: 500; white-space: nowrap; transform: scale(1); transition: transform 200ms cubic-bezier(.2,.8,.2,1), color 200ms cubic-bezier(.2,.8,.2,1), border-color 200ms cubic-bezier(.2,.8,.2,1), background 200ms cubic-bezier(.2,.8,.2,1); }
+.hero-action:hover, .hero-action:focus-visible { color: var(--text); border-color: color-mix(in srgb, var(--accent) 72%, var(--line)); background: linear-gradient(145deg, rgba(154,167,255,.1), rgba(25,28,35,.08) 58%, rgba(140,219,173,.06)), var(--interactive); }
+.hero-action:hover, .hero-action:focus-visible { transform: scale(1.025); }
+.hero-action:focus-visible { border-color: var(--accent); }
 .hero-action img, .hero-action svg { display: block; width: 19px; height: 19px; object-fit: contain; flex: none; }
 .hero-action img { filter: grayscale(1) brightness(3); }
-.hero-action--resume { color: var(--text); border-color: color-mix(in srgb, var(--accent) 52%, var(--line-strong)); background: linear-gradient(145deg, rgba(154,167,255,.12), rgba(48,56,79,.2) 58%, rgba(140,219,173,.045)), var(--accent-soft); }
-.hero-action--resume svg { transition: transform var(--motion-cta) var(--ease); }
-.hero-action--resume:hover svg, .hero-action--resume:focus-visible svg { transform: translateY(2px); }
+.hero-action--resume { position: relative; z-index: 0; isolation: isolate; overflow: visible; color: var(--text); border-color: transparent; background: transparent; }
+.hero-action--resume::before { content: ''; position: absolute; z-index: -1; inset: -1px; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--resume-border-angle, 0deg), #788cff, #a18bff 25%, #78c9ec 50%, #9d8bff 75%, #788cff); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.hero-action--resume::after { content: ''; position: absolute; z-index: -2; inset: 1px; border-radius: 3px; background: linear-gradient(145deg, rgba(154,167,255,.045), rgba(25,28,35,.11) 58%, rgba(140,219,173,.025)), var(--elevated); transition: background 200ms cubic-bezier(.2,.8,.2,1); }
+.hero-action--resume:hover::after, .hero-action--resume:focus-visible::after { background: linear-gradient(145deg, rgba(154,167,255,.14), rgba(62,67,104,.25) 58%, rgba(140,219,173,.07)), var(--accent-soft); }
+@property --resume-border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+.hero-action--resume:hover::before, .hero-action--resume:focus-visible::before { animation: resume-border-turn 3.2s linear infinite; }
+@keyframes resume-border-turn { to { --resume-border-angle: 360deg; } }
 #work { padding-bottom: 28px; margin-bottom: 44px; }
 .shipped-work { padding-top: var(--s-16); }
 .shipped-work .section-heading { margin-bottom: var(--s-8); }
@@ -511,8 +516,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .01ms; }
-  .hero-action--resume svg { transition: none; }
-  .hero-action--resume:hover svg, .hero-action--resume:focus-visible svg { transform: none; }
+  .hero-action { transform: none; transition-duration: .01ms; }
+  .hero-action--resume::after { transition-duration: .01ms; }
+  .hero-action--resume:hover::before, .hero-action--resume:focus-visible::before { animation: none; }
 }
 
 /* Stage 11A.3: shared support-project media cards and section-entry rhythm. */
