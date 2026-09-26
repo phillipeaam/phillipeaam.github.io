@@ -6,6 +6,7 @@ const { name, size = 18 } = Astro.props;
   {name === 'gamepad' && <><path d="M7 8h10a4 4 0 0 1 3.9 3.1l1 4.8a2.5 2.5 0 0 1-4 2.5L15.5 16h-7L6.1 18.4a2.5 2.5 0 0 1-4-2.5l1-4.8A4 4 0 0 1 7 8Z"/><path d="M7 11v4m-2-2h4m7-1h.01M19 14h.01"/></>}
   {name === 'mobile' && <><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></>}
   {name === 'mail' && <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></>}
+  {name === 'copy' && <><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></>}
   {name === 'external' && <><path d="M13 5h6v6m0-6-9 9"/><path d="M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4"/></>}
   {name === 'resume' && <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6m-3-3 3 3 3-3"/></>}
   {name === 'arrow' && <><path d="M4 12h15m-6-6 6 6-6 6"/></>}
