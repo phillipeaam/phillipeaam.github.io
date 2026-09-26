@@ -386,6 +386,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .experience-selected-work { min-width: 0; }
 .experience-work-list { display: grid; grid-template-columns: repeat(2, minmax(0, 150px)); gap: 0 24px; width: fit-content; max-width: 100%; margin: 0; padding: 0 0 0 1em; list-style: disc outside; }
 .experience-work-list li { min-width: 0; }
+.experience-work-list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .experience-work-list li::marker { color: var(--accent); font-size: .78em; }
 .experience-selected-work > .experience-subheading { display: block; margin-bottom: 8px; }
 .experience-work-list a { display: inline; color: var(--accent); font-size: 13px; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; overflow-wrap: anywhere; }
@@ -612,6 +613,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 
 @media (max-width: 480px) {
   .experience-work-list { grid-template-columns: minmax(0,1fr); width: min(100%, 360px); }
+  .experience-work-list > li:last-child:nth-child(odd) { grid-column: auto; }
 }
 
 @media (min-width: 700px) and (max-width: 1099px) {

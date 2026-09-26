@@ -17,7 +17,6 @@ export const experience: Experience[] = [
     highlights: [
       'Helped implement quest flows, objectives, and reward presentation for the reading experience.',
       'Worked on book-library UI and loading paths; adapted GraphQL client tooling for Unity features.',
-      'Contributed to frequent iOS releases, including preparation and submission tasks.',
     ],
     selectedWork: [
       { projectId: 'read-with-ello' },
