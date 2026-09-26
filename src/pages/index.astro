@@ -10,7 +10,6 @@ import { featuredProjects, otherWork } from '../data/projects';
 import { experience } from '../data/experience';
 const homePath = import.meta.env.BASE_URL;
 const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
-const workIndexHref = `${homePath}work/`;
 ---
 <BaseLayout title="Phillipe Augusto — Game Engineer" description="Game Engineer building gameplay systems, architecture, and tools across commercial games, live interactive products, and independent projects.">
   <section class="home-hero content-width nav-anchor-target" id="top" data-nav-section="home" aria-labelledby="hero-title">
@@ -27,7 +26,7 @@ const workIndexHref = `${homePath}work/`;
   </section>
 
   <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.<br /><a class="text-link work-discovery-link" href={workIndexHref}>View all work <span aria-hidden="true">→</span></a></p></header>
+    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">SELECTED PROJECTS <span class="heading-count">/ 04</span></p><h2 id="featured-title">Selected work</h2></div><p>Commercial gameplay, independent combat systems, and production Unity engineering.</p></header>
     <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
   </section>
 
