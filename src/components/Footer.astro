@@ -12,21 +12,23 @@ const elsewhere = [
 
 <footer class="site-footer">
   <div class="content-width footer-inner">
-    <nav class="footer-column" aria-label="Explore">
-      <p class="eyebrow">Explore</p>
-      <ul class="footer-links">
-        <li><a href={sectionHref('work')}>Work</a></li>
-        <li><a href={sectionHref('projects')}>Projects</a></li>
-        <li><a href={sectionHref('experience')}>Experience</a></li>
-      </ul>
-    </nav>
+    <div class="footer-navigation">
+      <nav class="footer-column" aria-label="Explore">
+        <p class="eyebrow">Explore</p>
+        <ul class="footer-links">
+          <li><a href={sectionHref('work')}>Work</a></li>
+          <li><a href={sectionHref('projects')}>Projects</a></li>
+          <li><a href={sectionHref('experience')}>Experience</a></li>
+        </ul>
+      </nav>
 
-    <nav class="footer-column" aria-label="Elsewhere">
-      <p class="eyebrow">Elsewhere</p>
-      <ul class="footer-links">
-        {elsewhere.map(({ label, href }) => <li><a href={href} target="_blank" rel="noopener noreferrer">{label}</a></li>)}
-      </ul>
-    </nav>
+      <nav class="footer-column" aria-label="Elsewhere">
+        <p class="eyebrow">Elsewhere</p>
+        <ul class="footer-links">
+          {elsewhere.map(({ label, href }) => <li><a href={href} target="_blank" rel="noopener noreferrer">{label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
 
     <div class="footer-bottom">
       <span>© {new Date().getFullYear()} Phillipe Augusto</span>
