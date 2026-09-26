@@ -5,6 +5,7 @@ import ExperienceEntry from '../components/ExperienceEntry.astro';
 import Icon from '../components/Icon.astro';
 import SupportingProject from '../components/SupportingProject.astro';
 import ExternalLink from '../components/ExternalLink.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
 import { featuredProjects, otherWork } from '../data/projects';
 import { experience } from '../data/experience';
 ---
@@ -48,23 +49,7 @@ import { experience } from '../data/experience';
     </div>
   </section>
 
-  <section class="section-block content-width recommendations-section" id="recommendations" aria-labelledby="recommendations-title">
-    <header class="section-heading section-heading--major"><div><p class="eyebrow">COLLABORATION, IN THEIR WORDS</p><h2 id="recommendations-title">What teammates say</h2></div><ExternalLink href="https://www.linkedin.com/in/phillipe-augusto/details/recommendations/" icon>All LinkedIn recommendations</ExternalLink></header>
-    <div class="recommendation-list" role="region" aria-label="LinkedIn recommendations. On small screens, scroll horizontally to read each recommendation." tabindex="0">
-      <figure class="recommendation-card">
-        <blockquote>“His care for detail, thorough support and feedbacks certainly inspired me to be a better engineer.”</blockquote>
-        <figcaption><span class="recommendation-name">João Borges</span><span>Senior Software Engineer · Ello teammate</span><ExternalLink href="https://www.linkedin.com/in/thatjoaoguy/" icon>View on LinkedIn</ExternalLink></figcaption>
-      </figure>
-      <figure class="recommendation-card">
-        <blockquote>“Phillipe (a.k.a. the master) did an exceptional job on all Alfa e Beto Institute products.”</blockquote>
-        <figcaption><span class="recommendation-name">Douglas Otoni</span><span>Tech Lead / Full-stack Programmer, Grupo Paranaíba · former manager</span><ExternalLink href="https://www.linkedin.com/in/douglasotoni/" icon>View on LinkedIn</ExternalLink></figcaption>
-      </figure>
-      <figure class="recommendation-card">
-        <blockquote>“I am proof of his skills with Unity Game Engine, Native Android and Database development.”</blockquote>
-        <figcaption><span class="recommendation-name">Marllon Vilano</span><span>Staff / Lead Unity Engineer · teammate</span><ExternalLink href="https://www.linkedin.com/in/sandolkakos/" icon>View on LinkedIn</ExternalLink></figcaption>
-      </figure>
-    </div>
-  </section>
+  <TestimonialsSection />
 
   <section class="section-block content-width experience-preview" id="experience" aria-labelledby="experience-title">
     <header class="section-heading section-heading--major"><div><p class="eyebrow">PROFESSIONAL HISTORY <span class="heading-count">/ 03</span></p><h2 id="experience-title">Experience</h2></div><p>Unity product engineering, commercial game development, and earlier mobile software work.</p></header>

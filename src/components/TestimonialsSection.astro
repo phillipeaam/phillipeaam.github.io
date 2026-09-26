@@ -1,0 +1,125 @@
+---
+import ExternalLink from './ExternalLink.astro';
+import Icon from './Icon.astro';
+import { recommendationsUrl, testimonials } from '../data/testimonials';
+---
+
+<section class="section-block content-width recommendations-section" id="recommendations" aria-labelledby="recommendations-title">
+  <header class="section-heading section-heading--major">
+    <div>
+      <p class="eyebrow">COLLABORATION, IN THEIR WORDS</p>
+      <h2 id="recommendations-title">What teammates say</h2>
+      <p class="testimonial-intro">Feedback from engineers and managers I’ve worked with.</p>
+    </div>
+  </header>
+
+  <div class="testimonial-carousel" data-testimonial-carousel>
+    <div class="testimonial-track" data-testimonial-track role="region" aria-roledescription="carousel" aria-label="LinkedIn recommendations" tabindex="0">
+      {testimonials.map((item, index) => (
+        <figure class="recommendation-card" data-testimonial-slide role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${testimonials.length}`}>
+          <div class="testimonial-person">
+            {item.avatarSrc ? <img class="testimonial-avatar testimonial-avatar-image" src={item.avatarSrc} alt={item.avatarAlt ?? `${item.name} profile image`} /> : <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>}
+            <div class="testimonial-identity">
+              <span class="recommendation-name">{item.name}</span>
+              <span class="testimonial-relationship">{item.relationship}{item.company ? ` · ${item.company}` : ''}</span>
+              {item.role && <span class="testimonial-role">{item.role}</span>}
+            </div>
+          </div>
+          <blockquote lang={/^[\u0000-\u007F]*$/.test(item.quote) ? 'en' : 'pt-BR'}>{item.quote}</blockquote>
+          <figcaption>
+            <span class="testimonial-source">LinkedIn recommendation</span>
+            <ExternalLink href={item.profileUrl} ariaLabel={`View ${item.name}’s profile on LinkedIn (opens in a new tab)`}>View profile on LinkedIn <Icon name="external" size={14} /></ExternalLink>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="testimonial-footer">
+      <div class="testimonial-controls" aria-label="Recommendation carousel controls">
+        <button class="testimonial-arrow" type="button" data-testimonial-previous aria-label="Previous recommendations" disabled><span aria-hidden="true">←</span></button>
+        <div class="testimonial-pages" data-testimonial-pages aria-label="Recommendation pages"></div>
+        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Next recommendations"><span aria-hidden="true">→</span></button>
+        <span class="testimonial-page-status" data-testimonial-status aria-live="polite"></span>
+      </div>
+      <ExternalLink class="testimonial-all-link" href={recommendationsUrl} icon>See all recommendations on LinkedIn</ExternalLink>
+    </div>
+  </div>
+</section>
+
+<script>
+  const carousels = document.querySelectorAll<HTMLElement>('[data-testimonial-carousel]');
+
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>('[data-testimonial-track]');
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-testimonial-slide]'));
+    const previous = carousel.querySelector<HTMLButtonElement>('[data-testimonial-previous]');
+    const next = carousel.querySelector<HTMLButtonElement>('[data-testimonial-next]');
+    const pagesElement = carousel.querySelector<HTMLElement>('[data-testimonial-pages]');
+    const status = carousel.querySelector<HTMLElement>('[data-testimonial-status]');
+    if (!track || !previous || !next || !pagesElement || !status || slides.length === 0) return;
+
+    let visibleCount = 1;
+    let activeStart = 0;
+    let pageButtons: HTMLButtonElement[] = [];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visibleSlides = () => window.matchMedia('(min-width: 1100px)').matches ? 3 : window.matchMedia('(min-width: 700px)').matches ? 2 : 1;
+    const stride = () => {
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      return (slides[0]?.getBoundingClientRect().width || 0) + gap;
+    };
+    const currentIndex = () => Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / stride())));
+
+    const update = () => {
+      const start = currentIndex();
+      activeStart = start;
+      const page = Math.floor(start / visibleCount);
+      const pageCount = Math.ceil(slides.length / visibleCount);
+      previous.disabled = page === 0;
+      next.disabled = page >= pageCount - 1;
+      status.textContent = `${page + 1} / ${pageCount}`;
+      pageButtons.forEach((button, index) => {
+        button.hidden = index >= pageCount;
+        button.setAttribute('aria-current', index === page ? 'page' : 'false');
+      });
+    };
+
+    const goToPage = (page: number) => {
+      const pageCount = Math.ceil(slides.length / visibleCount);
+      const boundedPage = Math.max(0, Math.min(pageCount - 1, page));
+      activeStart = boundedPage * visibleCount;
+      track.scrollTo({ left: boundedPage * visibleCount * stride(), behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    };
+
+    const configure = () => {
+      const oldStart = activeStart;
+      visibleCount = visibleSlides();
+      const pageCount = Math.ceil(slides.length / visibleCount);
+      pagesElement.replaceChildren();
+      pageButtons = Array.from({ length: pageCount }, (_, index) => {
+        const button = document.createElement('button');
+        button.className = 'testimonial-page-dot';
+        button.type = 'button';
+        button.setAttribute('aria-label', `Go to recommendation page ${index + 1} of ${pageCount}`);
+        button.addEventListener('click', () => goToPage(index));
+        pagesElement.append(button);
+        return button;
+      });
+      const page = Math.min(pageCount - 1, Math.floor(oldStart / visibleCount));
+      activeStart = page * visibleCount;
+      track.scrollTo({ left: activeStart * stride(), behavior: 'auto' });
+      update();
+    };
+
+    previous.addEventListener('click', () => goToPage(Math.floor(currentIndex() / visibleCount) - 1));
+    next.addEventListener('click', () => goToPage(Math.floor(currentIndex() / visibleCount) + 1));
+    track.addEventListener('scroll', update, { passive: true });
+    track.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') { event.preventDefault(); goToPage(Math.floor(currentIndex() / visibleCount) - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); goToPage(Math.floor(currentIndex() / visibleCount) + 1); }
+      if (event.key === 'Home') { event.preventDefault(); goToPage(0); }
+      if (event.key === 'End') { event.preventDefault(); goToPage(Math.ceil(slides.length / visibleCount) - 1); }
+    });
+    window.addEventListener('resize', configure);
+    configure();
+  });
+</script>
