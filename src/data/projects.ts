@@ -115,7 +115,7 @@ export const otherWork = [
     detail: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work', tags: ['Unity', 'Assessment', 'Interactive'], mediaLabel: 'UNITY ASSESSMENT — LÍNGUA PORTUGUESA', kind: 'neutral', anchorId: 'work-avaliacao-lingua-portuguesa',
   },
   {
-    id: 'iab-digital-zero-a-quatro', name: 'IAB Digital: Zero a Quatro na Palma da Mão', period: 'Undated', type: 'Early-childhood education platform',
+    id: 'iab-digital-zero-a-quatro', name: 'Zero a Quatro', period: 'Undated', type: 'Early-childhood education platform',
     detail: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context', tags: ['Education platform', 'Mobile', 'Digital learning'], mediaLabel: 'EDUCATION PLATFORM — IAB DIGITAL', kind: 'neutral', anchorId: 'work-iab-digital',
   },
   {
@@ -127,7 +127,7 @@ export const otherWork = [
     detail: 'Professional mobile software work involving client applications and service integrations.', context: 'Earlier professional software experience', tags: ['Mobile', 'APIs', 'B2B'], mediaLabel: 'MOBILE PRODUCT — MYPUSH', kind: 'neutral', anchorId: 'work-mypush',
   },
   {
-    id: 'morada-verde-inventory-flow', name: 'Morada Verde Inventory Flow', period: 'Undated', type: 'Client operational software',
+    id: 'morada-verde-inventory-flow', name: 'MVIF - Morada Verde Inventory Flow', period: 'Undated', type: 'Client operational software',
     detail: 'An inventory and business-workflow product from earlier professional software work.', context: 'Earlier client software product', tags: ['Client software', 'Inventory', 'Workflow'], mediaLabel: 'CLIENT WORKFLOW — MORADA VERDE', kind: 'neutral', anchorId: 'work-morada-verde',
   },
 ];

@@ -3,10 +3,11 @@ export type Experience = {
   organization: string;
   companyUrl: string;
   companyMark: string;
+  companyLogo?: string;
   dates: string;
   context: string;
   highlights: string[];
-  related: { label: string; href?: string }[];
+  selectedWork: { label: string; href: string }[];
 };
 
 export const experience: Experience[] = [
@@ -18,7 +19,10 @@ export const experience: Experience[] = [
       'Worked on book-library UI and loading paths; adapted GraphQL client tooling for Unity features.',
       'Contributed to frequent iOS releases, including preparation and submission tasks.',
     ],
-    related: [{ label: 'Read With Ello', href: '/work/read-with-ello/' }, { label: 'Learn With Ello', href: '/#work-learn-with-ello' }],
+    selectedWork: [
+      { label: 'Read With Ello', href: '/work/read-with-ello/' },
+      { label: 'Learn With Ello', href: '/#work-learn-with-ello' },
+    ],
   },
   {
     role: 'Senior Unity Game Developer', organization: 'Instituto Alfa e Beto', companyUrl: 'https://br.linkedin.com/company/instituto-alfa-e-beto', companyMark: 'IAB', dates: 'Aug 2017 — Oct 2022',
@@ -28,20 +32,28 @@ export const experience: Experience[] = [
       'Implemented and maintained gameplay across multiple minigames and shared activity systems.',
       'Adapted Craque da Fluência assessment flows for speech-recognition integration.',
     ],
-    related: [
+    selectedWork: [
       { label: 'Ilhas do Alfabeto', href: '/work/ilhas-do-alfabeto/' },
       { label: 'Craque da Fluência', href: '/work/craque-da-fluencia/' },
+      { label: 'Avaliação da Língua Portuguesa', href: '/#work-avaliacao-lingua-portuguesa' },
+      { label: 'Avaliação Diagnóstica', href: '/#work-avaliacao-diagnostica' },
+      { label: 'Flui — A Cidade das Palavras', href: '/#work-flui' },
+      { label: 'Craque da Leitura', href: '/#work-craque-leitura' },
+      { label: 'Tabuada na Fazenda', href: '/#work-tabuada' },
     ],
   },
   {
     role: 'Mobile Analyst Developer', organization: 'Cedro Technologies', companyUrl: 'https://www.linkedin.com/company/cedro-technologies/', companyMark: 'C', dates: 'Jun 2015 — Aug 2017',
-    context: 'Earlier professional foundation in mobile client-application development.',
+    context: 'Mobile application engineering across client-side flows, business logic, REST integrations, and data-access layers.',
     highlights: [
       'Developed client-side UI flows and business logic for mobile applications.',
       'Integrated client features with REST APIs and data-access layers.',
     ],
-    related: [
+    selectedWork: [
       { label: 'IAB Testes', href: '/#work-iab-testes' },
+      { label: 'MyPush', href: '/#work-mypush' },
+      { label: 'MVIF', href: '/#work-morada-verde' },
+      { label: 'Zero a Quatro', href: '/#work-iab-digital' },
     ],
   },
 ];
