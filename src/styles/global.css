@@ -564,6 +564,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .other-work .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-top: 10px; }
 .other-work .project-actions .supporting-card-link { min-height: 34px; margin-top: 0; }
 .other-work .project-actions .supporting-card-link + .supporting-card-link::before { content: '|'; margin-right: 10px; color: var(--line-strong); }
+@media (max-width: 390px) {
+  .other-work .project-actions .supporting-card-link + .supporting-card-link::before { content: none; }
+}
 .other-work .supporting-card:target { outline: 1px solid var(--accent); outline-offset: 10px; }
 .supporting-grid--recent { grid-template-columns: minmax(0,1fr); }
 .supporting-card--recent { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr); align-items: center; gap: 32px; padding-top: 18px; }
