@@ -9,8 +9,8 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
     <div>
       <p class="eyebrow">COLLABORATION, IN THEIR WORDS</p>
       <h2 id="recommendations-title">What teammates say</h2>
-      <p class="testimonial-intro">Feedback from engineers and managers I’ve worked with.</p>
     </div>
+    <p>Feedback from engineers and managers I’ve worked with.</p>
   </header>
 
   <div class="testimonial-carousel" data-testimonial-carousel>
@@ -18,7 +18,7 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
       {testimonials.map((item, index) => (
         <figure class="recommendation-card" data-testimonial-slide role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${testimonials.length}`}>
           <div class="testimonial-person">
-            {item.avatarSrc ? <img class="testimonial-avatar testimonial-avatar-image" src={item.avatarSrc} alt={item.avatarAlt ?? `${item.name} profile image`} /> : <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>}
+            {item.avatarSrc ? <img class="testimonial-avatar testimonial-avatar-image" src={item.avatarSrc} alt={item.avatarAlt ?? `${item.name} profile image`} data-fallback={item.initials} /> : <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>}
             <div class="testimonial-identity">
               <span class="recommendation-name">{item.name}</span>
               <span class="testimonial-relationship">{item.relationship}{item.company ? ` · ${item.company}` : ''}</span>
@@ -27,7 +27,6 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
           </div>
           <blockquote lang={/^[\u0000-\u007F]*$/.test(item.quote) ? 'en' : 'pt-BR'}>{item.quote}</blockquote>
           <figcaption>
-            <span class="testimonial-source">LinkedIn recommendation</span>
             <ExternalLink href={item.profileUrl} ariaLabel={`View ${item.name}’s profile on LinkedIn (opens in a new tab)`}>View profile on LinkedIn <Icon name="external" size={14} /></ExternalLink>
           </figcaption>
         </figure>
@@ -50,6 +49,16 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
   const carousels = document.querySelectorAll<HTMLElement>('[data-testimonial-carousel]');
 
   carousels.forEach((carousel) => {
+    carousel.querySelectorAll<HTMLImageElement>('.testimonial-avatar-image').forEach((image) => {
+      image.addEventListener('error', () => {
+        const fallback = document.createElement('span');
+        fallback.className = 'testimonial-avatar';
+        fallback.setAttribute('aria-hidden', 'true');
+        fallback.textContent = image.dataset.fallback ?? '';
+        image.replaceWith(fallback);
+      }, { once: true });
+    });
+
     const track = carousel.querySelector<HTMLElement>('[data-testimonial-track]');
     const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-testimonial-slide]'));
     const previous = carousel.querySelector<HTMLButtonElement>('[data-testimonial-previous]');
