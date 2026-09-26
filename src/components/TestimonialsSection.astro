@@ -21,7 +21,7 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
             {item.avatarSrc ? <img class="testimonial-avatar testimonial-avatar-image" src={item.avatarSrc} alt={item.avatarAlt ?? `${item.name} profile image`} data-fallback={item.initials} /> : <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>}
             <div class="testimonial-identity">
               <span class="recommendation-name">{item.name}</span>
-              <span class="testimonial-relationship">{item.relationship}{item.company ? ` · ${item.company}` : ''}</span>
+              <span class="testimonial-relationship">{item.relationship}</span>
               {item.role && <span class="testimonial-role">{item.role}</span>}
             </div>
           </div>

@@ -40,7 +40,7 @@ export const testimonials: Testimonial[] = [
   {
     name: 'Douglas Otoni',
     relationship: 'Former manager · Tech Lead',
-    role: 'Technical Lead · Full-stack Programmer · Grupo Paranaíba',
+    role: 'Technical Lead · Full-stack Programmer',
     company: 'Instituto Alfa e Beto',
     quote: 'He is a very productive and multi-skilled person with vast knowledge and experience in software development with Unity.',
     profileUrl: 'https://www.linkedin.com/in/douglasotoni/',
