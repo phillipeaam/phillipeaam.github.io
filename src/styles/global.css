@@ -58,7 +58,9 @@ button { color: inherit; }
 .site-header { position: sticky; top: 0; z-index: 20; background: var(--bg); }
 .nav-shell { position: relative; min-height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .nav-shell::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 48px; height: 2px; background: var(--accent); pointer-events: none; }
-.wordmark { font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -.035em; }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -.035em; }
+.wordmark-avatar { display: block; width: 32px; height: 32px; flex: 0 0 32px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line-strong)); border-radius: 50%; object-fit: cover; }
+.wordmark:hover .wordmark-avatar, .wordmark:focus-visible .wordmark-avatar { border-color: var(--accent); }
 .nav-desktop { display: flex; align-items: center; gap: 30px; }
 .nav-link { position: relative; min-height: 44px; display: inline-flex; align-items: center; color: var(--secondary); font-size: 14px; transition: color var(--motion-nav) var(--ease); }
 .nav-link::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 6px; height: 1px; background: var(--accent); transition: right var(--motion-nav) var(--ease); }
@@ -233,7 +235,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   :root { --header-height: 72px; }
   .content-width { width: calc(100% - 48px); }
   .nav-shell { min-height: 72px; }
-  .wordmark { font-size: 17px; }
+  .wordmark { gap: 8px; font-size: 17px; }
   .nav-desktop { display: none; }
   .menu-toggle { width: 48px; height: 48px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; border: 1px solid var(--line-strong); border-radius: 4px; background: transparent; transition: border-color var(--motion-nav) var(--ease), background var(--motion-nav) var(--ease); }
   .menu-toggle:hover, .menu-toggle[aria-expanded='true'] { border-color: var(--accent); background: var(--elevated); }
