@@ -25,7 +25,7 @@ import { recommendationsUrl, testimonials } from '../data/testimonials';
               {item.role && <span class="testimonial-role">{item.role}</span>}
             </div>
           </div>
-          <blockquote lang={/^[\u0000-\u007F]*$/.test(item.quote) ? 'en' : 'pt-BR'}>{item.quote}</blockquote>
+          <blockquote lang={item.quoteLanguage}>{item.quote}</blockquote>
           <figcaption>
             <ExternalLink href={item.profileUrl} ariaLabel={`View ${item.name}’s profile on LinkedIn (opens in a new tab)`}>View profile on LinkedIn <Icon name="external" size={14} /></ExternalLink>
           </figcaption>
