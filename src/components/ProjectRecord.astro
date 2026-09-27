@@ -1,33 +1,51 @@
 ---
 import ExternalLink from './ExternalLink.astro';
+import PathlessMedia from './PathlessMedia.astro';
+import ArchiveMedia from './ArchiveMedia.astro';
 import type { ProjectInventoryEntry } from '../data/projects';
 
 const { project, homePath = '/' } = Astro.props as { project: ProjectInventoryEntry; homePath?: string };
 const recordId = project.anchorId ?? project.id;
+const tier = project.archivePresentation ?? 'compact';
 const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
+const [leadMedia, ...supportingMedia] = project.media ?? [];
+const period = project.period && project.period !== 'Undated' ? project.period : undefined;
+const titleId = `archive-title-${project.id}`;
 ---
-<li class="project-record" id={recordId}>
-  <article>
-    <div class="project-record-meta">
-      <p class="eyebrow">{project.period ?? 'PROJECT'}</p>
-      <p>{project.type}</p>
+<li class:list={['archive-record', `archive-record--${tier}`, leadMedia && 'archive-record--media']} id={recordId}>
+  <article aria-labelledby={titleId}>
+    <header class="archive-record__header">
+      <div class="archive-record__identity">
+        <h3 id={titleId}>{project.name}</h3>
+        <p class="archive-record__context">{project.context ?? project.type}</p>
+      </div>
+      {period && <span class="archive-record__period">{period}</span>}
+    </header>
+
+    {leadMedia && <div class="archive-record__media">
+      {leadMedia.previewSrc && leadMedia.type === 'image'
+        ? <PathlessMedia posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} caption={leadMedia.caption} />
+        : <ArchiveMedia media={leadMedia} projectName={project.name} />}
+      {supportingMedia.length > 0 && <div class="archive-record__supporting-media">
+        {supportingMedia.slice(0, 3).map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
+      </div>}
+    </div>}
+
+    <div class="archive-record__body">
+      <p class="archive-record__overview">{project.product}</p>
+      {project.contribution && <div class="archive-record__contribution">
+        <p class="archive-record__label">My contribution</p>
+        <p>{project.contribution}</p>
+      </div>}
     </div>
-    <div class="project-record-copy">
-      <h3>{project.name}</h3>
-      <p class="project-record-product">{project.product}</p>
-      {project.contribution && <p class="project-record-contribution">{project.contribution}</p>}
-      {project.context && <p class="project-record-context">{project.context}</p>}
-      {(caseHref || project.actions?.length) && <nav class="project-record-actions" aria-label={`${project.name} links`}>
-        {caseHref && <a class="text-link" href={caseHref}>Read case study <span aria-hidden="true">→</span></a>}
-        {project.actions?.map((action) => <ExternalLink class="text-link" href={action.href} icon>{action.label}</ExternalLink>)}
-      </nav>}
-      {project.media?.map((media) => <figure class="project-record-media">
-        {media.type === 'image' && <img src={media.src} alt={media.alt ?? ''} loading="lazy" />}
-        {media.type === 'gif' && <img src={media.src} alt={media.alt ?? ''} loading="lazy" />}
-        {media.type === 'video' && <video controls preload="metadata" aria-label={media.title ?? media.alt ?? project.name}><source src={media.src} /></video>}
-        {media.type === 'youtube' && <iframe src={media.src} title={media.title ?? `${project.name} video`} loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
-        {media.caption && <figcaption>{media.caption}</figcaption>}
-      </figure>)}
-    </div>
+
+    {(project.specs?.length ?? 0) > 0 && <dl class="archive-record__specs">
+      {project.specs?.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
+    </dl>}
+
+    {(caseHref || project.actions?.length) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
+      {caseHref && <a href={caseHref} aria-label={`View ${project.name} case study`}>View case study <span aria-hidden="true">→</span></a>}
+      {project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
+    </nav>}
   </article>
 </li>

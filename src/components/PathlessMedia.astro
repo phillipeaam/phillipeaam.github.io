@@ -1,5 +1,5 @@
 ---
-const { posterSrc, previewSrc } = Astro.props;
+const { posterSrc, previewSrc, caption } = Astro.props;
 ---
 <figure class="media-figure pathless-media">
   <div class="media-poster pathless-media-poster" data-pathless-preview data-poster-src={posterSrc} data-preview-src={previewSrc}>
@@ -8,9 +8,13 @@ const { posterSrc, previewSrc } = Astro.props;
       src={posterSrc}
       alt="Pathless title poster over a helicopter rescue-game scene"
       loading="lazy"
+      decoding="async"
+      width="2556"
+      height="1432"
       data-pathless-image
     />
   </div>
+  {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
 <script>

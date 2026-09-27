@@ -3,6 +3,7 @@ export type ProjectCategory = 'professional-game' | 'professional-product' | 'in
 export type ProjectMedia = {
   type: 'image' | 'gif' | 'video' | 'youtube';
   src: string;
+  previewSrc?: string;
   alt?: string;
   title?: string;
   caption?: string;
@@ -98,12 +99,12 @@ export type SupportingProjectRecord = {
 export const otherWork: SupportingProjectRecord[] = [
   {
     id: 'pathless', name: 'Pathless', period: '2026', type: 'Brackeys Game Jam 2026.2 · Unity 6 · WebGL', archiveCategory: 'independent-game',
-    product: 'A third-person rescue game made in one week and released as a playable WebGL build.', contribution: 'Contributed to implementation and integration within a three-person team under the one-week jam constraint.', showcaseDescription: 'A third-person rescue game built with Unity 6 and shipped on WebGL in one week for Brackeys Game Jam 2026.2. I contributed to implementation and integration as part of a three-person team, helping bring the playable build together within the jam’s short production window.', context: 'Three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
+    product: 'A third-person rescue game made in one week and released as a playable WebGL build.', contribution: 'Contributed to implementation and integration within a three-person team under the one-week jam constraint.', showcaseDescription: 'A third-person rescue game built with Unity 6 and released on WebGL for Brackeys Game Jam 2026.2. Its playable loop centers on finding survivors while routes and supplies change. I contributed to implementation and integration within a three-person team, helping bring the build together in one week.', context: 'Three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
     actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }],
   },
   {
     id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial Unity game', archiveCategory: 'professional-game',
-    product: 'A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.', contribution: 'Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.', showcaseDescription: 'A commercial Unity literacy game from Instituto Alfa e Beto, built around exploration, progression, and minigames. I implemented gameplay features and minigame interactions while supporting maintenance and continued production across the product.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', showOnHome: true, homeOrder: 2, kind: 'neutral',
+    product: 'A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.', contribution: 'Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.', showcaseDescription: 'A commercial Unity literacy game from Instituto Alfa e Beto, built around exploration, character progression, and interactive minigames. I implemented gameplay features and minigame interactions, then maintained and adapted existing systems as content and production needs evolved over several years.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', showOnHome: true, homeOrder: 2, kind: 'neutral',
     actions: [
       { href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html', label: 'Official product' },
       { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1945254108/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
@@ -111,7 +112,7 @@ export const otherWork: SupportingProjectRecord[] = [
   },
   {
     id: 'tabuada-na-fazenda', anchorId: 'work-tabuada', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', archiveCategory: 'professional-game',
-    product: 'A commercial Unity math game set around an interactive farm and themed learning activities.', contribution: 'Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.', showcaseDescription: 'A commercial Unity math game from Instituto Alfa e Beto, set on an interactive farm with multiple activity-driven minigames. My gameplay contributions included minigames, tutorials, farm interactions, and progression, with ongoing production support.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', showOnHome: true, homeOrder: 3, kind: 'neutral',
+    product: 'A commercial Unity math game set around an interactive farm and themed learning activities.', contribution: 'Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.', showcaseDescription: 'A commercial Unity math game from Instituto Alfa e Beto, set on an interactive farm with activity-driven minigames. I contributed to minigames, tutorials, farm interactions, and progression, and supported maintenance of these gameplay flows through content changes and ongoing production work.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', showOnHome: true, homeOrder: 3, kind: 'neutral',
     actions: [{ href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html', label: 'Official product' }],
   },
   {
@@ -122,7 +123,7 @@ export const otherWork: SupportingProjectRecord[] = [
   {
     id: 'craque-da-leitura', anchorId: 'work-craque-leitura', name: 'Craque da Leitura', period: '2017–2022', type: 'Interactive reading product', archiveCategory: 'professional-game',
     product: 'An interactive reading product with book content, catalog, and guided reading flows.', context: 'Instituto Alfa e Beto · professional product work',
-    actions: [{ href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html', label: 'Official product' }],
+    actions: [{ href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html', label: 'Official product' }, { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1497806737/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }],
   },
   {
     id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Ello 2.0: Learn Reading & Math', type: 'Learning platform · product continuation', archiveCategory: 'professional-game',
@@ -142,7 +143,7 @@ export const otherWork: SupportingProjectRecord[] = [
     product: 'Interactive Portuguese-language assessment activities for literacy learning.', context: 'Instituto Alfa e Beto · professional Unity product work',
   },
   {
-    id: 'iab-digital-zero-a-quatro', anchorId: 'work-iab-digital', name: 'Zero a Quatro', period: 'Undated', type: 'Early-childhood education platform', archiveCategory: 'professional-product',
+    id: 'iab-digital-zero-a-quatro', anchorId: 'work-iab-digital', name: 'IAB Digital: Zero a Quatro na Palma da Mão', period: 'Undated', type: 'Early-childhood education platform', archiveCategory: 'professional-product',
     product: 'A digital learning platform connecting classroom activities and school workflows.', context: 'Cedro Technologies · professional product context',
   },
   {
@@ -216,6 +217,8 @@ export type ProjectInventoryEntry = {
   caseStudySlug?: string;
   actions?: ProjectAction[];
   media?: ProjectMedia[];
+  archivePresentation?: 'rich' | 'standard' | 'compact';
+  specs?: { label: string; value: string }[];
 };
 
 const deferredPublicArchiveIds = new Set(['radwasteland-echoes', 'angry-world', 'survive-and-escape']);
@@ -232,6 +235,32 @@ const publicArchiveEntries: ProjectInventoryEntry[] = deferredOtherWork
     actions: 'href' in project && project.href ? [{ href: project.href, label: project.linkLabel ?? 'View project' }] : [],
   }));
 
+const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresentation' | 'specs' | 'media'>> = {
+  'ilhas-do-alfabeto': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'wallaces-quest': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Independent Gameplay Engineer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Platform', value: 'WebGL prototype' }] },
+  'read-with-ello': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Unity Software Engineer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Ello' }] },
+  'craque-da-fluencia': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  pathless: {
+    archivePresentation: 'rich',
+    specs: [{ label: 'Context', value: 'Brackeys Game Jam 2026.2' }, { label: 'Engine', value: 'Unity 6 / C#' }, { label: 'Platform', value: 'WebGL' }, { label: 'Team', value: '3 people · one week' }],
+    media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', alt: 'Pathless title poster showing a helicopter above the rescue-game landscape.', caption: 'Public game poster; hover to preview a short animated scene on supported devices.' }],
+  },
+  flui: { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'tabuada-na-fazenda': { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'sweets-and-shadows': { archivePresentation: 'standard', specs: [{ label: 'Context', value: 'Mini Jam 144 · 72 hours' }, { label: 'Engine', value: 'Unity' }, { label: 'Team', value: '2 people' }] },
+  'radwasteland-echoes': { archivePresentation: 'standard', specs: [{ label: 'Context', value: 'Ludum Dare 55 · solo jam' }, { label: 'Engine', value: 'Unity' }] },
+  'angry-world': { archivePresentation: 'standard', specs: [{ label: 'Context', value: 'Ludum Dare 38 · solo jam' }, { label: 'Engine', value: 'Unity' }] },
+  'survive-and-escape': { archivePresentation: 'compact', specs: [{ label: 'Tools', value: 'C++ / raylib' }, { label: 'Platform', value: 'Windows' }] },
+  'craque-da-leitura': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'learn-with-ello': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Ello' }] },
+  'avaliacao-diagnostica': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'avaliacao-lingua-portuguesa': { archivePresentation: 'compact', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
+  'iab-digital-zero-a-quatro': { archivePresentation: 'compact', specs: [{ label: 'Context', value: 'Cedro Technologies' }] },
+  'iab-testes': { archivePresentation: 'compact', specs: [{ label: 'Context', value: 'Cedro Technologies' }] },
+  mypush: { archivePresentation: 'compact' },
+  'morada-verde-inventory-flow': { archivePresentation: 'compact' },
+};
+
 export const projectInventory: ProjectInventoryEntry[] = [
   ...featuredProjects.map((project) => ({
     id: project.slug,
@@ -244,16 +273,22 @@ export const projectInventory: ProjectInventoryEntry[] = [
   })),
   ...otherWork,
   ...publicArchiveEntries,
-];
+].map((project) => ({ ...project, ...archiveDetails[project.id] }));
 
 export const projectInventoryGroups = [
-  { id: 'professional-game', eyebrow: 'PROFESSIONAL / UNITY', title: 'Professional Game / Unity Work' },
-  { id: 'professional-product', eyebrow: 'PROFESSIONAL / SOFTWARE', title: 'Professional Product / Software Work' },
-  { id: 'independent-game', eyebrow: 'INDEPENDENT / COLLABORATIVE', title: 'Independent & Collaborative Games' },
-  { id: 'study-archive', eyebrow: 'EXPERIMENTS / STUDY', title: 'Experiments / Study / Archive' },
+  { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['ilhas-do-alfabeto', 'read-with-ello', 'craque-da-fluencia', 'flui', 'tabuada-na-fazenda', 'craque-da-leitura', 'avaliacao-lingua-portuguesa', 'learn-with-ello'] },
+  { id: 'professional-product', eyebrow: '02 / SOFTWARE', title: 'Software & interactive products', intro: 'Professional assessment, learning and operational software beyond the game portfolio.', order: ['avaliacao-diagnostica', 'iab-testes', 'iab-digital-zero-a-quatro', 'mypush', 'morada-verde-inventory-flow'] },
+  { id: 'independent-game', eyebrow: '03 / INDEPENDENT', title: 'Independent & collaborative games', intro: 'Playable prototypes and jam work, including solo and team projects.', order: ['wallaces-quest', 'pathless', 'sweets-and-shadows', 'radwasteland-echoes', 'angry-world'] },
+  { id: 'study-archive', eyebrow: '04 / STUDY', title: 'Experiments & study', intro: 'Smaller technical studies kept as part of the development record.', order: ['survive-and-escape'] },
 ].map((group) => ({
   ...group,
-  projects: projectInventory.filter((project) => project.archiveCategory === group.id),
+  projects: projectInventory
+    .filter((project) => project.archiveCategory === group.id)
+    .sort((a, b) => {
+      const first = group.order.indexOf(a.id);
+      const second = group.order.indexOf(b.id);
+      return (first < 0 ? Number.MAX_SAFE_INTEGER : first) - (second < 0 ? Number.MAX_SAFE_INTEGER : second);
+    }),
 }));
 
 export const supportingWork = [
