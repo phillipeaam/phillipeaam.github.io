@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
 import ExternalLink from '../../components/ExternalLink.astro';
+import EditorialSectionHeader from '../../components/EditorialSectionHeader.astro';
 import { projectInventoryGroups } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
@@ -14,11 +15,9 @@ const sectionLinks = [
 ---
 <BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s professional Unity games, interactive products, independent projects, and technical studies.">
   <section class="archive-opening content-width" aria-labelledby="archive-title">
-    <div class="archive-opening__title">
-      <p class="eyebrow">PROJECT ARCHIVE</p>
-      <h1 id="archive-title">Projects</h1>
-    </div>
-    <p class="archive-opening__summary">A broader record of professional games, interactive products, independent work, collaborations, and technical studies.</p>
+    <EditorialSectionHeader level={1} headingId="archive-title" eyebrow="PROJECT ARCHIVE" title="Projects">
+      <span slot="support">A broader record of professional games, interactive products, independent work, collaborations, and technical studies.</span>
+    </EditorialSectionHeader>
   </section>
 
   <div class="archive-guide content-width">
@@ -33,10 +32,9 @@ const sectionLinks = [
 
   <div class="archive-content content-width">
     {projectInventoryGroups.map((group) => group.projects.length > 0 && <section class="archive-group" id={group.id} aria-labelledby={`archive-group-${group.id}`}>
-      <header class="archive-group__heading">
-        <p class="eyebrow">{group.eyebrow}</p>
-        <div><h2 id={`archive-group-${group.id}`}>{group.title}</h2><p>{group.intro}</p></div>
-      </header>
+      <EditorialSectionHeader headingId={`archive-group-${group.id}`} title={group.title}>
+        <span slot="support">{group.intro}</span>
+      </EditorialSectionHeader>
       <ol class="archive-record-list">
         {group.projects.map((project) => <ProjectRecord project={project} homePath={homePath} />)}
       </ol>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  headingId: string;
+  eyebrow?: string;
+  anchorId?: string;
+  headingAliasId?: string;
+  level?: 1 | 2;
+}
+
+const { title, headingId, eyebrow, anchorId, headingAliasId, level = 2 } = Astro.props as Props;
+---
+
+<header class:list={['section-heading', 'section-heading--major', anchorId && 'nav-anchor-target']} id={anchorId}>
+  <div>
+    {headingAliasId && <span class="nav-anchor-alias" id={headingAliasId} aria-hidden="true"></span>}
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    {level === 1 ? <h1 id={headingId}>{title}</h1> : <h2 id={headingId}>{title}</h2>}
+  </div>
+  <p><slot name="support" /></p>
+</header>

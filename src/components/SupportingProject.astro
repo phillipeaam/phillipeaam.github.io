@@ -2,7 +2,7 @@
 import MediaPoster from './MediaPoster.astro';
 import PathlessMedia from './PathlessMedia.astro';
 import ExternalLink from './ExternalLink.astro';
-const { id, anchorId, number, period, name, type, detail, product = detail, contribution, showcaseDescription, context, mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, simple = false, showMeta = true, showContext = true } = Astro.props;
+const { id, anchorId, number, period, name, type, detail, product = detail, contribution, showcaseDescription, homeDescription, context, mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, simple = false, showMeta = true, showContext = true } = Astro.props;
 const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
 ---
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
@@ -12,7 +12,7 @@ const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
       <h3>{name}</h3>
-      <p class="supporting-card-detail">{showcaseDescription ?? product}</p>
+      <p class="supporting-card-detail">{homeDescription ?? showcaseDescription ?? product}</p>
       {projectActions.length > 0 && <div class="project-actions" aria-label={`${name} links`}>
         {projectActions.slice(0, 2).map((action: { href: string; label: string }) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
       </div>}

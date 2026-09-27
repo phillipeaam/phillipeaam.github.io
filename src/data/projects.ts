@@ -7,6 +7,7 @@ export type ProjectMedia = {
   alt?: string;
   title?: string;
   caption?: string;
+  autoplayPreview?: boolean;
 };
 
 export type ProjectAction = { href: string; label: string };
@@ -83,7 +84,9 @@ export type SupportingProjectRecord = {
   type: string;
   product: string;
   contribution?: string;
+  engineeringFocus?: string;
   showcaseDescription?: string;
+  homeDescription?: string;
   context?: string;
   anchorId?: string;
   showOnHome?: boolean;
@@ -98,9 +101,9 @@ export type SupportingProjectRecord = {
 // the Projects page uses the same descriptions, actions, and optional media.
 export const otherWork: SupportingProjectRecord[] = [
   {
-    id: 'pathless', name: 'Pathless', period: '2026', type: 'Brackeys Game Jam 2026.2 · Unity 6 · WebGL', archiveCategory: 'independent-game',
-    product: 'A third-person rescue game made in one week and released as a playable WebGL build.', contribution: 'Contributed to implementation and integration within a three-person team under the one-week jam constraint.', showcaseDescription: 'A third-person rescue game built with Unity 6 and released on WebGL for Brackeys Game Jam 2026.2. Its playable loop centers on finding survivors while routes and supplies change. I contributed to implementation and integration within a three-person team, helping bring the build together in one week.', context: 'Three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
-    actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }],
+    id: 'pathless', name: 'Pathless', period: '2026', type: 'Brackeys Game Jam 2026.2 · Unity 6 · C# · WebGL', archiveCategory: 'independent-game',
+    product: 'A 3D rescue/exploration game where players use a proximity-based radio to locate survivors while an escalating earthquake creates time pressure and forces decisions about when to continue searching or evacuate.', contribution: 'Implemented the proximity-based radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. Integrated the mission flow from menu and arrival intro through calamity, extraction, restart, and result reporting, while configuring player input, mission triggers, and the main scene for the WebGL build.', engineeringFocus: 'Configured gameplay data with ScriptableObjects, bounded radio sampling, and Unity Awaitable sequences. Connected mission state through event-driven flow and integrated the radio HUD with UI Toolkit.', showcaseDescription: 'Pathless is a Unity 6 rescue/exploration game built by a three-person team for Brackeys Game Jam 2026.2. My work included the proximity-based radio scanner, survivor interaction flows, and gameplay integration across calamity, extraction, and results.', homeDescription: 'Made with a three-person team for Brackeys Game Jam 2026.2, Pathless is a 3D rescue game where proximity radio signals lead players to survivors as earthquakes trigger ground collapse and evacuation pressure. I implemented the scanner, HUD, and survivor rescue flow, then integrated extraction, restart, and results.', context: 'Unity Gameplay Programmer · three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
+    actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }, { href: 'https://youtu.be/1UMGSYFvUT8', label: 'Watch gameplay' }],
   },
   {
     id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial Unity game', archiveCategory: 'professional-game',
@@ -213,6 +216,7 @@ export type ProjectInventoryEntry = {
   type: string;
   product: string;
   contribution?: string;
+  engineeringFocus?: string;
   context?: string;
   caseStudySlug?: string;
   actions?: ProjectAction[];
@@ -242,8 +246,8 @@ const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresent
   'craque-da-fluencia': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   pathless: {
     archivePresentation: 'rich',
-    specs: [{ label: 'Context', value: 'Brackeys Game Jam 2026.2' }, { label: 'Engine', value: 'Unity 6 / C#' }, { label: 'Platform', value: 'WebGL' }, { label: 'Team', value: '3 people · one week' }],
-    media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', alt: 'Pathless title poster showing a helicopter above the rescue-game landscape.', caption: 'Public game poster; hover to preview a short animated scene on supported devices.' }],
+    specs: [{ label: 'Role', value: 'Unity Gameplay Programmer' }, { label: 'Context', value: 'Brackeys Game Jam 2026.2' }, { label: 'Period', value: 'Aug 23–30, 2026' }, { label: 'Team', value: '3 people' }, { label: 'Platform', value: 'WebGL' }, { label: 'Stack', value: 'Unity 6 · C# · URP · UI Toolkit · Input System · Cinemachine' }],
+    media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', autoplayPreview: true, alt: 'Pathless gameplay poster showing a helicopter above a rescue-game landscape.' }],
   },
   flui: { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'tabuada-na-fazenda': { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
