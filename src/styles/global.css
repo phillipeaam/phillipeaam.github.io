@@ -707,6 +707,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .supporting-card-link svg { transition: transform var(--motion-cta) var(--ease); }
 .supporting-card-link:hover svg { transform: translate(2px,-2px); }
 .more-projects .supporting-card-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.supporting-card-media-link { display: block; cursor: pointer; }
+.supporting-card-media-link:hover .media-poster, .supporting-card-media-link:focus-visible .media-poster { border-color: var(--line-strong); }
+.supporting-card-media-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 5px; }
 .supporting-card:target { border-top-color: var(--accent); }
 .more-projects .supporting-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px 24px; }
 .more-projects .supporting-card { display: flex; flex-direction: column; min-width: 0; padding: 0; border: 0; }
