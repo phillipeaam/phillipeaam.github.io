@@ -221,6 +221,7 @@ export type ProjectInventoryEntry = {
   caseStudySlug?: string;
   actions?: ProjectAction[];
   media?: ProjectMedia[];
+  identityImage?: string;
   archivePresentation?: 'rich' | 'standard' | 'compact';
   specs?: { label: string; value: string }[];
 };
@@ -239,13 +240,14 @@ const publicArchiveEntries: ProjectInventoryEntry[] = deferredOtherWork
     actions: 'href' in project && project.href ? [{ href: project.href, label: project.linkLabel ?? 'View project' }] : [],
   }));
 
-const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresentation' | 'specs' | 'media'>> = {
+const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresentation' | 'specs' | 'media' | 'identityImage'>> = {
   'ilhas-do-alfabeto': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'wallaces-quest': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Independent Gameplay Engineer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Platform', value: 'WebGL prototype' }] },
   'read-with-ello': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Unity Software Engineer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Ello' }] },
   'craque-da-fluencia': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   pathless: {
     archivePresentation: 'rich',
+    identityImage: '/projects/pathless/pathless-poster.png',
     specs: [{ label: 'Role', value: 'Unity Gameplay Programmer' }, { label: 'Context', value: 'Brackeys Game Jam 2026.2' }, { label: 'Period', value: 'Aug 23–30, 2026' }, { label: 'Team', value: '3 people' }, { label: 'Platform', value: 'WebGL' }, { label: 'Stack', value: 'Unity 6 · C# · URP · UI Toolkit · Input System · Cinemachine' }],
     media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', autoplayPreview: true, alt: 'Pathless gameplay poster showing a helicopter above a rescue-game landscape.' }],
   },

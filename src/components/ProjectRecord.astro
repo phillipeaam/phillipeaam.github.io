@@ -40,7 +40,10 @@ const titleId = `archive-title-${project.id}`;
       </div>
       <div class="archive-record__details">
         <header class="archive-record__header">
-          <div class="archive-record__identity"><h3 id={titleId}>{project.name}</h3></div>
+          <div class="archive-record__identity">
+            {project.identityImage && <img class="archive-record__identity-image" src={project.identityImage} alt="" width="52" height="52" loading="lazy" decoding="async" />}
+            <h3 id={titleId}>{project.name}</h3>
+          </div>
         </header>
       {(project.specs?.length ?? 0) > 0 && <dl class="archive-record__specs">
         {project.specs?.map((spec) => <div><dt>{spec.label}</dt><dd class:list={[spec.label === 'Stack' && 'archive-record__stack-value']}>{spec.label === 'Stack' ? spec.value.split(' · ').map((item, index, items) => <Fragment><span class="archive-record__stack-item">{item}</span>{index < items.length - 1 && <span class="archive-record__stack-separator" aria-hidden="true">·</span>}</Fragment>) : spec.value}</dd></div>)}

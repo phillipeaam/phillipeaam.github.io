@@ -34,7 +34,7 @@
   --motion-project: 220ms;
   --motion-poster: 380ms;
   --section-footer-gap: 10px;
-  --project-rich-title-gap: 20px;
+  --project-rich-title-gap: 16px;
   --project-rich-section-gap: 8px;
   --project-rich-facts-gap: 10px;
   --project-rich-media-actions-gap: 16px;
@@ -394,6 +394,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .archive-record--rich .archive-record__media-column > .archive-record__overview { min-height: calc(var(--project-rich-description-lines) * 1.6em); margin: 0 0 var(--project-rich-description-actions-gap); }
 .archive-record--rich .archive-record__details { display: flex; flex-direction: column; gap: 0; }
 .archive-record--rich .archive-record__header { display: flex; grid-column: auto; margin-bottom: var(--project-rich-title-gap); }
+.archive-record--rich .archive-record__identity { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.archive-record--rich .archive-record__identity-image { flex: none; width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 10px; object-fit: cover; }
 .archive-record--rich .archive-record__header h3 { margin-bottom: 0; }
 .archive-record--rich .archive-record__specs { grid-column: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--project-rich-facts-gap) 20px; margin-bottom: var(--project-rich-facts-gap); }
 .archive-record--rich .archive-record__specs > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -447,6 +449,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .archive-record--rich .archive-record__rich-grid { display: flex; flex-direction: column; gap: 16px; }
   .archive-record--rich .archive-record__details { display: contents; }
   .archive-record--rich .archive-record__header { order: 1; }
+  .archive-record--rich .archive-record__header { margin-bottom: 17px; }
+  .archive-record--rich .archive-record__identity-image { width: 41px; height: 41px; border-radius: 9px; }
   .archive-record--rich .archive-record__media-column { order: 2; }
   .archive-record--rich .archive-record__specs { order: 3; }
   .archive-record--rich .archive-record__body { order: 4; }
