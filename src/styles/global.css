@@ -61,7 +61,6 @@ button { color: inherit; }
 .nav-shell::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 48px; height: 2px; background: var(--accent); pointer-events: none; }
 .wordmark { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -.035em; }
 .wordmark-avatar { display: block; width: 48px; height: 48px; flex: 0 0 48px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line-strong)); border-radius: 50%; object-fit: cover; }
-.wordmark:hover .wordmark-avatar, .wordmark:focus-visible .wordmark-avatar { border-color: var(--accent); }
 .nav-desktop { display: flex; align-items: center; gap: 30px; }
 .nav-link { position: relative; min-height: 44px; display: inline-flex; align-items: center; color: var(--secondary); font-size: 14px; transition: color var(--motion-nav) var(--ease); }
 .nav-link::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 6px; height: 1px; background: var(--accent); transition: right var(--motion-nav) var(--ease); }
@@ -432,10 +431,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .experience-work-list a { display: inline; color: var(--accent); font-size: 13px; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .experience-work-list a:hover, .experience-work-list a:focus-visible { text-decoration-color: currentColor; }
 .section-footer { display: flex; justify-content: flex-end; margin-top: var(--section-footer-gap); }
-.section-footer-action { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: color var(--motion-nav) var(--ease), text-decoration-color var(--motion-nav) var(--ease); }
-.section-footer-action:hover, .section-footer-action:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
+.section-footer-action { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.4; text-decoration: none; transition: color var(--motion-nav) var(--ease); }
+.section-footer-action__label { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color var(--motion-nav) var(--ease); }
+.section-footer-action:hover, .section-footer-action:focus-visible { color: var(--accent); }
+.section-footer-action:hover .section-footer-action__label, .section-footer-action:focus-visible .section-footer-action__label { text-decoration-color: currentColor; }
 .section-footer-action svg { display: block; flex: none; transform: none !important; transition: none !important; }
-.section-footer-arrow { display: inline-block; font-size: 17px; line-height: 1; transform: none !important; }
+.section-footer-action__icon { display: inline-block; font-size: 17px; line-height: 1; text-decoration: none; transform: none !important; }
 .experience-provenance { justify-content: flex-end; }
 .recent-index-link { margin-left: 24px; }
 .contact-section { overflow: hidden; padding: clamp(100px, 10vw, 150px) 0; background: radial-gradient(ellipse at 83% 47%, rgba(99,115,178,.085), transparent 46%), #191c23; }

@@ -1,0 +1,44 @@
+---
+const { posterSrc, previewSrc } = Astro.props;
+---
+<figure class="media-figure pathless-media">
+  <div class="media-poster pathless-media-poster" data-pathless-preview data-poster-src={posterSrc} data-preview-src={previewSrc}>
+    <img
+      class="media-poster-image"
+      src={posterSrc}
+      alt="Pathless title poster over a helicopter rescue-game scene"
+      loading="lazy"
+      data-pathless-image
+    />
+  </div>
+</figure>
+
+<script>
+  const previewAreas = document.querySelectorAll<HTMLElement>('[data-pathless-preview]:not([data-bound])');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const showPoster = (area: HTMLElement) => {
+    const image = area.querySelector<HTMLImageElement>('[data-pathless-image]');
+    if (!image || image.src === new URL(area.dataset.posterSrc ?? '', window.location.href).href) return;
+    image.src = area.dataset.posterSrc ?? '';
+  };
+
+  for (const area of previewAreas) {
+    area.dataset.bound = 'true';
+    area.addEventListener('pointerenter', (event) => {
+      if (!canHover.matches || reducedMotion.matches) return;
+      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+      const image = area.querySelector<HTMLImageElement>('[data-pathless-image]');
+      if (image && area.dataset.previewSrc) image.src = area.dataset.previewSrc;
+    });
+    area.addEventListener('pointerleave', () => showPoster(area));
+  }
+
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) previewAreas.forEach(showPoster);
+  });
+  canHover.addEventListener('change', () => {
+    if (!canHover.matches) previewAreas.forEach(showPoster);
+  });
+</script>
