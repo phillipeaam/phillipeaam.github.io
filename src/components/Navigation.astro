@@ -1,5 +1,5 @@
 ---
-const items = [
+const homeItems = [
   { id: 'home', label: 'Home' },
   { id: 'work', label: 'Work' },
   { id: 'projects', label: 'Projects' },
@@ -10,9 +10,20 @@ const items = [
 ];
 const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
+const { contextual = false } = Astro.props;
+const contextualItems = [
+  { id: 'home', label: '← Home', href: homePath, className: 'nav-link--return' },
+  { id: 'professional-game', label: 'Professional', href: '#professional-game' },
+  { id: 'professional-product', label: 'Software', href: '#professional-product' },
+  { id: 'independent-game', label: 'Independent', href: '#independent-game' },
+  { id: 'study-archive', label: 'Study', href: '#study-archive' },
+  { id: 'contact', label: 'Contact', href: `${homePath}#contact` },
+];
+const items = contextual ? contextualItems : homeItems;
 const itemHref = (id: string) => id === 'home'
   ? (isHome ? '#top' : `${homePath}#top`)
   : (isHome ? `#${id}` : `${homePath}#${id}`);
+const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]) => 'href' in item ? item.href : itemHref(item.id);
 ---
 <header class="site-header">
   <nav class="nav-shell content-width" aria-label="Main navigation">
@@ -21,13 +32,13 @@ const itemHref = (id: string) => id === 'home'
       <span>Phillipe Augusto</span>
     </div>
     <div class="nav-desktop">
-      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined}>{item.label}</a>)}
     </div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation menu">
       <span></span><span></span>
     </button>
     <div class="nav-mobile" id="mobile-navigation" hidden>
-      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined}>{item.label}</a>)}
     </div>
   </nav>
 </header>

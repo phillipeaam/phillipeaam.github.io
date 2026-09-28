@@ -4,12 +4,6 @@ import ProjectRecord from '../../components/ProjectRecord.astro';
 import { projectInventoryGroups } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
-const sectionLinks = [
-  { id: 'professional-game', label: 'Professional games & Unity products' },
-  { id: 'professional-product', label: 'Software & products' },
-  { id: 'independent-game', label: 'Independent games' },
-  { id: 'study-archive', label: 'Experiments & study' },
-];
 const supportSplitAfterWord: Record<string, number> = {
   'professional-game': 6,
   'professional-product': 5,
@@ -22,25 +16,8 @@ const supportLines = (id: string, copy: string) => {
   return [words.slice(0, splitAt).join(' '), words.slice(splitAt).join(' ')];
 };
 ---
-<BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s professional Unity games, interactive products, independent projects, and technical studies.">
-  <section class="archive-opening content-width" aria-labelledby="archive-title">
-    <div class="archive-opening__title">
-      <p class="eyebrow">BEYOND SELECTED WORK</p>
-      <h1 id="archive-title">All Projects</h1>
-    </div>
-    <p class="archive-opening__summary">A broader record of professional games, interactive products, independent work, collaborations, and technical studies.</p>
-  </section>
-
-  <div class="archive-guide content-width">
-    <p><a href={`${homePath}#work`}>Selected Work</a> on Home opens into full case studies. This archive keeps the wider project history in view.</p>
-    <nav class="archive-index" aria-label="Project archive sections">
-      <span class="archive-index__label">Browse by context</span>
-      <ul>
-        {sectionLinks.map((link) => <li><a href={`#${link.id}`}><span class="archive-index__link-label">{link.label}</span><span aria-hidden="true">↗</span></a></li>)}
-      </ul>
-    </nav>
-  </div>
-
+<BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s professional Unity games, interactive products, independent projects, and technical studies." contextualNavigation={true}>
+  <h1 class="sr-only">All Projects</h1>
   <div class="archive-content content-width">
     {projectInventoryGroups.map((group) => group.projects.length > 0 && <section class="archive-group" id={group.id} aria-labelledby={`archive-group-${group.id}`}>
       <header class="section-heading section-heading--major" aria-labelledby={`archive-group-${group.id}`}>
