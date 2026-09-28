@@ -1,11 +1,10 @@
 ---
 import MediaPoster from './MediaPoster.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
-const { project, role, media } = Astro.props;
+const { project, media } = Astro.props;
 ---
 <header class="case-hero">
   <p class="eyebrow">{project.context}</p>
   <h1>{project.name}</h1>
-  <p class="case-role">{role}</p>
   {media ? <ProjectMediaPreview {...media} /> : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
 </header>

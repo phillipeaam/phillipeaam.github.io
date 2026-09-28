@@ -200,7 +200,6 @@ const craqueStories: Story[] = [
 export type CaseStudy = {
   slug: string;
   project: Project;
-  role: string;
   scopeLabel: string;
   scope: string;
   ownershipLabel: string;
@@ -217,7 +216,7 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: 'ilhas-do-alfabeto', project: featuredProjects[0], role: 'Senior Unity Game Developer',
+    slug: 'ilhas-do-alfabeto', project: featuredProjects[0],
     scopeLabel: 'Product / Team Context', scope: 'Instituto Alfa e Beto’s commercial literacy game combines activities with different rules, content, and feedback. It was developed and maintained by a team.',
     ownershipLabel: 'My Contribution', ownership: 'I designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.',
     glance: [{ label: 'Context', value: 'Commercial game · team project' }, { label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Minigames and shared systems' }],
@@ -228,7 +227,7 @@ export const caseStudies: CaseStudy[] = [
     metaDescription: 'Commercial Unity game development: Desafio dos Sons Iguais, shared minigame systems, and production work by Phillipe Augusto.',
   },
   {
-    slug: 'wallaces-quest', project: featuredProjects[1], role: 'Independent Gameplay Engineer',
+    slug: 'wallaces-quest', project: featuredProjects[1],
     scopeLabel: 'Project Scope', scope: 'A personal Unity/C# tactical RPG prototype with one playable encounter: player and enemy turns, grid movement, attacks, damage, and an ending state.',
     ownershipLabel: 'My Engineering Focus', ownership: 'I built the prototype’s combat loop and worked directly on grid pathfinding, enemy turns, and weapon attack-area calculations. The source repository remains private.',
     glance: [{ label: 'Context', value: 'Independent prototype' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Combat, grid, pathfinding' }, { label: 'Scope', value: 'Playable combat encounter' }],
@@ -239,7 +238,7 @@ export const caseStudies: CaseStudy[] = [
     metaDescription: 'An independent Unity tactical RPG prototype: grid pathfinding, turn-based combat, and weapon attack areas by direction and position.',
   },
   {
-    slug: 'read-with-ello', project: featuredProjects[2], role: 'Unity Software Engineer',
+    slug: 'read-with-ello', project: featuredProjects[2],
     scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children. The case focuses on how its library, service-backed state, and progression surfaces connect into a repeatable reading journey.',
     ownershipLabel: 'My Contribution', ownership: 'Within a collaborative production team, I worked on the Unity-side implementation of those three areas: the library and its loading boundaries, GraphQL-backed feature integration, and the quest/progression UI that turns reading activity into visible progress.',
     glance: [{ label: 'Context', value: 'Professional · Ello' }, { label: 'Role', value: 'Unity Software Engineer' }, { label: 'Period', value: 'Oct 2022–Aug 2025' }, { label: 'Stack', value: 'Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook' }],
@@ -250,7 +249,7 @@ export const caseStudies: CaseStudy[] = [
     metaDescription: 'Read With Ello case study: Unity book-library work, player-facing progression, and reusable GraphQL client tooling.',
   },
   {
-    slug: 'craque-da-fluencia', project: featuredProjects[3], role: 'Senior Unity Game Developer',
+    slug: 'craque-da-fluencia', project: featuredProjects[3],
     scopeLabel: 'Product / Team Context', scope: 'The Instituto Alfa e Beto product guides reading assessments, receives speech-recognition results, and produces reports. It is a team-built assessment product.',
     ownershipLabel: 'My Contribution', ownership: 'I contributed to the assessment runtime, a structured word model, recognition-integration migration, defensive result handling, and retest and reevaluation flows.',
     glance: [{ label: 'Context', value: 'Professional assessment product' }, { label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Assessment state and integration' }],
