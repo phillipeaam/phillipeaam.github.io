@@ -89,8 +89,6 @@ export type SupportingProjectRecord = {
   product: string;
   contribution?: string;
   engineeringFocus?: string;
-  showcaseDescription?: string;
-  homeDescription?: string;
   context?: string;
   anchorId?: string;
   showOnHome?: boolean;
@@ -109,12 +107,12 @@ export const otherWork: SupportingProjectRecord[] = [
     product: 'Built by a three-person team for Brackeys Game Jam 2026.2, Pathless is a Unity 6 rescue-and-exploration game made in the jam’s one-week window. Players follow proximity radio signals to locate survivors and meet their assistance needs. An escalating calamity adds time pressure, making extraction the final step of each rescue run.',
     contribution: 'I implemented the proximity radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. I also integrated mission progression from the menu and arrival intro through extraction, restart, and results reporting.',
     engineeringFocus: 'Signal definitions hold scan ranges; every 0.3 seconds, distance maps to discrete strength and the HUD presents the strongest channels—not direction or triangulation. ScriptableObjects also configure survivor assistance and calamity sequences. Events/delegates connect mission state to rescue/results; Unity Awaitable sequences the arrival intro, with UI Toolkit and the Input System handling presentation and control.',
-    showcaseDescription: 'Pathless is a Unity 6 rescue/exploration game built by a three-person team for Brackeys Game Jam 2026.2. My work included the proximity-based radio scanner, survivor interaction flows, and gameplay integration across calamity, extraction, and results.', homeDescription: 'Made with a three-person team for Brackeys Game Jam 2026.2, Pathless is a 3D rescue game where proximity radio signals lead players to survivors as earthquakes trigger ground collapse and evacuation pressure. I implemented the scanner, HUD, and survivor rescue flow, then integrated extraction, restart, and results.', context: 'Unity Gameplay Programmer · three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
+    context: 'Unity Gameplay Programmer · three-person team', mediaLabel: 'RESCUE GAMEPLAY — PATHLESS', showOnHome: true, homeOrder: 1, kind: 'pathless',
     actions: [{ href: 'https://phillipeaam.itch.io/pathless', label: 'Play on itch.io' }, { href: 'https://youtu.be/1UMGSYFvUT8', label: 'Watch gameplay' }],
   },
   {
     id: 'flui', anchorId: 'work-flui', name: 'Flui — A Cidade das Palavras', period: '2017–2021', type: 'Commercial Unity game', archiveCategory: 'professional-game',
-    product: 'A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.', contribution: 'Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.', showcaseDescription: 'A commercial Unity literacy game from Instituto Alfa e Beto, built around exploration, character progression, and interactive minigames. I implemented gameplay features and minigame interactions, then maintained and adapted existing systems as content and production needs evolved over several years.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', showOnHome: true, homeOrder: 2, kind: 'neutral',
+    product: 'A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.', contribution: 'Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY / PRODUCT MEDIA — FLUI', showOnHome: true, homeOrder: 2, kind: 'neutral',
     actions: [
       { href: 'https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html', label: 'Official product' },
       { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1945254108/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' },
@@ -122,7 +120,7 @@ export const otherWork: SupportingProjectRecord[] = [
   },
   {
     id: 'tabuada-na-fazenda', anchorId: 'work-tabuada', name: 'Tabuada na Fazenda', period: '2020–2022', type: 'Commercial Unity game', archiveCategory: 'professional-game',
-    product: 'A commercial Unity math game set around an interactive farm and themed learning activities.', contribution: 'Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.', showcaseDescription: 'A commercial Unity math game from Instituto Alfa e Beto, set on an interactive farm with activity-driven minigames. I contributed to minigames, tutorials, farm interactions, and progression, and supported maintenance of these gameplay flows through content changes and ongoing production work.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', showOnHome: true, homeOrder: 3, kind: 'neutral',
+    product: 'A commercial Unity math game set around an interactive farm and themed learning activities.', contribution: 'Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.', context: 'Instituto Alfa e Beto · professional product work', mediaLabel: 'GAMEPLAY MEDIA — TABUADA', showOnHome: true, homeOrder: 3, kind: 'neutral',
     actions: [{ href: 'https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html', label: 'Official product' }],
   },
   {
