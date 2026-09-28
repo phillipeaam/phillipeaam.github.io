@@ -5,9 +5,11 @@ import Icon from './Icon.astro';
 const { project, index = 1, reverse = false } = Astro.props;
 ---
 <article class:list={['featured-project', reverse && 'is-reversed']} data-kind={project.kind}>
-  {project.slug === 'read-with-ello'
-    ? <ProjectMediaPreview posterSrc="/projects/ello-read/read-with-ello-poster.png" previewSrc="/projects/ello-read/read-with-ello-gameplay-preview.gif" alt="Read With Ello product poster." previewAlt="Read With Ello gameplay preview showing an interactive reading activity." autoplayPreview posterWidth={1680} posterHeight={945} posterFit="contain" />
-    : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
+  <a class="featured-project__media-link" href={`/work/${project.slug}/`} aria-label={`Open ${project.name} case study`}>
+    {project.slug === 'read-with-ello'
+      ? <ProjectMediaPreview posterSrc="/projects/ello-read/read-with-ello-poster.png" previewSrc="/projects/ello-read/read-with-ello-gameplay-preview.gif" alt="Read With Ello product poster." previewAlt="Read With Ello gameplay preview showing an interactive reading activity." autoplayPreview posterWidth={1680} posterHeight={945} posterFit="contain" />
+      : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
+  </a>
   <div class="featured-copy">
     <h3><a href={`/work/${project.slug}/`}>{project.name}</a></h3>
     <p class="project-product">{project.product}</p>
