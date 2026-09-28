@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CaseHero from '../../components/CaseHero.astro';
 import EngineeringStory from '../../components/EngineeringStory.astro';
 import NextProject from '../../components/NextProject.astro';
-import ExternalLink from '../../components/ExternalLink.astro';
 import { caseStudies } from '../../data/cases';
 
 export function getStaticPaths() {
@@ -12,15 +11,13 @@ export function getStaticPaths() {
 
 const { item } = Astro.props;
 ---
-<BaseLayout title={`${item.project.name} — Gameplay Engineering Case Study | Phillipe Augusto`} description={item.metaDescription}>
+<BaseLayout title={`${item.project.name} — Gameplay Engineering Case Study | Phillipe Augusto`} description={item.metaDescription} caseNavigation={true}>
   <div class="case-page content-width" data-kind={item.project.kind}>
-    <CaseHero project={item.project} role={item.role} />
+    <CaseHero project={item.project} role={item.role} media={item.media} />
     <section class="case-glance" aria-labelledby="glance-title"><h2 id="glance-title" class="eyebrow">AT A GLANCE</h2><dl>{item.glance.map((fact: { label: string; value: string }) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl></section>
     <section class="case-context"><div><p class="eyebrow">{item.scopeLabel}</p><h2>Project context</h2><p>{item.scope}</p></div><div><p class="eyebrow">{item.ownershipLabel}</p><h2>Ownership</h2><p>{item.ownership}</p></div></section>
     <div class="case-stories">{item.stories.map((story: any, index: number) => <EngineeringStory story={story} index={index + 1} kind={item.project.kind} />)}</div>
-    {item.production && <section class="quiet-section"><p class="eyebrow">PRODUCTION CONTEXT</p><p>{item.production}</p></section>}
     <section class="quiet-section"><p class="eyebrow">REFLECTION</p><h2>What I would carry forward</h2><p>{item.reflection}</p></section>
-    <section class="quiet-section"><p class="eyebrow">EVIDENCE &amp; LINKS</p><div class="case-links">{item.evidenceLinks.map((link: { label: string; href: string }) => <ExternalLink class="text-link" href={link.href} icon>{link.label}</ExternalLink>)}</div><p class="evidence-boundary">Public media shows product behavior. Contribution details come from project history and, where noted, inspected source.</p></section>
     <NextProject project={caseStudies.find((candidate) => candidate.slug === item.nextSlug)?.project ?? caseStudies[0].project} />
   </div>
 </BaseLayout>

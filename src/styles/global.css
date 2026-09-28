@@ -97,6 +97,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .section-heading .eyebrow { margin-bottom: 10px; }
 .featured-list { display: grid; gap: var(--s-24); }
 .featured-project { display: grid; grid-template-columns: 1.42fr 1fr; gap: var(--s-12); align-items: center; }
+.featured-project__media-link { display: block; min-width: 0; color: inherit; }
+.featured-project__media-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.featured-project__media-link:hover .media-poster, .featured-project__media-link:focus-visible .media-poster { transform: translateY(-3px); }
 .featured-project.is-reversed { grid-template-columns: 1fr 1.42fr; }
 .featured-project.is-reversed .media-figure { order: 2; }
 .featured-copy { padding-block: 8px; }
@@ -183,24 +186,30 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .supporting-entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: var(--s-12); align-items: center; padding: var(--s-8) 0; border-bottom: 1px solid var(--line); }
 .supporting-entry h3 { margin-bottom: 10px; font-size: 28px; }
 .supporting-entry p:not(.eyebrow) { color: var(--secondary); }
-.case-page { padding-top: var(--s-12); }
-.case-hero { padding: var(--s-8) 0 var(--s-16); }
+.case-page { padding-top: var(--s-6); }
+.case-hero { padding: var(--s-4) 0 var(--s-8); }
 .case-hero h1 { margin: 0 0 14px; font-size: clamp(44px, 6vw, 70px); }
 .case-role { margin-bottom: 20px; color: var(--accent); font-size: 16px; }
 .case-intro { max-width: 60ch; margin-bottom: var(--s-3); color: var(--secondary); font-size: 21px; line-height: 1.48; }
 .case-ownership-intro { max-width: 68ch; margin-bottom: var(--s-8); }
 .case-hero .media-poster { width: 100%; }
-.case-glance { padding: var(--s-8) 0 var(--s-16); border-bottom: 1px solid var(--line); }
+.case-glance { padding: var(--s-4) 0 var(--s-8); border-bottom: 1px solid var(--line); }
 .case-glance h2 { margin-bottom: 25px; }
 .case-glance dl { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px 30px; margin: 0; }
 .case-glance dt, .story-fields dt { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 .case-glance dd { margin: 6px 0 0; color: var(--text); }
-.case-context { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); padding: var(--s-16) 0; border-bottom: 1px solid var(--line); }
+.case-context { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-12); padding: var(--s-8) 0; border-bottom: 1px solid var(--line); }
 .case-context h2 { margin: 0 0 14px; font-size: 30px; }
 .case-context p:last-child { max-width: 540px; color: var(--secondary); }
 .case-media-preview { padding: var(--s-12) 0; border-bottom: 1px solid var(--line); }
 .case-media-preview__figure { max-width: 960px; margin: 18px 0 0; }
 .case-media-preview__figure img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 4px; object-fit: contain; background: var(--media); }
+.mermaid-diagram { margin: 28px 0 0; padding: 18px; border: 1px solid var(--line); background: var(--media); overflow: auto; }
+.mermaid-diagram figcaption { display: flex; justify-content: space-between; gap: 16px; color: var(--text); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.mermaid-diagram figcaption span { color: var(--muted); font-size: 10px; letter-spacing: .04em; }
+.mermaid-diagram .mermaid { min-width: 520px; margin: 22px 0 0; color: var(--muted); font: 13px/1.5 var(--mono, monospace); white-space: pre-wrap; }
+.mermaid-diagram svg { display: block; max-width: 100%; height: auto; }
+.mermaid-diagram--fallback .mermaid { white-space: pre-wrap; }
 .case-stories { display: grid; }
 .engineering-story { padding: var(--s-24) 0; border-bottom: 1px solid var(--line); }
 .story-heading { max-width: 70ch; margin-bottom: var(--s-12); }
@@ -300,14 +309,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .work-entry h3 { font-size: 27px; }
   .compact-row { align-items: flex-start; flex-direction: column; justify-content: center; gap: 5px; padding: 16px 0; }
   .supporting-entry { grid-template-columns: minmax(0,1fr); gap: 20px; }
-  .case-page { padding-top: 28px; }
+  .case-page { padding-top: 16px; }
   .case-hero { padding: var(--s-6) 0 var(--s-12); }
   .case-hero h1 { font-size: 43px; }
   .case-intro { font-size: 18px; }
-  .case-glance { padding: var(--s-6) 0 var(--s-12); }
+  .case-glance { padding: var(--s-3) 0 var(--s-6); }
   .case-glance dl { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px 14px; }
   .case-glance dd { font-size: 14px; }
-  .case-context { grid-template-columns: minmax(0,1fr); gap: var(--s-8); padding: var(--s-12) 0; }
+  .case-context { grid-template-columns: minmax(0,1fr); gap: var(--s-6); padding: var(--s-6) 0; }
   .case-context h2 { font-size: 26px; }
   .engineering-story { padding: var(--s-16) 0; }
   .story-heading { margin-bottom: var(--s-8); }

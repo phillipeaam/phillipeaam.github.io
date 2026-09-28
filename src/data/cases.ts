@@ -1,4 +1,4 @@
-import { featuredProjects, type Project } from './projects';
+import { featuredProjects, type Project, type ProjectMedia } from './projects';
 
 export type StoryField = { label: string; text: string };
 export type Story = {
@@ -10,6 +10,7 @@ export type Story = {
   evidence: string;
   diagramLabel: string;
   diagram: string[];
+  mermaid?: string;
   compact?: boolean;
 };
 
@@ -107,44 +108,48 @@ const ilhasStories: Story[] = [
 const elloStories: Story[] = [
   {
     title: 'Book Library — Loading Under Mobile Constraints',
-    framing: 'A growing catalog needed usable discovery and presentation on phones and tablets.',
+    framing: 'A growing catalog had to feel like a responsive reading journey, not a long list of assets waiting to appear.',
     fields: [
-      { label: 'Problem', text: 'Book discovery depended on loading content and covers into the library UI.' },
-      { label: 'Constraint', text: 'Mobile memory and loading behavior matter when a library contains many books.' },
-      { label: 'Approach', text: 'I worked on library navigation, reusable book models, cover presentation, and loading paths.' },
-      { label: 'Result', text: 'This supported book selection without making an unmeasured speed or memory claim.' },
+      { label: 'Problem', text: 'Readers needed to browse categories, see book covers, and enter the right reading activity without losing context.' },
+      { label: 'Constraint', text: 'The catalog was content-heavy, while mobile memory, asynchronous loading, and repeated navigation made a naïve all-at-once screen fragile.' },
+      { label: 'Approach', text: 'I worked across selection, category, grid, scroller, and data-service layers, keeping reusable models and views aligned with the loading lifecycle. The UI was treated as a stateful surface: data readiness, selection, reload, and entry into a quest had to agree.' },
+      { label: 'Solution', text: 'The library could assemble a discoverable book surface and hand a selected title into the reading flow through clearer boundaries. That made the feature easier to extend with categories, quests, and different content sets without collapsing navigation and data concerns into one screen.' },
     ],
     evidenceLabel: 'Ello · book library',
     behavior: 'Readers browse and select books from the library.',
-    evidence: 'Public product material shows the library; internal history describes my UI, model, and loading work.',
+    evidence: 'The preserved project contains Book Library and Book Selection scene/controller layers, category and grid services, scrolling components, and quest-library data models. This supports the implementation story without claiming sole ownership of the product catalog or measured performance.',
     diagramLabel: 'Library presentation flow', diagram: ['Book data', 'Loading and models', 'Library UI'],
+    mermaid: 'flowchart LR\n  A[Book data] --> B[Library selection]\n  B --> C[Reusable models]\n  C --> D[Book Library UI]\n  D --> E[Reading flow]',
   },
   {
     title: 'GraphQL Operations — Reusable Unity Client Tooling',
-    framing: 'Unity features needed repeatable access to backend data.',
+    framing: 'Player-facing features needed service data without turning every screen into its own integration experiment.',
     fields: [
-      { label: 'Problem', text: 'Features using GraphQL needed a consistent way to configure and run operations.' },
-      { label: 'Constraint', text: 'Client tooling had to fit existing services and feature workflows.' },
-      { label: 'Approach', text: 'I adapted reusable query configuration and validation tooling and integrated client operations with services.' },
-      { label: 'Result', text: 'Features could reuse client tooling instead of repeating integration setup.' },
+      { label: 'Problem', text: 'Library, progression, and reward features all depended on remote state, but their Unity screens should not each own a different request pattern.' },
+      { label: 'Constraint', text: 'The client had to fit existing GraphQL contracts, asynchronous responses, loading states, and team-owned backend behavior.' },
+      { label: 'Approach', text: 'I adapted reusable operation configuration and client integration patterns, then connected returned data to player-facing feature state. The important boundary was between request execution and screen behavior: loading, response handling, and UI updates could evolve without duplicating the whole integration in every feature.' },
+      { label: 'Solution', text: 'Features could share a more consistent service boundary while keeping backend ownership and guarantees outside the client-side contribution claim. In practice, this supported the library, progression, and reward surfaces with a common way to consume service-backed state.' },
     ],
     evidenceLabel: 'Ello · client data flow',
     behavior: 'Player-facing screens present data returned by product services.',
-    evidence: 'Project history supports my client integration work; screens do not reveal GraphQL implementation or backend ownership.',
+    evidence: 'The project history supports client integration work, and the preserved build configuration references GraphQL client preparation. Screens do not reveal backend implementation or ownership, so the claim remains limited to Unity-side integration and tooling.',
     diagramLabel: 'Client operation flow', diagram: ['Unity feature', 'GraphQL operation', 'Service response'],
+    mermaid: 'sequenceDiagram\n  participant UI as Unity feature\n  participant Client as GraphQL client\n  participant Service as Product service\n  UI->>Client: Configure and run operation\n  Client->>Service: Request data\n  Service-->>Client: Response\n  Client-->>UI: Update player-facing state',
   },
   {
     title: 'Player-Facing Quest & Progression Flows',
-    framing: 'The reading journey included objectives, reward presentation, and visible progression.',
+    framing: 'Reading practice becomes easier to sustain when the next objective, the current state, and the reward are all legible to the player.',
     fields: [
-      { label: 'Question', text: 'How should quest and reward states be presented clearly to the reader?' },
-      { label: 'Approach', text: 'I helped implement player-facing quest flows, objectives, reward-claim presentation, and related UI.' },
-      { label: 'Consequence', text: 'This is a client-side contribution story; backend authority and synchronization guarantees remain outside the claim.' },
+      { label: 'Problem', text: 'Quest objectives, reading activities, completion feedback, and rewards needed to read as one progression loop rather than disconnected screens.' },
+      { label: 'Constraint', text: 'The client had to present service-backed state clearly while handling objective completion, reward visibility, and transitions between home, library, and reading flows.' },
+      { label: 'Approach', text: 'I worked on player-facing quest presentation, objective and detail states, reward-claim interactions, library quest entry points, and related UI behavior. The focus was translating state changes into clear transitions and feedback instead of leaving progress implicit in service data.' },
+      { label: 'Solution', text: 'The reading journey could expose a clearer loop: choose an objective, enter the relevant activity, see progress, and understand the next reward step. This made progression a navigable product experience while keeping authoritative quest and economy behavior outside the client-side claim.' },
     ],
     evidenceLabel: 'Ello · quest flow',
     behavior: 'Public product material shows quests and progression in the reading journey.',
-    evidence: 'Contribution history supports work on player-facing flows, not ownership of the full quest system, economy, or backend.',
-    diagramLabel: 'Quest presentation', diagram: [], compact: true,
+    evidence: 'The preserved project contains quest runtime models/services, home quest controllers for objectives, details, instructions, rewards, and kudos, plus library quest and reward services. This supports player-facing implementation work, not ownership of the full quest economy or backend.',
+    diagramLabel: 'Quest progression state', diagram: [],
+    mermaid: 'stateDiagram-v2\n  [*] --> QuestAvailable\n  QuestAvailable --> InProgress: start\n  InProgress --> BookReading: select book\n  BookReading --> ObjectiveComplete: finish activity\n  ObjectiveComplete --> RewardReady: claimable\n  RewardReady --> ProgressUpdated: claim\n  ProgressUpdated --> [*]',
   },
 ];
 
@@ -202,6 +207,7 @@ export type CaseStudy = {
   ownership: string;
   glance: { label: string; value: string }[];
   stories: Story[];
+  media?: ProjectMedia;
   production?: string;
   reflection: string;
   evidenceLinks: { label: string; href: string }[];
@@ -234,11 +240,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'read-with-ello', project: featuredProjects[2], role: 'Unity Software Engineer',
-    scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children combining interactive reading, book-library exploration, quests, progression, rewards, content delivery, and speech-assisted coaching.',
-    ownershipLabel: 'My Contribution', ownership: 'I contributed across quest and progression flows, reading and book library systems, phone-based onboarding experiences, rewards and Prize Store interactions, and GraphQL client integration. I also supported selected shared-package and lifecycle work within the wider Ello production codebase.',
+    scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children. The case focuses on how its library, service-backed state, and progression surfaces connect into a repeatable reading journey.',
+    ownershipLabel: 'My Contribution', ownership: 'Within a collaborative production team, I worked on the Unity-side implementation of those three areas: the library and its loading boundaries, GraphQL-backed feature integration, and the quest/progression UI that turns reading activity into visible progress.',
     glance: [{ label: 'Context', value: 'Professional · Ello' }, { label: 'Role', value: 'Unity Software Engineer' }, { label: 'Period', value: 'Oct 2022–Aug 2025' }, { label: 'Stack', value: 'Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook' }],
     stories: elloStories,
-    production: 'The versioned Unity product has public iOS evidence, while exact feature-to-store-build mapping remains partial. I present release lineage as product context rather than claiming personal release ownership.',
+    media: { type: 'image', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', alt: 'Read With Ello product poster', previewAlt: 'Read With Ello gameplay preview', autoplayPreview: true, posterFit: 'contain' },
     reflection: 'The product made one lesson concrete: a player-facing reading journey depends on how content, loading, lifecycle, reusable UI, and service-backed state behave together on real devices.',
     evidenceLinks: [{ label: 'Read With Ello on the App Store', href: 'https://apps.apple.com/us/app/read-with-ello/id1536720182' }], nextSlug: 'craque-da-fluencia',
     metaDescription: 'Read With Ello case study: Unity book-library work, player-facing progression, and reusable GraphQL client tooling.',
