@@ -135,9 +135,9 @@ export const otherWork: SupportingProjectRecord[] = [
     engineeringFocus: 'Typed configuration, provider/service boundaries, GraphQL/protobuf contracts, guarded async initialization, interaction-ID completion handling, local fallback behavior and test-backed integration.',
     context: 'Ello · professional product work',
     actions: [
-      { href: 'https://www.ello.com/', label: 'Official product' },
       { href: 'https://apps.apple.com/us/app/ello-2-0-learn-reading-math/id6739630070', label: 'App Store' },
       { href: 'https://play.google.com/store/apps/details?id=com.ellotechnology.learn', label: 'Google Play' },
+      { href: 'https://www.youtube.com/watch?v=Vzb09qXUL44', label: 'Watch promo' },
     ],
   },
   {
