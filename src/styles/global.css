@@ -114,6 +114,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .text-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--accent); font-size: 15px; font-weight: 500; transition: color var(--motion-project) var(--ease); }
 .text-link:hover { color: var(--text); }
 .text-link:hover span, .next-project:hover strong span { transform: translateX(4px); }
+.featured-project__actions { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; }
 .media-figure { min-width: 0; margin: 0; }
 .media-poster { position: relative; isolation: isolate; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--media); transition: border-color var(--motion-poster) var(--ease), background var(--motion-poster) var(--ease); }
 .media-poster::after { content: ''; position: absolute; z-index: 2; top: 0; left: 0; width: 20%; height: 1px; background: var(--accent); opacity: .7; }
@@ -197,6 +198,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .case-context { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); padding: var(--s-16) 0; border-bottom: 1px solid var(--line); }
 .case-context h2 { margin: 0 0 14px; font-size: 30px; }
 .case-context p:last-child { max-width: 540px; color: var(--secondary); }
+.case-media-preview { padding: var(--s-12) 0; border-bottom: 1px solid var(--line); }
+.case-media-preview__figure { max-width: 960px; margin: 18px 0 0; }
+.case-media-preview__figure img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 4px; object-fit: contain; background: var(--media); }
 .case-stories { display: grid; }
 .engineering-story { padding: var(--s-24) 0; border-bottom: 1px solid var(--line); }
 .story-heading { max-width: 70ch; margin-bottom: var(--s-12); }
@@ -402,6 +406,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .archive-record__media .media-poster, .archive-media img, .archive-media video, .archive-media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 4px; background: var(--media); object-fit: cover; }
 .archive-record__media .media-poster-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .archive-record__media .media-poster-image--contain { object-fit: contain; }
+.project-media-preview .media-poster-image--contain { object-fit: contain; }
+.project-media-preview .media-poster-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .archive-record__media .media-poster::after { display: none; }
 .archive-record__media figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .archive-record__supporting-media { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 12px; margin-top: 12px; }
