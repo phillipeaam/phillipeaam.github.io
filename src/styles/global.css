@@ -419,6 +419,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .project-media-preview .media-poster-image--contain { object-fit: contain; }
 .project-media-preview .media-poster-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .archive-record__media .media-poster::after { display: none; }
+.archive-content .media-figure:hover .media-poster, .archive-content .media-figure:focus-within .media-poster { border-color: var(--line); }
 .archive-record__media figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.45; }
 .archive-record__supporting-media { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 12px; margin-top: 12px; }
 .archive-record__supporting-media figcaption { font-size: 11px; }
