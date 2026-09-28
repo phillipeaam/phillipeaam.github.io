@@ -129,9 +129,16 @@ export const otherWork: SupportingProjectRecord[] = [
     actions: [{ href: 'https://loja.alfaebeto.org.br/produto/craque-da-leitura.html', label: 'Official product' }, { href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1497806737/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }],
   },
   {
-    id: 'learn-with-ello', anchorId: 'work-learn-with-ello', name: 'Ello 2.0: Learn Reading & Math', type: 'Learning platform · product continuation', archiveCategory: 'professional-game',
-    product: 'A later Ello learning-platform continuation, extending its reading experience into early math and adaptive learning.',
-    actions: [{ href: 'https://www.linkedin.com/in/phillipe-augusto/overlay/Project/1354869267/treasury/?profileId=ACoAABO7wFYBwnIpel5jQcE2E9VunU61oL6o7LA', label: 'LinkedIn details' }],
+    id: 'learn-with-ello', anchorId: 'work-ello-2', name: 'Ello 2.0: Learn Reading & Math', period: 'Sep–Nov 2025', type: 'Professional learning platform · Flutter / Dart / Python', archiveCategory: 'professional-game',
+    product: 'A professional learning platform for children combining reading and math activities, daily quest/progression flows and adaptive experiences across a Flutter client, backend services and agent interactions.',
+    contribution: 'Contributed to quest progression and reward flows, typed configuration-driven quest migration, home-screen/agent integration and parent-gate experience, with shared account/settings and intro-media lifecycle work.',
+    engineeringFocus: 'Typed configuration, provider/service boundaries, GraphQL/protobuf contracts, guarded async initialization, interaction-ID completion handling, local fallback behavior and test-backed integration.',
+    context: 'Ello · professional product work',
+    actions: [
+      { href: 'https://www.ello.com/', label: 'Official product' },
+      { href: 'https://apps.apple.com/us/app/ello-2-0-learn-reading-math/id6739630070', label: 'App Store' },
+      { href: 'https://play.google.com/store/apps/details?id=com.ellotechnology.learn', label: 'Google Play' },
+    ],
   },
   {
     id: 'avaliacao-diagnostica', anchorId: 'work-avaliacao-diagnostica', name: 'Avaliação Diagnóstica', period: 'Undated', type: 'Digital school-assessment platform', archiveCategory: 'professional-product',
@@ -258,7 +265,7 @@ const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresent
   'angry-world': { archivePresentation: 'standard', specs: [{ label: 'Context', value: 'Ludum Dare 38 · solo jam' }, { label: 'Engine', value: 'Unity' }] },
   'survive-and-escape': { archivePresentation: 'compact', specs: [{ label: 'Tools', value: 'C++ / raylib' }, { label: 'Platform', value: 'Windows' }] },
   'craque-da-leitura': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
-  'learn-with-ello': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Ello' }] },
+  'learn-with-ello': { archivePresentation: 'rich', specs: [{ label: 'Role', value: 'Software Engineer' }, { label: 'Context', value: 'Ello · Professional' }, { label: 'Platform', value: 'iOS · Android' }, { label: 'Focus', value: 'Flutter Product Engineering · Learning Systems' }, { label: 'Stack', value: 'Flutter · Dart · Python · GraphQL · Protocol Buffers · GrowthBook · Provider · CI/CD' }] },
   'avaliacao-diagnostica': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'avaliacao-lingua-portuguesa': { archivePresentation: 'compact', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'iab-digital-zero-a-quatro': { archivePresentation: 'compact', specs: [{ label: 'Context', value: 'Cedro Technologies' }] },
@@ -282,7 +289,7 @@ export const projectInventory: ProjectInventoryEntry[] = [
 ].map((project) => ({ ...project, ...archiveDetails[project.id] }));
 
 export const projectInventoryGroups = [
-  { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['ilhas-do-alfabeto', 'read-with-ello', 'craque-da-fluencia', 'flui', 'tabuada-na-fazenda', 'craque-da-leitura', 'avaliacao-lingua-portuguesa', 'learn-with-ello'] },
+  { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['ilhas-do-alfabeto', 'read-with-ello', 'learn-with-ello', 'craque-da-fluencia', 'flui', 'tabuada-na-fazenda', 'craque-da-leitura', 'avaliacao-lingua-portuguesa'] },
   { id: 'professional-product', eyebrow: '02 / SOFTWARE', title: 'Software & interactive products', intro: 'Professional assessment, learning and operational software beyond the game portfolio.', order: ['avaliacao-diagnostica', 'iab-testes', 'iab-digital-zero-a-quatro', 'mypush', 'morada-verde-inventory-flow'] },
   { id: 'independent-game', eyebrow: '03 / INDEPENDENT', title: 'Independent & collaborative games', intro: 'Playable prototypes and jam work, including solo and team projects.', order: ['wallaces-quest', 'pathless', 'sweets-and-shadows', 'radwasteland-echoes', 'angry-world'] },
   { id: 'study-archive', eyebrow: '04 / STUDY', title: 'Experiments & study', intro: 'Smaller technical studies kept as part of the development record.', order: ['survive-and-escape'] },

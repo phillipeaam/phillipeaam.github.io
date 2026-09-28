@@ -12,7 +12,7 @@ const [leadMedia, ...supportingMedia] = project.media ?? [];
 const period = project.period && project.period !== 'Undated' ? project.period : undefined;
 const titleId = `archive-title-${project.id}`;
 ---
-<li class:list={['archive-record', `archive-record--${tier}`, leadMedia && 'archive-record--media']} id={recordId}>
+<li class:list={['archive-record', `archive-record--${tier}`, leadMedia && 'archive-record--media', tier === 'rich' && !leadMedia && 'archive-record--no-media']} id={recordId}>
   <article aria-labelledby={titleId}>
     {tier !== 'rich' && <header class="archive-record__header">
       <div class="archive-record__identity">
