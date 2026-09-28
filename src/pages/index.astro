@@ -72,44 +72,4 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
     <div class="section-footer experience-provenance"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
   </section>
 
-  <section class="contact-section" data-nav-section="contact" aria-labelledby="contact-title"><div class="content-width contact-inner"><div class="contact-heading nav-anchor-target" id="contact"><p class="eyebrow">GET IN TOUCH</p><h2 id="contact-title">If the work resonates,<br /><span>let’s talk.</span></h2><p>I’m open to opportunities, collaborations, and conversations across game development — whether that means building something together, exchanging ideas, or making useful introductions when I can.</p></div><div class="contact-actions"><ExternalLink class="hero-action contact-action contact-action--primary" href="https://www.linkedin.com/in/phillipe-augusto/" ariaLabel="LinkedIn profile (opens in a new tab)"><img src={`${homePath}icons/social/linkedin.svg`} alt="" width="20" height="20" /><span>LinkedIn</span><Icon name="external" size={16} /></ExternalLink><a class="hero-action contact-action contact-action--secondary" href="mailto:phillipe.a.a.mendonca@gmail.com"><Icon name="mail" size={19} /><span>Email me</span><Icon name="arrow" size={19} /></a><button class="hero-action contact-action contact-action--copy" type="button" data-copy-email="phillipe.a.a.mendonca@gmail.com" aria-label="Copy phillipe.a.a.mendonca@gmail.com to clipboard"><span class="contact-copy-address">phillipe.a.a.mendonca@gmail.com</span><span class="contact-copy-feedback" aria-hidden="true"><span data-copy-icon><Icon name="copy" size={18} /></span><span data-copied-label hidden>Copied</span></span></button><span class="contact-copy-status" id="contact-copy-status" role="status" aria-live="polite"></span></div></div></section>
-  <script>
-    const copyEmailButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
-    const copyEmailStatus = document.querySelector<HTMLElement>('#contact-copy-status');
-    const copyEmailIcon = copyEmailButton?.querySelector<HTMLElement>('[data-copy-icon]');
-    const copyEmailCopiedLabel = copyEmailButton?.querySelector<HTMLElement>('[data-copied-label]');
-    let copyEmailResetTimer: number | undefined;
-
-    copyEmailButton?.addEventListener('click', async () => {
-      const email = copyEmailButton.dataset.copyEmail;
-      if (!email || !copyEmailIcon || !copyEmailCopiedLabel || !copyEmailStatus) return;
-
-      window.clearTimeout(copyEmailResetTimer);
-      try {
-        if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
-        await navigator.clipboard.writeText(email);
-        copyEmailButton.dataset.state = 'copied';
-        copyEmailIcon.hidden = true;
-        copyEmailCopiedLabel.hidden = false;
-        copyEmailStatus.textContent = 'Email copied to clipboard.';
-        copyEmailStatus.classList.remove('is-visible');
-      } catch {
-        copyEmailButton.dataset.state = 'failed';
-        copyEmailIcon.hidden = true;
-        copyEmailCopiedLabel.hidden = false;
-        copyEmailCopiedLabel.textContent = 'Copy failed';
-        copyEmailStatus.textContent = 'Copy failed — select the email address manually.';
-        copyEmailStatus.classList.add('is-visible');
-      }
-
-      copyEmailResetTimer = window.setTimeout(() => {
-        delete copyEmailButton.dataset.state;
-        copyEmailIcon.hidden = false;
-        copyEmailCopiedLabel.hidden = true;
-        copyEmailCopiedLabel.textContent = 'Copied';
-        copyEmailStatus.textContent = '';
-        copyEmailStatus.classList.remove('is-visible');
-      }, 1800);
-    });
-  </script>
 </BaseLayout>

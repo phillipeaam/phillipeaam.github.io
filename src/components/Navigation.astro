@@ -6,7 +6,7 @@ const homeItems = [
   { id: 'recommendations', label: 'Teammates' },
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
@@ -17,7 +17,7 @@ const contextualItems = [
   { id: 'professional-product', label: 'Software', href: '#professional-product' },
   { id: 'independent-game', label: 'Independent', href: '#independent-game' },
   { id: 'study-archive', label: 'Study', href: '#study-archive' },
-  { id: 'contact', label: 'Contact', href: `${homePath}#contact` },
+  { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 const items = contextual ? contextualItems : homeItems;
 const itemHref = (id: string) => id === 'home'
