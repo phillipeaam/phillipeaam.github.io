@@ -94,7 +94,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .home-hero + .section-block { padding-top: var(--s-16); }
 .section-heading { display: flex; justify-content: space-between; align-items: end; gap: var(--s-8); margin-bottom: var(--s-12); }
 .section-heading h2 { margin: 0; font-size: clamp(30px, 3.2vw, 40px); }
-.section-heading h1 { margin: 0; font-size: clamp(30px, 3.2vw, 40px); }
 .section-heading > p { max-width: 44ch; margin: 0 0 4px; color: var(--secondary); line-height: 1.5; }
 .section-heading .eyebrow { margin-bottom: 10px; }
 .featured-list { display: grid; gap: var(--s-24); }
@@ -349,8 +348,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .featured-list { gap: clamp(90px, 10vw, 148px); }
 
 /* Project archive: the rules carry the hierarchy; records remain open to the page. */
-.archive-opening { padding-top: clamp(56px,6vw,80px); }
-.archive-opening > .section-heading { margin-bottom: 0; }
+.archive-opening { display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,1fr); align-items: end; gap: var(--s-8); padding-block: clamp(56px,6vw,80px) var(--s-8); border-bottom: 1px solid var(--line-strong); }
+.archive-opening .eyebrow { color: var(--accent); }
+.archive-opening h1 { margin: 0; font-size: clamp(54px,6vw,80px); line-height: 1.02; }
+.archive-opening__summary { justify-self: end; max-width: none; margin: 0 0 5px; color: var(--secondary); font-size: clamp(17px,1.65vw,20px); line-height: 1.48; }
 .archive-guide { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); gap: var(--s-12); padding-block: var(--s-6) var(--s-12); }
 .archive-guide > p { max-width: 48ch; margin: 0; color: var(--secondary); font-size: 15px; }
 .archive-guide > p a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
@@ -437,7 +438,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .archive-record--compact .archive-record__body, .archive-record--compact .archive-record__specs, .archive-record--compact .archive-record__actions { grid-column: 6 / -1; }
 }
 @media (max-width: 700px) {
-  .archive-opening { padding-top: var(--s-12); }
+  .archive-opening { grid-template-columns: minmax(0,1fr); gap: 18px; padding-block: var(--s-12) var(--s-8); }
+  .archive-opening h1 { font-size: clamp(48px,12vw,64px); }
+  .archive-opening__summary { justify-self: start; max-width: 56ch; margin: 0; font-size: 17px; }
   .archive-guide { grid-template-columns: minmax(0,1fr); gap: var(--s-6); padding-block: var(--s-6) var(--s-8); }
   .archive-index ul { gap: 2px 12px; }
   .archive-group, .archive-group + .archive-group { margin-top: 0; padding-top: var(--s-12); }

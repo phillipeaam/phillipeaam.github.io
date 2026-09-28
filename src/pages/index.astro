@@ -6,7 +6,6 @@ import Icon from '../components/Icon.astro';
 import SupportingProject from '../components/SupportingProject.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
-import EditorialSectionHeader from '../components/EditorialSectionHeader.astro';
 import { featuredProjects, homeSupportingProjects } from '../data/projects';
 import { experience } from '../data/experience';
 const homePath = import.meta.env.BASE_URL;
@@ -27,16 +26,15 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
-    <EditorialSectionHeader anchorId="work" headingId="featured-title" eyebrow="WORK, IN DEPTH" title="Selected work">
-      <span slot="support"><span class="section-support-line">Commercial gameplay, independent combat systems, and</span> <span class="section-support-line">production Unity engineering.</span></span>
-    </EditorialSectionHeader>
+    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">WORK, IN DEPTH</p><h2 id="featured-title">Selected work</h2></div><p><span class="section-support-line">Commercial gameplay, independent combat systems, and</span> <span class="section-support-line">production Unity engineering.</span></p></header>
     <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
-    <EditorialSectionHeader anchorId="projects" headingAliasId="other-work" headingId="projects-title" eyebrow="BREADTH, AT A GLANCE" title="More Projects">
-      <span slot="support"><span class="section-support-line">Professional products, independent games, and technical</span> <span class="section-support-line">work beyond the selected case studies.</span></span>
-    </EditorialSectionHeader>
+    <header class="section-heading section-heading--major nav-anchor-target" id="projects">
+      <span class="nav-anchor-alias" id="other-work" aria-hidden="true"></span>
+      <div><p class="eyebrow">BREADTH, AT A GLANCE</p><h2 id="projects-title">More Projects</h2></div><p><span class="section-support-line">Professional products, independent games, and technical</span> <span class="section-support-line">work beyond the selected case studies.</span></p>
+    </header>
     <div class="supporting-grid">
       {homeSupportingProjects.map((item) => <SupportingProject {...item} simple />)}
     </div>
@@ -46,9 +44,10 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   <TestimonialsSection />
 
   <section class="section-block content-width human-section" data-nav-section="about" aria-labelledby="about-title">
-    <EditorialSectionHeader anchorId="about" headingAliasId="about-phillipe" headingId="about-title" eyebrow="A LITTLE ABOUT HOW I WORK" title="About Phillipe">
-      <span slot="support">The thinking behind the systems.</span>
-    </EditorialSectionHeader>
+    <header class="section-heading section-heading--major nav-anchor-target" id="about">
+      <span class="nav-anchor-alias" id="about-phillipe" aria-hidden="true"></span>
+      <div><p class="eyebrow">A LITTLE ABOUT HOW I WORK</p><h2 id="about-title">About Phillipe</h2></div><p>The thinking behind the systems.</p>
+    </header>
     <div class="human-profile">
       <figure class="profile-portrait"><img src="/images/identity/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Game Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
       <div class="profile-content">
@@ -68,9 +67,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
-    <EditorialSectionHeader anchorId="experience" headingId="experience-title" eyebrow="CAREER, IN PRACTICE" title="Experience">
-      <span slot="support"><span class="section-support-line">Unity product engineering, commercial game development,</span> <span class="section-support-line">and earlier mobile software work.</span></span>
-    </EditorialSectionHeader>
+    <header class="section-heading section-heading--major nav-anchor-target" id="experience"><div><p class="eyebrow">CAREER, IN PRACTICE</p><h2 id="experience-title">Experience</h2></div><p><span class="section-support-line">Unity product engineering, commercial game development,</span> <span class="section-support-line">and earlier mobile software work.</span></p></header>
     <div class="experience-list">{experience.map((item) => <ExperienceEntry item={item} />)}</div>
     <div class="section-footer experience-provenance"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
   </section>
