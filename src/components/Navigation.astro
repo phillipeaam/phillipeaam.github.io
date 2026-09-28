@@ -12,14 +12,19 @@ const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
 const { contextual = false } = Astro.props;
 const contextualItems = [
-  { id: 'home', label: '← Home', href: homePath, className: 'nav-link--return' },
+  { id: 'home', label: '← Back', href: homePath, className: 'nav-link--return', returnPrevious: true },
   { id: 'professional-game', label: 'Professional', href: '#professional-game' },
   { id: 'professional-product', label: 'Software', href: '#professional-product' },
   { id: 'independent-game', label: 'Independent', href: '#independent-game' },
   { id: 'study-archive', label: 'Study', href: '#study-archive' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
-const items = contextual ? contextualItems : homeItems;
+const caseItems = [
+  { id: 'home', label: '← Back', href: homePath, className: 'nav-link--return', returnPrevious: true },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+];
+const { caseNavigation = false } = Astro.props;
+const items = caseNavigation ? caseItems : contextual ? contextualItems : homeItems;
 const itemHref = (id: string) => id === 'home'
   ? (isHome ? '#top' : `${homePath}#top`)
   : (isHome ? `#${id}` : `${homePath}#${id}`);
@@ -32,13 +37,13 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
       <span>Phillipe Augusto</span>
     </div>
     <div class="nav-desktop">
-      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined} data-return-previous={'returnPrevious' in item && item.returnPrevious ? 'true' : undefined}>{item.label}</a>)}
     </div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation menu">
       <span></span><span></span>
     </button>
     <div class="nav-mobile" id="mobile-navigation" hidden>
-      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={!contextual ? item.id : undefined} data-return-previous={'returnPrevious' in item && item.returnPrevious ? 'true' : undefined}>{item.label}</a>)}
     </div>
   </nav>
 </header>
@@ -74,6 +79,16 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
   });
   menu?.addEventListener('click', (event) => {
     if ((event.target as HTMLElement).closest('a')) closeMenu();
+  });
+  document.querySelectorAll<HTMLAnchorElement>('[data-return-previous="true"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const referrer = document.referrer;
+      const sameOrigin = referrer && new URL(referrer, window.location.href).origin === window.location.origin;
+      if (sameOrigin && window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
