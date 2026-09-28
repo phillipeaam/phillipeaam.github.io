@@ -23,7 +23,7 @@ if (!project.identityImage || !leadMedia?.previewSrc || !project.contribution ||
     <div class="archive-record__media-column">
       {leadMedia && <div class="archive-record__media">
         {leadMedia.previewSrc && leadMedia.type === 'image'
-          ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} caption={leadMedia.caption} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
+          ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
           : <ArchiveMedia media={leadMedia} projectName={project.name} />}
         {supportingMedia.length > 0 && <div class="archive-record__supporting-media">
           {supportingMedia.slice(0, 3).map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
