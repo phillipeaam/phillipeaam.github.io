@@ -374,7 +374,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .archive-record__actions a:hover, .archive-record__actions a:focus-visible { color: var(--text); text-decoration-color: currentColor; }
 .archive-record__actions svg { flex: none; }
 .archive-record__media { grid-column: 1 / 6; min-width: 0; }
-.archive-record--rich { --project-rich-description-lines: 8; --project-rich-contribution-lines: 7; --project-rich-engineering-lines: 6; }
+.archive-record--rich { --project-rich-description-lines: 5; --project-rich-contribution-lines: 7; --project-rich-engineering-lines: 6; }
 .archive-record--rich > article { display: block; }
 .archive-record--rich .archive-record__rich-grid { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,6fr); gap: 32px; align-items: stretch; }
 .archive-record--rich .archive-record__media-column, .archive-record--rich .archive-record__details { min-width: 0; }
@@ -446,7 +446,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .archive-record--rich .archive-record__media-column > .archive-record__overview,
   .archive-record--rich .archive-record__body .archive-record__contribution--primary p:last-child,
   .archive-record--rich .archive-record__body .archive-record__contribution--engineering p:last-child {
-    /* The side-by-side layout keeps the 8/7/6-line maxima; stacked mobile copy grows naturally. */
+    /* The side-by-side layout keeps the 5/7/6-line maxima; stacked mobile copy grows naturally. */
     display: block;
     overflow: visible;
     -webkit-box-orient: initial;
