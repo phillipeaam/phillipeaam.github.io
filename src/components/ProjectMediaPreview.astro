@@ -1,0 +1,80 @@
+---
+const {
+  posterSrc,
+  previewSrc,
+  alt = '',
+  previewAlt,
+  caption,
+  autoplayPreview = false,
+  posterWidth = 2556,
+  posterHeight = 1432,
+  posterFit = 'cover',
+} = Astro.props;
+---
+<figure class="media-figure project-media-preview">
+  <div class="media-poster project-media-preview__poster" data-project-media-preview data-autoplay-preview={autoplayPreview ? 'true' : undefined} data-poster-src={posterSrc} data-preview-src={previewSrc} data-poster-alt={alt} data-preview-alt={previewAlt}>
+    <img
+      class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
+      src={posterSrc}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      width={posterWidth}
+      height={posterHeight}
+      data-project-media-image
+    />
+  </div>
+  {caption && <figcaption class="media-caption">{caption}</figcaption>}
+</figure>
+
+<script>
+  const previewAreas = document.querySelectorAll<HTMLElement>('[data-project-media-preview]:not([data-bound])');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  const showPoster = (area: HTMLElement) => {
+    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
+    if (!image) return;
+    image.alt = area.dataset.posterAlt ?? '';
+    const posterSrc = area.dataset.posterSrc ?? '';
+    if (image.src !== new URL(posterSrc, window.location.href).href) image.src = posterSrc;
+  };
+
+  const showPreview = (area: HTMLElement) => {
+    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
+    const previewSrc = area.dataset.previewSrc;
+    if (!image || !previewSrc || reducedMotion.matches) return;
+    image.alt = area.dataset.previewAlt ?? area.dataset.posterAlt ?? '';
+    image.src = previewSrc;
+  };
+
+  for (const area of previewAreas) {
+    area.dataset.bound = 'true';
+    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
+    image?.addEventListener('error', () => {
+      if (image.src === new URL(area.dataset.previewSrc ?? '', window.location.href).href) showPoster(area);
+    });
+
+    if (area.dataset.autoplayPreview === 'true') {
+      if (!reducedMotion.matches) showPreview(area);
+      continue;
+    }
+
+    area.addEventListener('pointerenter', () => {
+      if (fineHover.matches) showPreview(area);
+    });
+    area.addEventListener('pointerleave', () => showPoster(area));
+  }
+
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) previewAreas.forEach(showPoster);
+  });
+
+  fineHover.addEventListener('change', (event) => {
+    if (!event.matches) {
+      previewAreas.forEach((area) => {
+        if (area.dataset.autoplayPreview !== 'true') showPoster(area);
+      });
+    }
+  });
+</script>

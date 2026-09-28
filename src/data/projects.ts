@@ -5,9 +5,13 @@ export type ProjectMedia = {
   src: string;
   previewSrc?: string;
   alt?: string;
+  previewAlt?: string;
   title?: string;
   caption?: string;
   autoplayPreview?: boolean;
+  posterWidth?: number;
+  posterHeight?: number;
+  posterFit?: 'cover' | 'contain';
 };
 
 export type ProjectAction = { href: string; label: string };
@@ -255,7 +259,7 @@ const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresent
   pathless: {
     archivePresentation: 'rich',
     identityImage: '/projects/pathless/pathless-poster.png',
-    specs: [{ label: 'Role', value: 'Unity Gameplay Programmer' }, { label: 'Context', value: 'Brackeys Game Jam 2026.2' }, { label: 'Period', value: 'Aug 23–30, 2026' }, { label: 'Team', value: '3 people' }, { label: 'Platform', value: 'WebGL' }, { label: 'Stack', value: 'Unity 6 · C# · URP · UI Toolkit · Input System · Cinemachine' }],
+    specs: [{ label: 'Role', value: 'Unity Gameplay Programmer' }, { label: 'Period', value: 'Aug–Sep 2026' }, { label: 'Stack', value: 'Unity 6 · C# · URP · Input System · UI Toolkit' }, { label: 'Context', value: 'Brackeys Game Jam 2026.2 · 3-person team' }],
     media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', autoplayPreview: true, alt: 'Pathless gameplay poster showing a helicopter above a rescue-game landscape.' }],
   },
   flui: { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
@@ -265,7 +269,22 @@ const archiveDetails: Record<string, Pick<ProjectInventoryEntry, 'archivePresent
   'angry-world': { archivePresentation: 'standard', specs: [{ label: 'Context', value: 'Ludum Dare 38 · solo jam' }, { label: 'Engine', value: 'Unity' }] },
   'survive-and-escape': { archivePresentation: 'compact', specs: [{ label: 'Tools', value: 'C++ / raylib' }, { label: 'Platform', value: 'Windows' }] },
   'craque-da-leitura': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
-  'learn-with-ello': { archivePresentation: 'rich', specs: [{ label: 'Role', value: 'Software Engineer' }, { label: 'Context', value: 'Ello · Professional' }, { label: 'Platform', value: 'iOS · Android' }, { label: 'Focus', value: 'Flutter Product Engineering · Learning Systems' }, { label: 'Stack', value: 'Flutter · Dart · Python · GraphQL · Protocol Buffers · GrowthBook · Provider · CI/CD' }] },
+  'learn-with-ello': {
+    archivePresentation: 'rich',
+    identityImage: '/projects/ello-learn/ello-learn-poster.png',
+    specs: [{ label: 'Role', value: 'Software Engineer' }, { label: 'Period', value: 'Sep–Nov 2025' }, { label: 'Stack', value: 'Flutter · Dart · Python · GraphQL · Protocol Buffers' }, { label: 'Context', value: 'Ello · professional product work' }],
+    media: [{
+      type: 'image',
+      src: '/projects/ello-learn/ello-learn-poster.png',
+      previewSrc: '/projects/ello-learn/ello-learn-gameplay-preview.gif',
+      autoplayPreview: true,
+      alt: 'A smiling yellow-orange cartoon mascot with large brown eyes and coral-colored tufts against a pale blue background.',
+      previewAlt: 'An Ello preview cycles through colorful reading and counting activities, including a character in a snowy scene with a star counter.',
+      posterWidth: 480,
+      posterHeight: 480,
+      posterFit: 'contain',
+    }],
+  },
   'avaliacao-diagnostica': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'avaliacao-lingua-portuguesa': { archivePresentation: 'compact', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'iab-digital-zero-a-quatro': { archivePresentation: 'compact', specs: [{ label: 'Context', value: 'Cedro Technologies' }] },

@@ -1,6 +1,6 @@
 ---
 import MediaPoster from './MediaPoster.astro';
-import PathlessMedia from './PathlessMedia.astro';
+import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ExternalLink from './ExternalLink.astro';
 const { id, anchorId, number, period, name, type, detail, product = detail, contribution, showcaseDescription, homeDescription, context, mediaLabel, posterSrc, previewSrc, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, simple = false, showMeta = true, showContext = true } = Astro.props;
 const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
@@ -9,11 +9,11 @@ const archiveHref = simple && id ? `${import.meta.env.BASE_URL}projects/#${id}` 
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
   {archiveHref && <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${name} project details`}>
     {simple && id === 'pathless'
-      ? <PathlessMedia posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" />
+      ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
       : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />}
   </a>}
   {!archiveHref && (simple && id === 'pathless'
-    ? <PathlessMedia posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" />
+    ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
     : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
