@@ -130,8 +130,8 @@ export const otherWork: SupportingProjectRecord[] = [
   },
   {
     id: 'learn-with-ello', anchorId: 'work-ello-2', name: 'Ello 2.0: Learn Reading & Math', period: 'Sep–Nov 2025', type: 'Professional learning platform · Flutter / Dart / Python', archiveCategory: 'professional-game',
-    product: 'A professional learning platform for children combining reading and math activities, daily quest/progression flows and adaptive experiences across a Flutter client, backend services and agent interactions.',
-    contribution: 'Contributed to quest progression and reward flows, typed configuration-driven quest migration, home-screen/agent integration and parent-gate experience, with shared account/settings and intro-media lifecycle work.',
+    product: 'A professional learning platform for children that combines reading and math activities with daily quests, progression, rewards, and adaptive learning experiences across a Flutter client, backend services, and agent interactions.',
+    contribution: 'Contributed to quest progression and reward flows, migrated quests to typed configuration-driven data, integrated home-screen and agent interactions, and implemented the parent-gate experience, with shared account/settings and intro-media lifecycle work.',
     engineeringFocus: 'Typed configuration, provider/service boundaries, GraphQL/protobuf contracts, guarded async initialization, interaction-ID completion handling, local fallback behavior and test-backed integration.',
     context: 'Ello · professional product work',
     actions: [
