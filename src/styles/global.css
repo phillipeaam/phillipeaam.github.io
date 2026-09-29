@@ -100,7 +100,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .featured-project { display: grid; grid-template-columns: 1.42fr 1fr; gap: var(--s-12); align-items: center; }
 .featured-project__media-link { display: block; min-width: 0; color: inherit; }
 .featured-project__media-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
-.featured-project__media-link:hover .media-poster, .featured-project__media-link:focus-visible .media-poster { transform: translateY(-3px); }
 .featured-project.is-reversed { grid-template-columns: 1fr 1.42fr; }
 .featured-project.is-reversed .media-figure { order: 2; }
 .featured-copy { padding-block: 8px; }
@@ -125,6 +124,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .media-figure:hover .media-poster, .media-figure:focus-within .media-poster { border-color: #8792a7; }
 .proxy-scene { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(145deg, #252a34, #1b1f28 72%); transition: transform var(--motion-poster) var(--ease), filter var(--motion-poster) var(--ease); }
 @media (hover: hover) and (pointer: fine) { .media-figure:hover .proxy-scene { transform: scale(1.015); } }
+.featured-project .media-figure:hover .proxy-scene { transform: none; }
 .poster-overline, .poster-disclaimer { position: absolute; z-index: 2; left: 22px; color: #d3dae6; font-size: 11px; letter-spacing: .07em; }
 .poster-overline { top: 20px; font-weight: 600; text-transform: uppercase; }
 .poster-disclaimer { bottom: 18px; color: #9ba5b4; font-size: 10px; }
