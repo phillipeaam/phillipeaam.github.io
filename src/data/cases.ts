@@ -17,7 +17,7 @@ export type StoryNarrative = {
   intro: string;
   blocks: { label: string; text: string }[];
   diagram: NarrativeDiagram;
-  media?: { src: string; mobileSrc?: string; mobileWidth?: number; mobileHeight?: number; alt: string; caption: string; width: number; height: number; maxWidth?: number };
+  media?: { src: string; mobileSrc?: string; mobileWidth?: number; mobileHeight?: number; alt: string; caption: string; width: number; height: number; maxWidth?: number; variant?: 'portrait' };
   technical?: { label: string; points: string[] };
 };
 export type Story = {
@@ -185,7 +185,8 @@ const elloStories: Story[] = [
         caption: 'Book browsing in Read With Ello. The engineering story concerns the Unity-side catalog, cover and selected-book loading flow.',
         width: 382,
         height: 749,
-        maxWidth: 382,
+        maxWidth: 240,
+        variant: 'portrait',
       },
       diagram: {
         title: 'Four lifetimes behind one book selection',
@@ -293,6 +294,7 @@ export type CaseStudy = {
   ownershipLabel: string;
   ownership: string;
   glance: { label: string; value: string }[];
+  selectedStories: string;
   stories: Story[];
   media?: ProjectMedia;
   production?: string;
@@ -309,6 +311,7 @@ export const caseStudies: CaseStudy[] = [
     scopeLabel: 'Product / Team Context', scope: 'Instituto Alfa e Beto’s commercial literacy game combines activities with different rules, content, and feedback. It was developed and maintained by a team.',
     ownershipLabel: 'My Contribution', ownership: 'I designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.',
     glance: [{ label: 'Context', value: 'Commercial game · team project' }, { label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Minigames and shared systems' }],
+    selectedStories: 'These selected stories highlight three complementary parts of my work on Ilhas do Alfabeto: gameplay sequencing in Desafio dos Sons Iguais, shared minigame systems, and long-lived production support. Together, they offer a focused view of my contributions within a broader team-built product.',
     stories: ilhasStories,
     production: 'I supported maintenance, builds, and deployment variants. My formal IAB title was Senior Unity Game Developer; I also had technical coordination and developer-support responsibilities.',
     reflection: 'The challenge was keeping shared behavior useful without forcing unlike minigames into the same rules. Desafio dos Sons Iguais also appears in another product history, so I present it once while that lineage is checked.',
@@ -320,6 +323,7 @@ export const caseStudies: CaseStudy[] = [
     scopeLabel: 'Project Scope', scope: 'A personal Unity/C# tactical RPG prototype with one playable encounter: player and enemy turns, grid movement, attacks, damage, and an ending state.',
     ownershipLabel: 'My Engineering Focus', ownership: 'I built the prototype’s combat loop and worked directly on grid pathfinding, enemy turns, and weapon attack-area calculations. The source repository remains private.',
     glance: [{ label: 'Context', value: 'Independent prototype' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Combat, grid, pathfinding' }, { label: 'Scope', value: 'Playable combat encounter' }],
+    selectedStories: 'These selected stories trace three technical pillars of the prototype: grid pathfinding, directional weapon attack areas, and the turn-based combat loop. Together, they show how I built and connected the systems behind one playable encounter—not a complete game or campaign.',
     stories: wallaceStories,
     production: 'This is a prototype. Enemy behavior is limited, and skills and items are unfinished.',
     reflection: 'Isolated scenes made individual systems easier to inspect. For a larger game, I would reduce the central manager’s responsibilities and replace direct dependencies with clearer boundaries.',
@@ -331,9 +335,10 @@ export const caseStudies: CaseStudy[] = [
     scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children, combining interactive books with quests and rewards. This case follows one production journey from visible progression, through content loading, to the shared client tooling beneath it.',
     ownershipLabel: 'My Contribution', ownership: 'Within a collaborative team, I contributed to Unity-side quest and reward flows, Book Library presentation and loading, and specific shared GraphQL client/tooling paths. The backend, speech systems, content library and full release process were team or product work beyond my individual claim.',
     glance: [{ label: 'Context', value: 'Professional · Ello' }, { label: 'Role', value: 'Unity Software Engineer' }, { label: 'Period', value: 'Oct 2022–Aug 2025' }, { label: 'Stack', value: 'Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook' }],
+    selectedStories: 'These selected stories highlight three different areas of my work on Read With Ello: player-facing progression, content and lifecycle systems, and shared Unity client tooling. They represent a focused sample of my contributions rather than an exhaustive account of the work I did on the product.',
     stories: elloStories,
     media: { type: 'gif', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', alt: 'Read With Ello reading product featuring its elephant character', previewAlt: 'Read With Ello animated reading activity featuring its elephant character', caption: 'An interactive reading activity in Read With Ello; shown as product context, not as proof of the exact audited version.', showAnimatedDirectly: true, posterWidth: 1280, posterHeight: 720, posterFit: 'contain' },
-    supporting: { title: 'Mobile redesign & onboarding (Phone++)', text: 'I also contributed to feature-flagged phone onboarding and related Unity UI flows. This supports the broader production story without turning a collaborative redesign into a fourth case-study claim.' },
+    supporting: { title: 'Mobile redesign & onboarding (Phone++)', text: 'I also contributed to feature-flagged phone onboarding and related Unity UI flows as part of a collaborative mobile redesign.' },
     reflection: 'A player-facing reading journey relies on more than the screen in front of the child: progression state, content lifetimes and shared client boundaries have to remain understandable as the product evolves.',
     evidenceLinks: [{ label: 'Read With Ello on the App Store', href: 'https://apps.apple.com/us/app/read-with-ello/id1536720182' }], nextSlug: 'craque-da-fluencia',
     metaDescription: 'Read With Ello case study: Unity quest progression, book-library work, and targeted GraphQL client tooling.',
@@ -343,6 +348,7 @@ export const caseStudies: CaseStudy[] = [
     scopeLabel: 'Product / Team Context', scope: 'The Instituto Alfa e Beto product guides reading assessments, receives speech-recognition results, and produces reports. It is a team-built assessment product.',
     ownershipLabel: 'My Contribution', ownership: 'I contributed to the assessment runtime, a structured word model, recognition-integration migration, defensive result handling, and retest and reevaluation flows.',
     glance: [{ label: 'Context', value: 'Professional assessment product' }, { label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Assessment state and integration' }],
+    selectedStories: 'These selected stories follow three connected parts of the assessment experience: structuring words for reliable evaluation, managing the speech-recognition session lifecycle, and carrying assessment state through retest and reevaluation. They show a focused sample of my Unity contributions to a team-built product.',
     stories: craqueStories,
     production: 'I also worked on local persistence, synchronization, product variants, retest flows, QA builds, and release support.',
     reflection: 'Recognition output is uncertain; assessment state needs explicit rules for incomplete input. Keeping that boundary clear matters more than treating an SDK response as a final answer.',
