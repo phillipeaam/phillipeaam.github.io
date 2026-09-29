@@ -1,0 +1,21 @@
+---
+const { title = 'System relationship', code } = Astro.props;
+---
+<figure class="mermaid-diagram">
+  <figcaption>{title} <span>Conceptual model</span></figcaption>
+  <pre class="mermaid">{code}</pre>
+</figure>
+
+<script>
+  const diagrams = document.querySelectorAll<HTMLElement>('.mermaid:not([data-rendered])');
+  if (diagrams.length) {
+    const mermaidUrl = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    import(/* @vite-ignore */ mermaidUrl)
+      .then(({ default: mermaid }) => {
+        mermaid.initialize({ startOnLoad: false, theme: 'dark', securityLevel: 'strict', flowchart: { curve: 'basis' } });
+        return mermaid.run({ nodes: diagrams });
+      })
+      .then(() => diagrams.forEach((diagram) => diagram.dataset.rendered = 'true'))
+      .catch(() => diagrams.forEach((diagram) => diagram.classList.add('mermaid-diagram--fallback')));
+  }
+</script>

@@ -1,0 +1,86 @@
+---
+import type { Story } from '../data/cases';
+import NarrativeFlowDiagram from './NarrativeFlowDiagram.astro';
+
+const { story, index } = Astro.props as { story: Story; index: number };
+const narrative = story.narrative;
+if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative content');
+---
+<section class="engineering-story narrative-story" aria-labelledby={`story-${index}`}>
+  <header class="narrative-story__header">
+    <p class="eyebrow">ENGINEERING STORY <span class="story-index">{String(index).padStart(2, '0')}</span></p>
+    <h2 id={`story-${index}`}>{story.title}</h2>
+    <p class="narrative-story__takeaway">{story.framing}</p>
+    <p class="narrative-story__intro">{narrative.intro}</p>
+  </header>
+  <div class:list={['narrative-story__content', narrative.media && 'narrative-story__content--with-media']}>
+    <div class="narrative-story__blocks">
+      {narrative.blocks.map((block) => (
+        <section class="narrative-story__block">
+          <h3>{block.label}</h3>
+          <p>{block.text}</p>
+        </section>
+      ))}
+    </div>
+    {narrative.media && <div class="narrative-story__media">
+      <figure class:list={['narrative-story__figure', narrative.media.variant === 'portrait' && 'narrative-story__figure--portrait']} style={narrative.media.maxWidth ? `--narrative-media-max-width: ${narrative.media.maxWidth}px` : undefined}>
+        <picture>
+          {narrative.media.mobileSrc && <source media="(max-width: 620px)" srcset={narrative.media.mobileSrc} width={narrative.media.mobileWidth} height={narrative.media.mobileHeight} />}
+          <img src={narrative.media.src} alt={narrative.media.alt} width={narrative.media.width} height={narrative.media.height} loading="lazy" decoding="async" />
+        </picture>
+        <figcaption class="media-caption">{narrative.media.caption}</figcaption>
+      </figure>
+    </div>}
+  </div>
+  <NarrativeFlowDiagram diagram={narrative.diagram} />
+  {narrative.technical && <details class="narrative-story__technical">
+    <summary>{narrative.technical.label}<span aria-hidden="true">+</span></summary>
+    <div>
+      {narrative.technical.points.map((point) => <p>{point}</p>)}
+    </div>
+  </details>}
+</section>
+
+<style>
+  .engineering-story.narrative-story { padding-block: clamp(68px, 8vw, 100px); }
+  .narrative-story__header { max-width: 1000px; margin-bottom: clamp(30px, 4vw, 50px); }
+  .narrative-story__header .eyebrow { margin-bottom: 18px; }
+  .narrative-story__header h2 { max-width: 23ch; margin: 0 0 20px; font-size: clamp(31px, 4vw, 47px); text-wrap: balance; }
+  .narrative-story__takeaway { max-width: 58ch; margin: 0 0 20px; color: var(--text); font: 500 clamp(19px, 2.2vw, 24px)/1.4 var(--font-display); letter-spacing: -.025em; }
+  .narrative-story__intro { max-width: 76ch; margin: 0; color: var(--secondary); font-size: 17px; line-height: 1.58; }
+  .narrative-story__content { margin-bottom: clamp(32px, 5vw, 56px); }
+  .narrative-story__blocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 38px); }
+  .narrative-story__block { min-width: 0; padding-top: 15px; border-top: 1px solid var(--line); }
+  .narrative-story__block h3 { margin: 0 0 12px; color: var(--project-accent); font: 600 11px/1.4 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
+  .narrative-story__block p { margin: 0; color: var(--secondary); font-size: 15px; line-height: 1.63; }
+  .narrative-story__content--with-media { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(28px, 4vw, 52px); align-items: start; }
+  .narrative-story__content--with-media .narrative-story__blocks { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .narrative-story__media { min-width: 0; }
+  .narrative-story__figure { width: min(100%, var(--narrative-media-max-width, 100%)); margin: 0; }
+  .narrative-story__figure--portrait { margin-inline: auto; }
+  .narrative-story__figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 4px; }
+  .narrative-story__media :global(.media-caption) { align-items: center; color: var(--muted); font-size: 12px; line-height: 1.5; }
+  .narrative-story .narrative-story__media :global(.media-caption::before) { display: none; }
+  .narrative-story__technical { max-width: 100%; margin-top: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .narrative-story__technical summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 56px; color: var(--text); cursor: pointer; font-size: 14px; font-weight: 500; }
+  .narrative-story__technical summary::marker { color: var(--project-accent); }
+  .narrative-story__technical summary span { color: var(--project-accent); font-size: 22px; font-weight: 400; transition: transform 160ms var(--ease); }
+  .narrative-story__technical[open] summary span { transform: rotate(45deg); }
+  .narrative-story__technical > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 0 0 20px; }
+  .narrative-story__technical p { max-width: 65ch; margin: 0; color: var(--secondary); font-size: 14px; line-height: 1.58; }
+  @media (max-width: 1024px) {
+    .narrative-story__content--with-media { grid-template-columns: minmax(0, 1fr); }
+    .narrative-story__content--with-media .narrative-story__blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .narrative-story__media { max-width: 760px; }
+  }
+  @media (max-width: 820px) {
+    .engineering-story.narrative-story { padding-block: 64px; }
+    .narrative-story__blocks, .narrative-story__content--with-media .narrative-story__blocks { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+    .narrative-story__technical > div { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  }
+  @media (max-width: 480px) {
+    .narrative-story__header h2 { font-size: 32px; }
+    .narrative-story__intro { font-size: 16px; }
+    .narrative-story__block p { font-size: 15px; }
+  }
+</style>

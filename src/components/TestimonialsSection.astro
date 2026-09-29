@@ -1,14 +1,17 @@
 ---
 import ExternalLink from './ExternalLink.astro';
 import Icon from './Icon.astro';
-import EditorialSectionHeader from './EditorialSectionHeader.astro';
 import { recommendationsUrl, testimonials } from '../data/testimonials';
 ---
 
 <section class="section-block content-width recommendations-section" data-nav-section="recommendations" aria-labelledby="recommendations-title">
-  <EditorialSectionHeader anchorId="recommendations" headingId="recommendations-title" eyebrow="COLLABORATION, IN THEIR WORDS" title="What teammates say">
-    <span slot="support">Feedback from engineers and managers I’ve worked with.</span>
-  </EditorialSectionHeader>
+  <header class="section-heading section-heading--major nav-anchor-target" id="recommendations">
+    <div>
+      <p class="eyebrow">COLLABORATION, IN THEIR WORDS</p>
+      <h2 id="recommendations-title">What teammates say</h2>
+    </div>
+    <p>Feedback from engineers and managers I’ve worked with.</p>
+  </header>
 
   <div class="testimonial-carousel" data-testimonial-carousel>
     <div class="testimonial-track" data-testimonial-track role="region" aria-roledescription="carousel" aria-label="LinkedIn recommendations" tabindex="0">

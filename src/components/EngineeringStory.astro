@@ -2,12 +2,14 @@
 import MediaPoster from './MediaPoster.astro';
 import EvidenceCaption from './EvidenceCaption.astro';
 import SystemDiagram from './SystemDiagram.astro';
+import MermaidDiagram from './MermaidDiagram.astro';
+import NarrativeEngineeringStory from './NarrativeEngineeringStory.astro';
 const { story, index, kind } = Astro.props;
 ---
-<section class:list={['engineering-story', story.compact && 'story-compact']} aria-labelledby={`story-${index}`}>
+{story.narrative ? <NarrativeEngineeringStory story={story} index={index} /> : <section class:list={['engineering-story', story.compact && 'story-compact']} aria-labelledby={`story-${index}`}>
   <div class="story-heading"><p class="eyebrow">ENGINEERING STORY <span class="story-index">{String(index).padStart(2, '0')}</span></p><h2 id={`story-${index}`}>{story.title}</h2><p class="story-framing">{story.framing}</p></div>
   <div class="story-body">
     <dl class="story-fields">{story.fields.map((field: { label: string; text: string }) => <div><dt>{field.label}</dt><dd>{field.text}</dd></div>)}</dl>
-    {story.compact ? <div class="story-compact-evidence"><p class="eyebrow">EVIDENCE BOUNDARY</p><p>{story.evidence}</p></div> : <><div class="story-evidence"><MediaPoster label={story.evidenceLabel} kind={kind} /><EvidenceCaption behavior={story.behavior} contribution={story.evidence} /></div><SystemDiagram title={story.diagramLabel} nodes={story.diagram} /></>}
+    {story.compact ? <div class="story-compact-evidence"><p class="eyebrow">EVIDENCE BOUNDARY</p><p>{story.evidence}</p></div> : <><div class="story-evidence"><MediaPoster label={story.evidenceLabel} kind={kind} /><EvidenceCaption behavior={story.behavior} contribution={story.evidence} /></div>{story.mermaid ? <MermaidDiagram title={story.diagramLabel} code={story.mermaid} /> : <SystemDiagram title={story.diagramLabel} nodes={story.diagram} />}</>}
   </div>
-</section>
+</section>}

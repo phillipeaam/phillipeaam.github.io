@@ -1,4 +1,6 @@
 ---
+import FooterContact from './FooterContact.astro';
+
 const homePath = import.meta.env.BASE_URL;
 const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 const utilities = [
@@ -8,6 +10,7 @@ const utilities = [
 ];
 ---
 
+<FooterContact />
 <footer class="site-footer">
   <div class="content-width footer-inner">
     <nav class="footer-utilities" aria-label="Resume and profiles">

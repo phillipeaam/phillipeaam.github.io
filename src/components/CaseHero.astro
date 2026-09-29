@@ -1,12 +1,22 @@
 ---
 import MediaPoster from './MediaPoster.astro';
-const { project, role } = Astro.props;
+import ProjectMediaPreview from './ProjectMediaPreview.astro';
+const { project, media } = Astro.props;
 ---
 <header class="case-hero">
-  <p class="eyebrow">{project.context}</p>
   <h1>{project.name}</h1>
-  <p class="case-role">{role}</p>
-  <p class="case-intro">{project.product}</p>
-  <p class="case-ownership-intro">{project.contribution}</p>
-  <MediaPoster label={project.evidenceLabel} kind={project.kind} />
+  {media
+    ? <ProjectMediaPreview
+        posterSrc={media.src}
+        previewSrc={media.previewSrc}
+        alt={media.alt}
+        previewAlt={media.previewAlt}
+        caption={media.caption}
+        autoplayPreview={media.autoplayPreview}
+        showAnimatedDirectly={media.showAnimatedDirectly}
+        posterWidth={media.posterWidth}
+        posterHeight={media.posterHeight}
+        posterFit={media.posterFit}
+      />
+    : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
 </header>

@@ -1,33 +1,49 @@
 ---
-const items = [
+const homeItems = [
   { id: 'home', label: 'Home' },
   { id: 'work', label: 'Work' },
   { id: 'projects', label: 'Projects' },
   { id: 'recommendations', label: 'Teammates' },
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
+const { contextual = false } = Astro.props;
+const contextualItems = [
+  { id: 'home', label: '← Back', href: homePath, className: 'nav-link--return' },
+  { id: 'professional-game', label: 'Professional', href: '#professional-game' },
+  { id: 'professional-product', label: 'Software', href: '#professional-product' },
+  { id: 'independent-game', label: 'Independent', href: '#independent-game' },
+  { id: 'study-archive', label: 'Study', href: '#study-archive' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+];
+const caseItems = [
+  { id: 'home', label: '← Back', href: homePath, className: 'nav-link--return' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+];
+const { caseNavigation = false } = Astro.props;
+const items = caseNavigation ? caseItems : contextual ? contextualItems : homeItems;
 const itemHref = (id: string) => id === 'home'
   ? (isHome ? '#top' : `${homePath}#top`)
   : (isHome ? `#${id}` : `${homePath}#${id}`);
+const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]) => 'href' in item ? item.href : itemHref(item.id);
 ---
 <header class="site-header">
   <nav class="nav-shell content-width" aria-label="Main navigation">
     <div class="wordmark">
-      <img class="wordmark-avatar" src="/images/phillipe-augusto-avatar.png" alt="" width="32" height="32" />
+      <img class="wordmark-avatar" src="/images/identity/phillipe-augusto-avatar.png" alt="" width="32" height="32" />
       <span>Phillipe Augusto</span>
     </div>
     <div class="nav-desktop">
-      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={'className' in item && item.className === 'nav-link--return' ? undefined : item.id}>{item.label}</a>)}
     </div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open navigation menu">
       <span></span><span></span>
     </button>
     <div class="nav-mobile" id="mobile-navigation" hidden>
-      {items.map((item) => <a class="nav-link" href={itemHref(item.id)} data-section={item.id}>{item.label}</a>)}
+      {items.map((item) => <a class:list={['nav-link', 'className' in item && item.className]} href={hrefFor(item)} data-section={'className' in item && item.className === 'nav-link--return' ? undefined : item.id}>{item.label}</a>)}
     </div>
   </nav>
 </header>
@@ -36,6 +52,10 @@ const itemHref = (id: string) => id === 'home'
   const menu = document.querySelector<HTMLElement>('#mobile-navigation');
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link[data-section]'));
   const homeSections = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-section]'));
+  const archiveGroups = Array.from(document.querySelectorAll<HTMLElement>('.archive-group'));
+  const homeScrollKey = 'portfolio-home-scroll-y';
+  const restoreHomeKey = 'portfolio-restore-home-scroll';
+  const isHomePage = window.location.pathname === import.meta.env.BASE_URL;
   let activeSection: string | null = null;
   const updateActiveLink = (sectionId: string | null) => {
     activeSection = sectionId;
@@ -72,6 +92,37 @@ const itemHref = (id: string) => id === 'home'
   });
   window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
   updateActiveLink(null);
+
+  if (!isHomePage) {
+    document.querySelectorAll<HTMLAnchorElement>('.nav-link--return').forEach((link) => {
+      link.addEventListener('click', () => sessionStorage.setItem(restoreHomeKey, 'true'));
+    });
+  } else {
+    let scrollSaveFrame = 0;
+    const saveHomeScroll = () => sessionStorage.setItem(homeScrollKey, String(window.scrollY));
+    window.addEventListener('scroll', () => {
+      if (scrollSaveFrame) return;
+      scrollSaveFrame = window.requestAnimationFrame(() => {
+        scrollSaveFrame = 0;
+        saveHomeScroll();
+      });
+    }, { passive: true });
+    window.addEventListener('pagehide', saveHomeScroll);
+
+    if (sessionStorage.getItem(restoreHomeKey) === 'true') {
+      sessionStorage.removeItem(restoreHomeKey);
+      const savedScroll = Number(sessionStorage.getItem(homeScrollKey));
+      if (Number.isFinite(savedScroll)) {
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.requestAnimationFrame(() => {
+          window.scrollTo(0, savedScroll);
+          window.requestAnimationFrame(() => { root.style.scrollBehavior = previousScrollBehavior; });
+        });
+      }
+    }
+  }
 
   if (window.location.pathname === import.meta.env.BASE_URL && homeSections.length > 0 && 'IntersectionObserver' in window) {
     let sectionObserver: IntersectionObserver | undefined;
@@ -124,5 +175,43 @@ const itemHref = (id: string) => id === 'home'
       }, { threshold: 0.5 });
       footerObserver.observe(footer);
     }
+  }
+
+  if (archiveGroups.length > 0 && 'IntersectionObserver' in window) {
+    let archiveObserver: IntersectionObserver | undefined;
+    let resizeFrame = 0;
+    const readingLine = () => Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--anchor-offset')) || 104;
+    const activateGroupAtHash = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      const target = targetId ? document.getElementById(targetId) : null;
+      const group = target?.closest<HTMLElement>('.archive-group');
+      if (group) updateActiveLink(group.id);
+    };
+    const observeArchivePosition = () => {
+      archiveObserver?.disconnect();
+      const headerOffset = readingLine();
+      const bandBottom = Math.max(headerOffset + 1, Math.round(window.innerHeight * 0.38));
+      archiveObserver = new IntersectionObserver((entries) => {
+        const entering = entries.filter((entry) => entry.isIntersecting);
+        if (entering.length > 0) {
+          entering.sort((a, b) => Math.abs(a.boundingClientRect.top - headerOffset) - Math.abs(b.boundingClientRect.top - headerOffset));
+          updateActiveLink((entering[0].target as HTMLElement).id);
+          return;
+        }
+        const currentGroup = archiveGroups.find((group) => group.id === activeSection);
+        if (currentGroup) {
+          const rect = currentGroup.getBoundingClientRect();
+          if (rect.top > bandBottom || rect.bottom < headerOffset) updateActiveLink(null);
+        }
+      }, { rootMargin: `-${headerOffset}px 0px -${window.innerHeight - bandBottom}px 0px`, threshold: 0 });
+      archiveGroups.forEach((group) => archiveObserver?.observe(group));
+      activateGroupAtHash();
+    };
+    observeArchivePosition();
+    window.addEventListener('hashchange', activateGroupAtHash);
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(observeArchivePosition);
+    }, { passive: true });
   }
 </script>

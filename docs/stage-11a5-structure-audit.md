@@ -73,7 +73,7 @@ No separate `scripts/` directory or other helper scripts were found.
 
 | Path | Classification | Initial finding |
 | --- | --- | --- |
-| `public/images/phillipe-augusto-profile.jpg` | ACTIVE SITE ASSET | Referenced by Home. |
+| `public/images/identity/phillipe-augusto-profile.jpg` | ACTIVE SITE ASSET | Referenced by Home. |
 | `public/images/1666710393887.jpeg` | UNCERTAIN / RETAIN | No current source reference found in the first scan; likely supplied portrait source. Preserve pending provenance/use review. |
 | `public/icons/*.svg` | ACTIVE SITE ASSETS | GitHub, LinkedIn, itch.io, and YouTube icons referenced by Home. |
 | `assets/portfolio/featured/**/original` and `candidates` | FUTURE STAGE 11B ASSETS | Evidence originals and edited candidate crops; preserve all. |

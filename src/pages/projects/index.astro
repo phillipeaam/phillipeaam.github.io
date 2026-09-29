@@ -1,52 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
-import ExternalLink from '../../components/ExternalLink.astro';
-import EditorialSectionHeader from '../../components/EditorialSectionHeader.astro';
 import { projectInventoryGroups } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
-const sectionLinks = [
-  { id: 'professional-game', label: 'Professional games & Unity products' },
-  { id: 'professional-product', label: 'Software & products' },
-  { id: 'independent-game', label: 'Independent games' },
-  { id: 'study-archive', label: 'Experiments & study' },
-];
+const supportSplitAfterWord: Record<string, number> = {
+  'professional-game': 6,
+  'professional-product': 5,
+  'independent-game': 6,
+  'study-archive': 7,
+};
+const supportLines = (id: string, copy: string) => {
+  const words = copy.split(' ');
+  const splitAt = supportSplitAfterWord[id] ?? words.length;
+  return [words.slice(0, splitAt).join(' '), words.slice(splitAt).join(' ')];
+};
 ---
-<BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s professional Unity games, interactive products, independent projects, and technical studies.">
-  <section class="archive-opening content-width" aria-labelledby="archive-title">
-    <EditorialSectionHeader level={1} headingId="archive-title" eyebrow="PROJECT ARCHIVE" title="Projects">
-      <span slot="support">A broader record of professional games, interactive products, independent work, collaborations, and technical studies.</span>
-    </EditorialSectionHeader>
-  </section>
-
-  <div class="archive-guide content-width">
-    <p>Selected work on <a href={`${homePath}#work`}>Home</a> opens into full case studies. This archive keeps the wider project history in view.</p>
-    <nav class="archive-index" aria-label="Project archive sections">
-      <span class="archive-index__label">Browse by context</span>
-      <ul>
-        {sectionLinks.map((link) => <li><a href={`#${link.id}`}>{link.label}<span aria-hidden="true">↗</span></a></li>)}
-      </ul>
-    </nav>
-  </div>
-
+<BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s professional Unity games, interactive products, independent projects, and technical studies." contextualNavigation={true}>
+  <h1 class="sr-only">All Projects</h1>
   <div class="archive-content content-width">
     {projectInventoryGroups.map((group) => group.projects.length > 0 && <section class="archive-group" id={group.id} aria-labelledby={`archive-group-${group.id}`}>
-      <EditorialSectionHeader headingId={`archive-group-${group.id}`} title={group.title}>
-        <span slot="support">{group.intro}</span>
-      </EditorialSectionHeader>
+      <header class="section-heading section-heading--major" aria-labelledby={`archive-group-${group.id}`}>
+        <div><h2 id={`archive-group-${group.id}`}>{group.title}</h2></div>
+        <p><span class="section-support-line">{supportLines(group.id, group.intro)[0]}</span>{' '}<span class="section-support-line">{supportLines(group.id, group.intro)[1]}</span></p>
+      </header>
       <ol class="archive-record-list">
         {group.projects.map((project) => <ProjectRecord project={project} homePath={homePath} />)}
       </ol>
     </section>)}
   </div>
 
-  <aside class="archive-ending content-width" aria-label="Continue exploring">
-    <div><p class="eyebrow">CONTINUE EXPLORING</p><p>The case studies go further into decisions, trade-offs, and evidence behind selected projects.</p></div>
-    <nav aria-label="More portfolio links">
-      <a href={`${homePath}#work`}>Selected work <span aria-hidden="true">→</span></a>
-      <ExternalLink href="https://github.com/phillipeaam" ariaLabel="GitHub profile (opens in a new tab)" icon>GitHub</ExternalLink>
-      <ExternalLink href="https://phillipeaam.itch.io/" ariaLabel="itch.io profile (opens in a new tab)" icon>itch.io</ExternalLink>
-    </nav>
-  </aside>
 </BaseLayout>

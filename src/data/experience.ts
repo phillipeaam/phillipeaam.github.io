@@ -49,7 +49,7 @@ export const experience: Experience[] = [
     ],
     selectedWork: [
       { projectId: 'iab-testes' },
-      { projectId: 'iab-digital-zero-a-quatro' },
+      { projectId: 'iab-digital-zero-a-quatro', label: 'Zero a Quatro' },
       { projectId: 'morada-verde-inventory-flow', label: 'MVIF' },
       { projectId: 'mypush' },
     ],
