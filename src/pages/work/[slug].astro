@@ -16,6 +16,7 @@ const { item } = Astro.props;
     <CaseHero project={item.project} media={item.media} />
     <section class="case-glance" aria-labelledby="glance-title"><h2 id="glance-title" class="eyebrow">AT A GLANCE</h2><dl>{item.glance.map((fact: { label: string; value: string }) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl></section>
     <section class="case-context"><div><p class="eyebrow">{item.scopeLabel}</p><h2>Project context</h2><p>{item.scope}</p></div><div><p class="eyebrow">{item.ownershipLabel}</p><h2>Ownership</h2><p>{item.ownership}</p></div></section>
+    {item.project.kind === 'ello' && <section class="case-selected-stories" aria-labelledby="selected-stories-title"><h2 id="selected-stories-title">Selected Engineering Stories</h2><p>These selected stories highlight three different areas of my work on Read With Ello: player-facing progression, content and lifecycle systems, and shared Unity client tooling. They represent a focused sample of my contributions rather than an exhaustive account of the work I did on the product.</p></section>}
     <div class="case-stories">{item.stories.map((story: any, index: number) => <EngineeringStory story={story} index={index + 1} kind={item.project.kind} />)}</div>
     {item.supporting && <section class="case-supporting" aria-labelledby="case-supporting-title"><p class="eyebrow">SUPPORTING PRODUCTION WORK</p><h2 id="case-supporting-title">{item.supporting.title}</h2><p>{item.supporting.text}</p></section>}
     <section class="quiet-section"><p class="eyebrow">REFLECTION</p><h2>What I would carry forward</h2><p>{item.reflection}</p></section>
@@ -25,6 +26,10 @@ const { item } = Astro.props;
 
 <style>
   .case-page[data-kind='ello'] :global(.case-hero .media-figure) { max-width: 860px; }
+  .case-selected-stories { max-width: 800px; padding-top: clamp(36px, 5vw, 56px); }
+  .case-selected-stories h2 { margin: 0 0 12px; font-size: clamp(27px, 3.2vw, 34px); }
+  .case-selected-stories p { max-width: 72ch; margin: 0; color: var(--secondary); font-size: 17px; line-height: 1.58; }
+  .case-selected-stories + .case-stories .narrative-story:first-child { padding-top: clamp(32px, 4vw, 48px); }
   .case-supporting { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1fr); gap: 8px 48px; padding: 48px 0; border-bottom: 1px solid var(--line); }
   .case-supporting .eyebrow { grid-column: 1 / -1; margin-bottom: 0; color: var(--project-accent); }
   .case-supporting h2 { max-width: 18ch; margin: 0; font-size: clamp(25px, 2.8vw, 34px); }
