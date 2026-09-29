@@ -4,7 +4,6 @@ import ProjectMediaPreview from './ProjectMediaPreview.astro';
 const { project, media } = Astro.props;
 ---
 <header class="case-hero">
-  <p class="eyebrow">{project.context}</p>
   <h1>{project.name}</h1>
   {media
     ? <ProjectMediaPreview

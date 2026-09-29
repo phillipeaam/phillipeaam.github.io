@@ -23,7 +23,7 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
       ))}
     </div>
     {narrative.media && <div class="narrative-story__media">
-      <figure class="narrative-story__figure" style={narrative.media.maxWidth ? `--narrative-media-max-width: ${narrative.media.maxWidth}px` : undefined}>
+      <figure class:list={['narrative-story__figure', narrative.media.variant === 'portrait' && 'narrative-story__figure--portrait']} style={narrative.media.maxWidth ? `--narrative-media-max-width: ${narrative.media.maxWidth}px` : undefined}>
         <picture>
           {narrative.media.mobileSrc && <source media="(max-width: 620px)" srcset={narrative.media.mobileSrc} width={narrative.media.mobileWidth} height={narrative.media.mobileHeight} />}
           <img src={narrative.media.src} alt={narrative.media.alt} width={narrative.media.width} height={narrative.media.height} loading="lazy" decoding="async" />
@@ -57,8 +57,10 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
   .narrative-story__content--with-media .narrative-story__blocks { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .narrative-story__media { min-width: 0; }
   .narrative-story__figure { width: min(100%, var(--narrative-media-max-width, 100%)); margin: 0; }
+  .narrative-story__figure--portrait { margin-inline: auto; }
   .narrative-story__figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 4px; }
-  .narrative-story__media :global(.media-caption) { align-items: flex-start; color: var(--muted); font-size: 12px; line-height: 1.5; }
+  .narrative-story__media :global(.media-caption) { align-items: center; color: var(--muted); font-size: 12px; line-height: 1.5; }
+  .narrative-story .narrative-story__media :global(.media-caption::before) { display: none; }
   .narrative-story__technical { max-width: 100%; margin-top: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .narrative-story__technical summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 56px; color: var(--text); cursor: pointer; font-size: 14px; font-weight: 500; }
   .narrative-story__technical summary::marker { color: var(--project-accent); }
