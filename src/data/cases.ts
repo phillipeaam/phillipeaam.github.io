@@ -1,17 +1,37 @@
 import { featuredProjects, type Project, type ProjectMedia } from './projects';
 
 export type StoryField = { label: string; text: string };
+export type NarrativeDiagram = {
+  title: string;
+  caption: string;
+  groups: {
+    label: string;
+    tone: 'player' | 'local' | 'service' | 'resource' | 'package' | 'app';
+    steps: { label: string; detail?: string; next?: string }[];
+    handoff?: string;
+    handoffAsync?: boolean;
+  }[];
+  notes?: { label: string; text: string }[];
+};
+export type StoryNarrative = {
+  intro: string;
+  blocks: { label: string; text: string }[];
+  diagram: NarrativeDiagram;
+  media?: { src: string; mobileSrc?: string; mobileWidth?: number; mobileHeight?: number; alt: string; caption: string; width: number; height: number; maxWidth?: number };
+  technical?: { label: string; points: string[] };
+};
 export type Story = {
   title: string;
   framing: string;
-  fields: StoryField[];
-  evidenceLabel: string;
-  behavior: string;
-  evidence: string;
-  diagramLabel: string;
-  diagram: string[];
+  fields?: StoryField[];
+  evidenceLabel?: string;
+  behavior?: string;
+  evidence?: string;
+  diagramLabel?: string;
+  diagram?: string[];
   mermaid?: string;
   compact?: boolean;
+  narrative?: StoryNarrative;
 };
 
 const wallaceStories: Story[] = [
@@ -107,49 +127,117 @@ const ilhasStories: Story[] = [
 
 const elloStories: Story[] = [
   {
-    title: 'Book Library — Loading Under Mobile Constraints',
-    framing: 'A growing catalog had to feel like a responsive reading journey, not a long list of assets waiting to appear.',
-    fields: [
-      { label: 'Problem', text: 'Readers needed to browse categories, see book covers, and enter the right reading activity without losing context.' },
-      { label: 'Constraint', text: 'The catalog was content-heavy, while mobile memory, asynchronous loading, and repeated navigation made a naïve all-at-once screen fragile.' },
-      { label: 'Approach', text: 'I worked across selection, category, grid, scroller, and data-service layers, keeping reusable models and views aligned with the loading lifecycle. The UI was treated as a stateful surface: data readiness, selection, reload, and entry into a quest had to agree.' },
-      { label: 'Solution', text: 'The library could assemble a discoverable book surface and hand a selected title into the reading flow through clearer boundaries. That made the feature easier to extend with categories, quests, and different content sets without collapsing navigation and data concerns into one screen.' },
-    ],
-    evidenceLabel: 'Ello · book library',
-    behavior: 'Readers browse and select books from the library.',
-    evidence: 'The preserved project contains Book Library and Book Selection scene/controller layers, category and grid services, scrolling components, and quest-library data models. This supports the implementation story without claiming sole ownership of the product catalog or measured performance.',
-    diagramLabel: 'Library presentation flow', diagram: ['Book data', 'Loading and models', 'Library UI'],
-    mermaid: 'flowchart LR\n  A[Book data] --> B[Library selection]\n  B --> C[Reusable models]\n  C --> D[Book Library UI]\n  D --> E[Reading flow]',
+    title: 'Quest & Progression — Coordinating Objectives, Rewards and Refresh',
+    framing: 'I helped make completed reading feel like clear progress by coordinating quest objectives, reward feedback and the next step.',
+    narrative: {
+      intro: 'A completed book or activity can affect an objective, a quest, a reward and what appears next. I worked on Unity-side completion, reward and refresh flows within a shared production system. The engineering challenge was to keep player feedback coherent while service-backed data, local pending state and asynchronous transitions moved on different timelines.',
+      blocks: [
+        { label: 'The challenge', text: 'When a child finishes reading, the product has to answer more than “was the book completed?” It needs to show whether an objective advanced, whether the quest finished, whether a reward is ready and what the child can do next. These answers depend on service-backed quest data, but the player sees them through several Unity screens and transitions.' },
+        { label: 'The approach', text: 'I contributed to the Unity-side progression flow: checking that a completion belongs to the active objective, carrying status changes through the client data layer, and turning refreshed quest data into current-objective and reward presentation. The reward path coordinates claim feedback with a subsequent data refresh, so the next available quest can be presented after the claim and modal sequence.' },
+        { label: 'The trade-off', text: 'This gives a reading action a legible progression loop while keeping fetched quest state separate from local presentation. A failed mutation can leave a pending local status, a screen can close during refresh, and a reward modal has its own lifetime. The flow accounts for those boundaries without implying an atomic transaction or exactly-once reward delivery.' },
+      ],
+      media: {
+        src: '/projects/ello-read/read-with-ello-quest.png',
+        mobileSrc: '/projects/ello-read/read-with-ello-quest-mobile.png',
+        mobileWidth: 382,
+        mobileHeight: 750,
+        alt: 'Read With Ello quest interface showing book choices and a reward counter',
+        caption: 'Quest progression in Read With Ello. This product image gives context for the Unity-side objective, reward and refresh work discussed here.',
+        width: 1080,
+        height: 810,
+      },
+      diagram: {
+        title: 'From a reading action to the next quest',
+        caption: 'Conceptual engineering model: local player feedback is reconciled with service-backed quest state. The arrows are not a literal atomic transaction trace.',
+        groups: [
+          { label: 'Player action', tone: 'player', steps: [{ label: 'Reading or activity completed', next: 'check current objective' }], handoff: 'Completion event' },
+          { label: 'Unity · local state', tone: 'local', steps: [{ label: 'Active objective check', next: 'eligible completion' }, { label: 'Local status + pending entry', next: 'submit asynchronously' }], handoff: 'Mutation request', handoffAsync: true },
+          { label: 'Service-backed state', tone: 'service', steps: [{ label: 'Objective mutation', next: 'reconcile' }, { label: 'Quest data refresh', next: 'derive presentation' }], handoff: 'Refreshed data' },
+          { label: 'Unity · player feedback', tone: 'local', steps: [{ label: 'Current quest and UI', next: 'claimable reward' }, { label: 'Reward presentation', next: 'after claim and modal' }, { label: 'Next quest' }] },
+        ],
+        notes: [
+          { label: 'Pending / failure path', text: 'A failed objective mutation can retain a pending local status for later sync; the diagram does not promise fully offline behavior.' },
+          { label: 'Reward sequencing', text: 'A successful final claim starts another refresh; its UI result is applied after reward modals finish.' },
+        ],
+      },
+      technical: {
+        label: 'A closer look at the state boundary',
+        points: [
+          'The client checks whether the completed activity matches the active objective before requesting a status update. Locally stored status and pending mutation data support continuity; fetched quest data remains the reconciliation source.',
+          'Reward claim, refresh and modal completion have separate lifetimes. The implementation sequences presentation around them, but does not establish server-side idempotency or eliminate every possible race.',
+        ],
+      },
+    },
   },
   {
-    title: 'GraphQL Operations — Reusable Unity Client Tooling',
-    framing: 'Player-facing features needed service data without turning every screen into its own integration experiment.',
-    fields: [
-      { label: 'Problem', text: 'Library, progression, and reward features all depended on remote state, but their Unity screens should not each own a different request pattern.' },
-      { label: 'Constraint', text: 'The client had to fit existing GraphQL contracts, asynchronous responses, loading states, and team-owned backend behavior.' },
-      { label: 'Approach', text: 'I adapted reusable operation configuration and client integration patterns, then connected returned data to player-facing feature state. The important boundary was between request execution and screen behavior: loading, response handling, and UI updates could evolve without duplicating the whole integration in every feature.' },
-      { label: 'Solution', text: 'Features could share a more consistent service boundary while keeping backend ownership and guarantees outside the client-side contribution claim. In practice, this supported the library, progression, and reward surfaces with a common way to consume service-backed state.' },
-    ],
-    evidenceLabel: 'Ello · client data flow',
-    behavior: 'Player-facing screens present data returned by product services.',
-    evidence: 'The project history supports client integration work, and the preserved build configuration references GraphQL client preparation. Screens do not reveal backend implementation or ownership, so the claim remains limited to Unity-side integration and tooling.',
-    diagramLabel: 'Client operation flow', diagram: ['Unity feature', 'GraphQL operation', 'Service response'],
-    mermaid: 'sequenceDiagram\n  participant UI as Unity feature\n  participant Client as GraphQL client\n  participant Service as Product service\n  UI->>Client: Configure and run operation\n  Client->>Service: Request data\n  Service-->>Client: Response\n  Client-->>UI: Update player-facing state',
+    title: 'Book Library — Coordinating Catalog, Covers and Reading State',
+    framing: 'I helped turn a changing book catalog into a reading journey by coordinating profile data, covers, reusable views and loading.',
+    narrative: {
+      intro: 'A library looks like a grid, but metadata, covers, cells and the selected book have different lifetimes. I worked on Unity library construction, image handling and data/loading integration within a shared product. The central problem was keeping catalog, visual resources and navigation aligned as content arrived, refreshed or changed.',
+      blocks: [
+        { label: 'The challenge', text: 'A child browsing the library should see the right books and covers, choose one and enter reading without thinking about data fetching or loading screens. Behind that simple path, the catalog is profile-specific; images may arrive later than the metadata; the screen can refresh or close; and a child can choose another title before the previous load completes.' },
+        { label: 'The approach', text: 'I contributed to the Unity-side Book Library across its presentation and loading boundaries. The flow prepares catalog and quest-related data, maps book metadata into categories and cells, and loads covers separately from the book itself. Cells and sprites have reuse and cleanup paths. Once a title is selected, the book-loading service can cancel a prior selection, report progress and surface connection or operation failures before moving into reading.' },
+        { label: 'The trade-off', text: 'This is more than arranging a grid: it coordinates catalog, image, UI and navigation lifetimes so content remains a usable journey. Reuse and caching help structure the work, but introduce invalidation and rebinding responsibilities. The inspected code does not establish a fully virtualized list, measured load-time gains or universal protection against late image callbacks.' },
+      ],
+      media: {
+        src: '/projects/ello-read/read-with-ello-mobile-library.png',
+        alt: 'Read With Ello mobile library showing a grid of book covers under All E-books',
+        caption: 'Book browsing in Read With Ello. The engineering story concerns the Unity-side catalog, cover and selected-book loading flow.',
+        width: 382,
+        height: 749,
+        maxWidth: 382,
+      },
+      diagram: {
+        title: 'Four lifetimes behind one book selection',
+        caption: 'Catalog entries, covers, reused views and selected books are prepared on different timelines. This is a conceptual flow, not a measured optimization.',
+        groups: [
+          { label: 'Data', tone: 'service', steps: [{ label: 'Active profile', next: 'key and refresh' }, { label: 'Catalog metadata + cache', next: 'cover reference' }], handoff: 'Image request', handoffAsync: true },
+          { label: 'Visual resource', tone: 'resource', steps: [{ label: 'Cover task or fallback', next: 'load or substitute' }, { label: 'Sprite ownership', next: 'bind / clear' }], handoff: 'Cover and status' },
+          { label: 'Unity UI', tone: 'local', steps: [{ label: 'Reused cell', next: 'child selects a book' }], handoff: 'Selection' },
+          { label: 'Navigation', tone: 'app', steps: [{ label: 'Book selection', next: 'cancel prior load' }, { label: 'Book load', next: 'successful load' }, { label: 'Reading' }] },
+        ],
+        notes: [
+          { label: 'Rebind', text: 'Cell refresh clears its previous sprite container before repopulation; a universal late-callback guard is not established.' },
+          { label: 'Failure path', text: 'A new selection cancels the previous book load; connection and operation errors surface through loading feedback.' },
+        ],
+      },
+      technical: {
+        label: 'A closer look at the lifetimes',
+        points: [
+          'Profile-keyed metadata can be reused or refreshed; cover resources and visible cells have separate cleanup paths. The inspected grid pre-creates cells and can grow, so reuse does not mean full virtualization.',
+          'Book selection starts a cancellable load with progress and error feedback. Cancellation at every possible navigation and late-cover callback is not proven.',
+        ],
+      },
+    },
   },
   {
-    title: 'Player-Facing Quest & Progression Flows',
-    framing: 'Reading practice becomes easier to sustain when the next objective, the current state, and the reward are all legible to the player.',
-    fields: [
-      { label: 'Problem', text: 'Quest objectives, reading activities, completion feedback, and rewards needed to read as one progression loop rather than disconnected screens.' },
-      { label: 'Constraint', text: 'The client had to present service-backed state clearly while handling objective completion, reward visibility, and transitions between home, library, and reading flows.' },
-      { label: 'Approach', text: 'I worked on player-facing quest presentation, objective and detail states, reward-claim interactions, library quest entry points, and related UI behavior. The focus was translating state changes into clear transitions and feedback instead of leaving progress implicit in service data.' },
-      { label: 'Solution', text: 'The reading journey could expose a clearer loop: choose an objective, enter the relevant activity, see progress, and understand the next reward step. This made progression a navigable product experience while keeping authoritative quest and economy behavior outside the client-side claim.' },
-    ],
-    evidenceLabel: 'Ello · quest flow',
-    behavior: 'Public product material shows quests and progression in the reading journey.',
-    evidence: 'The preserved project contains quest runtime models/services, home quest controllers for objectives, details, instructions, rewards, and kudos, plus library quest and reward services. This supports player-facing implementation work, not ownership of the full quest economy or backend.',
-    diagramLabel: 'Quest progression state', diagram: [],
-    mermaid: 'stateDiagram-v2\n  [*] --> QuestAvailable\n  QuestAvailable --> InProgress: start\n  InProgress --> BookReading: select book\n  BookReading --> ObjectiveComplete: finish activity\n  ObjectiveComplete --> RewardReady: claimable\n  RewardReady --> ProgressUpdated: claim\n  ProgressUpdated --> [*]',
+    title: 'GraphQL Operations — Extending a Shared Unity Client',
+    framing: 'I extended a shared Unity GraphQL client so operation tooling and one request path had clearer ownership beneath production features.',
+    narrative: {
+      intro: 'Unity features needed maintainable service operations and a request path that did not hand live transport objects back indefinitely. I updated specific paths in an existing forked package—HTTP response handling, editor introspection and operation-field editing—alongside app-side GraphQL integration. The story is about developer workflow and resource ownership, not backend implementation.',
+      blocks: [
+        { label: 'The challenge', text: 'The reading product depended on service-backed data for progression and library flows. Unity engineers needed to define and maintain GraphQL queries and mutations—the operations used to exchange that data—while feature code consumed responses without each screen reinventing the transport boundary. That shared client already existed; the question was how to make parts of its tooling and request lifetime safer to work with.' },
+        { label: 'The approach', text: 'I contributed updates to the existing Unity GraphQL package. In one HTTP post path, the package disposes its Unity request within the transport method and returns a response object containing the data callers need, rather than returning the live request. I also worked on the editor’s schema-introspection path and operation-field editing. Separately, I contributed to app-side GraphQL data integration in the Unity product.' },
+        { label: 'The trade-off', text: 'The ownership boundary is clearer: the shared package manages part of request execution, while Read With Ello feature services interpret results for player-facing state. Other transport paths still exist, and the preserved evidence has no profiler comparison or exact per-release patch-consumption map. This is targeted client/tooling maintenance, not a global leak elimination or backend achievement.' },
+      ],
+      diagram: {
+        title: 'One operation, two lifetimes: authoring and execution',
+        caption: 'Developer-time authoring feeds a runtime operation. The scoped-request path is one verified client path; the remote service is an external boundary, not Phillipe’s implementation.',
+        groups: [
+          { label: 'Developer workflow · shared package', tone: 'package', steps: [{ label: 'Schema introspection', next: 'available fields' }, { label: 'Operation editor', next: 'selected fields' }, { label: 'Saved operation' }], handoff: 'Definition used at runtime', handoffAsync: true },
+          { label: 'Runtime · shared package', tone: 'package', steps: [{ label: 'GraphQL client', next: 'one POST path' }, { label: 'Scoped HTTP request', detail: 'Remote service: external boundary', next: 'copy result; dispose request' }, { label: 'Detached response' }], handoff: 'Response to app' },
+          { label: 'Read With Ello app', tone: 'app', steps: [{ label: 'Feature data service', next: 'map to product state' }, { label: 'Unity feature state' }] },
+        ],
+        notes: [{ label: 'Ownership limit', text: 'The package is an existing fork. Other request paths and the backend are outside this specific lifetime claim.' }],
+      },
+      technical: {
+        label: 'A closer look at the package boundary',
+        points: [
+          'Editor introspection and operation-field editing support developer-time authoring. The saved operation is then used by the runtime client and app-specific services.',
+          'One POST overload disposes its request internally and returns a detached response. Other transport paths remain; no measured leak reduction or universal disposal claim is made.',
+        ],
+      },
+    },
   },
 ];
 
@@ -208,6 +296,7 @@ export type CaseStudy = {
   stories: Story[];
   media?: ProjectMedia;
   production?: string;
+  supporting?: { title: string; text: string };
   reflection: string;
   evidenceLinks: { label: string; href: string }[];
   nextSlug: string;
@@ -239,14 +328,15 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'read-with-ello', project: featuredProjects[2],
-    scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children. The case focuses on how its library, service-backed state, and progression surfaces connect into a repeatable reading journey.',
-    ownershipLabel: 'My Contribution', ownership: 'Within a collaborative production team, I worked on the Unity-side implementation of those three areas: the library and its loading boundaries, GraphQL-backed feature integration, and the quest/progression UI that turns reading activity into visible progress.',
+    scopeLabel: 'Product / Team Context', scope: 'Read With Ello is a Unity mobile reading product for children, combining interactive books with quests and rewards. This case follows one production journey from visible progression, through content loading, to the shared client tooling beneath it.',
+    ownershipLabel: 'My Contribution', ownership: 'Within a collaborative team, I contributed to Unity-side quest and reward flows, Book Library presentation and loading, and specific shared GraphQL client/tooling paths. The backend, speech systems, content library and full release process were team or product work beyond my individual claim.',
     glance: [{ label: 'Context', value: 'Professional · Ello' }, { label: 'Role', value: 'Unity Software Engineer' }, { label: 'Period', value: 'Oct 2022–Aug 2025' }, { label: 'Stack', value: 'Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook' }],
     stories: elloStories,
-    media: { type: 'image', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', alt: 'Read With Ello product poster', previewAlt: 'Read With Ello gameplay preview', autoplayPreview: true, posterFit: 'contain' },
-    reflection: 'The product made one lesson concrete: a player-facing reading journey depends on how content, loading, lifecycle, reusable UI, and service-backed state behave together on real devices.',
+    media: { type: 'gif', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', alt: 'Read With Ello reading product featuring its elephant character', previewAlt: 'Read With Ello animated reading activity featuring its elephant character', caption: 'An interactive reading activity in Read With Ello; shown as product context, not as proof of the exact audited version.', showAnimatedDirectly: true, posterWidth: 1280, posterHeight: 720, posterFit: 'contain' },
+    supporting: { title: 'Mobile redesign & onboarding (Phone++)', text: 'I also contributed to feature-flagged phone onboarding and related Unity UI flows. This supports the broader production story without turning a collaborative redesign into a fourth case-study claim.' },
+    reflection: 'A player-facing reading journey relies on more than the screen in front of the child: progression state, content lifetimes and shared client boundaries have to remain understandable as the product evolves.',
     evidenceLinks: [{ label: 'Read With Ello on the App Store', href: 'https://apps.apple.com/us/app/read-with-ello/id1536720182' }], nextSlug: 'craque-da-fluencia',
-    metaDescription: 'Read With Ello case study: Unity book-library work, player-facing progression, and reusable GraphQL client tooling.',
+    metaDescription: 'Read With Ello case study: Unity quest progression, book-library work, and targeted GraphQL client tooling.',
   },
   {
     slug: 'craque-da-fluencia', project: featuredProjects[3],

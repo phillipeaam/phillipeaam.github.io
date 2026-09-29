@@ -17,7 +17,17 @@ const { item } = Astro.props;
     <section class="case-glance" aria-labelledby="glance-title"><h2 id="glance-title" class="eyebrow">AT A GLANCE</h2><dl>{item.glance.map((fact: { label: string; value: string }) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl></section>
     <section class="case-context"><div><p class="eyebrow">{item.scopeLabel}</p><h2>Project context</h2><p>{item.scope}</p></div><div><p class="eyebrow">{item.ownershipLabel}</p><h2>Ownership</h2><p>{item.ownership}</p></div></section>
     <div class="case-stories">{item.stories.map((story: any, index: number) => <EngineeringStory story={story} index={index + 1} kind={item.project.kind} />)}</div>
+    {item.supporting && <section class="case-supporting" aria-labelledby="case-supporting-title"><p class="eyebrow">SUPPORTING PRODUCTION WORK</p><h2 id="case-supporting-title">{item.supporting.title}</h2><p>{item.supporting.text}</p></section>}
     <section class="quiet-section"><p class="eyebrow">REFLECTION</p><h2>What I would carry forward</h2><p>{item.reflection}</p></section>
     <NextProject project={caseStudies.find((candidate) => candidate.slug === item.nextSlug)?.project ?? caseStudies[0].project} />
   </div>
 </BaseLayout>
+
+<style>
+  .case-page[data-kind='ello'] :global(.case-hero .media-figure) { max-width: 860px; }
+  .case-supporting { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1fr); gap: 8px 48px; padding: 48px 0; border-bottom: 1px solid var(--line); }
+  .case-supporting .eyebrow { grid-column: 1 / -1; margin-bottom: 0; color: var(--project-accent); }
+  .case-supporting h2 { max-width: 18ch; margin: 0; font-size: clamp(25px, 2.8vw, 34px); }
+  .case-supporting > p:last-child { max-width: 68ch; margin: 0; color: var(--secondary); }
+  @media (max-width: 820px) { .case-supporting { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 36px 0; } }
+</style>

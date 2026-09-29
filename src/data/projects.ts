@@ -9,6 +9,7 @@ export type ProjectMedia = {
   title?: string;
   caption?: string;
   autoplayPreview?: boolean;
+  showAnimatedDirectly?: boolean;
   posterWidth?: number;
   posterHeight?: number;
   posterFit?: 'cover' | 'contain';

@@ -6,5 +6,18 @@ const { project, media } = Astro.props;
 <header class="case-hero">
   <p class="eyebrow">{project.context}</p>
   <h1>{project.name}</h1>
-  {media ? <ProjectMediaPreview {...media} /> : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
+  {media
+    ? <ProjectMediaPreview
+        posterSrc={media.src}
+        previewSrc={media.previewSrc}
+        alt={media.alt}
+        previewAlt={media.previewAlt}
+        caption={media.caption}
+        autoplayPreview={media.autoplayPreview}
+        showAnimatedDirectly={media.showAnimatedDirectly}
+        posterWidth={media.posterWidth}
+        posterHeight={media.posterHeight}
+        posterFit={media.posterFit}
+      />
+    : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
 </header>

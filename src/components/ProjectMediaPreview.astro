@@ -6,23 +6,37 @@ const {
   previewAlt,
   caption,
   autoplayPreview = false,
+  showAnimatedDirectly = false,
   posterWidth = 2556,
   posterHeight = 1432,
   posterFit = 'cover',
 } = Astro.props;
 ---
 <figure class="media-figure project-media-preview">
-  <div class="media-poster project-media-preview__poster" data-project-media-preview data-autoplay-preview={autoplayPreview ? 'true' : undefined} data-poster-src={posterSrc} data-preview-src={previewSrc} data-poster-alt={alt} data-preview-alt={previewAlt}>
-    <img
-      class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
-      src={posterSrc}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      width={posterWidth}
-      height={posterHeight}
-      data-project-media-image
-    />
+  <div class="media-poster project-media-preview__poster" data-project-media-preview={showAnimatedDirectly ? undefined : ''} data-autoplay-preview={!showAnimatedDirectly && autoplayPreview ? 'true' : undefined} data-poster-src={showAnimatedDirectly ? undefined : posterSrc} data-preview-src={showAnimatedDirectly ? undefined : previewSrc} data-poster-alt={showAnimatedDirectly ? undefined : alt} data-preview-alt={showAnimatedDirectly ? undefined : previewAlt}>
+    {showAnimatedDirectly && previewSrc
+      ? <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset={posterSrc} />
+          <img
+            class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
+            src={previewSrc}
+            alt={previewAlt ?? alt}
+            loading="eager"
+            decoding="async"
+            width={posterWidth}
+            height={posterHeight}
+          />
+        </picture>
+      : <img
+          class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
+          src={posterSrc}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          width={posterWidth}
+          height={posterHeight}
+          data-project-media-image
+        />}
   </div>
   {caption && <figcaption class="media-caption">{caption}</figcaption>}
 </figure>
