@@ -2,6 +2,7 @@
 import ExternalLink from './ExternalLink.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
+import MediaPoster from './MediaPoster.astro';
 import type { ProjectInventoryEntry } from '../data/projects';
 
 const { project, homePath = '/' } = Astro.props as { project: ProjectInventoryEntry; homePath?: string };
@@ -14,21 +15,23 @@ const metadata = metadataLabels.map((label) => {
   if (!value) throw new Error(`Rich project "${project.id}" is missing required metadata: ${label}.`);
   return { label, value };
 });
-if (!project.identityImage || !leadMedia?.previewSrc || !project.contribution || !project.engineeringFocus) {
-  throw new Error(`Rich project "${project.id}" must provide identity media, poster/preview media, contribution, and engineering focus.`);
+if (!project.contribution || !project.engineeringFocus) {
+  throw new Error(`Rich project "${project.id}" must provide contribution and engineering focus.`);
 }
 ---
 <article aria-labelledby={titleId}>
   <div class="archive-record__rich-grid">
     <div class="archive-record__media-column">
-      {leadMedia && <div class="archive-record__media">
-        {leadMedia.previewSrc && leadMedia.type === 'image'
-          ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
-          : <ArchiveMedia media={leadMedia} projectName={project.name} />}
+      <div class="archive-record__media">
+        {leadMedia
+          ? leadMedia.previewSrc && leadMedia.type === 'image'
+            ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
+            : <ArchiveMedia media={leadMedia} projectName={project.name} />
+          : <MediaPoster label={project.evidenceLabel ?? project.name} kind={project.kind ?? 'neutral'} caption={project.mediaCaption} />}
         {supportingMedia.length > 0 && <div class="archive-record__supporting-media">
           {supportingMedia.slice(0, 3).map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
         </div>}
-      </div>}
+      </div>
       <p class="archive-record__overview">{project.product}</p>
       {(caseHref || project.actions?.length) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
         {caseHref && <a href={caseHref} aria-label={`View ${project.name} case study`}>View case study <span aria-hidden="true">→</span></a>}

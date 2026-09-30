@@ -28,6 +28,8 @@ export type Project = {
   caseStudy?: boolean;
   evidenceLabel: string;
   archiveCategory: ProjectCategory;
+  media?: ProjectMedia[];
+  archiveAnchor?: string;
 };
 
 export const featuredProjects: Project[] = [
@@ -46,14 +48,16 @@ export const featuredProjects: Project[] = [
   {
     slug: 'wallaces-quest',
     name: 'Wallace’s Quest',
-    context: 'Independent · Tactical RPG Prototype',
+    context: 'Tactical turn-based RPG',
     kind: 'wallace',
-    product: 'A personal tactical RPG prototype with one playable combat encounter.',
-    contribution: 'I built grid movement, pathfinding, turn-based combat, enemy turns, and weapon attack areas.',
-    tags: ['Combat', 'Pathfinding', 'Turn-based'],
+    product: 'A tactical turn-based RPG built around grid movement, player and enemy turns, and a connected combat encounter. Positioning and action choices shape each exchange as the battle advances toward victory or defeat.',
+    contribution: 'I implemented grid movement and turn/action flow across player and enemy turns, connecting attacks, damage resolution, and combat feedback to battle progression and its victory/defeat outcome.',
+    tags: ['Grid combat', 'Turn-based', 'Tactical RPG'],
     caseStudy: true,
     evidenceLabel: 'Wallace’s Quest · tactical combat',
     archiveCategory: 'independent-game',
+    media: [{ type: 'image', src: '/projects/wallace-quest/wallace-quest-poster.png', previewSrc: '/projects/wallace-quest/wallace-quest-gameplay-preview.gif', autoplayPreview: true, alt: 'Wallace’s Quest poster.', previewAlt: 'Gameplay preview from Wallace’s Quest.', posterWidth: 1254, posterHeight: 1254, posterFit: 'contain' }],
+    archiveAnchor: 'wallaces-quest',
   },
   {
     slug: 'read-with-ello',
@@ -66,6 +70,8 @@ export const featuredProjects: Project[] = [
     caseStudy: true,
     evidenceLabel: 'Read With Ello · reading product',
     archiveCategory: 'professional-game',
+    media: [{ type: 'image', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', autoplayPreview: true, alt: 'Read With Ello product poster.', previewAlt: 'Read With Ello gameplay preview showing an interactive reading activity.', posterWidth: 1680, posterHeight: 945, posterFit: 'contain' }],
+    archiveAnchor: 'read-with-ello',
   },
   {
     slug: 'craque-da-fluencia',
@@ -230,6 +236,9 @@ export type ProjectInventoryEntry = {
   product: string;
   contribution?: string;
   engineeringFocus?: string;
+  evidenceLabel?: string;
+  mediaCaption?: string;
+  kind?: Project['kind'];
   context?: string;
   caseStudySlug?: string;
   actions?: ProjectAction[];
@@ -253,9 +262,19 @@ const publicArchiveEntries: ProjectInventoryEntry[] = deferredOtherWork
     actions: 'href' in project && project.href ? [{ href: project.href, label: project.linkLabel ?? 'View project' }] : [],
   }));
 
-const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archivePresentation' | 'specs' | 'media' | 'identityImage' | 'product' | 'contribution' | 'engineeringFocus' | 'caseStudySlug' | 'actions'>>> = {
+const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archivePresentation' | 'specs' | 'media' | 'identityImage' | 'product' | 'contribution' | 'engineeringFocus' | 'evidenceLabel' | 'mediaCaption' | 'kind' | 'caseStudySlug' | 'actions'>>> = {
   'ilhas-do-alfabeto': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
-  'wallaces-quest': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Independent Gameplay Engineer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Platform', value: 'WebGL prototype' }] },
+  'wallaces-quest': {
+    archivePresentation: 'rich',
+    kind: 'wallace',
+    identityImage: '/projects/wallace-quest/wallace-quest-poster.png',
+    evidenceLabel: 'Wallace’s Quest · tactical combat',
+    specs: [{ label: 'Role', value: 'Game Engineer' }, { label: 'Period', value: 'Aug 2020' }, { label: 'Stack', value: 'Unity · C# · Tilemap · ScriptableObjects · uGUI' }, { label: 'Context', value: 'Tactical turn-based RPG' }],
+    product: 'Wallace’s Quest is a tactical turn-based RPG built around grid-based combat, positioning and deliberate action choices. Each encounter alternates between player and enemy turns across a shared battlefield, where movement, attacks and unit state shape the match and its clear victory or defeat conditions.',
+    contribution: 'I implemented the encounter’s turn and action flow, coordinating player and enemy progression through grid movement, attacks, damage resolution, and action completion. I connected battle-state changes to victory/defeat evaluation and wired combat feedback so each resolved action advances the encounter, hands control to the next turn, and makes its outcome clear.',
+    engineeringFocus: 'Turn ownership sequences player and enemy units, while action completion separates each movement or attack routine from advancement of the encounter. Combat state feeds stage victory/defeat conditions; coroutines and event handoffs coordinate behavior and feedback across these transitions, keeping the loop readable as state changes from active turn to resolved match.',
+    actions: [{ href: 'https://phillipeaam.itch.io/wallaces-quest', label: 'Play on itch.io' }],
+  },
   'read-with-ello': {
     archivePresentation: 'rich',
     caseStudySlug: 'read-with-ello',
@@ -264,7 +283,6 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
     product: 'A Unity mobile reading product for children where book discovery, interactive reading, and daily progression work together to make practice feel guided and rewarding. The experience combines a content-heavy library with service-backed quests, rewards, and coaching flows.',
     contribution: 'I worked on three connected product areas: the Book Library and its loading/navigation behavior; Unity-side GraphQL integration for service-backed features; and the quest/progression surfaces that connect objectives, reading activities, completion feedback, and rewards. I also supported selected shared UI and lifecycle work within the wider team codebase.',
     engineeringFocus: 'The recurring engineering problem was keeping a content-heavy mobile experience understandable and resilient: reusable uGUI for player-facing states, Addressables-backed content boundaries, asynchronous client responses, and transitions between library, reading, quest, and reward screens. The implementation focus was the Unity client; backend, speech, and platform ownership remain outside the claim.',
-    media: [{ type: 'image', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', autoplayPreview: true, alt: 'Read With Ello product poster.', previewAlt: 'Read With Ello gameplay preview showing an interactive reading activity.', posterWidth: 1680, posterHeight: 945 }],
     actions: [{ href: 'https://apps.apple.com/us/app/read-with-ello/id1536720182', label: 'App Store' }, { href: 'https://youtu.be/sk9Ob5f1GT8', label: 'Watch Promo' }],
   },
   'craque-da-fluencia': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
@@ -319,6 +337,10 @@ export const projectInventory: ProjectInventoryEntry[] = [
     type: project.context,
     product: project.product,
     contribution: project.contribution,
+    anchorId: project.archiveAnchor,
+    media: project.media,
+    evidenceLabel: project.evidenceLabel,
+    kind: project.kind,
     caseStudySlug: project.caseStudy ? project.slug : undefined,
   })),
   ...otherWork,
@@ -326,9 +348,9 @@ export const projectInventory: ProjectInventoryEntry[] = [
 ].map((project) => ({ ...project, ...archiveDetails[project.id] }));
 
 export const projectInventoryGroups = [
-  { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['ilhas-do-alfabeto', 'read-with-ello', 'learn-with-ello', 'craque-da-fluencia', 'flui', 'tabuada-na-fazenda', 'craque-da-leitura', 'avaliacao-lingua-portuguesa'] },
+  { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['learn-with-ello', 'read-with-ello', 'tabuada-na-fazenda', 'craque-da-leitura', 'flui', 'ilhas-do-alfabeto', 'craque-da-fluencia', 'avaliacao-lingua-portuguesa'] },
   { id: 'professional-product', eyebrow: '02 / SOFTWARE', title: 'Software & interactive products', intro: 'Professional assessment, learning and operational software beyond the game portfolio.', order: ['avaliacao-diagnostica', 'iab-testes', 'iab-digital-zero-a-quatro', 'mypush', 'morada-verde-inventory-flow'] },
-  { id: 'independent-game', eyebrow: '03 / INDEPENDENT', title: 'Independent & collaborative games', intro: 'Playable prototypes and jam work, including solo and team projects.', order: ['wallaces-quest', 'pathless', 'sweets-and-shadows', 'radwasteland-echoes', 'angry-world'] },
+  { id: 'independent-game', eyebrow: '03 / INDEPENDENT', title: 'Independent & collaborative games', intro: 'Independent games and jam collaborations, spanning solo projects and small teams.', order: ['pathless', 'radwasteland-echoes', 'sweets-and-shadows', 'wallaces-quest', 'angry-world'] },
   { id: 'study-archive', eyebrow: '04 / STUDY', title: 'Experiments & study', intro: 'Smaller technical studies kept as part of the development record.', order: ['survive-and-escape'] },
 ].map((group) => ({
   ...group,
