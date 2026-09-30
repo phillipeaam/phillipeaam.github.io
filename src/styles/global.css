@@ -688,7 +688,7 @@ main:has(.experience-preview) + .contact-section { margin-top: var(--s-8); }
 .recommendations-section { padding-top: var(--s-8); }
 .more-projects { padding-top: var(--s-16); }
 .more-projects__utility-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; margin: 12px 0 18px; }
-.more-projects__guidance { flex: 1 1 auto; min-width: 0; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.more-projects__guidance { flex: 1 1 auto; min-width: 0; margin: 0; color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.4; }
 .more-projects__guidance--hover { display: none; }
 .more-projects__guidance--touch { display: inline; }
 @media (hover: hover) and (pointer: fine) {
