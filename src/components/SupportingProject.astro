@@ -9,11 +9,11 @@ const archiveHref = simple && id ? `${import.meta.env.BASE_URL}projects/#${ancho
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
   {archiveHref && <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${name} project details`}>
     {simple && id === 'pathless'
-      ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
+      ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.webp" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
       : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />}
   </a>}
   {!archiveHref && (simple && id === 'pathless'
-    ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.png" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
+    ? <ProjectMediaPreview posterSrc="/projects/pathless/pathless-poster.webp" previewSrc="/projects/pathless/pathless-gameplay-preview.gif" alt="Pathless gameplay poster showing a helicopter above a rescue-game landscape." />
     : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>

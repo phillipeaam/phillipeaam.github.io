@@ -56,7 +56,7 @@ export const featuredProjects: Project[] = [
     caseStudy: true,
     evidenceLabel: 'Wallace’s Quest · tactical combat',
     archiveCategory: 'independent-game',
-    media: [{ type: 'image', src: '/projects/wallace-quest/wallace-quest-poster.png', previewSrc: '/projects/wallace-quest/wallace-quest-gameplay-preview.gif', autoplayPreview: true, alt: 'Wallace’s Quest poster.', previewAlt: 'Gameplay preview from Wallace’s Quest.', posterWidth: 1254, posterHeight: 1254, posterFit: 'contain' }],
+    media: [{ type: 'image', src: '/projects/wallace-quest/wallace-quest-first-frame.webp', previewSrc: '/projects/wallace-quest/wallace-quest-gameplay-preview.gif', autoplayPreview: true, alt: 'First frame of Wallace’s Quest gameplay.', previewAlt: 'Gameplay preview from Wallace’s Quest.', posterWidth: 2560, posterHeight: 1440, posterFit: 'contain' }],
     archiveAnchor: 'wallaces-quest',
   },
   {
@@ -70,7 +70,7 @@ export const featuredProjects: Project[] = [
     caseStudy: true,
     evidenceLabel: 'Read With Ello · reading product',
     archiveCategory: 'professional-game',
-    media: [{ type: 'image', src: '/projects/ello-read/read-with-ello-poster.png', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', autoplayPreview: true, alt: 'Read With Ello product poster.', previewAlt: 'Read With Ello gameplay preview showing an interactive reading activity.', posterWidth: 1680, posterHeight: 945, posterFit: 'contain' }],
+    media: [{ type: 'image', src: '/projects/ello-read/read-with-ello-first-frame.webp', previewSrc: '/projects/ello-read/read-with-ello-gameplay-preview.gif', autoplayPreview: true, alt: 'First frame of Read With Ello gameplay.', previewAlt: 'Read With Ello gameplay preview showing an interactive reading activity.', posterWidth: 1280, posterHeight: 720, posterFit: 'contain' }],
     archiveAnchor: 'read-with-ello',
   },
   {
@@ -267,7 +267,7 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
   'wallaces-quest': {
     archivePresentation: 'rich',
     kind: 'wallace',
-    identityImage: '/projects/wallace-quest/wallace-quest-poster.png',
+    identityImage: '/projects/wallace-quest/wallace-quest-poster.webp',
     evidenceLabel: 'Wallace’s Quest · tactical combat',
     specs: [{ label: 'Role', value: 'Game Engineer' }, { label: 'Period', value: 'Aug 2020' }, { label: 'Stack', value: 'Unity · C# · Tilemap · ScriptableObjects · uGUI' }, { label: 'Context', value: 'Tactical turn-based RPG' }],
     product: 'Wallace’s Quest is a tactical turn-based RPG built around grid-based combat, positioning and deliberate action choices. Each encounter alternates between player and enemy turns across a shared battlefield, where movement, attacks and unit state shape the match and its clear victory or defeat conditions.',
@@ -278,7 +278,7 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
   'read-with-ello': {
     archivePresentation: 'rich',
     caseStudySlug: 'read-with-ello',
-    identityImage: '/projects/ello-read/read-with-ello-poster.png',
+    identityImage: '/projects/ello-read/read-with-ello-poster.webp',
     specs: [{ label: 'Role', value: 'Unity Software Engineer' }, { label: 'Period', value: 'Oct 2022–Aug 2025' }, { label: 'Stack', value: 'Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook' }, { label: 'Context', value: 'Professional · Ello' }],
     product: 'A Unity mobile reading product for children where book discovery, interactive reading, and daily progression work together to make practice feel guided and rewarding. The experience combines a content-heavy library with service-backed quests, rewards, and coaching flows.',
     contribution: 'I worked on three connected product areas: the Book Library and its loading/navigation behavior; Unity-side GraphQL integration for service-backed features; and the quest/progression surfaces that connect objectives, reading activities, completion feedback, and rewards. I also supported selected shared UI and lifecycle work within the wider team codebase.',
@@ -288,12 +288,12 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
   'craque-da-fluencia': { archivePresentation: 'standard', specs: [{ label: 'Role', value: 'Senior Unity Game Developer' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   pathless: {
     archivePresentation: 'rich',
-    identityImage: '/projects/pathless/pathless-poster.png',
+    identityImage: '/projects/pathless/pathless-poster.webp',
     specs: [{ label: 'Role', value: 'Unity Gameplay Programmer' }, { label: 'Period', value: 'Aug 23–30, 2026' }, { label: 'Stack', value: 'Unity 6 · C# · URP · Input System · UI Toolkit · Cinemachine' }, { label: 'Context', value: 'Independent · Brackeys Game Jam 2026.2 · three-person team' }],
     product: 'Built by a three-person team for Brackeys Game Jam 2026.2, Pathless is a Unity 6 rescue-and-exploration game made in a one-week window. Players use proximity radio signals to locate survivors, meet assistance needs, and manage an escalating earthquake-driven calamity before extracting and reviewing the rescue outcome.',
     contribution: 'Implemented the proximity radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. Integrated the mission loop from menu and helicopter arrival through radio discovery, earthquake and ground-collapse pressure, extraction, restart, and results reporting. Also connected the player-facing systems into the assembled Unity scene and input flow.',
     engineeringFocus: 'Data-driven signal definitions map distance to discrete radio strength, while ScriptableObjects configure survivor assistance and calamity sequences. Events and delegates connect mission state to rescue/results; Unity Awaitable sequences arrival, with UI Toolkit and the Input System carrying presentation and control. Keeping signal strength separate from direction gives the scanner a clear, proximity-based role in the rescue loop.',
-    media: [{ type: 'image', src: '/projects/pathless/pathless-poster.png', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', autoplayPreview: true, alt: 'Pathless gameplay poster showing a helicopter above a rescue-game landscape.' }],
+    media: [{ type: 'image', src: '/projects/pathless/pathless-first-frame.webp', previewSrc: '/projects/pathless/pathless-gameplay-preview.gif', autoplayPreview: true, alt: 'First frame of Pathless gameplay showing a helicopter above a rescue-game landscape.' }],
   },
   flui: { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'tabuada-na-fazenda': { archivePresentation: 'standard', specs: [{ label: 'Engine', value: 'Unity' }, { label: 'Company', value: 'Instituto Alfa e Beto' }] },
@@ -304,14 +304,14 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
   'craque-da-leitura': { archivePresentation: 'compact', specs: [{ label: 'Company', value: 'Instituto Alfa e Beto' }] },
   'learn-with-ello': {
     archivePresentation: 'rich',
-    identityImage: '/projects/ello-learn/ello-learn-poster.png',
+    identityImage: '/projects/ello-learn/ello-learn-poster.webp',
     specs: [{ label: 'Role', value: 'Software Engineer' }, { label: 'Period', value: 'Sep–Nov 2025' }, { label: 'Stack', value: 'Flutter · Dart · Python · GraphQL · Protocol Buffers · GrowthBook · Provider' }, { label: 'Context', value: 'Professional · Ello' }],
     product: 'A professional learning platform for children combining reading and math activities, daily quest/progression flows, rewards, and adaptive experiences across a Flutter client, backend services, and learning-agent interactions. The product connects content delivery, account flows, and activity state into a guided learning journey.',
     contribution: 'Contributed to quest progression and rewards across typed, configuration-driven models, providers, completion services, client view models/screens, and tests. Connected home-screen activities to learning-agent requests across Python services and Flutter routing/interaction contracts, and implemented the parent-gate flow. Also contributed to shared account/settings and intro-media lifecycle work.',
     engineeringFocus: 'Typed quest and activity models, provider/service boundaries, and GraphQL/Protocol Buffers contracts coordinate configured flows with client state. Guarded initialization and shared in-flight requests prevent duplicate work; completion validates interaction IDs, suppresses repeated rewards, and keeps local progress resilient to noncritical sync and analytics failures.',
     media: [{
       type: 'image',
-      src: '/projects/ello-learn/ello-learn-poster.png',
+      src: '/projects/ello-learn/ello-learn-first-frame.webp',
       previewSrc: '/projects/ello-learn/ello-learn-gameplay-preview.gif',
       autoplayPreview: true,
       alt: 'A smiling yellow-orange cartoon mascot with large brown eyes and coral-colored tufts against a pale blue background.',
