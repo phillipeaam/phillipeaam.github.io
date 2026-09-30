@@ -722,6 +722,7 @@ main:has(.experience-preview) + .contact-section { margin-top: var(--s-8); }
 .more-projects .supporting-card .media-poster::after { display: none; }
 .more-projects .supporting-card-copy { min-width: 0; }
 .more-projects .supporting-card h3 { min-height: 1.2em; margin-bottom: 3px; }
+.more-projects .supporting-card h3.sr-only { min-height: 0; margin: 0; }
 .more-projects .supporting-card-copy--simple { display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
 .more-projects .supporting-card-copy--simple .project-actions { margin-top: 0; padding-top: 0; }
 .more-projects .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin-top: 10px; }

@@ -18,7 +18,7 @@ const archiveHref = simple && id ? `${import.meta.env.BASE_URL}projects/#${ancho
     : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
-      <h3>{name}</h3>
+      <h3 class="sr-only">{name}</h3>
       {archiveHref && <div class="project-actions" aria-label={`${name} links`}>
         <a class="supporting-card-link" href={archiveHref} aria-label={`Details for ${name}`}><span>Details</span><Icon name="external" size={15} /></a>
       </div>}
