@@ -1,6 +1,7 @@
 ---
 import type { Story } from '../data/cases';
 import NarrativeFlowDiagram from './NarrativeFlowDiagram.astro';
+import WallaceGridSearchDiagram from './WallaceGridSearchDiagram.astro';
 
 const { story, index } = Astro.props as { story: Story; index: number };
 const narrative = story.narrative;
@@ -8,7 +9,7 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
 ---
 <section class="engineering-story narrative-story" aria-labelledby={`story-${index}`}>
   <header class="narrative-story__header">
-    <p class="eyebrow">ENGINEERING STORY <span class="story-index">{String(index).padStart(2, '0')}</span></p>
+    <p class="eyebrow">ENGINEERING STORY <span class="story-index">{String(index).padStart(2, '0')}</span>{story.eraLabel && <span class="narrative-story__era"> · {story.eraLabel}</span>}</p>
     <h2 id={`story-${index}`}>{story.title}</h2>
     <p class="narrative-story__takeaway">{story.framing}</p>
     <p class="narrative-story__intro">{narrative.intro}</p>
@@ -32,7 +33,7 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
       </figure>
     </div>}
   </div>
-  <NarrativeFlowDiagram diagram={narrative.diagram} />
+  {narrative.visual === 'grid-search' ? <WallaceGridSearchDiagram /> : <NarrativeFlowDiagram diagram={narrative.diagram} />}
   {narrative.technical && <details class="narrative-story__technical">
     <summary>{narrative.technical.label}<span aria-hidden="true">+</span></summary>
     <div>
@@ -45,6 +46,7 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
   .engineering-story.narrative-story { padding-block: clamp(68px, 8vw, 100px); }
   .narrative-story__header { max-width: 1000px; margin-bottom: clamp(30px, 4vw, 50px); }
   .narrative-story__header .eyebrow { margin-bottom: 18px; }
+  .narrative-story__era { color: var(--muted); }
   .narrative-story__header h2 { max-width: 23ch; margin: 0 0 20px; font-size: clamp(31px, 4vw, 47px); text-wrap: balance; }
   .narrative-story__takeaway { max-width: 58ch; margin: 0 0 20px; color: var(--text); font: 500 clamp(19px, 2.2vw, 24px)/1.4 var(--font-display); letter-spacing: -.025em; }
   .narrative-story__intro { max-width: 76ch; margin: 0; color: var(--secondary); font-size: 17px; line-height: 1.58; }

@@ -17,12 +17,14 @@ export type StoryNarrative = {
   intro: string;
   blocks: { label: string; text: string }[];
   diagram: NarrativeDiagram;
+  visual?: 'grid-search';
   media?: { src: string; mobileSrc?: string; mobileWidth?: number; mobileHeight?: number; alt: string; caption: string; width: number; height: number; maxWidth?: number; variant?: 'portrait' };
   technical?: { label: string; points: string[] };
 };
 export type Story = {
   title: string;
   framing: string;
+  eraLabel?: string;
   fields?: StoryField[];
   evidenceLabel?: string;
   behavior?: string;
@@ -36,48 +38,45 @@ export type Story = {
 
 const wallaceStories: Story[] = [
   {
-    title: 'Grid Pathfinding — Isolating Movement as a Testable System',
-    framing: 'I made movement inspectable outside the full battle scene.',
-    fields: [
-      { label: 'Problem', text: 'Tactical movement needed a valid route between selected grid positions.' },
-      { label: 'Constraint', text: 'Some destinations could be unreachable.' },
-      { label: 'Approach', text: 'I connected a standalone demo to the node map and pathfinder, then displayed routes for selected start and target cells.' },
-      { label: 'Result', text: 'Path behavior could be inspected separately from combat.' },
-    ],
-    evidenceLabel: 'Wallace · grid movement',
-    behavior: 'Selected cells and their route can be inspected on the grid.',
-    evidence: 'An attributed private commit shows the demo wiring and route display; gameplay footage illustrates movement, not code authorship.',
-    diagramLabel: 'Path inspection',
-    diagram: ['Start and target', 'Node map', 'Returned route'],
+    title: 'Coordinating the Tactical Combat Loop',
+    framing: 'Giving each unit a turn while movement, attacks and encounter-ending rules complete on their own timelines.',
+    eraLabel: '2020 integrated encounter',
+    narrative: {
+      intro: 'The 2020 encounter needed one place to decide whose turn it was, without forcing movement, attack animation or damage response to finish instantly. I coordinated those asynchronous actions through a sequential, per-unit turn order.',
+      blocks: [
+        { label: 'Problem', text: 'Advancing too early could hand control to the next unit while an action was still resolving. Player input, enemy behavior and death conditions also needed to share one encounter flow.' },
+        { label: 'Approach', text: 'GameManager owned the active-unit index and selected the next living unit. Player and enemy units executed their own actions, then signaled EndTurn to the same scheduler. Moving or attacking did not automatically end the player turn; Wait did.' },
+        { label: 'Result', text: 'The 2020 source ties player/enemy handoff to configured victory and defeat evaluation. Public gameplay footage shows the historical turn presentation and movement; the attributed code history establishes the system behind it.' },
+      ],
+      diagram: {
+        title: 'A unit turn advances after its owner signals completion · 2020',
+        caption: 'Original model of the historical source. Turn banners reflect the active unit type; they are not team-wide phases. Animation and interaction timing are failure-sensitive seams.',
+        groups: [
+          { label: 'GameManager · turn owner', tone: 'local', steps: [{ label: 'Set up encounter', detail: 'Board, units and event subscriptions', next: 'choose next living unit' }, { label: 'StartTurn', detail: 'Sequential per-unit index' }, { label: 'Advance index', detail: 'Only after Unit.EndTurn' }] },
+          { label: 'Active Player / IAUnit', tone: 'player', steps: [{ label: 'Choose an action', detail: 'Player: move, attack or Wait · Enemy: action sequence', next: 'execute without advancing global turn' }, { label: 'EndTurn', detail: 'Player Wait or enemy sequence completed' }] },
+          { label: 'Movement / Combat', tone: 'service', steps: [{ label: 'Resolve over time', detail: 'Movement coroutine or attack animation → hit → damage response', next: 'completion returns to unit' }, { label: 'Death event', detail: 'OnDeath follows the death response' }] },
+          { label: 'Stage conditions', tone: 'resource', steps: [{ label: 'Evaluate on death', detail: 'Loss first, then win', next: 'continue or finish' }, { label: 'Finish / transition', detail: 'Configured encounter outcome' }] },
+        ],
+        notes: [{ label: 'Two different handoffs', text: 'An action can finish without ending a player turn; EndTurn is the signal that advances the scheduler.' }, { label: 'Timing seam', text: 'Attack completion waits for animation and target-interaction signals. A missed signal can leave that wait unresolved.' }],
+      },
+      technical: { label: 'Implementation details & limits', points: ['GameManager subscribes to Unit.OnEndTurn and Unit.OnDeath. A dead unit is skipped when the index advances; death separately invokes stage-condition evaluation.', 'Enemy behavior uses a single player target and an attack–move–attack sequence when possible. It is a concrete encounter behavior, not advanced tactical AI.'] },
+    },
   },
   {
-    title: 'Weapon Attack Areas by Direction and Position',
-    framing: 'The calculation accepts a requested direction and grid position.',
-    fields: [
-      { label: 'Problem', text: 'A weapon pattern needs effective cells at a chosen position and direction.' },
-      { label: 'Constraint', text: 'Configured offsets must be transformed before placement on the grid.' },
-      { label: 'Approach', text: 'I rotate copied offsets for the supplied direction, then translate them to the requested position.' },
-      { label: 'Trade-off', text: 'At least one inspected combat caller still passes East explicitly; not every attack is shown to follow current facing.' },
-      { label: 'Result', text: 'The method derives attack cells for the supplied direction and position.' },
-    ],
-    evidenceLabel: 'Wallace · weapon area',
-    behavior: 'Affected grid cells are highlighted before an attack.',
-    evidence: 'Attributed source shows the offset transform; one inspected caller explicitly passes East. Wider facing integration is unverified.',
-    diagramLabel: 'Attack-area transform',
-    diagram: ['Configured offsets', 'Requested direction', 'Grid position → attack cells'],
-  },
-  {
-    title: 'Enemy Turns & Combat Loop',
-    framing: 'A playable encounter needed enemy actions to fit the same turn sequence as player actions.',
-    fields: [
-      { label: 'Question', text: 'How can the prototype hand control from a player action to an enemy response and back?' },
-      { label: 'Approach', text: 'I implemented enemy-turn behavior alongside movement, attacks, damage, and an encounter ending state.' },
-      { label: 'Consequence', text: 'The prototype supports one playable combat encounter, not a complete campaign or advanced tactical AI.' },
-    ],
-    evidenceLabel: 'Wallace · combat encounter',
-    behavior: 'The gameplay shows a player turn, enemy response, and encounter outcome.',
-    evidence: 'Attributed prototype history supports the combat-loop and enemy-turn contribution; the public build shows behavior, not source internals.',
-    diagramLabel: 'Turn sequence', diagram: [], compact: true,
+    title: 'Extracting Grid Pathfinding into a Standalone Module',
+    framing: 'Separating traversable-grid data and route queries from a combat-specific movement implementation.',
+    eraLabel: '2021 module work',
+    narrative: {
+      intro: 'The original pathfinder was coupled to the 2020 combat board and its callers. In 2021, I separated map data, adjacency and route search so spatial rules could be inspected in a dedicated scene, while leaving the older combat integration unfinished.',
+      blocks: [
+        { label: 'Problem', text: 'A route query needed to account for Tilemap obstacles, four-direction movement and unreachable destinations without relying on the full encounter flow.' },
+        { label: 'Approach', text: 'Stage marks blocked squares in a rectangular SqmMap. NodeMap creates orthogonal neighbors; Pathfinder selects frontier nodes by traveled cost plus Manhattan distance and reconstructs parent links when it reaches the target.' },
+        { label: 'Result & trade-off', text: 'The separate demo made route behavior inspectable apart from combat. The earlier combat callers were left disconnected during extraction, so this was a clearer module boundary rather than a replacement in the published game. Already-open nodes are not updated for cheaper paths, so shortest-route optimality is not established.' },
+      ],
+      visual: 'grid-search',
+      diagram: { title: 'From Tilemap obstacles to a route query · 2021', caption: 'The isolated module and demo are distinct from the older public combat build; the former combat callers were not fully reintegrated.', groups: [] },
+      technical: { label: 'Search semantics & limits', points: ['A successful result follows parent links to return ordered nodes excluding the start. Equal endpoints, invalid coordinates or unreachable targets return null; start walkability is not explicitly validated.', 'This is cost-plus-Manhattan grid search, not guaranteed optimal A*. It does not relax an already-open node when a cheaper path is discovered. The current migrated demo controls are unusable, and no measured speed claim is supported.'] },
+    },
   },
 ];
 
@@ -289,6 +288,8 @@ const craqueStories: Story[] = [
 export type CaseStudy = {
   slug: string;
   project: Project;
+  heroSummary?: string;
+  heroStatement?: string;
   scopeLabel: string;
   scope: string;
   ownershipLabel: string;
@@ -298,7 +299,8 @@ export type CaseStudy = {
   stories: Story[];
   media?: ProjectMedia;
   production?: string;
-  supporting?: { title: string; text: string };
+  supporting?: { title: string; text: string; visual?: 'weapon-offsets' };
+  developmentEras?: { label: string; text: string }[];
   reflection: string;
   evidenceLinks: { label: string; href: string }[];
   nextSlug: string;
@@ -320,15 +322,19 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'wallaces-quest', project: featuredProjects[1],
-    scopeLabel: 'Project Scope', scope: 'A personal Unity/C# tactical RPG prototype with one playable encounter: player and enemy turns, grid movement, attacks, damage, and an ending state.',
-    ownershipLabel: 'My Engineering Focus', ownership: 'I built the prototype’s combat loop and worked directly on grid pathfinding, enemy turns, and weapon attack-area calculations. The source repository remains private.',
-    glance: [{ label: 'Context', value: 'Independent prototype' }, { label: 'Engine', value: 'Unity / C#' }, { label: 'Focus', value: 'Combat, grid, pathfinding' }, { label: 'Scope', value: 'Playable combat encounter' }],
-    selectedStories: 'These selected stories trace three technical pillars of the prototype: grid pathfinding, directional weapon attack areas, and the turn-based combat loop. Together, they show how I built and connected the systems behind one playable encounter—not a complete game or campaign.',
+    heroSummary: 'Game Engineer · Aug 2020 · Unity / C#',
+    heroStatement: 'A tactical turn-based RPG built around grid positioning, player and enemy turns, combat actions and encounter outcomes.',
+    scopeLabel: 'Product / Team Context', scope: 'Wallace’s Quest is a personal tactical turn-based RPG. The player uses grid positioning and combat actions against enemy units; defeating the enemies wins the encounter, while losing the player units ends it in defeat. The 2020 game brought those turns and outcomes into one combat scene. In 2021 I revisited parts of the implementation as separate pathfinding and weapon modules, without fully reconnecting them to the older encounter.',
+    ownershipLabel: 'My Contribution', ownership: 'I authored the evidenced C# gameplay work behind turn coordination, enemy action sequencing, grid/pathfinding extraction and configurable weapon-area rules. I also integrated gameplay UI, animation and audio. Visual and audio assets from other creators are product context, not my authorship claim.',
+    glance: [{ label: 'Context', value: 'Independent · Tactical turn-based RPG' }, { label: 'Role', value: 'Game Engineer' }, { label: 'Period', value: 'Aug 2020' }, { label: 'Stack', value: 'Unity · C# · Tilemap · ScriptableObjects · uGUI' }],
+    selectedStories: 'Two parts of Wallace’s Quest show different sides of my gameplay-engineering work. The 2020 game needed a clear handoff between player and enemy actions; the 2021 module work separated grid search from that encounter. These are selected examples from different stages of the project.',
     stories: wallaceStories,
-    production: 'This is a prototype. Enemy behavior is limited, and skills and items are unfinished.',
-    reflection: 'Isolated scenes made individual systems easier to inspect. For a larger game, I would reduce the central manager’s responsibilities and replace direct dependencies with clearer boundaries.',
-    evidenceLinks: [{ label: 'Play the WebGL prototype', href: 'https://phillipeaam.itch.io/wallaces-quest' }, { label: 'Watch gameplay', href: 'https://youtu.be/3P1Tdx5HtuQ' }], nextSlug: 'read-with-ello',
-    metaDescription: 'An independent Unity tactical RPG prototype: grid pathfinding, turn-based combat, and weapon attack areas by direction and position.',
+    media: { type: 'gif', src: '/projects/wallace-quest/wallace-quest-poster.png', previewSrc: '/projects/wallace-quest/wallace-quest-gameplay-preview.gif', alt: 'Wallace’s Quest poster artwork', previewAlt: 'Animated gameplay preview of the historical Wallace’s Quest combat encounter', caption: 'Gameplay from the historical 2020 encounter.', showAnimatedDirectly: true, posterWidth: 2560, posterHeight: 1440, posterFit: 'contain' },
+    supporting: { title: 'Weapon area rules', text: 'A smaller 2021 module stores relative attack cells with damage multipliers. I copied the configured offsets, transformed them for a requested cardinal direction, then translated them to a chosen grid position. The source supports directional queries, but the inspected combat caller supplied East and is disabled in the current checkout; live facing-aware attacks are not a verified feature.', visual: 'weapon-offsets' },
+    developmentEras: [{ label: '2020 · integrated encounter', text: 'The historical WebGL build and source belong to the combat era: unit turns, movement, actions and encounter outcomes in one scene.' }, { label: '2021 · module extraction', text: 'Grid search and weapon-area rules were separated for isolated inspection. Their integration back into the earlier combat flow was not completed.' }, { label: '2026 · Unity migration', text: 'The later workspace was revisited in a newer Unity version, without evidence of new gameplay development or a restored integrated combat build.' }],
+    reflection: 'I would keep one clear owner for turn advancement and the explicit map–graph–search boundary. Today I would make action completion and cancellation contracts explicit, guard repeated encounter finishes, test death during a turn, add better-path updates to the search, and reconnect callers through a stable interface. Those are future improvements, not work claimed for the historical build.',
+    evidenceLinks: [{ label: 'View 2020 WebGL build', href: 'https://phillipeaam.itch.io/wallaces-quest' }, { label: 'Watch gameplay', href: 'https://www.youtube.com/watch?v=3P1Tdx5HtuQ' }], nextSlug: 'read-with-ello',
+    metaDescription: 'Wallace’s Quest: a personal tactical turn-based RPG case study covering 2020 combat coordination and 2021 grid pathfinding module work.',
   },
   {
     slug: 'read-with-ello', project: featuredProjects[2],

@@ -1,0 +1,54 @@
+---
+const cells = [
+  ['S', 'blocked', '', '', ''],
+  ['↑', '←', 'blocked', '', ''],
+  ['', '↑', '←', 'blocked', ''],
+  ['', '', '↑', '←', ''],
+  ['', '', '', '↑', 'T'],
+];
+---
+<figure class="grid-search" aria-labelledby="grid-search-title">
+  <figcaption class="grid-search__heading"><span class="eyebrow">SYSTEM MODEL · 2021</span><strong id="grid-search-title">From Tilemap obstacles to a route query</strong></figcaption>
+  <div class="grid-search__body">
+    <div class="grid-search__map">
+      <p class="grid-search__label">Illustrative five-by-five grid</p>
+      <ol class="grid-search__cells" aria-label="Example grid: S is start, T is target, dark cells are obstacles and arrows point back to each route node's parent">
+        {cells.flatMap((row, rowIndex) => row.map((value, columnIndex) => <li class:list={['grid-search__cell', value === 'blocked' && 'grid-search__cell--blocked', (value === '↑' || value === '←') && 'grid-search__cell--route', (value === 'S' || value === 'T') && 'grid-search__cell--endpoint']} aria-label={`Row ${rowIndex + 1}, column ${columnIndex + 1}: ${value === 'S' ? 'start' : value === 'T' ? 'target' : value === 'blocked' ? 'blocked' : value === '↑' ? 'route node whose parent is above' : value === '←' ? 'route node whose parent is left' : 'walkable'}`}>{value === 'blocked' ? '' : value}</li>))}
+      </ol>
+      <p class="grid-search__legend"><span>S · start</span><span>T · target</span><span>■ · blocked</span><span>arrows · parent links toward S</span></p>
+    </div>
+    <ol class="grid-search__pipeline">
+      <li><span>01 · Map</span><strong>Tilemap → SqmMap</strong><small>Obstacle cells become non-walkable squares.</small></li>
+      <li><span>02 · Graph</span><strong>NodeMap</strong><small>Each square has up to four orthogonal neighbors.</small></li>
+      <li><span>03 · Search</span><strong>Pathfinder · g + h</strong><small>g = traveled steps; h = Manhattan distance to T.</small></li>
+      <li><span>04 · Result</span><strong>Parent route or null</strong><small>A found route excludes S; unreachable requests return null.</small></li>
+    </ol>
+  </div>
+  <div class="grid-search__notes"><p><strong>Frontier example</strong><span>Candidate A: g 2 + h 4 = 6 · Candidate B: g 3 + h 2 = 5. Selection uses the lower g + h; these values illustrate the rule, not a recorded search trace.</span></p><p><strong>Important limit</strong><span>First-discovered parent is retained: an already-open node is not updated if a cheaper route appears. Optimality is not established.</span></p></div>
+  <p class="grid-search__caption">Original explanatory diagram. The 2021 module had an isolated visualization scene; older combat callers were not fully reintegrated, and the public WebGL build does not demonstrate this module.</p>
+</figure>
+
+<style>
+  .grid-search { margin: 0; padding: clamp(18px, 3vw, 32px); border: 1px solid color-mix(in srgb, var(--project-accent) 28%, var(--line)); border-radius: 4px; background: var(--media); }
+  .grid-search__heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .grid-search__heading .eyebrow { margin: 0; color: var(--project-accent); }
+  .grid-search__heading strong { font: 500 clamp(18px, 2vw, 23px)/1.25 var(--font-display); letter-spacing: -.025em; text-align: right; }
+  .grid-search__body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .grid-search__label { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+  .grid-search__cells { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; width: min(100%, 350px); margin: 0; padding: 0; list-style: none; }
+  .grid-search__cell { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid var(--line-strong); border-radius: 2px; background: var(--bg); color: var(--text); font-size: clamp(13px, 2vw, 18px); font-weight: 600; }
+  .grid-search__cell--blocked { background: #3a4150; border-color: #3a4150; }
+  .grid-search__cell--route { border-color: var(--project-accent); color: var(--project-accent); }
+  .grid-search__cell--endpoint { background: color-mix(in srgb, var(--project-accent) 22%, var(--bg)); border-color: var(--project-accent); }
+  .grid-search__legend { display: flex; flex-wrap: wrap; gap: 3px 14px; max-width: 350px; margin: 12px 0 0; color: var(--muted); font-size: 11px; }
+  .grid-search__pipeline { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .grid-search__pipeline li { display: grid; gap: 3px; padding: 12px 15px; border-left: 1px solid var(--project-accent); background: var(--elevated); }
+  .grid-search__pipeline li span { color: var(--project-accent); font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .grid-search__pipeline strong { font-size: 14px; font-weight: 500; }
+  .grid-search__pipeline small { color: var(--secondary); font-size: 12px; line-height: 1.45; }
+  .grid-search__notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+  .grid-search__notes p { display: grid; gap: 5px; margin: 0; padding: 13px 15px; border-top: 1px solid var(--line-strong); color: var(--secondary); font-size: 12px; line-height: 1.5; }
+  .grid-search__notes strong { color: var(--text); font-size: 11px; letter-spacing: .03em; }
+  .grid-search__caption { margin: 20px 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.5; }
+  @media (max-width: 720px) { .grid-search__heading { display: block; } .grid-search__heading .eyebrow { margin-bottom: 8px; } .grid-search__heading strong { display: block; text-align: left; } .grid-search__body, .grid-search__notes { grid-template-columns: minmax(0, 1fr); } .grid-search__cells { width: min(100%, 320px); } }
+</style>

@@ -1,10 +1,12 @@
 ---
 import MediaPoster from './MediaPoster.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
-const { project, media } = Astro.props;
+const { project, media, summary, statement, links } = Astro.props;
 ---
 <header class="case-hero">
   <h1>{project.name}</h1>
+  {summary && <p class="case-hero__summary">{summary}</p>}
+  {statement && <p class="case-hero__statement">{statement}</p>}
   {media
     ? <ProjectMediaPreview
         posterSrc={media.src}
@@ -19,4 +21,13 @@ const { project, media } = Astro.props;
         posterFit={media.posterFit}
       />
     : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
+  {links && <div class="case-hero__actions">{links.map((link: { label: string; href: string }) => <a class="text-link" href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
 </header>
+
+<style>
+  .case-hero__summary { margin: 0 0 20px; color: var(--secondary); font-size: clamp(15px, 1.5vw, 18px); }
+  .case-hero__summary:has(+ .case-hero__statement) { margin-bottom: 10px; }
+  .case-hero__statement { max-width: 70ch; margin: 0 0 24px; color: var(--text); font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; }
+  .case-hero__actions { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 16px; }
+  @media (max-width: 480px) { .case-hero__actions { display: grid; gap: 2px; } }
+</style>

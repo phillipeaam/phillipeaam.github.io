@@ -149,6 +149,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .media-poster[data-state='playing'] .proxy-scene { filter: brightness(1.16); }
 .media-caption { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-3); color: var(--muted); font-size: 12px; line-height: 1.45; letter-spacing: .025em; }
 .media-caption::before { content: ''; width: 20px; height: 1px; flex: none; background: var(--accent); }
+.case-page[data-kind='wallace'] .case-hero .media-caption::before { display: none; }
 .preview-control { position: absolute; z-index: 4; right: 12px; bottom: 42px; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 13px; border: 1px solid #8792a7; border-radius: 4px; background: rgba(17,19,24,.92); color: var(--text); font-size: 13px; opacity: .9; transition: background 180ms var(--ease), opacity 180ms var(--ease); }
 .preview-control:hover, .preview-control:focus-visible { background: var(--interactive); opacity: 1; }
 .preview-control [data-control-icon] { color: var(--accent); font-size: 11px; }
