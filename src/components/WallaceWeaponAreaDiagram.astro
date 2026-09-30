@@ -1,0 +1,62 @@
+---
+const base = [
+  [{ label: '×0.7', meaning: 'left affected cell, multiplier 0.7' }, { label: '×1', meaning: 'center affected cell, multiplier 1' }, { label: '×0.7', meaning: 'right affected cell, multiplier 0.7' }],
+  [null, { label: 'O', meaning: 'pattern origin' }, null],
+  [null, null, null],
+];
+const east = [
+  [null, { label: '×0.7', meaning: 'affected cell at grid position 5,4, multiplier 0.7' }, null],
+  [{ label: 'O', meaning: 'grid origin at 4,3' }, { label: '×1', meaning: 'affected cell at grid position 5,3, multiplier 1' }, null],
+  [null, { label: '×0.7', meaning: 'affected cell at grid position 5,2, multiplier 0.7' }, null],
+];
+---
+<figure class="weapon-model" aria-labelledby="weapon-model-title">
+  <figcaption class="weapon-model__heading"><span class="eyebrow">SYSTEM MODEL · ATTACK AREA</span><strong id="weapon-model-title">From relative offsets to affected cells</strong></figcaption>
+  <div class="weapon-model__stages">
+    <section class="weapon-model__stage" aria-label="Configured relative pattern">
+      <h3>Configured pattern</h3>
+      <p>Three offsets north of the origin, each carrying its damage multiplier.</p>
+      <ol class="weapon-model__grid" aria-label="Base pattern, with three affected cells above the origin">
+        {base.flatMap((row, rowIndex) => row.map((cell, columnIndex) => <li class:list={['weapon-model__cell', cell?.label === 'O' && 'weapon-model__cell--origin', cell && cell.label !== 'O' && 'weapon-model__cell--affected']} aria-label={`Row ${rowIndex + 1}, column ${columnIndex + 1}: ${cell?.meaning ?? 'empty'}`}>{cell?.label}</li>))}
+      </ol>
+      <small>Relative offsets: (−1, 1), (0, 1), (1, 1)</small>
+    </section>
+    <div class="weapon-model__transform" aria-label="Copy, transform for East, and translate">
+      <span aria-hidden="true">→</span>
+      <strong>Copy · orient · place</strong>
+      <p>For East, (x, y) becomes (y, −x). Then add the chosen grid origin.</p>
+      <small>N · E · S · W are supported inputs</small>
+    </div>
+    <section class="weapon-model__stage" aria-label="East-oriented pattern at grid origin 4,3">
+      <h3>Affected cells</h3>
+      <p>Example with East requested and grid origin at (4, 3).</p>
+      <ol class="weapon-model__grid" aria-label="East-oriented result, with three affected cells to the right of the origin">
+        {east.flatMap((row, rowIndex) => row.map((cell, columnIndex) => <li class:list={['weapon-model__cell', cell?.label === 'O' && 'weapon-model__cell--origin', cell && cell.label !== 'O' && 'weapon-model__cell--affected']} aria-label={`Row ${rowIndex + 1}, column ${columnIndex + 1}: ${cell?.meaning ?? 'empty'}`}>{cell?.label}</li>))}
+      </ol>
+      <small>Result: (5, 4), (5, 3), (5, 2)</small>
+    </section>
+  </div>
+  <p class="weapon-model__caption">Original diagram based on a configured three-cell area. Copying preserves the stored pattern across queries. The calculation accepts a direction; the inspected combat caller supplied East, so live facing-aware attacks are not established.</p>
+</figure>
+
+<style>
+  .weapon-model { grid-column: 1 / -1; min-width: 0; margin: 18px 0 0; padding: clamp(18px, 3vw, 32px); border: 1px solid color-mix(in srgb, var(--project-accent) 28%, var(--line)); border-radius: 4px; background: var(--media); }
+  .weapon-model__heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 26px; }
+  .weapon-model__heading .eyebrow { margin: 0; color: var(--project-accent); }
+  .weapon-model__heading strong { font: 500 clamp(18px, 2vw, 23px)/1.25 var(--font-display); letter-spacing: -.025em; text-align: right; }
+  .weapon-model__stages { display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, .65fr) minmax(0, 1fr); gap: clamp(12px, 2vw, 28px); align-items: stretch; }
+  .weapon-model__stage { min-width: 0; padding: clamp(16px, 2vw, 24px); border: 1px solid var(--line); border-radius: 3px; background: var(--elevated); }
+  .weapon-model__stage h3 { margin: 0 0 8px; font-size: 18px; }
+  .weapon-model__stage p, .weapon-model__transform p { max-width: 34ch; margin: 0 0 18px; color: var(--secondary); font-size: 13px; line-height: 1.5; }
+  .weapon-model__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; width: min(100%, 250px); margin: 0 0 14px; padding: 0; list-style: none; }
+  .weapon-model__cell { display: grid; place-items: center; aspect-ratio: 1; min-width: 0; border: 1px solid var(--line-strong); border-radius: 2px; background: var(--bg); color: var(--text); font-size: clamp(11px, 1.2vw, 14px); font-weight: 600; }
+  .weapon-model__cell--origin { border-color: var(--project-accent); color: var(--project-accent); }
+  .weapon-model__cell--affected { border-color: var(--project-accent); background: color-mix(in srgb, var(--project-accent) 19%, var(--bg)); }
+  .weapon-model__stage small, .weapon-model__transform small { color: var(--muted); font-size: 11px; line-height: 1.45; }
+  .weapon-model__transform { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-width: 0; padding: 12px 4px; }
+  .weapon-model__transform > span { color: var(--project-accent); font-size: 34px; line-height: 1; }
+  .weapon-model__transform strong { margin: 12px 0 8px; font-size: 14px; font-weight: 600; }
+  .weapon-model__transform p { margin-bottom: 10px; }
+  .weapon-model__caption { margin: 20px 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.55; }
+  @media (max-width: 760px) { .weapon-model__heading { display: block; } .weapon-model__heading .eyebrow { margin-bottom: 7px; } .weapon-model__heading strong { display: block; text-align: left; } .weapon-model__stages { grid-template-columns: minmax(0, 1fr); gap: 10px; } .weapon-model__transform { padding: 4px 10px 8px; } .weapon-model__transform > span { transform: rotate(90deg); } .weapon-model__transform strong { margin-top: 0; } .weapon-model__grid { width: min(100%, 230px); } .weapon-model__cell { font-size: 14px; } }
+</style>

@@ -8,7 +8,7 @@ const cells = [
 ];
 ---
 <figure class="grid-search" aria-labelledby="grid-search-title">
-  <figcaption class="grid-search__heading"><span class="eyebrow">SYSTEM MODEL · 2021</span><strong id="grid-search-title">From Tilemap obstacles to a route query</strong></figcaption>
+  <figcaption class="grid-search__heading"><span class="eyebrow">SYSTEM MODEL · GRID SEARCH</span><strong id="grid-search-title">From Tilemap obstacles to a route query</strong></figcaption>
   <div class="grid-search__body">
     <div class="grid-search__map">
       <p class="grid-search__label">Illustrative five-by-five grid</p>
@@ -25,7 +25,7 @@ const cells = [
     </ol>
   </div>
   <div class="grid-search__notes"><p><strong>Frontier example</strong><span>Candidate A: g 2 + h 4 = 6 · Candidate B: g 3 + h 2 = 5. Selection uses the lower g + h; these values illustrate the rule, not a recorded search trace.</span></p><p><strong>Important limit</strong><span>First-discovered parent is retained: an already-open node is not updated if a cheaper route appears. Optimality is not established.</span></p></div>
-  <p class="grid-search__caption">Original explanatory diagram. The 2021 module had an isolated visualization scene; older combat callers were not fully reintegrated, and the public WebGL build does not demonstrate this module.</p>
+  <p class="grid-search__caption">An explanatory model of walkability, node relationships and route output. The arrows point from each route cell back to its parent.</p>
 </figure>
 
 <style>
