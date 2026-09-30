@@ -35,10 +35,16 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
       <span class="nav-anchor-alias" id="other-work" aria-hidden="true"></span>
       <div><p class="eyebrow">BREADTH, AT A GLANCE</p><h2 id="projects-title">More Projects</h2></div><p><span class="section-support-line">Professional products, independent games, and technical</span> <span class="section-support-line">work beyond the selected case studies.</span></p>
     </header>
+    <div class="more-projects__utility-row">
+      <p class="more-projects__guidance">
+        <span class="more-projects__guidance--hover">Hover to preview <span aria-hidden="true">·</span> Click a project to view details</span>
+        <span class="more-projects__guidance--touch">Tap a project to view details</span>
+      </p>
+      <a class="section-footer-action" href={`${homePath}projects/`}><span class="section-footer-action__label">See all projects</span><span class="section-footer-action__icon" aria-hidden="true">→</span></a>
+    </div>
     <div class="supporting-grid">
       {homeSupportingProjects.map((item) => <SupportingProject {...item} simple />)}
     </div>
-    <div class="section-footer more-projects-cta"><a class="section-footer-action" href={`${homePath}projects/`}><span class="section-footer-action__label">See all projects</span><span class="section-footer-action__icon" aria-hidden="true">→</span></a></div>
   </section>
 
   <TestimonialsSection />
