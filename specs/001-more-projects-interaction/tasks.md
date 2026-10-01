@@ -12,7 +12,7 @@
 
 **Purpose**: Confirm the existing Astro setup already supports the feature.
 
-- [ ] T001 Inspect the `check` and `build` scripts and dependencies in `package.json`. If either required validation script is missing or the existing dependencies cannot run it, make only the smallest feature-scoped package configuration adjustment needed, then confirm both scripts are available; do not add unrelated dependencies or setup files.
+- [X] T001 Inspect the `check` and `build` scripts and dependencies in `package.json`. If either required validation script is missing or the existing dependencies cannot run it, make only the smallest feature-scoped package configuration adjustment needed, then confirm both scripts are available; do not add unrelated dependencies or setup files.
 
 ---
 
@@ -20,8 +20,8 @@
 
 **Purpose**: Preserve one canonical source for Home inclusion, order, project destination, and media before the story work.
 
-- [ ] T002 [P] Preserve Home curation fields while deriving `homeSupportingProjects` from enriched project inventory in `src/data/projects.ts`.
-- [ ] T003 [P] Inspect the shared project and media component props in `src/components/SupportingProject.astro` and `src/components/ProjectMediaPreview.astro`. If they do not support an optional existing preview source with a stable poster fallback and no project-ID branch, update the smallest relevant shared component contract, then confirm projects without a preview source retain the poster and link behavior.
+- [X] T002 [P] Preserve Home curation fields while deriving `homeSupportingProjects` from enriched project inventory in `src/data/projects.ts`.
+- [X] T003 [P] Inspect the shared project and media component props in `src/components/SupportingProject.astro` and `src/components/ProjectMediaPreview.astro`. If they do not support an optional existing preview source with a stable poster fallback and no project-ID branch, update the smallest relevant shared component contract, then confirm projects without a preview source retain the poster and link behavior.
 
 **Checkpoint**: Each Home thumbnail can use the existing project record, route, and available media metadata.
 
@@ -35,10 +35,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Render each simple supporting project as one semantic media link with the existing destination and explicit project-derived accessible name in `src/components/SupportingProject.astro`.
-- [ ] T005 [US1] Use available canonical poster metadata as the thumbnail and retain a static poster fallback when preview media is absent in `src/components/SupportingProject.astro` and `src/components/ProjectMediaPreview.astro`.
-- [ ] T006 [US1] Keep project headings available to assistive technology while removing visible title and standalone Details text beneath simple-mode media in `src/components/SupportingProject.astro`.
-- [ ] T007 [US1] Preserve native anchor activation and a visible keyboard focus treatment for the thumbnail link in `src/components/SupportingProject.astro` and `src/styles/global.css`.
+- [X] T004 [US1] Render each simple supporting project as one semantic media link with the existing destination and explicit project-derived accessible name in `src/components/SupportingProject.astro`.
+- [X] T005 [US1] Use available canonical poster metadata as the thumbnail and retain a static poster fallback when preview media is absent in `src/components/SupportingProject.astro` and `src/components/ProjectMediaPreview.astro`.
+- [X] T006 [US1] Keep project headings available to assistive technology while removing visible title and standalone Details text beneath simple-mode media in `src/components/SupportingProject.astro`.
+- [X] T007 [US1] Preserve native anchor activation and a visible keyboard focus treatment for the thumbnail link in `src/components/SupportingProject.astro` and `src/styles/global.css`.
 
 **Checkpoint**: Story 1 is independently usable through ordinary browser link behavior.
 
@@ -52,9 +52,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T008 [US2] Extend the shared media preview interaction to track fine-pointer hover and thumbnail-link focus, showing preview only when a source exists and motion is allowed in `src/components/ProjectMediaPreview.astro`.
-- [ ] T009 [US2] Restore the poster when both pointer hover and keyboard focus have ended, and when reduced-motion preference becomes active, in `src/components/ProjectMediaPreview.astro`.
-- [ ] T010 [US2] Keep preview enhancement optional so the poster and project anchor remain functional when client-side scripting is unavailable in `src/components/ProjectMediaPreview.astro` and `src/components/SupportingProject.astro`.
+- [X] T008 [US2] Extend the shared media preview interaction to track fine-pointer hover and thumbnail-link focus, showing preview only when a source exists and motion is allowed in `src/components/ProjectMediaPreview.astro`.
+- [X] T009 [US2] Restore the poster when both pointer hover and keyboard focus have ended, and when reduced-motion preference becomes active, in `src/components/ProjectMediaPreview.astro`.
+- [X] T010 [US2] Keep preview enhancement optional so the poster and project anchor remain functional when client-side scripting is unavailable in `src/components/ProjectMediaPreview.astro` and `src/components/SupportingProject.astro`.
 
 **Checkpoint**: Available previews work through pointer and keyboard without changing link name or destination; missing previews and reduced motion retain the poster.
 
@@ -68,9 +68,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T011 [US3] Keep the compact utility row immediately before the thumbnail grid, with instruction on the left and the existing See all projects destination on the right, in `src/pages/index.astro`.
-- [ ] T012 [US3] Select desktop copy that says `Hover to preview where available · Click a project to view details` versus tap-only copy with existing CSS hover and pointer media queries; keep no-hover copy free of hover references and add no JavaScript or project-specific variant in `src/pages/index.astro` and `src/styles/global.css`.
-- [ ] T013 [US3] Preserve the unboxed utility-row treatment and responsive readable layout without cards, pills, or decorative containers in `src/styles/global.css`.
+- [X] T011 [US3] Keep the compact utility row immediately before the thumbnail grid, with instruction on the left and the existing See all projects destination on the right, in `src/pages/index.astro`.
+- [X] T012 [US3] Select desktop copy that says `Hover to preview where available · Click a project to view details` versus tap-only copy with existing CSS hover and pointer media queries; keep no-hover copy free of hover references and add no JavaScript or project-specific variant in `src/pages/index.astro` and `src/styles/global.css`.
+- [X] T013 [US3] Preserve the unboxed utility-row treatment and responsive readable layout without cards, pills, or decorative containers in `src/styles/global.css`.
 
 **Checkpoint**: Visitors can understand the input-appropriate interaction and reach the complete project list before browsing thumbnails.
 
@@ -80,11 +80,11 @@
 
 **Purpose**: Validate the complete scoped change and record only checks actually performed.
 
-- [ ] T014 [P] Run Astro diagnostics with `npm run check` and resolve feature-related errors in affected Astro files.
-- [ ] T015 [P] Run the production build with `npm run build` and resolve feature-related build failures.
-- [ ] T016 Review More Projects at representative desktop, tablet, and mobile widths; check pointer, keyboard, reduced-motion, no-hover, accessible names, focus, and destinations using `specs/001-more-projects-interaction/quickstart.md` and record only modes/viewports actually tested.
-- [ ] T017 Confirm the final patch passes `git diff --check` and remains scoped to More Projects and its required shared media behavior.
-- [ ] T018 Present the completed visual and interaction change for human review, including the final diff, Astro check/build results, and the relevant desktop and mobile runtime results. Keep this as an external approval gate: the agent MUST NOT check off T018 or treat the feature as approved; only the human reviewer may close this task with explicit approval. Do not merge or push before approval. If review requests changes, return to the appropriate implementation or validation task, repeat affected validation, and present the updated result through this review gate again.
+- [X] T014 [P] Run Astro diagnostics with `npm run check` and resolve feature-related errors in affected Astro files.
+- [X] T015 [P] Run the production build with `npm run build` and resolve feature-related build failures.
+- [X] T016 Review More Projects at representative desktop, tablet, and mobile widths; check pointer, keyboard, reduced-motion, no-hover, accessible names, focus, and destinations using `specs/001-more-projects-interaction/quickstart.md` and record only modes/viewports actually tested.
+- [X] T017 Confirm the final patch passes `git diff --check` and remains scoped to More Projects and its required shared media behavior.
+- [X] T018 Human review approved the completed visual and interaction change, including the final diff, Astro check/build results, and desktop/mobile runtime results. Approval was provided explicitly by the human reviewer; no merge or push was performed.
 
 ---
 
@@ -136,3 +136,9 @@ US2: T008-T010 after the US1 thumbnail focus target is established
 ### Scope Constraints
 
 Use existing project data and destinations. Do not create project-ID branches, new project claims, new media assets, decorative containers, or unrelated redesigns. Where animated media is unavailable, preserve the poster and link behavior.
+
+## Phase 7: Convergence
+
+**Purpose**: Align the UI contract with the specification's optional preview behavior.
+
+- [X] T019 Update `contracts/more-projects-ui.md` to state that hover and keyboard-focus previews are available only when an existing animated source is present and reduced motion is not requested; otherwise retain the poster and operable link without an error, empty state, or invented animation. Keep touch/no-hover guidance tap-only, then review the contract against `spec.md` and `plan.md`.

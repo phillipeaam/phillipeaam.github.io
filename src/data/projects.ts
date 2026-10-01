@@ -182,10 +182,6 @@ export const otherWork: SupportingProjectRecord[] = [
   },
 ];
 
-export const homeSupportingProjects = otherWork
-  .filter((project) => project.showOnHome)
-  .sort((a, b) => (a.homeOrder ?? Number.MAX_SAFE_INTEGER) - (b.homeOrder ?? Number.MAX_SAFE_INTEGER));
-
 export function resolveExperienceWork(projectId: string, baseUrl = '/') {
   const basePath = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   const caseProject = featuredProjects.find((project) => project.slug === projectId);
@@ -241,6 +237,8 @@ export type ProjectInventoryEntry = {
   kind?: Project['kind'];
   context?: string;
   caseStudySlug?: string;
+  showOnHome?: boolean;
+  homeOrder?: number;
   actions?: ProjectAction[];
   media?: ProjectMedia[];
   identityImage?: string;
@@ -346,6 +344,10 @@ export const projectInventory: ProjectInventoryEntry[] = [
   ...otherWork,
   ...publicArchiveEntries,
 ].map((project) => ({ ...project, ...archiveDetails[project.id] }));
+
+export const homeSupportingProjects = projectInventory
+  .filter((project) => project.showOnHome)
+  .sort((a, b) => (a.homeOrder ?? Number.MAX_SAFE_INTEGER) - (b.homeOrder ?? Number.MAX_SAFE_INTEGER));
 
 export const projectInventoryGroups = [
   { id: 'professional-game', eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.', order: ['learn-with-ello', 'read-with-ello', 'tabuada-na-fazenda', 'craque-da-leitura', 'flui', 'ilhas-do-alfabeto', 'craque-da-fluencia', 'avaliacao-lingua-portuguesa'] },

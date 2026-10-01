@@ -10,11 +10,16 @@ This is the behavioral contract for the Home page More Projects section.
   of visible text inside poster media.
 - The poster is the primary visible target. Project title and separate Details
   link are not displayed below the media.
-- Hover on a compatible fine pointer and keyboard focus preview the matching
-  animated media when a preview exists and reduced motion is not requested.
-- Pointer exit or focus loss returns to the poster. Reduced-motion preference
-  suppresses animation.
-- The static poster and ordinary link remain usable without optional scripting.
+- An animated preview is available only when that project has an existing
+  animation source. Hover on a compatible fine pointer and keyboard focus may
+  show that preview only when motion is allowed.
+- When an animation source is unavailable or reduced motion is enabled, the
+  static poster remains visible. Pointer exit or focus loss also returns to
+  the poster.
+- The project link and its click or keyboard activation remain fully available
+  in every state, including when scripting is unavailable.
+- Do not invent or require an animation source to satisfy the interaction; a
+  project without one keeps its poster and operable link.
 - Focus remains visible; link activation works with keyboard and touch.
 
 ## Utility row

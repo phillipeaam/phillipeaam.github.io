@@ -45,6 +45,7 @@ const {
   const previewAreas = document.querySelectorAll<HTMLElement>('[data-project-media-preview]:not([data-bound])');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const refreshPreview = new Map<HTMLElement, () => void>();
 
   const showPoster = (area: HTMLElement) => {
     const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
@@ -65,30 +66,50 @@ const {
   for (const area of previewAreas) {
     area.dataset.bound = 'true';
     const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
+    const link = area.closest('a');
     image?.addEventListener('error', () => {
       if (image.src === new URL(area.dataset.previewSrc ?? '', window.location.href).href) showPoster(area);
     });
 
-    if (area.dataset.autoplayPreview === 'true') {
-      if (!reducedMotion.matches) showPreview(area);
-      continue;
-    }
+    let pointerActive = false;
+    let focusActive = false;
+    const updatePreview = () => {
+      if (reducedMotion.matches) {
+        showPoster(area);
+        return;
+      }
+
+      if (area.dataset.autoplayPreview === 'true') {
+        showPreview(area);
+        return;
+      }
+
+      if ((pointerActive && fineHover.matches) || focusActive) showPreview(area);
+      else showPoster(area);
+    };
+    refreshPreview.set(area, updatePreview);
 
     area.addEventListener('pointerenter', () => {
-      if (fineHover.matches) showPreview(area);
+      pointerActive = fineHover.matches;
+      updatePreview();
     });
-    area.addEventListener('pointerleave', () => showPoster(area));
+    area.addEventListener('pointerleave', () => {
+      pointerActive = false;
+      updatePreview();
+    });
+    link?.addEventListener('focus', () => {
+      focusActive = true;
+      updatePreview();
+    });
+    link?.addEventListener('blur', () => {
+      focusActive = false;
+      updatePreview();
+    });
   }
 
   reducedMotion.addEventListener('change', () => {
-    if (reducedMotion.matches) previewAreas.forEach(showPoster);
+    previewAreas.forEach((area) => refreshPreview.get(area)?.());
   });
 
-  fineHover.addEventListener('change', (event) => {
-    if (!event.matches) {
-      previewAreas.forEach((area) => {
-        if (area.dataset.autoplayPreview !== 'true') showPoster(area);
-      });
-    }
-  });
+  fineHover.addEventListener('change', () => previewAreas.forEach((area) => refreshPreview.get(area)?.()));
 </script>
