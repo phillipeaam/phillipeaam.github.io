@@ -1,12 +1,12 @@
-﻿# Implementation Plan: Hash Navigation
+# Implementation Plan: Hash Navigation
 
-**Branch**: `fix/cross-page-anchor-scroll` | **Date**: 2026-09-30 | **Spec**: [spec.md](spec.md)
+**Branch**: `fix/cross-page-anchor-scroll` | **Date**: 2026-10-01 | **Spec**: [spec.md](spec.md)
 
-**Input**: User request to plan cross-page navigation behavior; inspect current runtime and avoid implementation changes if the behavior is already satisfied.
+**Input**: User-reproduced cross-page anchor and Home return scroll; investigate causes and plan the smallest supported fix without redesigning navigation or visuals.
 
 ## Summary
 
-The reported journey is clicking a featured project's thumbnail on Home, navigating to that record on the all-projects page, and seeing the archive top before a visible scroll down to the record. Prior desktop validation covered the separate `See on all projects` text link, not this exact thumbnail journey. The first plan stage therefore verifies the rendered thumbnail's actual link behavior and attempts to reproduce the report before diagnosing a cause or proposing a patch. The two category hashes, direct/reload, hash history, no-hash navigation, and Home same-page smooth scrolling passed on desktop. Tablet, mobile, keyboard/focus, reduced-motion, and optional-script behavior remain unverified.
+The specified primary control is the Pathless project card thumbnail in Home's More Projects section, navigating to `/projects/#pathless`, initially seeing the archive top, then visibly moving to the Pathless record. A second confirmed symptom is the all-projects page's header `← Back` link returning to Home at the top and then scrolling to the position saved before departure. The Pathless More Projects card and Wallace's Quest Selected work link are separate controls; the latter is only a comparison path. The first was missed by checking only final URL and position; the second is tied by source evidence to Navigation's session-storage restoration flag and subsequent scripted scroll. The investigation must capture both sequences over time, distinguish native browser Back/Forward from the header return link, and identify the cause of the cross-page anchor reposition before any patch proposal. No implementation change is included in this plan update.
 
 ## Technical Context
 
@@ -26,13 +26,13 @@ The reported journey is clicking a featured project's thumbnail on Home, navigat
 - **II. Shared Patterns Before Project-Specific Variants**: Pass; no new variants are proposed.
 - **III. Preserve Approved Visual Systems**: Pass; no visual changes are proposed.
 - **IV. Accessibility Is Part of Completion**: Applicable navigation controls must be semantic links with meaningful accessible names, keyboard operation and visible focus, reduced-motion support, and usable touch targets. T008 checks these controls at desktop, tablet, and mobile widths, including touch activation and core navigation with optional scripts unavailable.
-- **V. Progressive Enhancement**: Pass; the observed behavior relies on ordinary URL hashes, CSS, and browser history. No additional script is warranted.
-- **VI. Responsive Verification**: Open validation item; tablet and mobile were not available in the browser session. Any implementation change remains incomplete until applicable checks pass at desktop, tablet, and mobile. Report only viewports actually tested.
-- **VII. Small, Scoped Changes**: Pass; no source change is recommended before the reported user journey is reproduced and its cause is evidenced.
+- **V. Progressive Enhancement**: Pass with a documented enhancement boundary; core links remain usable without optional JavaScript, while restoring the exact prior Home position from the header link is an enhancement. Without the script, the link still reaches Home. T008 verifies core navigation with optional scripts unavailable.
+- **VI. Responsive Verification**: Partial; thumbnail destination and sticky-header clearance were checked at 2545px-wide desktop, 768×1024 tablet, and 390×844 mobile. Other responsive criteria remain open. Report only viewports actually tested.
+- **VII. Small, Scoped Changes**: Pass; the issue is reproduced, but no source change is proposed until both visible sequences and their causes are documented.
 - **VIII. Validation Before Completion**: Tasks require real-browser acceptance checks at desktop, tablet, and mobile widths, plus `git diff --check`, Astro diagnostics, and a production build.
 - **IX. Human Review for Meaningful Changes**: Task T013 is the final human review gate for any source change.
 
-**Gate**: Existing no-change evidence covers the text-link path at desktop only, not the reported thumbnail path. Investigate and record the exact user journey before deciding whether any patch is justified. Tablet, mobile, and accessibility checks remain untested and cannot be represented as passed. If a patch becomes necessary, applicable checks at all three viewport classes are required completion gates.
+**Gate**: The Pathless thumbnail path has reproduced with an initial archive-top screenshot followed by the Pathless destination. The header `← Back` link also exhibits an initial Home-top view followed by restoration of the prior scroll position; the script's session-storage flag and `scrollTo` are identified, while the cross-page anchor's first-paint cause is not. Before patching, repeat and time both flows, trace target/layout readiness and return-restoration behavior at desktop/tablet/mobile, and document the smallest supported fix. No implementation edits are part of this documentation workflow.
 
 ## Project Structure
 
@@ -59,17 +59,17 @@ src/
 astro.config.mjs
 ```
 
-**Structure Decision**: No implementation structure change. First establish the exact rendered thumbnail control, its destination URL/hash, and the timing of URL change, first paint, target positioning, and any later scroll. Compare it with the existing `See on all projects` text link and direct deep links. Only after the reported sequence reproduces should investigation trace the responsible browser/layout/script behavior and consider a minimal source change. If the sequence does not reproduce, record that outcome and do not invent a patch.
+**Structure Decision**: No implementation structure change. First establish the exact rendered Pathless card thumbnail control in More Projects, its destination URL/hash, and the timing of URL change, first paint, target positioning, and any later scroll. Compare it with Wallace's Quest `See on all projects` text link in Selected work and the direct Pathless URL; they are separate controls with different record targets. Only after the reported sequence reproduces should investigation trace the responsible browser/layout/script behavior and consider a minimal source change. If the sequence does not reproduce, record that outcome and do not invent a patch.
 
 ## Root Cause and Current Finding
 
-The exact reported thumbnail path has not yet been verified. Prior desktop evidence shows the `See on all projects` text link succeeds, but that is not a substitute for activating the featured-project thumbnail. Repository evidence shows global smooth scrolling at `src/styles/global.css:51`, but the Projects archive overrides it to `auto` at line 52. Existing group and record scroll margins account for the sticky-header offset (lines 20, 64, 364, and 368). `Navigation.astro:184-211` observes and responds to hashes for active-navigation state; it does not make a second scroll. No Astro client router or View Transitions integration is configured in the inspected page shell or `astro.config.mjs`. These findings narrow possible causes but do not establish the cause of the reported thumbnail flow.
+The Pathless thumbnail path reproduced: the first screenshot showed the archive top and a later screenshot showed the target record at `/projects/#pathless`. The project page uses `scroll-behavior: auto` and existing target scroll margins; `Navigation.astro`'s hash listener only updates active navigation, so it is not yet the established cross-page root cause. The header `← Back` path is directly connected to a session-storage restoration flag and a delayed `window.scrollTo` in `Navigation.astro`. Source trace should now focus on timing/layout factors that cause the anchor to move after initial paint, and on the minimum change that avoids a visible two-step return without disrupting Home's same-page smooth scrolling or browser history.
 
-The investigation must first observe the reported thumbnail path directly and distinguish an initial top-of-page paint from a later layout-driven reposition or explicit scroll. Global smooth scrolling is a possible explanation in builds without the archive override, but the override means this alone does not explain the current branch. The later scroll may also relate to when the target becomes available, layout changes, or route/hash-reactive behavior; these are hypotheses to check only if the exact flow reproduces, not conclusions. See [research.md](research.md) and [quickstart.md](quickstart.md) for current evidence and the investigation protocol.
+The initial top-to-target movement is reproduced by successive browser screenshots. Exact timing and the responsible layout/anchor sequence remain to be isolated; candidate explanations stay hypotheses until measured. The Home restoration script is an evidenced contributor to the second movement. See [research.md](research.md) and [quickstart.md](quickstart.md) for the investigation record.
 
 ## Implementation Decision
 
-No implementation change is currently justified. First test and document the exact thumbnail journey at desktop, tablet, and mobile; compare it with the text-link and direct-URL paths; and capture enough timing and URL evidence to explain any visible movement. If it reproduces, trace the cause and propose the smallest in-scope fix supported by evidence. If it does not reproduce, document the tested conditions and make no code change. Do not add a scroll handler, routing transition, or alternate anchor offset without a reproducing case. If the only proposed fix requires routing redesign or other out-of-scope behavior, revise the plan before implementation.
+The behavior is reproduced, so a minimal change may be needed. This documentation-only plan update does not select or implement a fix yet. First complete temporal capture and root-cause tracing for both the cross-page hash and the header Back restoration, then decide the smallest change that preserves Home smooth scrolling, native link/history behavior, direct/reload destinations, and sticky-header clearance.
 
 ## Complexity Tracking
 

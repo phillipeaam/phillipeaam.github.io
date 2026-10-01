@@ -1,69 +1,60 @@
 # Browser Validation Guide: Hash Navigation
 
-**Feature**: [Hash Navigation](spec.md)  
-**Runtime used for current-branch review**: local Astro site in Chrome at
-`http://127.0.0.1:4321/`
+**Feature**: [Hash Navigation](spec.md)
+**Runtime**: Local Astro site at `http://127.0.0.1:4321/` in Google Chrome; browser version unavailable.
+**Viewports**: Default desktop width 2545 CSS px (height unavailable); explicit tablet 768x1024 and mobile 390x844 overrides. Overrides were reset after testing.
 
 ## Prerequisites
 
-1. Start the portfolio locally with `npm run dev` from the repository root.
-2. Use a real browser at representative desktop, tablet, and mobile CSS viewport
-   widths; record the actual dimensions used. The current review only had a
-   desktop-sized viewport available.
-3. For the investigation, use the same featured project and a fresh Home load
-   for each path. Record browser/version, viewport, clicked control, resulting
-   URL/hash, whether the archive top is ever visible, final target position,
-   and whether any later movement occurs. Repeat the thumbnail path to check
-   reproducibility; use a screen recording or timed screenshots if needed.
+1. Start the portfolio from the repository root with `npm run dev`.
+2. Test each path from a fresh Home load and record viewport, clicked control, URL/hash, first destination view, later movement, and final target position.
+3. For time-sensitive movement, capture successive screenshots or scroll-position samples immediately after navigation and after settling; repeat each path three times per viewport.
 
 ## Scenarios and Expected Results
 
 | Scenario | Steps | Expected result |
 |---|---|---|
-| Reported thumbnail path | From a fresh Home load, click a featured project's thumbnail | Record whether it is interactive and its destination URL/hash; its project record appears directly, with no archive-top view followed by movement to the record; heading clears the sticky header |
-| Text-link comparison | From a fresh Home load, activate that card's `See on all projects` link | Record its URL/hash and whether its behavior differs from the thumbnail path; target record appears directly and heading clears the sticky header |
-| Direct-URL comparison | Open the exact `/projects/#<project-record>` URL obtained from either Home control | Record whether direct loading differs from click navigation; the target record appears directly and heading clears the sticky header |
-| Direct project-record deep link and reload | Open the exact project-record hash observed in T002 in a fresh tab, then reload that URL | The same project record is the destination after both open and reload; no archive-top-then-scroll transition occurs and the heading clears the sticky header |
-| Professional group hash from Home context | From Home context open `/projects/#professional-game` directly | Professional group is the first destination without a visible top-to-target scroll; heading clears the sticky header |
-| Independent group hash from Home context | From Home context open `/projects/#independent-game` directly | Independent group is the first destination without a visible top-to-target scroll; heading clears the sticky header |
-| Direct deep link | Open each category URL in a fresh tab | Matching group is the destination and its heading is unobscured |
-| Reload | Reload each category URL | Matching group remains the destination and its heading is unobscured |
-| Same-page Home anchor | Activate Home same-page navigation such as Projects | Existing smooth scroll remains visible and the hash identifies the section |
-| Hash history | Navigate between both group hashes, then use Back and Forward | Browser history restores the expected URL and group after settling |
-| No-hash history | Navigate `/projects/#professional-game` -> `/projects/` -> `/projects/#independent-game`; use Back and Forward | Hash entries restore their matching groups; returning to `/projects/` lands at the top |
-| No-hash Home navigation | From Home activate `See all projects` | `/projects/` begins at the first archive group, without a hash |
-| Semantics and accessible names | Inspect the featured-project thumbnail, `See on all projects`, and `Projects` controls | Each navigation control is a semantic link with a meaningful accessible name |
-| Keyboard and focus | From Home, keyboard-focus and activate the featured thumbnail link, `See on all projects`, and `Projects` | Each link is operable, focus is visible, and each reaches its expected destination |
-| Touch targets | At mobile width, activate each relevant navigation control by touch | Each target is usable and no adjacent control is accidentally activated |
-| Reduced motion | Enable the browser/OS reduced-motion preference; use `See on all projects` and `Projects` | Cross-page and same-page navigation remain usable without forced smooth animation |
-| Optional scripts unavailable | Disable JavaScript or otherwise make optional scripts unavailable; activate `See on all projects` and `Projects` | Both core links still reach their expected hash destinations |
-| Responsive behavior | Repeat relevant scenarios at desktop, tablet, and mobile widths | Navigation outcomes remain correct and headings are readable below the sticky header |
+| More Projects card thumbnails | From Home, click every project card thumbnail that links to a project-record hash; include Pathless | Each matching record appears directly without first showing archive top and then moving down; each heading clears sticky header |
+| Header Back restoration | From a scrolled Home position, open Pathless, then activate the archive header Back link | Home restores the earlier position without showing Home top first and then scrolling down |
+| Selected work text link | From Home, activate Wallace's Quest `See on all projects` in Selected work | `/projects/#wallaces-quest` opens directly on the record |
+| Direct category links | Open `/projects/#professional-game` and `/projects/#independent-game` | Each requested group is the initial visible destination; heading clears sticky header |
+| Direct project link and reload | Open and reload `/projects/#pathless` and `/projects/#wallaces-quest` | Requested record remains destination and heading is unobscured |
+| Hash history | Navigate between both category hashes, then Back and Forward | Each history entry restores its expected URL and section |
+| No-hash history | Navigate `/projects/#professional-game` -> `/projects/` -> `/projects/#independent-game`, then Back and Forward | Hash entries restore matching sections; `/projects/` entry returns to page top |
+| No-hash Home link | Activate Home `See all projects` | `/projects/` begins at the top |
+| Same-page Home link | Activate Home `Projects` navigation link | Existing same-page smooth scrolling remains visible |
+| Keyboard and focus | Keyboard-focus and activate thumbnail, `See on all projects`, and `Projects` links | Semantic links have meaningful names, work from keyboard, and show focus |
+| Touch | At mobile width, activate relevant links by touch | Each target works without activating an adjacent control |
+| Reduced motion | Enable reduced motion and use cross-page and same-page navigation | Navigation remains usable without forced smooth animation |
+| Optional scripts unavailable | Disable JavaScript and activate core links | Core destinations remain reachable |
+| Responsive checks | Repeat navigation checks at desktop, tablet, and mobile widths | Destinations and sticky-header clearance remain correct |
 
-## Current-Branch Browser Results
+## Current Branch Evidence (2026-10-01)
 
-| Scenario | Desktop result | Tablet result | Mobile result |
+| Scenario | Desktop (2545px wide) | Tablet (768x1024) | Mobile (390x844) |
 |---|---|---|---|
-| Home context to `/projects/#professional-game` | Passed by opening the exact URL from Home context; no Home link currently targets this category hash | Not tested: viewport control unavailable | Not tested: viewport control unavailable |
-| Home context to `/projects/#independent-game` | Passed by opening the exact URL from Home context; no Home link currently targets this category hash | Not tested: viewport control unavailable | Not tested: viewport control unavailable |
-| Reported thumbnail path | Not separately tested in the prior review | Not tested | Not tested |
-| Text-link comparison | Passed; `See on all projects` reached `/projects/#wallaces-quest` directly | Not tested | Not tested |
-| Direct-URL comparison for project record | Not separately recorded | Not tested | Not tested |
-| Direct project-record deep link and reload | Not separately recorded; repeat using the hash observed in T002 | Not tested | Not tested |
-| Direct links and reload | Passed for both group hashes | Not tested | Not tested |
-| Same-page Home anchor | Passed; smooth scrolling remained visible | Not tested | Not tested |
-| Back and Forward between hashes | Passed after the browser settled | Not tested | Not tested |
-| No-hash `/projects/` navigation | Passed; archive began at the first group | Not tested | Not tested |
-| Sticky-header clearance | Passed by visual inspection at the available desktop viewport | Not tested | Not tested |
-| Keyboard/focus | Not tested | Not tested | Not tested |
-| Reduced motion | Not tested | Not tested | Not tested |
-| Optional scripts unavailable | Not tested | Not tested | Not tested |
+| Pathless thumbnail final result | `/projects/#pathless`; final target top about 87.6px, header bottom 88px | Final target top about 87.6px, header bottom 72px | Final target top about 88.5px, header bottom 72px |
+| Pathless thumbnail temporal result | Reproduced: first screenshot showed archive top / Professional group; later screenshot showed Pathless | Transient sequence not checked | Transient sequence not checked |
+| Header Back to Home | User reproduced top-then-restore. `Navigation.astro` source has saved Home position, session restore flag, then delayed `window.scrollTo`; temporal repeat pending | Not tested | Not tested |
+| Wallace image vs text link | Wallace image opens `/work/wallaces-quest/`; adjacent `See on all projects` opens `/projects/#wallaces-quest` | Not separately checked | Not separately checked |
+| Category direct open and reload | Both groups opened and reloaded at matching group; heading top 126.2px (professional), 142.1px (independent), sticky header bottom 88px | Not tested | Not tested |
+| Project deep link and reload | `/projects/#wallaces-quest` stayed on record after reload; target top about 103.9px, header bottom 88px | Not tested | Not tested |
+| Browser Back/Forward with no-hash entry | Back returned `/projects/` at scrollY 0; Forward restored independent group at scrollY 3681 | Not tested | Not tested |
+| No-hash navigation | `/projects/` began at scrollY 0 | Not tested | Not tested |
+| Home same-page scrolling | `/#projects` retained smooth scrolling; settled section top about 104.1px | Not tested | Not tested |
+| Keyboard/focus, touch, reduced motion, scripts disabled | Not tested | Not tested | Not tested |
 
-The available Chrome session supplied a desktop-sized viewport without
-responsive viewport controls, so tablet and mobile results are unknown. The
-keyboard, reduced-motion, and optional-script checks also remain open; do not
-infer passing results from the desktop pointer-based checks.
+### Reproduction and Cause Status
 
-The thumbnail path is the first investigation gate. A passing text-link or
-direct-URL result does not establish that clicking the thumbnail follows the
-same path. Do not propose an implementation change until the exact reported
-interaction is reproduced and its navigation sequence is recorded.
+The Pathless cross-page movement is confirmed by successive screenshots: the first visible archive state was at the top, then the requested record appeared. Prior testing checked only the final URL and position, which hid the intermediate state. Do not treat tablet/mobile final-position checks as proof that their temporal sequence passes.
+
+The archive header Back link is distinct from browser Back/Forward. The user's observed Home top-then-restore sequence is corroborated by the source: the return link sets a session restoration flag; Home reads the saved position and calls `window.scrollTo` after rendering. The cross-page anchor's initial top-to-target reposition has not yet been isolated to a source cause. Do not assume the two movements share one cause.
+
+The three-repeat loop, timed capture, header Back temporal repetition, and keyboard/focus, touch, reduced-motion, and disabled-script checks remain open. The investigation is not complete and no patch decision has been made.
+
+## Tooling and Validation
+
+- `git diff --check`: passed before this temporal reproduction update; rerun after all document edits.
+- Astro diagnostics via bundled Node and local Astro CLI: passed, 0 errors, 0 warnings, 2 hints.
+- Production build via bundled Node and local Astro CLI: passed, 7 static pages generated.
+- PowerShell PATH does not expose `npm` or `node`; direct `npm run check` and `npm run build` were unavailable. Equivalent local Astro CLI commands succeeded.

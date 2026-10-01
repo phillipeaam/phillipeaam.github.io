@@ -3,38 +3,39 @@
 **Feature Branch**: `002-hash-navigation`  
 **Created**: 2026-09-30  
 **Status**: Draft  
-**Input**: User reports that, from Home's featured-project area, clicking a project's thumbnail to navigate to that specific project on the all-projects page first shows the top of that page and then visibly scrolls to the project. The target should appear directly. Direct deep links and reloads should land at the requested section; the sticky header must not cover the destination heading; Back and Forward remain natural; URLs without a hash start at the top; preserve existing same-page smooth scrolling on Home; desktop and mobile; keep scope to navigation behavior, without redesigning Header, sections, visual styling, or routing. Prefer native browser behavior and a minimal solution. Do not prescribe implementation.
+**Input**: User reports that, from Home's More Projects section, clicking a project card thumbnail to navigate to that project's record on the all-projects page (the Pathless card is the confirmed reproduction) first shows the top of that page and then visibly scrolls to the project. The target should appear directly. After using the all-projects page's header `Back` link to return to Home, Home also appears at the top before visibly scrolling to the previous position. Direct deep links and reloads should land at the requested section; the sticky header must not cover the destination heading; browser Back and Forward remain natural; URLs without a hash start at the top; preserve existing same-page smooth scrolling on Home; desktop, tablet, and mobile; keep scope to navigation behavior, without redesigning Header, sections, visual styling, or routing. Prefer native browser behavior and a minimal solution. Do not prescribe implementation.
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Open a section from another page (Priority: P1)
 
-A visitor on Home clicks a featured project's thumbnail to open that specific
-project in the all-projects page. The requested project appears as the
-destination, without a visible intermediate view at the top of that page
+A visitor on Home clicks a project card thumbnail in the More Projects
+section to open its linked project record in the all-projects page. The Pathless
+card is the confirmed reproduction of the problem. The requested project appears as the destination, without a visible intermediate view at the top of that page
 followed by a scroll to the project.
 
 **Why this priority**: This is the reported disruptive behavior and the primary
 navigation journey to correct.
 
-**Independent Test**: From Home, click a featured project's thumbnail and
-observe its destination in the all-projects page; separately activate the
-existing `See on all projects` text link and open
+**Independent Test**: From Home, click each More Projects project card thumbnail that links to a
+project record hash and observe its matching destination; include Pathless as
+the confirmed reproduction; separately activate the
+Wallace's Quest `See on all projects` text link in Selected work and open
 `/projects/#professional-game` and `/projects/#independent-game` directly.
 Observe the destination transition and heading position at representative
 desktop, tablet, and mobile widths.
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor is on Home, **When** they click a featured project's
-   thumbnail to open that project's record in the all-projects page, **Then**
+1. **Given** a visitor is on Home, **When** they click a project card thumbnail in Home's More Projects section to open its
+   linked project record (including the confirmed Pathless reproduction) in the all-projects page, **Then**
    the project record appears directly, without first showing the archive top
    and visibly scrolling down to the record.
 2. **Given** the target section is displayed at desktop, tablet, or mobile
    width, **When** the visitor views its heading, **Then** the sticky header
    does not obscure the heading.
 3. **Given** a visitor is on Home, **When** they activate the existing `See on
-   all projects` text link for a featured project, **Then** its project-record
+   all projects` text link in Selected work, **Then** the Wallace's Quest project-record
    target is displayed directly without a visible scroll from the destination
    page top.
 
@@ -102,6 +103,10 @@ navigation when optional scripts are unavailable.
    destination, **When** they use Back and Forward, **Then** the no-hash history
    entry returns to the top of its page and the hashed entry restores its
    requested section.
+8. **Given** a visitor opens a project record from a scrolled position on Home,
+   **When** they activate the all-projects page's header `Back` link to Home,
+   **Then** Home returns to the prior position without visibly showing the top
+   first and then scrolling back to that position.
 
 ### Edge Cases
 
@@ -118,8 +123,8 @@ navigation when optional scripts are unavailable.
 
 ### Functional Requirements
 
-- **FR-001**: When a visitor clicks a featured project's thumbnail on Home to
-  open that project in the all-projects page, the requested project
+- **FR-001**: When a visitor clicks any More Projects project card thumbnail that links to a
+  project record hash, the requested project
   MUST be the first visible destination, without first showing the archive top
   and then visibly scrolling to the project.
 - **FR-002**: A valid hashed URL MUST open at its requested section when loaded
@@ -141,6 +146,10 @@ navigation when optional scripts are unavailable.
   use semantic links with meaningful accessible names and usable touch targets,
   honor reduced-motion preferences, and keep core navigation usable when
   optional scripts are unavailable.
+- **FR-010**: When a visitor uses the all-projects page's header `Back` link to
+  return to Home after navigating from a scrolled Home position, the prior Home
+  position MUST be restored without a visible top-of-page view followed by a
+  scroll to that position.
 
 ### Key Entities *(include if data involved)*
 
@@ -153,9 +162,9 @@ navigation when optional scripts are unavailable.
 
 ### Measurable Outcomes
 
-- **SC-001**: In 100% of tested cross-page valid-hash navigations at
-  representative desktop, tablet, and mobile widths, the requested section is
-  displayed without a visible scroll from the destination page top.
+- **SC-001**: In 100% of tested activations for each existing More Projects
+  project-card link to a valid section hash, the target appears without a
+  visible scroll from the destination page top.
 - **SC-002**: In 100% of tested direct loads and reloads of valid hashed URLs at
   representative desktop, tablet, and mobile widths, the requested section is
   displayed and its heading is not covered by the sticky header.
@@ -173,22 +182,23 @@ navigation when optional scripts are unavailable.
   accessible names, remain keyboard operable with visible focus, and reach
   their destinations without optional scripts. At mobile width, each tested
   control can be activated by touch without accidentally activating an
-  adjacent control. Test the featured-project thumbnail link, the `See on all
-  projects` link, and the `Projects` same-page link; check reduced-motion
-  behavior for cross-page and same-page navigation.
+  adjacent control. Test each More Projects project-card thumbnail link,
+  Wallace's Quest link in Selected work, and the Projects same-page link.
+  Check reduced-motion behavior for cross-page and same-page navigation.
+- **SC-008**: In 100% of tested Home-to-project-record-to-header-Back journeys,
+  Home returns to its prior scroll position without a visible top-to-position
+  transition.
 
 ## Assumptions
 
-- The example project hashes in the request represent existing valid section
-  destinations, and current section links remain the intended navigation targets.
-- The featured-project thumbnail is the control described in the reported
-  journey; the existing `See on all projects` text link is also an available
-  cross-page link to a project-record hash.
-- Home does not link directly to the `professional-game` or
-  `independent-game` group hashes. This feature does not add new Home links; the
-  group URLs are validated as direct hash destinations, and cross-page link
-  activation is validated with existing links.
-- “Directly” means the visitor does not see a perceptible intermediate
+- Example project hashes represent existing valid section destinations.
+- Pathless is the confirmed reproducing More Projects card, linking to
+  /projects/#pathless. All More Projects project-card thumbnails that link to
+  project-record hashes are in scope.
+- Home does not link directly to professional-game or independent-game group
+  hashes. The group URLs are tested as direct destinations; cross-page
+  activation is tested through existing links.
+- "Directly" means the visitor does not see a perceptible intermediate
   top-of-page view or animated scroll from the top before the target is reached.
 - The sticky Header remains present and retains its current design and
   behavior; only destination visibility relative to it is in scope.

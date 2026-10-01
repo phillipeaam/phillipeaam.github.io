@@ -1,4 +1,4 @@
-﻿# Specification Quality Checklist: Hash Navigation
+# Specification Quality Checklist: Hash Navigation
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-09-30
@@ -14,10 +14,10 @@
 ## Requirement Completeness
 
 - [x] No [NEEDS CLARIFICATION] markers remain
-- [x] Requirements are testable and unambiguous; the primary journey names the featured-project thumbnail and the all-projects destination
+- [x] Requirements are testable and unambiguous; the primary journey names project card thumbnails in More Projects and the all-projects destination, with Pathless as the confirmed reproduction
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
-- [x] All acceptance scenarios are defined, including thumbnail activation and the existing text-link path
+- [x] All acceptance scenarios are defined, including More Projects project-card activation and the separate Wallace's Quest text-link path
 - [x] Edge cases are identified
 - [x] Scope is clearly bounded
 - [x] Dependencies and assumptions identified

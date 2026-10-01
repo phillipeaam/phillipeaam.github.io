@@ -1,127 +1,80 @@
 # Tasks: Hash Navigation
 
-**Input**: Design documents from `specs/002-hash-navigation/` (`spec.md`,
-`plan.md`, `research.md`, `data-model.md`, and `quickstart.md`)
+**Input**: Design documents from `specs/002-hash-navigation/` (`spec.md`, `plan.md`, `research.md`, `data-model.md`, and `quickstart.md`)
 
-**Current finding**: Existing desktop evidence covers the `See on all projects`
-text link, not the reported featured-project thumbnail click. The exact
-thumbnail flow must be investigated before any implementation decision.
+**Current finding**: The Pathless thumbnail transition is reproduced: the archive top appears before the Pathless record. The archive header `Back` link also returns to Home at the top before restoring the previous position; `Navigation.astro` contains the session flag and later scroll. The cross-page anchor's initial reposition cause still needs evidence-based tracing. Do not patch before T002-T003.
 
-**Tests**: Real-browser acceptance checks, `git diff --check`, Astro
-diagnostics, and a production build are explicitly required. Do not add an
-automated test suite unless the runtime evidence makes one appropriate.
+**Tests**: Real-browser temporal validation, `git diff --check`, Astro diagnostics, and production build are required. Do not add an automated suite unless investigation shows it is appropriate.
 
 ## Phase 1: Investigation Setup
 
-**Purpose**: Prepare a reproducible browser session and record test conditions.
+**Purpose**: Prepare repeatable browser conditions and distinguish the two return/navigation mechanisms.
 
-- [ ] T001 Start the local site using the `dev` script in `package.json`, prepare a real-browser session at representative desktop, tablet, and mobile widths, and record browser/version, actual viewport dimensions, and any unavailable width in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T001 Start the local Astro site and prepare Chrome at desktop, tablet, and mobile CSS viewport sizes; record browser/version if available and exact viewport dimensions in `specs/002-hash-navigation/quickstart.md`.
 
-## Phase 2: Foundational Root-Cause Investigation
+## Phase 2: Foundational - Root-Cause Investigation Before Patching
 
-**Purpose**: Reproduce the specific reported user journey before examining
-possible causes or allowing a patch.
+**Purpose**: Capture the reported temporal behavior before examining or changing implementation.
 
-- [ ] T002 From a fresh Home load, click the featured project's thumbnail itself and record whether it is interactive, the exact clicked control, resulting URL/hash, initial visible content, target position, and any later movement; repeat the click path three times at each available viewport and compare with the same card's `See on all projects` link and direct opening of its resulting URL; record each run and screen evidence in `specs/002-hash-navigation/quickstart.md` and `specs/002-hash-navigation/research.md`.
-- [ ] T003 Only if T002 reproduces the archive-top-then-scroll behavior, trace the observed path against global scroll rules and anchor offsets in `src/styles/global.css`, hash/scroll handlers and route-reactive scripts in `src/components/Navigation.astro` and other scripts under `src/`, page structure and target IDs in `src/pages/projects/index.astro` and `src/data/projects.ts`, the shared shell in `src/layouts/BaseLayout.astro`, and Astro navigation configuration in `astro.config.mjs`; connect a proposed cause to runtime evidence and document it in `specs/002-hash-navigation/research.md` before any patch. If T002 does not reproduce, record that no root-cause patch is indicated and do not infer a cause.
+- [ ] T002 From a fresh Home load at each available viewport, click the Pathless card thumbnail in More Projects three times; capture first destination view, later movement, URL/hash, final target position, and sticky-header clearance. Separately record the scrolled Home position, click the Pathless More Projects thumbnail, use the archive header `Back` link, and capture Home's first view and restoration movement. Compare the Pathless card with direct `/projects/#pathless`, and separately check Wallace's Quest `See on all projects` text link in Selected work; record each run in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T003 After T002, trace the reproduced archive-top-to-target transition against target/layout readiness and image sizing in `src/pages/projects/index.astro`, `src/data/projects.ts`, and `src/styles/global.css`; inspect hash and route-reactive scripts including `src/components/Navigation.astro`, the shell in `src/layouts/BaseLayout.astro`, and Astro navigation configuration in `astro.config.mjs`. Trace the separate header `Back` session flag and Home restoration path in `src/components/Navigation.astro`. Document causes only when supported by temporal runtime evidence and source behavior in `specs/002-hash-navigation/research.md`.
 
 ## Phase 3: User Story 1 - Open a Project Directly from Home (Priority: P1)
 
-**Goal**: The featured project's thumbnail navigation displays its project
-record directly, without an archive-top view followed by a visible scroll.
+**Goal**: Home project thumbnails open the matching project record without a visible archive-top-then-scroll sequence.
 
-**Independent Test**: At desktop, tablet, and mobile widths, use the same
-featured-project thumbnail, text link, and direct record URL, and compare the
-destination and visible transition.
+**Independent Test**: Compare the Pathless More Projects card thumbnail with its direct URL and separately compare Wallace's Quest Selected work text link at desktop, tablet, and mobile widths; observe first paint and later movement.
 
-- [ ] T004 [US1] If T002 reproduces the report and T003 documents a supported in-scope cause, apply the smallest source change to the responsible file identified among `src/styles/global.css`, `src/components/Navigation.astro`, `src/layouts/BaseLayout.astro`, or the specific route/script file established by T003; if T002 does not reproduce, record `no patch needed` in `specs/002-hash-navigation/research.md` and make no implementation change; if a fix would require out-of-scope routing or visual redesign, stop and update `specs/002-hash-navigation/plan.md` before implementation.
-- [ ] T005 [US1] In a real browser at representative desktop, tablet, and mobile widths, validate after the final source state that the Home thumbnail and `See on all projects` text link each reach the correct `/projects/#<project-record>` destination directly, that the two category hashes `/projects/#professional-game` and `/projects/#independent-game` open at their groups, and that all destination headings clear the sticky header; record actual viewport sizes and results in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T004 [US1] Only after T002 reproduces and T003 identifies a supported in-scope cause, apply the smallest source change to the responsible file and document the rationale in `specs/002-hash-navigation/research.md`; candidate source paths are `src/pages/projects/index.astro`, `src/data/projects.ts`, `src/styles/global.css`, `src/components/Navigation.astro`, `src/layouts/BaseLayout.astro`, and `astro.config.mjs`. If investigation cannot establish a cause, make no implementation change and update `specs/002-hash-navigation/plan.md` with the unresolved evidence gap.
+- [ ] T005 [US1] At desktop, tablet, and mobile widths after the final source state, test every More Projects card thumbnail linked to a project-record hash, including Pathless; compare each destination with its direct URL and separately test Wallace's Quest text link in Selected work. Verify no top-then-scroll transition and that destination headings clear the sticky header. Record time-ordered results in specs/002-hash-navigation/quickstart.md.
 
 ## Phase 4: User Story 2 - Open or Reload a Deep Link (Priority: P1)
 
-**Goal**: Direct links and reloads display the requested section.
+**Goal**: Direct links and reloads show their requested section.
 
-**Independent Test**: Open and reload both category hashes and the individual
-project-record hash captured by T002 at each available viewport class; confirm
-the requested group or project is visible.
+**Independent Test**: Open and reload both group hashes and the Pathless project hash at desktop, tablet, and mobile widths; confirm the matching destination and readable heading.
 
-- [ ] T006 [US2] In a real browser at representative desktop, tablet, and mobile widths, open `/projects/#professional-game`, `/projects/#independent-game`, and the exact `/projects/#<project-record>` hash captured by T002 directly in fresh tabs, then reload each URL; confirm the matching group or project record is the destination, no archive-top-then-scroll transition occurs, and its heading is unobscured by the sticky header; record results and unavailable viewports in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T006 [US2] In Chrome at desktop, tablet, and mobile widths, open `/projects/#professional-game`, `/projects/#independent-game`, and `/projects/#pathless` in fresh tabs, then reload each; record initial and final destination, any visible movement, and header clearance in `specs/002-hash-navigation/quickstart.md`.
 
-## Phase 5: User Story 3 - Preserve History and Home Navigation (Priority: P2)
+## Phase 5: User Story 3 - Preserve Return, History, and Home Navigation (Priority: P2)
 
-**Goal**: Browser history, no-hash destinations, Home same-page scrolling, and
-accessible navigation continue to behave as expected.
+**Goal**: Returning from an archive record, using browser history, opening no-hash URLs, and using Home section links remain predictable.
 
-**Independent Test**: At each available viewport class, test hashed and
-no-hash history entries, Home's same-page link, keyboard/focus, reduced motion,
-and navigation when optional scripts are unavailable.
+**Independent Test**: From a scrolled Home position, open a project and use the archive header `Back` link; separately use browser Back/Forward. Test no-hash destinations and Home same-page smooth scrolling at each viewport.
 
-- [ ] T007 [US3] In a real browser at representative desktop, tablet, and mobile widths, navigate `/projects/#professional-game` -> `/projects/` -> `/projects/#independent-game`, then use Back and Forward to verify each hash is restored and the no-hash entry returns to the top; separately activate Home's `See all projects` link and `Projects` same-page link, confirming no-hash top arrival and preserved smooth scrolling; record results in `specs/002-hash-navigation/quickstart.md`.
-- [ ] T008 [US3] At representative desktop, tablet, and mobile widths, verify Home's featured-project thumbnail, `See on all projects`, and `Projects` controls are semantic links with meaningful accessible names; keyboard-focus and activate each applicable link and confirm visible focus and successful navigation; at mobile width activate each control by touch and confirm no adjacent control is accidentally triggered; test cross-page and same-page behavior with reduced-motion enabled and confirm core navigation works when optional scripts are unavailable; record each result in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T007 [US3] At desktop, tablet, and mobile widths, repeat Home-at-saved-position -> Pathless -> archive header `Back`; verify Home's previous section appears without an initial top view and later scroll, and verify browser Back/Forward separately restores the expected URL, hash, and section. Test `/projects/` entries without hashes return to the top. Record timed observations in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T008 [US3] At desktop, tablet, and mobile widths, verify each More Projects project-card thumbnail, Wallace's Quest `See on all projects` text link, and `Projects` controls are semantic links with meaningful names; keyboard-focus and activate them with visible focus; at mobile verify touch targets; test reduced-motion behavior and core link use when optional scripts are unavailable. Record each outcome in `specs/002-hash-navigation/quickstart.md`.
 
 ## Phase 6: Evidence, Validation, and Review
 
-**Purpose**: Finalize the investigation record, check repository health, and
-obtain human review before accepting any meaningful change.
+**Purpose**: Keep artifacts aligned, run required project checks, and preserve the human review gate.
 
-- [ ] T009 Update `specs/002-hash-navigation/research.md`, `specs/002-hash-navigation/quickstart.md`, and `specs/002-hash-navigation/plan.md` with the exact thumbnail reproduction result, root cause only if supported, patch/no-patch decision, actual browser and viewport conditions, acceptance outcomes, and outstanding validation limits.
-- [ ] T010 Run `git diff --check` from the repository root after the final changes and record the result in `specs/002-hash-navigation/quickstart.md`.
+- [ ] T009 Update `specs/002-hash-navigation/research.md`, `specs/002-hash-navigation/quickstart.md`, and `specs/002-hash-navigation/plan.md` with reproduced sequences, evidence-supported causes, patch/no-patch decision, viewport conditions, outcomes, and remaining limitations.
+- [ ] T010 Run `git diff --check` from the repository root after final changes and record the result in `specs/002-hash-navigation/quickstart.md`.
 - [ ] T011 Run Astro diagnostics with `npm run check` and record the result in `specs/002-hash-navigation/quickstart.md`.
 - [ ] T012 Run the production build with `npm run build` and record the result in `specs/002-hash-navigation/quickstart.md`.
-- [ ] T013 Submit the investigation evidence and any minimal source diff for human review; record the review outcome in `specs/002-hash-navigation/plan.md` and do not treat meaningful changes as approved for merge or push until accepted.
+- [ ] T013 Submit the investigation, validation results, and any minimal source diff for human review; record the outcome in `specs/002-hash-navigation/plan.md`. Do not treat meaningful source changes as approved for merge or push until accepted.
 
 ## Dependencies & Execution Order
 
-### Phase Dependencies
-
-- T001 prepares the browser and recorded viewport conditions.
-- T002 follows T001 and is the required reproduction gate.
-- T003 follows T002 and is performed only when the exact reported behavior
-  reproduces. No patch may begin until the evidence-based cause is recorded.
-- T004 follows T002-T003. It is a documented no-op for implementation when
-  there is no reproduction; after any patch, T005-T008 validate the final state.
-- T005-T008 are run sequentially because they share browser state. Any
-  unavailable viewport or required accessibility check remains outstanding and
-  must not be reported as passing.
-- T009 follows the browser checks. T010-T012 run sequentially after the final
-  source state is settled. T013 is the final human review gate.
-
-### User Story Dependencies
-
-- **US1 (P1)**: T005 depends on the investigation and T004's patch/no-patch
-  decision; this is the primary user outcome.
-- **US2 (P1)**: T006 depends on the final source state established by T004.
-- **US3 (P2)**: T007-T008 depend on the final source state established by T004.
-
-### Parallel Opportunities
-
-- No parallel execution is recommended. Investigation and browser validation
-  share the same runtime and evidence record, and implementation is conditional
-  on the result of T002 and T003.
+- T001 prepares the browser and viewports.
+- T002 is the reproduction and timing-capture gate; T003 traces the cause only after the behavior is captured.
+- T004 cannot begin until T002-T003 support a cause. After a patch or no-patch decision, T005-T008 validate the final source state.
+- T005-T008 run sequentially because they share browser state. A missing viewport or accessibility check stays explicitly pending.
+- T009 follows runtime checks; T010-T012 follow the final source state; T013 is the final human review gate.
+- No tasks are parallelized: the runtime investigation and browser checks share browser state and depend on prior evidence. Each user story is validated independently in T005, T006, and T007-T008; there are no parallel examples because no story tasks are independent of the shared sequential browser setup and evidence.
 
 ## Implementation Strategy
 
-### MVP
+1. Complete T001-T003 and establish causes separately for cross-page hash arrival and header Back restoration.
+2. Make a minimal source change in T004 only if runtime and source evidence support it. Otherwise document the unresolved finding without patching.
+3. Complete T005-T008 against the final source state.
+4. Complete T009-T013 before considering the feature ready for review.
 
-1. Complete T001-T002 and establish whether the exact thumbnail report
-   reproduces.
-2. If it does not reproduce, complete T004 as `no patch needed`, document the
-   tested conditions, and validate the remaining acceptance behavior.
-3. If it reproduces, complete T003 before making the smallest supported change
-   in T004, then validate all user stories against the final source state.
-4. Complete T009-T013 before treating the work as finished.
+## Completion Conditions
 
-### Completion Conditions
-
-- The exact thumbnail interaction and text-link/direct-URL comparisons are
-  documented with browser and viewport conditions.
-- Any implementation change is tied to a reproduced failure and a cause
-  supported by runtime evidence; no failure means no patch.
-- If a patch is made, applicable navigation and accessibility scenarios pass
-  at representative desktop, tablet, and mobile widths. Unavailable widths or
-  checks remain explicit completion blockers.
-- Applicable navigation controls are semantic links with meaningful
-  accessible names, keyboard operation and visible focus, reduced-motion
-  support, and usable touch targets; verify touch activation at mobile width.
-- `git diff --check`, `npm run check`, and `npm run build` results are recorded.
-- Human review accepts any meaningful source changes before merge or push.
+- Both reported time-ordered journeys are captured and their causes distinguished.
+- Any patch follows reproduced behavior and an evidence-supported cause.
+- Cross-page hashes, reloads, browser history, header Back restoration, no-hash starts, Home smooth scrolling, and applicable accessibility behavior are checked at representative desktop, tablet, and mobile widths.
+- `git diff --check`, Astro diagnostics, and the production build results are recorded.
+- Human review remains the final gate for meaningful source changes.
