@@ -645,8 +645,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 [data-copy-icon] { display: inline-flex; }
 [data-copy-icon] svg { display: block; }
 [data-copied-label][hidden], [data-copy-icon][hidden] { display: none; }
-@view-transition { navigation: auto; }
-::view-transition-old(root), ::view-transition-new(root) { animation-duration: 180ms; animation-timing-function: ease-out; }
 @media (max-width: 820px) {
 .home-hero { min-height: 0; padding-top: 38px; padding-bottom: var(--s-6); }
   .home-hero + .section-block { padding-top: var(--s-8); }

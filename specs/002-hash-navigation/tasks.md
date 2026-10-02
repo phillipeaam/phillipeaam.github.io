@@ -16,7 +16,7 @@
 
 **Purpose**: Capture the reported temporal behavior before examining or changing implementation.
 
-- [ ] T002 From fresh Home loads, click the Pathless card and capture time-ordered screenshots, URL/hash, target position, and header clearance. Desktop had three pre-patch captures; tablet and mobile each had one. Capture the separate Header Back restoration and compare the card with direct `/projects/#pathless` and Wallace's Selected work text link. The missing tablet/mobile pre-patch repeats are documented in `quickstart.md`.
+- [ ] T002 From fresh Home loads, compare the Pathless card with direct `/projects/#pathless` and Wallace's Selected work text link, and capture the separate Header Back restoration with time-ordered screenshots, URL/hash, target position, and header clearance. For pre-patch Pathless captures, complete three runs at each viewport if a reversible pre-patch build is available; otherwise retain the current counts (three desktop, one tablet, one mobile) and document why further pre-patch runs cannot be made in `quickstart.md`. Use the Immediate-Frame Capture Method in `plan.md` for reproducible timestamps and screenshots.
 - [X] T003 Trace target/layout readiness and image sizing, global scroll rules, hash scripts, BaseLayout links, and Astro navigation configuration. Identify the native cross-document View Transition as the visible intermediate-frame cause and the separate deferred Header Back restoration path; document both in `research.md`.
 
 ## Phase 3: User Story 1 - Open a Project Directly from Home (Priority: P1)
@@ -43,7 +43,7 @@
 **Independent Test**: From a scrolled Home position, open a project and use the archive header `Back` link; separately use browser Back/Forward. Test no-hash destinations and Home same-page smooth scrolling at each viewport.
 
 - [X] T007 [US3] At desktop, tablet, and mobile widths, verify Header Back restoration, browser Back/Forward, and `/projects/` no-hash top entry/history separately. Record outcomes in `quickstart.md`.
-- [ ] T008 [US3] Keyboard focus and Enter activation, semantic links, accessible names, visible focus, and mobile touch-target dimensions were checked. Touch input itself, reduced-motion behavior, and core link use with optional scripts unavailable remain unverified because the browser surface does not expose those controls.
+- [ ] T008 [US3] Complete the remaining accessibility and progressive-enhancement checks: activate links by touch and verify adjacent targets do not activate; emulate reduced motion for cross-page and same-page navigation; disable optional scripts and verify core destinations remain reachable. Cover representative desktop, tablet, and mobile widths where the required browser controls are available, and record the exact modes, viewports, and observed outcomes in `quickstart.md`. Preserve the already recorded keyboard, accessible-name, focus, and target-size results.
 
 ## Phase 6: Evidence, Validation, and Review
 
@@ -53,15 +53,16 @@
 - [X] T010 Run `git diff --check` from the repository root after final document edits and record the result in `quickstart.md`.
 - [X] T011 Run Astro diagnostics with `npm run check` and record the result in `quickstart.md`.
 - [X] T012 Run the production build with `npm run build` and record the result in `quickstart.md`.
+- [ ] T017 Capture the `See all projects` activation at representative desktop, tablet, and mobile CSS viewport sizes with Chrome DevTools Performance recording and screenshots enabled. Record the activation timestamp from the trace, inspect the first destination frame, and sample `location.href`, `scrollY`, destination heading top, and sticky-header bottom immediately after navigation and at 500 ms. Save one trace per viewport/run under `artifacts/screenshots/hash-navigation/` and summarize the method and results in `quickstart.md` per FR-005 and SC-004.
 - [ ] T013 Submit the investigation, validation results, and any minimal source diff for human review; record the outcome in `specs/002-hash-navigation/plan.md`. Do not treat meaningful source changes as approved for merge or push until accepted.
 
 ## Dependencies & Execution Order
 
 - T001 prepares the browser and viewports.
-- T002 is the reproduction and timing-capture gate; T003 traces the cause only after the behavior is captured.
-- T004 cannot begin until T002-T003 support a cause. After a patch or no-patch decision, T005-T008 validate the final source state.
+- The initial T002 reproduction evidence is the gate for T003's source investigation; T003 may proceed once that evidence captures the reported behavior, even if optional repeat runs remain outstanding.
+- T004 may begin after the initial T002 evidence and T003 jointly support a cause. Any outstanding T002 repeat runs remain validation work and do not invalidate the evidence already used for T004. After a patch or no-patch decision, T005-T008 validate the final source state.
 - T005-T008 run sequentially because they share browser state. A missing viewport or accessibility check stays explicitly pending.
-- T009 follows runtime checks; T010-T012 follow the final source state; T013 is the final human review gate.
+- T009 follows runtime checks; T010-T012 follow the final source state; T017 completes the additional all-projects arrival capture before T013, which remains the final human review gate.
 - No tasks are parallelized: the runtime investigation and browser checks share browser state and depend on prior evidence. Each user story is validated independently in T005, T006, and T007-T008; there are no parallel examples because no story tasks are independent of the shared sequential browser setup and evidence.
 
 ## Implementation Strategy
@@ -69,12 +70,13 @@
 1. Complete T001-T003 and establish causes separately for cross-page hash arrival and header Back restoration.
 2. Make a minimal source change in T004 only if runtime and source evidence support it. Otherwise document the unresolved finding without patching.
 3. Complete T005-T008 against the final source state.
-4. Complete T009-T013 before considering the feature ready for review.
+4. Complete T009-T012 and T017 before submitting the complete result for T013 human review.
 
 ## Completion Conditions
 
 - Both reported time-ordered journeys are captured and their causes distinguished.
 - Any patch follows reproduced behavior and an evidence-supported cause.
 - Cross-page hashes, reloads, browser history, header Back restoration, no-hash starts, Home smooth scrolling, and applicable accessibility behavior are checked at representative desktop, tablet, and mobile widths.
+- The no-hash `See all projects` activation has first-frame evidence at representative desktop, tablet, and mobile widths per T017.
 - `git diff --check`, Astro diagnostics, and the production build results are recorded.
 - Human review remains the final gate for meaningful source changes.

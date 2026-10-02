@@ -116,11 +116,34 @@ history, no-hash top arrival, and Header restoration after the patch.
 
 ## Remaining Gates
 
-- Repeat T002 three times at tablet and mobile before treating the
-  investigation's repetition requirement as complete.
+- Complete T002's remaining tablet and mobile pre-patch repetitions if a
+  reversible pre-patch build is available; otherwise record the build
+  limitation and existing capture counts, then complete its other comparisons.
 - Complete T008 touch, reduced-motion, and optional-script checks when a
   suitable browser control is available.
+- Complete T017's no-hash `See all projects` capture at representative desktop,
+  tablet, and mobile CSS widths. Use Chrome DevTools Performance recording
+  with screenshots enabled; retain one trace per viewport/run under
+  `artifacts/screenshots/hash-navigation/`, and record the trace activation
+  timestamp plus destination geometry at the first post-navigation sample and
+  at 500 ms in `quickstart.md`.
 - T013 human review is the final approval gate for this source change.
+
+## Immediate-Frame Capture Method
+
+For T002 and T017, record the actual CSS viewport dimensions before each run.
+Start a Chrome DevTools Performance recording with screenshots enabled from a
+fresh Home load, activate the link normally, and stop the recording 500 ms after
+the navigation completes. Use the trace timestamp for the activation and inspect
+its first post-navigation screenshot. At the first available page evaluation
+and again 500 ms later, record the URL, `scrollY`, destination heading top, and
+sticky-header bottom. For hash links, fail the run if the earliest
+post-navigation screenshot shows the archive top before the requested target;
+for the no-hash `See all projects` link, `/projects/` at `scrollY=0` is the
+expected first destination. Save traces as
+`artifacts/screenshots/hash-navigation/<scenario>-<width>x<height>-<run>.json`;
+the measurements and tested conditions belong in `quickstart.md`. Do not label
+the first available automation sample as the exact browser input timestamp.
 
 ## Complexity Tracking
 

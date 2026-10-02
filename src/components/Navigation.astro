@@ -116,10 +116,8 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
         const root = document.documentElement;
         const previousScrollBehavior = root.style.scrollBehavior;
         root.style.scrollBehavior = 'auto';
-        window.requestAnimationFrame(() => {
-          window.scrollTo(0, savedScroll);
-          window.requestAnimationFrame(() => { root.style.scrollBehavior = previousScrollBehavior; });
-        });
+        window.scrollTo(0, savedScroll);
+        root.style.scrollBehavior = previousScrollBehavior;
       }
     }
   }

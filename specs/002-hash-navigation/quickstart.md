@@ -106,3 +106,27 @@ these checks pending.
 - `npm run build`: passed; Astro generated 7 static pages.
 - No automated suite was added or run.
 - Human review (T013): pending.
+
+## Immediate Arrival Capture Follow-up
+
+Captured the `See all projects` activation in Chrome against the local Astro
+server on 2026-10-02. The browser reported a 2560x919 CSS viewport (wide
+desktop; not the previously used 1280x900, 768x1024, or 390x844 viewports).
+The click action started at 09:37:53.733 UTC. A screenshot request issued
+concurrently with the click captured the Home frame before navigation, so it
+is not treated as the destination's first frame. The first screenshot requested
+after the click completed showed the Projects archive at its top.
+
+| Sample | URL | scrollY | First archive heading top | Sticky header bottom |
+|---|---|---:|---:|---:|
+| First post-navigation browser sample | `/projects/` | 0 | 126.2 px | 88 px |
+| 500 ms after that sample | `/projects/` | 0 | 126.2 px | 88 px |
+
+The first post-navigation screenshot and the 500 ms sample showed the same
+heading and scroll position. The click timestamp is the start of the browser
+automation click call, not a timestamp from the DOM click event itself. The
+available browser surface did not export the screenshot to a repository file.
+This run therefore supplies an immediate post-navigation observation, but does
+not fully satisfy T017's exact event timestamp, saved screenshot, or tablet and
+mobile coverage. Existing responsive checks remain recorded above; those widths
+still need an immediate-frame capture if an exact viewport override is available.
