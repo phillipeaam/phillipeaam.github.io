@@ -6,47 +6,95 @@
 
 ## Investigation Question
 
-The report contains two visible sequences: clicking the Pathless thumbnail from Home opens `/projects/#pathless` but first shows the archive top before moving to Pathless; using the archive header `Back` link then returns to Home at its top before moving to the prior Home position. Establish the cause of each sequence separately before proposing a patch.
+Explain why a More Projects card opens `/projects/#pathless` with a visible
+archive-top frame before Pathless appears, and why the archive header `Back`
+link shows Home at the top before restoring the previous Home position. Keep
+the two transitions distinct and patch only after runtime and source evidence
+agree.
 
-## Current Repository Evidence
+## Root-Cause Evidence
 
-- `src/styles/global.css` enables smooth scrolling globally and overrides it to `auto` on `.archive-content` pages; existing scroll margins account for the sticky header.
-- `src/pages/projects/index.astro` renders the archive groups and record targets, including `professional-game`, `independent-game`, and `pathless`.
-- `src/components/Navigation.astro` listens for hash changes to update active navigation. That listener does not call a scroll method.
-- `src/components/Navigation.astro` also saves the Home scroll position, sets a session restoration flag when the archive header `Back` link is activated, and on Home reads that flag and calls `window.scrollTo` inside animation frames. This source path corroborates the separate top-then-restore sequence.
-- `src/layouts/BaseLayout.astro` uses ordinary page links. `astro.config.mjs` does not configure Astro client routing or View Transitions.
-- No change has been made to implementation files during this documentation update.
+### Cross-page hash arrival
 
-## Current Runtime Evidence
+- `src/styles/global.css` enabled browser-managed cross-document View
+  Transitions globally with `@view-transition { navigation: auto; }` and gave
+  the root old/new snapshots a 180 ms animation.
+- Before the patch, the Pathless click changed the URL to
+  `/projects/#pathless`; browser measurements already reported `scrollY` at
+  the Pathless record and its heading about 16 px below the sticky header,
+  while the first screenshot still showed the Professional group at the top.
+  Later screenshots showed Pathless with the same `scrollY`. The discrepancy
+  is evidence that the visible top frame came from the cross-document
+  transition, not from a second scroll to the target.
+- The same initial-top then destination sequence appeared at desktop, tablet,
+  and mobile representative widths. Desktop had three recorded clicks; tablet
+  and mobile have one captured reproduction each, so the requested three
+  pre-patch repeats at every width remain incomplete.
+- `html:has(.archive-content)` sets the archive page's computed
+  `scroll-behavior` to `auto`; `.archive-record` and `.archive-group` retain
+  `scroll-margin-top`. At all tested widths, the target and its header offset
+  were already correct. `src/data/projects.ts` supplies dimensions for the
+  Pathless and other image media, and browser measurements did not show target
+  geometry changing during the visible transition.
+- `src/components/Navigation.astro` hash handling only updates the active
+  archive navigation item; it does not call a scroll method. `BaseLayout.astro`
+  uses regular links, and `astro.config.mjs` does not enable Astro client
+  routing or View Transitions. The enabled transition was the native CSS
+  cross-document transition in the global stylesheet.
 
-On 2026-10-01, successive Chrome screenshots after clicking the Pathless card showed the Projects archive top / Professional group first and Pathless later, at `/projects/#pathless`. This reproduces the reported cross-page transition. Earlier testing checked only the settled URL and final target position, which missed the visible intermediate state.
+### Header Back restoration
 
-The header `Back` restoration sequence was reported by the user. The source path described above explains how the saved position is applied after Home reappears, but repeated time-ordered screenshots of that return remain part of T002/T007.
+- Before the patch, the archive header `Back` click returned Home with the
+  visual frame at the Home top while browser metrics already reflected the
+  saved Home position. A later screenshot showed the More Projects area at the
+  same `scrollY`.
+- `Navigation.astro` sets a `sessionStorage` restoration flag on that link;
+  Home reads the saved position and originally delayed `window.scrollTo` over
+  two `requestAnimationFrame` callbacks. This is a separate, source-supported
+  delayed restoration path.
 
-The specified Home control is the Pathless project card thumbnail in More Projects, linking to `/projects/#pathless`. The Wallace's Quest image in Selected work links to `/work/wallaces-quest/`; its adjacent `See on all projects` text link targets `/projects/#wallaces-quest`. Keep these controls distinct in validation.
+## Minimal Change Applied
 
-The first-paint cause of the cross-page anchor reposition is not established. Source inspection of smooth-scroll rules, target margins, hash listeners, image sizing, and route configuration does not by itself explain the captured sequence. Test temporal behavior around target readiness and layout before drawing a conclusion. Do not assume this sequence and the Home restoration sequence have the same cause.
+- Removed the global automatic cross-document root transition and its 180 ms
+  root animation. This keeps ordinary document/hash navigation from showing a
+  transition snapshot of the archive top before the native hash destination.
+- Applied the saved Home scroll position synchronously when the Home
+  navigation script reads the restoration flag, restoring the previous inline
+  scroll behavior immediately afterward. The Header, page sections, route
+  structure, anchor IDs, hash handling, and Home's global same-page smooth
+  scrolling rules were not changed.
 
-## Outstanding Browser Coverage
+## Post-patch Browser Evidence
 
-- Three repeated Pathless thumbnail runs at desktop, tablet, and mobile with first-view/later-view capture.
-- Three repeated header `Back` returns from a known Home scroll position at each viewport.
-- Text link and direct URL comparison using time-ordered observation.
-- Category and project deep links plus reload at each viewport.
-- Browser Back/Forward separately from the archive header `Back` link; no-hash top behavior; Home same-page smooth scrolling.
-- Keyboard/focus, touch, reduced motion, and core navigation when optional scripts are unavailable.
+Using Chrome with the local Astro dev server on `127.0.0.1:4324`, the Pathless,
+Flui, and Tabuada More Projects card links and Wallace's Quest `See on all
+projects` text link opened their matching records at desktop (1280x900), tablet
+(768x1024), and mobile (390x844) CSS viewport sizes. Screenshots of the first
+post-patch destination showed the requested record; each heading remained
+about 15-16 px below the sticky header. See [quickstart.md](quickstart.md) for
+measured positions and scenario results.
 
-Previous desktop checks verified final destinations, direct/reload behavior for the group hashes, no-hash top entry, Back/Forward among hash entries, and Home same-page smooth scrolling. Those final-state checks did not test the newly captured intermediate frames.
+Direct open and reload of `professional-game`, `independent-game`, and
+`pathless` passed at each viewport. Header Back restoration, browser
+Back/Forward, no-hash top entry/history, Home same-page scrolling, and
+keyboard activation were also exercised at representative viewports.
 
-## Investigation Procedure
+## Remaining Validation Limits
 
-1. At each representative viewport, load Home fresh, scroll to a known position, and activate the Pathless thumbnail. Record immediate destination frame, subsequent scroll, URL, final target geometry, and header geometry. Repeat three times.
-2. Repeat the same controlled Home setup, open the archive record, and activate the archive header `Back` link. Capture Home immediately and after restoration. Separately test browser Back and Forward.
-3. Compare the Pathless thumbnail journey with its direct record URL, then separately observe Wallace's Quest `See on all projects` text link in Selected work; the controls point to different records.
-4. If reproduced, correlate timed movement with target existence, layout stability, scroll behavior and offsets, route/hash scripts, and the Home restoration path. Record distinct causes for the two sequences.
-5. Only after evidence supports a cause, propose the smallest in-scope implementation change. Preserve Home's same-page smooth scrolling, direct/reload hashes, browser history, no-hash top arrival, and sticky-header clearance.
-6. Run responsive, accessibility, `git diff --check`, Astro diagnostics, and production build checks; record incomplete conditions explicitly.
+- T002 did not reach three pre-patch reproductions at every viewport. Desktop
+  reached three; tablet and mobile each have one time-ordered capture.
+- The available browser controls did not provide touch input, reduced-motion
+  emulation, or a per-tab way to disable JavaScript. Those T008 checks remain
+  pending.
+- The browser version could not be read through the available browser API.
+- T013 human review remains pending; validation is not approval for merge or
+  push.
 
 ## Decision
 
-**Reproduction confirmed; patch choice deferred.** The cross-page Pathless thumbnail first displayed the archive top and later displayed the requested record. The Home header return script provides direct source evidence for a separate delayed restoration movement. Continue the time-ordered investigation and identify the cross-page cause before selecting any implementation change.
+The runtime evidence and source both identify native cross-document View
+Transitions as the visual top-frame cause. The header return sequence had a
+separate delayed `requestAnimationFrame` scroll-restoration path. The minimal
+changes above were applied and the tested navigation scenarios pass. Keep the
+remaining repetitions, accessibility emulation limits, and human review
+explicitly open.

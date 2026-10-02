@@ -1,60 +1,108 @@
 # Browser Validation Guide: Hash Navigation
 
 **Feature**: [Hash Navigation](spec.md)
-**Runtime**: Local Astro site at `http://127.0.0.1:4321/` in Google Chrome; browser version unavailable.
-**Viewports**: Default desktop width 2545 CSS px (height unavailable); explicit tablet 768x1024 and mobile 390x844 overrides. Overrides were reset after testing.
+**Runtime**: Chrome, Astro dev server at `http://127.0.0.1:4324/`, started with
+`npm run dev -- --host 127.0.0.1 --port 4324`. Browser version unavailable.
+**Viewports**: Desktop 1280x900, tablet 768x1024, mobile 390x844 CSS pixels.
+These are browser viewport overrides, not physical-device tests.
 
-## Prerequisites
+## Root-Cause Capture Before Patch
 
-1. Start the portfolio from the repository root with `npm run dev`.
-2. Test each path from a fresh Home load and record viewport, clicked control, URL/hash, first destination view, later movement, and final target position.
-3. For time-sensitive movement, capture successive screenshots or scroll-position samples immediately after navigation and after settling; repeat each path three times per viewport.
+The same-browser captures showed the URL and page scroll metrics already at
+Pathless while the first screenshot still showed the archive's Professional
+group. Later screenshots showed Pathless with the same `scrollY`. The global
+stylesheet enabled `@view-transition { navigation: auto; }` and a 180 ms root
+transition, which generated the visible top snapshot. The hash listener did
+not call scroll APIs, the archive computed `scroll-behavior` was `auto`, and
+record image dimensions reserved their layout space.
 
-## Scenarios and Expected Results
+The archive header `Back` path was distinct: `Navigation.astro` stored a Home
+scroll position and then restored it after two animation frames. The first
+Home screenshot was at the top; a later screenshot showed the saved section.
 
-| Scenario | Steps | Expected result |
-|---|---|---|
-| More Projects card thumbnails | From Home, click every project card thumbnail that links to a project-record hash; include Pathless | Each matching record appears directly without first showing archive top and then moving down; each heading clears sticky header |
-| Header Back restoration | From a scrolled Home position, open Pathless, then activate the archive header Back link | Home restores the earlier position without showing Home top first and then scrolling down |
-| Selected work text link | From Home, activate Wallace's Quest `See on all projects` in Selected work | `/projects/#wallaces-quest` opens directly on the record |
-| Direct category links | Open `/projects/#professional-game` and `/projects/#independent-game` | Each requested group is the initial visible destination; heading clears sticky header |
-| Direct project link and reload | Open and reload `/projects/#pathless` and `/projects/#wallaces-quest` | Requested record remains destination and heading is unobscured |
-| Hash history | Navigate between both category hashes, then Back and Forward | Each history entry restores its expected URL and section |
-| No-hash history | Navigate `/projects/#professional-game` -> `/projects/` -> `/projects/#independent-game`, then Back and Forward | Hash entries restore matching sections; `/projects/` entry returns to page top |
-| No-hash Home link | Activate Home `See all projects` | `/projects/` begins at the top |
-| Same-page Home link | Activate Home `Projects` navigation link | Existing same-page smooth scrolling remains visible |
-| Keyboard and focus | Keyboard-focus and activate thumbnail, `See on all projects`, and `Projects` links | Semantic links have meaningful names, work from keyboard, and show focus |
-| Touch | At mobile width, activate relevant links by touch | Each target works without activating an adjacent control |
-| Reduced motion | Enable reduced motion and use cross-page and same-page navigation | Navigation remains usable without forced smooth animation |
-| Optional scripts unavailable | Disable JavaScript and activate core links | Core destinations remain reachable |
-| Responsive checks | Repeat navigation checks at desktop, tablet, and mobile widths | Destinations and sticky-header clearance remain correct |
-
-## Current Branch Evidence (2026-10-01)
-
-| Scenario | Desktop (2545px wide) | Tablet (768x1024) | Mobile (390x844) |
+| Pre-patch viewport | First visible state | Runtime position at first sample | Later state |
 |---|---|---|---|
-| Pathless thumbnail final result | `/projects/#pathless`; final target top about 87.6px, header bottom 88px | Final target top about 87.6px, header bottom 72px | Final target top about 88.5px, header bottom 72px |
-| Pathless thumbnail temporal result | Reproduced: first screenshot showed archive top / Professional group; later screenshot showed Pathless | Transient sequence not checked | Transient sequence not checked |
-| Header Back to Home | User reproduced top-then-restore. `Navigation.astro` source has saved Home position, session restore flag, then delayed `window.scrollTo`; temporal repeat pending | Not tested | Not tested |
-| Wallace image vs text link | Wallace image opens `/work/wallaces-quest/`; adjacent `See on all projects` opens `/projects/#wallaces-quest` | Not separately checked | Not separately checked |
-| Category direct open and reload | Both groups opened and reloaded at matching group; heading top 126.2px (professional), 142.1px (independent), sticky header bottom 88px | Not tested | Not tested |
-| Project deep link and reload | `/projects/#wallaces-quest` stayed on record after reload; target top about 103.9px, header bottom 88px | Not tested | Not tested |
-| Browser Back/Forward with no-hash entry | Back returned `/projects/` at scrollY 0; Forward restored independent group at scrollY 3681 | Not tested | Not tested |
-| No-hash navigation | `/projects/` began at scrollY 0 | Not tested | Not tested |
-| Home same-page scrolling | `/#projects` retained smooth scrolling; settled section top about 104.1px | Not tested | Not tested |
-| Keyboard/focus, touch, reduced motion, scripts disabled | Not tested | Not tested | Not tested |
+| Desktop 1280x900 | Professional/archive top during transition | `/projects/#pathless`, scrollY 3788, Pathless top 103.9 px, header bottom 88 px | Pathless at the same scrollY |
+| Tablet 768x1024 | Professional/archive top through the first 300 ms capture | `/projects/#pathless`, scrollY 4301, Pathless top 87.6 px, header bottom 72 px | Pathless after about 1.5 s, same scrollY |
+| Mobile 390x844 | Professional/archive top in the early capture | `/projects/#pathless`, scrollY 6562, Pathless top 88.5 px, header bottom 72 px | Pathless later, same scrollY |
 
-### Reproduction and Cause Status
+Desktop had three captured pre-patch card runs. Tablet and mobile each have one
+captured pre-patch reproduction; T002's request for three runs at each width
+is not fully met.
 
-The Pathless cross-page movement is confirmed by successive screenshots: the first visible archive state was at the top, then the requested record appeared. Prior testing checked only the final URL and position, which hid the intermediate state. Do not treat tablet/mobile final-position checks as proof that their temporal sequence passes.
+## Post-patch Results
 
-The archive header Back link is distinct from browser Back/Forward. The user's observed Home top-then-restore sequence is corroborated by the source: the return link sets a session restoration flag; Home reads the saved position and calls `window.scrollTo` after rendering. The cross-page anchor's initial top-to-target reposition has not yet been isolated to a source cause. Do not assume the two movements share one cause.
+The patch removed the automatic root transition and its 180 ms animations. It
+also made Header Back restore the saved Home position synchronously. First
+destination screenshots now showed the matching record; Home return screenshots
+showed the saved More Projects position directly.
 
-The three-repeat loop, timed capture, header Back temporal repetition, and keyboard/focus, touch, reduced-motion, and disabled-script checks remain open. The investigation is not complete and no patch decision has been made.
+### More Projects thumbnails and Wallace text link
 
-## Tooling and Validation
+All three Home More Projects card thumbnails were clicked at all widths. The
+adjacent Wallace's Quest `See on all projects` text link was tested separately
+at the same widths.
 
-- `git diff --check`: passed before this temporal reproduction update; rerun after all document edits.
-- Astro diagnostics via bundled Node and local Astro CLI: passed, 0 errors, 0 warnings, 2 hints.
-- Production build via bundled Node and local Astro CLI: passed, 7 static pages generated.
-- PowerShell PATH does not expose `npm` or `node`; direct `npm run check` and `npm run build` were unavailable. Equivalent local Astro CLI commands succeeded.
+| Destination | Desktop target top / header bottom | Tablet target top / header bottom | Mobile target top / header bottom |
+|---|---:|---:|---:|
+| Pathless card | 103.5 / 88 px | 87.6 / 72 px | 88.5 / 72 px |
+| Flui card | 104.4 / 88 px | 87.8 / 72 px | 87.7 / 72 px |
+| Tabuada card | 104.2 / 88 px | 88.0 / 72 px | 88.0 / 72 px |
+| Wallace `See on all projects` | 103.9 / 88 px | 87.5 / 72 px | 87.7 / 72 px |
+
+The selected destination was the first visible record in post-patch screenshots;
+the heading remained approximately 15-16 px below the sticky header.
+
+### Direct hashes and reloads
+
+All direct loads and reloads below landed at the requested target with the
+sticky header clear of the heading.
+
+| Hash | Desktop | Tablet | Mobile |
+|---|---|---|---|
+| `#professional-game` | target top 88 px; header bottom 88 px | 72 / 72 px | 72 / 72 px |
+| `#independent-game` | 103.5 / 88 px | 88.0 / 72 px | 88.3 / 72 px |
+| `#pathless` | 103.5 / 88 px | 87.6 / 72 px | 88.5 / 72 px |
+
+### Return, history, and no-hash behavior
+
+| Scenario | Desktop | Tablet | Mobile |
+|---|---|---|---|
+| Header Back from Pathless | Home returned to saved Projects area, scrollY 2539 | Projects area, scrollY 3604 | Projects area, scrollY 3443 |
+| Browser Back/Forward | Home position restored; Forward returns to Pathless | Same | Same |
+| No-hash `/projects/` | Starts at scrollY 0 | Starts at scrollY 0 | Starts at scrollY 0 |
+| No-hash history entry | Back restores `#independent-game`; Forward returns to `/projects/` at 0 | Same | Same |
+
+### Home same-page scrolling
+
+The existing Home `Projects` same-page anchor still has computed
+`scroll-behavior: smooth`. Tablet and mobile samples moved from the Home top to
+the section after the scroll settled. Desktop also reached the section after a
+later browser observation; timing samples were not continuous enough to
+measure the animation duration.
+
+### Keyboard, names, and target size
+
+- More Projects thumbnail controls are semantic `<a>` elements with names
+  `View Pathless project details`, `View Flui — A Cidade das Palavras project
+  details`, and `View Tabuada na Fazenda project details`.
+- The Wallace link is a semantic anchor named `See on all projects`.
+- At mobile width, the Pathless thumbnail link measured 327x184 CSS px; Flui
+  and Tabuada also measured 327x184 CSS px. The Wallace text link measured
+  about 160x44 CSS px.
+- Keyboard Tab reached the Pathless thumbnail with a visible 2 px outline;
+  Enter activated it and opened `/projects/#pathless`.
+
+Touch activation was not available through the browser control surface.
+Reduced-motion preference and disabled-script behavior were not emulated; keep
+these checks pending.
+
+## Tooling Results
+
+- `git diff --check`: passed after the final documentation update.
+- `npm run check`: passed, 0 errors, 0 warnings, 2 hints (one CommonJS hint in
+  `make_contact_sheets.js`, one unused `index` hint in
+  `src/components/FeaturedProject.astro`).
+- `npm run build`: passed; Astro generated 7 static pages.
+- No automated suite was added or run.
+- Human review (T013): pending.
