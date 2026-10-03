@@ -3,7 +3,7 @@
 **Feature Branch**: `002-hash-navigation`  
 **Created**: 2026-09-30  
 **Status**: Draft  
-**Input**: User reports that, from Home's More Projects section, clicking a project card thumbnail to navigate to that project's record on the all-projects page (the Pathless card is the confirmed reproduction) first shows the top of that page and then visibly scrolls to the project. The target should appear directly. After using the all-projects page's header `Back` link to return to Home, Home also appears at the top before visibly scrolling to the previous position. Direct deep links and reloads should land at the requested section; the sticky header must not cover the destination heading; browser Back and Forward remain natural; URLs without a hash start at the top; preserve existing same-page smooth scrolling on Home; desktop, tablet, and mobile; keep scope to navigation behavior, without redesigning Header, sections, visual styling, or routing. Prefer native browser behavior and a minimal solution. Do not prescribe implementation.
+**Input**: User reports that, from Home's More Projects section, clicking a project card thumbnail to navigate to that project's record on the all-projects page (the Pathless GIF/media card is the confirmed reproduction) first shows the top of that page and then visibly scrolls to the project. The target should appear directly. After using the all-projects page's header `Back` link to return to Home, Home also appears at the top before visibly scrolling to the previous position. Both symptoms become especially apparent after repeating the Home ↔ archive journey about five times. Direct deep links and reloads should land at the requested section; the sticky header must not cover the destination heading; browser Back and Forward remain natural; URLs without a hash start at the top; preserve existing same-page smooth scrolling on Home; desktop, tablet, and mobile; keep scope to navigation behavior, without redesigning Header, sections, visual styling, or routing. Prefer native browser behavior and a minimal solution. Do not prescribe implementation.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -107,6 +107,10 @@ navigation when optional scripts are unavailable.
    **When** they activate the all-projects page's header `Back` link to Home,
    **Then** Home returns to the prior position without visibly showing the top
    first and then scrolling back to that position.
+9. **Given** a visitor repeats the Pathless media-to-record and header-Back
+   journey five times, **When** each navigation completes, **Then** the
+   Pathless record or its saved Home position is the first visible destination
+   on every cycle, with no intervening page-top frame or scroll.
 
 ### Edge Cases
 
@@ -150,6 +154,10 @@ navigation when optional scripts are unavailable.
   return to Home after navigating from a scrolled Home position, the prior Home
   position MUST be restored without a visible top-of-page view followed by a
   scroll to that position.
+- **FR-011**: The first visible frame during Home-to-project-hash navigation
+  and header-Back return MUST show the requested or restored destination,
+  including repeated journeys; correctness of the settled position alone is
+  insufficient.
 
 ### Key Entities *(include if data involved)*
 
@@ -188,6 +196,10 @@ navigation when optional scripts are unavailable.
 - **SC-008**: In 100% of tested Home-to-project-record-to-header-Back journeys,
   Home returns to its prior scroll position without a visible top-to-position
   transition.
+- **SC-009**: Across five consecutive Pathless media-to-record and header-Back
+  cycles at each representative viewport, every navigation's first captured
+  destination frame is the requested record or saved Home section, with no
+  frame at either page top.
 
 ## Assumptions
 

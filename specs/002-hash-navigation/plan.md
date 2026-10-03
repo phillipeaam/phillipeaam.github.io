@@ -7,18 +7,20 @@ return transition. Investigate the exact click before proposing a minimal fix.
 
 ## Summary
 
-The Pathless destination's native hash position was already correct, but the
-first visible frame showed the top of the archive. Runtime measurements showed
-the URL and `scrollY` at `#pathless` while screenshots still showed the
-Professional group, then showed Pathless later without a position change. The
-global CSS enabled a native cross-document View Transition, which produced the
-intermediate top snapshot. The archive header `Back` path had a separate
-two-frame delayed scroll restoration in `Navigation.astro`.
+The first correction removed a 180 ms cross-document View Transition and
+restored Home's saved scroll synchronously from an Astro module. Repeated
+frame-by-frame captures showed that this did not eliminate all top frames: the
+browser still aligned project hashes after initial archive-top frames, and the
+module restored Home after initial Home-top frames. A second correction aligns
+valid hashes and restores Home from a parser-blocking inline script at the end
+of the shared document body, after target markup exists and before the first
+useful frame.
 
-The patch removes the automatic cross-document root transition and applies the
-saved Home position synchronously. Home's same-page smooth scrolling, native
-links/history, route structure, Header design, section styling, existing IDs,
-and sticky-header offsets remain as before.
+The patch removes the automatic cross-document root transition, aligns
+cross-page hashes while parsing the destination, and restores the saved Home
+position before paint. Home's same-page smooth scrolling, native links/history,
+route structure, Header design, section styling, existing IDs, and
+sticky-header offsets remain as before.
 
 ## Technical Context
 
@@ -26,8 +28,10 @@ and sticky-header offsets remain as before.
 by absolute path.
 **Primary Dependencies**: Astro 5.18.2 (installed version).
 **Storage**: Existing session storage for Header Back scroll restoration.
-**Testing**: Real Chrome browser validation; `npm run check`; `npm run build`;
-`git diff --check`. No automated test suite was added.
+**Testing**: Chrome Headless 154.0.8037.95 through Chrome DevTools Protocol
+with screenshot-enabled performance traces and viewport/touch/media emulation;
+`npm run check`; `npm run build`; `git diff --check`. No automated test suite
+was added.
 **Target Platform**: Responsive static portfolio, representative desktop,
 tablet, and mobile CSS viewports.
 **Constraints**: Preserve native links/history, sticky-header clearance,
@@ -41,29 +45,32 @@ Avoid unrelated design or content changes.
   components or variants added.
 - **III. Preserve Approved Visual Systems**: Pass; no page/header/section
   redesign. The navigation transition itself was removed because runtime
-  evidence showed it produced the reported intermediate destination frame.
-- **IV. Accessibility Is Part of Completion**: Partial; semantic anchors,
-  accessible names, keyboard focus and Enter activation were verified. Touch,
-  reduced-motion emulation, and disabled-script checks remain pending.
-- **V. Progressive Enhancement**: Core destinations remain native links; the
-  new navigation behavior does not add client-side routing. Optional-script
-  unavailability remains pending validation.
+  evidence showed it produced an intermediate destination frame. The current
+  source change only adjusts navigation timing.
+- **IV. Accessibility Is Part of Completion**: Pass; semantic anchors,
+  accessible names, keyboard focus, Enter activation, mobile touch targets,
+  adjacent-target separation, and reduced-motion behavior were verified.
+- **V. Progressive Enhancement**: Pass; core cross-page links worked with
+  optional scripts disabled at all three tested viewports; the Home same-page
+  Projects link also worked without scripts at desktop width.
 - **VI. Responsive Verification**: Pass for functional browser scenarios at
   1280x900, 768x1024, and 390x844 CSS viewport sizes. Report these as
   representative viewport emulation, not physical device testing.
-- **VII. Small, Scoped Changes**: Pass; two small navigation-only edits in
-  global styles and the existing Header restoration script.
+- **VII. Small, Scoped Changes**: Pass; navigation-only changes in global
+  styles, the navigation module, and the shared document's early alignment
+  script.
 - **VIII. Validation Before Completion**: `git diff --check`, Astro
   diagnostics, production build, and browser scenarios passed. Limitations are
   recorded in quickstart and tasks.
-- **IX. Human Review for Meaningful Changes**: Pending. The source diff must
-  receive human review before approval for merge or push.
+- **IX. Human Review for Meaningful Changes**: Pass. The user reviewed and
+  accepted the source change on 2026-10-03 before commit.
 
 ## Project Structure
 
 Changed implementation files:
 
 ```text
+src/layouts/BaseLayout.astro
 src/components/Navigation.astro
 src/styles/global.css
 ```
@@ -82,52 +89,42 @@ No route, content, data-model, anchor ID, or Header markup changes were made.
 
 ## Root Cause and Runtime Evidence
 
-`src/styles/global.css` contained `@view-transition { navigation: auto; }`
-with 180 ms root old/new animations. Before the patch, the first screenshot
-after activating Pathless showed Professional at the archive top, while the
-URL already equaled `/projects/#pathless`, `scrollY` already positioned the
-Pathless record below the sticky header, and later screenshots showed
-Pathless at the same scroll position. This was observed at desktop, tablet,
-and mobile widths. CSS object-position calculations and image dimensions did
-not show a target layout shift, and the navigation hash listener did not scroll.
+`src/styles/global.css` originally contained `@view-transition { navigation:
+auto; }` with 180 ms root old/new animations. Removing it reduced but did not
+eliminate the visible archive-top frame. The live screencast after the first
+patch showed three archive-top frames at `scrollY=0` before Pathless, then two
+Home-top frames at `scrollY=0` before the saved position. The native hash
+alignment and saved restoration happened after the respective first frames.
+The previous checks measured settled positions and a no-hash archive route,
+not these repeated hash journeys.
 
-The separate archive Header `Back` link sets the restoration flag. The Home
-script had deferred `window.scrollTo` through two animation frames, allowing a
-visible initial Home-top frame. The behavior was corroborated by runtime
-screenshots and source.
-
-Exact pre-patch repetition count is incomplete: desktop three captures;
-tablet and mobile one each. The first-frame evidence and cause were sufficient
-to support a minimal patch; the open count is retained in T002.
+Pre-patch Pathless capture count is three runs at each tested viewport
+(1280x900, 768x1024, and 390x844). Screenshot-enabled traces show the first
+Home frame, the cross-document transition through the archive's Professional
+group, and the stable Pathless destination. Separate pre-patch Header Back
+traces at all three viewports show Home at scrollY 0 before the saved position
+is restored. Trace files and screenshots are listed in `quickstart.md`.
 
 ## Implementation Decision
 
-Applied the smallest supported changes:
+Applied the evidence-supported changes:
 
 1. Remove the global automatic cross-document View Transition and its root
-   animation rules, preventing the archive-top snapshot on cross-page hash
-   arrival.
-2. Restore the saved Home scroll position synchronously when the existing
-   Header Back flag is read, rather than waiting two animation frames.
+   animation rules, removing the longer cross-document snapshot.
+2. Align the requested archive hash after target markup is parsed, before the
+   first archive-top frame.
+3. Restore the saved Home scroll position in a parser-blocking inline script
+   before the first Home frame instead of a deferred module.
 
-No route or link behavior was reimplemented. Existing Home smooth scrolling
-continues to use the existing CSS rule. Browser checks confirmed hash targets,
-history, no-hash top arrival, and Header restoration after the patch.
+No route or native link behavior was reimplemented. Existing Home smooth
+scrolling continues to use the existing CSS rule. Five repeated Pathless and
+Back cycles at all three viewports had no frame at page-top `scrollY=0`; direct
+hash targets, header clearance, and no-hash top entry also passed.
 
 ## Remaining Gates
 
-- Complete T002's remaining tablet and mobile pre-patch repetitions if a
-  reversible pre-patch build is available; otherwise record the build
-  limitation and existing capture counts, then complete its other comparisons.
-- Complete T008 touch, reduced-motion, and optional-script checks when a
-  suitable browser control is available.
-- Complete T017's no-hash `See all projects` capture at representative desktop,
-  tablet, and mobile CSS widths. Use Chrome DevTools Performance recording
-  with screenshots enabled; retain one trace per viewport/run under
-  `artifacts/screenshots/hash-navigation/`, and record the trace activation
-  timestamp plus destination geometry at the first post-navigation sample and
-  at 500 ms in `quickstart.md`.
-- T013 human review is the final approval gate for this source change.
+- Human review is complete; the user confirmed the behavior is resolved and
+  reviewed the source change on 2026-10-03.
 
 ## Immediate-Frame Capture Method
 

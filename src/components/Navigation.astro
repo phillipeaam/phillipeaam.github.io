@@ -109,17 +109,6 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
     }, { passive: true });
     window.addEventListener('pagehide', saveHomeScroll);
 
-    if (sessionStorage.getItem(restoreHomeKey) === 'true') {
-      sessionStorage.removeItem(restoreHomeKey);
-      const savedScroll = Number(sessionStorage.getItem(homeScrollKey));
-      if (Number.isFinite(savedScroll)) {
-        const root = document.documentElement;
-        const previousScrollBehavior = root.style.scrollBehavior;
-        root.style.scrollBehavior = 'auto';
-        window.scrollTo(0, savedScroll);
-        root.style.scrollBehavior = previousScrollBehavior;
-      }
-    }
   }
 
   if (window.location.pathname === import.meta.env.BASE_URL && homeSections.length > 0 && 'IntersectionObserver' in window) {

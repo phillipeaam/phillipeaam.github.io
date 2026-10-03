@@ -26,10 +26,10 @@ agree.
   Later screenshots showed Pathless with the same `scrollY`. The discrepancy
   is evidence that the visible top frame came from the cross-document
   transition, not from a second scroll to the target.
-- The same initial-top then destination sequence appeared at desktop, tablet,
-  and mobile representative widths. Desktop had three recorded clicks; tablet
-  and mobile have one captured reproduction each, so the requested three
-  pre-patch repeats at every width remain incomplete.
+- The same initial Home/archive-transition frame followed by the Pathless
+  destination was captured in three pre-patch runs at each representative
+  viewport: desktop 1280x900, tablet 768x1024, and mobile 390x844. The
+  screenshot-enabled traces record each click event and frame sequence.
 - `html:has(.archive-content)` sets the archive page's computed
   `scroll-behavior` to `auto`; `.archive-record` and `.archive-group` retain
   `scroll-margin-top`. At all tested widths, the target and its header offset
@@ -79,22 +79,54 @@ Direct open and reload of `professional-game`, `independent-game`, and
 Back/Forward, no-hash top entry/history, Home same-page scrolling, and
 keyboard activation were also exercised at representative viewports.
 
+## Residual Reproduction and Correction — 2026-10-03
+
+The user reported that the Pathless media-to-record arrival and archive-header
+Back return still flashed the page top after repeated round trips. A live
+Chrome CDP screencast reproduced both journeys on the patched source before
+this follow-up change. On desktop Home-to-Pathless, frames showed Home at
+`scrollY=2431`, then three archive-top frames at `scrollY=0`, then the Pathless
+record at `scrollY=3785`. On archive Back, frames showed the archive at
+`scrollY=3785`, then two Home-top frames at `scrollY=0`, then the saved Home
+position at `scrollY=2431`. The first-frame test for the no-hash
+`/projects/` link did not cover either hashed journey.
+
+The evidence refines the original root-cause finding. Removing the global
+cross-document View Transition removed its longer snapshot animation, but the
+browser's native hash alignment still occurred after initial archive-top
+frames. Home's saved-position correction still ran in an Astro module script,
+which executed after Home had painted at the top. Settled `scrollY` values
+therefore concealed the remaining first-paint defect.
+
+The follow-up moves both corrections into a parser-blocking inline script at
+the end of the shared document body, after target markup exists and before
+deferred module scripts. It aligns valid archive hashes using the target's
+computed `scroll-margin-top`, and restores Home's saved position before the
+first visible Home frame. Native anchors, browser history, no-hash top entry,
+and the Home same-page smooth-scroll rule remain in place.
+
+Five repeated Pathless media-to-record and header-Back cycles were captured at
+desktop (1280x900), tablet (768x1024), and mobile (390x844). Across 134, 88,
+and 81 screencast frames respectively, no frame used `scrollY=0`; every cycle
+landed at the same per-viewport record and saved Home positions. See
+`quickstart.md` for the frame ranges, paths, and destination geometry.
+
 ## Remaining Validation Limits
 
-- T002 did not reach three pre-patch reproductions at every viewport. Desktop
-  reached three; tablet and mobile each have one time-ordered capture.
-- The available browser controls did not provide touch input, reduced-motion
-  emulation, or a per-tab way to disable JavaScript. Those T008 checks remain
-  pending.
-- The browser version could not be read through the available browser API.
+- T002 reached three pre-patch Pathless reproductions at desktop (1280x900),
+  tablet (768x1024), and mobile (390x844). The pre-patch Header Back journey
+  was captured once per viewport.
+- An isolated Chrome Headless 154.0.8037.95 session using Chrome DevTools
+  Protocol supplied viewport, touch, reduced-motion, script-execution, and
+  Performance trace controls. T008 and T017 passed for the recorded scenarios
+  at the tested viewports; details and local artifacts are in `quickstart.md`.
 - T013 human review remains pending; validation is not approval for merge or
   push.
 
 ## Decision
 
-The runtime evidence and source both identify native cross-document View
-Transitions as the visual top-frame cause. The header return sequence had a
-separate delayed `requestAnimationFrame` scroll-restoration path. The minimal
-changes above were applied and the tested navigation scenarios pass. Keep the
-remaining repetitions, accessibility emulation limits, and human review
-explicitly open.
+The original runtime evidence identified the longer native cross-document View
+Transition. The follow-up capture identified two remaining first-paint timing
+causes: native hash alignment after top frames, and saved Home restoration in a
+deferred module. The updated inline alignment removes those frames in the
+five-cycle tests. Human review remains the only open gate.
