@@ -1,0 +1,5524 @@
+{
+  "route": "/work/craque-da-fluencia/",
+  "chrome": "Chrome/154.0.8037.95",
+  "viewport": {
+    "widthCssPx": 2005,
+    "heightCssPx": 953,
+    "dpr": 1
+  },
+  "visibleDuringCapture": true,
+  "pageHasFocus": false,
+  "reducedMotion": false,
+  "networkCondition": "normal; preview GIF requests allowed; no throttling",
+  "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+  "scroll": {
+    "startY": 0,
+    "endY": 4552,
+    "maxY": 4552,
+    "completed": true
+  },
+  "trace": {
+    "totalEvents": 18702,
+    "frameReporters": 71,
+    "states": {
+      "STATE_NO_UPDATE_DESIRED": 3,
+      "STATE_PRESENTED_ALL": 68
+    },
+    "droppedFrames": 0,
+    "partiallyPresentedFrames": 0,
+    "schedulerBeginFrameDroppedEvents": 2,
+    "externalBeginFrameEvents": 145
+  },
+  "gifNetwork": {
+    "requested": [],
+    "loaded": [],
+    "failed": []
+  },
+  "evidenceEvents": [
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229116882,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 180,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 56,
+      "tid": 19988,
+      "ts": 123229117488,
+      "tts": 890224
+    },
+    {
+      "args": {},
+      "cat": "cc",
+      "name": "Scheduler::BeginFrameDropped",
+      "ph": "I",
+      "pid": 44480,
+      "s": "t",
+      "tid": 19988,
+      "ts": 123229117496,
+      "tts": 890230
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229133656,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 42,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 36,
+      "tid": 12664,
+      "ts": 123229133712,
+      "tts": 612285
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229133656,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 96,
+      "tid": 19988,
+      "ts": 123229133812,
+      "tts": 891031
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229150348,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 79,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 68,
+      "tid": 12664,
+      "ts": 123229150381,
+      "tts": 612777
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229150348,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 123,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229150608,
+      "tts": 892419
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229167042,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 134,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 95,
+      "tid": 12664,
+      "ts": 123229167060,
+      "tts": 613242
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229167042,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 133,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 110,
+      "tid": 19988,
+      "ts": 123229167200,
+      "tts": 893115
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229183697,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 79,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 69,
+      "tid": 12664,
+      "ts": 123229183717,
+      "tts": 613727
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229183697,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229183830,
+      "tts": 893898
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229200376,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 84,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 75,
+      "tid": 12664,
+      "ts": 123229200448,
+      "tts": 614193
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229200376,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 145,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 128,
+      "tid": 19988,
+      "ts": 123229200534,
+      "tts": 894613
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229217029,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 99,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 81,
+      "tid": 12664,
+      "ts": 123229217039,
+      "tts": 614668
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229217029,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 137,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 120,
+      "tid": 19988,
+      "ts": 123229217136,
+      "tts": 895495
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229233717,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 93,
+      "tid": 12664,
+      "ts": 123229233743,
+      "tts": 615224
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229233717,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 96,
+      "tid": 19988,
+      "ts": 123229233911,
+      "tts": 896243
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229250432,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 94,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 85,
+      "tid": 12664,
+      "ts": 123229250475,
+      "tts": 615722
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229250432,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 137,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 131,
+      "tid": 19988,
+      "ts": 123229250602,
+      "tts": 896973
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229267194,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 83,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 74,
+      "tid": 12664,
+      "ts": 123229267218,
+      "tts": 616337
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229267194,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 97,
+      "tid": 19988,
+      "ts": 123229267318,
+      "tts": 897792
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229283820,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 69,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 60,
+      "tid": 12664,
+      "ts": 123229283840,
+      "tts": 616850
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229283820,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 108,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 91,
+      "tid": 19988,
+      "ts": 123229283934,
+      "tts": 898594
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229300442,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 88,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 80,
+      "tid": 12664,
+      "ts": 123229300456,
+      "tts": 617304
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229300442,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 109,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123229300591,
+      "tts": 899358
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229317134,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 78,
+      "tid": 12664,
+      "ts": 123229317164,
+      "tts": 617778
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229317134,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123229317288,
+      "tts": 900126
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229333766,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 98,
+      "tid": 12664,
+      "ts": 123229333793,
+      "tts": 618279
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229333766,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 116,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 99,
+      "tid": 19988,
+      "ts": 123229333928,
+      "tts": 901492
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229350447,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 82,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 62,
+      "tid": 12664,
+      "ts": 123229350459,
+      "tts": 618857
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229350447,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123229350601,
+      "tts": 902527
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229367165,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 68,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 60,
+      "tid": 12664,
+      "ts": 123229367180,
+      "tts": 619354
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229367165,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 90,
+      "tid": 19988,
+      "ts": 123229367246,
+      "tts": 903392
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229383774,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 142,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 92,
+      "tid": 12664,
+      "ts": 123229383788,
+      "tts": 619824
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229383774,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229383931,
+      "tts": 904288
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229400447,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 72,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 63,
+      "tid": 12664,
+      "ts": 123229400478,
+      "tts": 620337
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229400447,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 100,
+      "tid": 19988,
+      "ts": 123229400601,
+      "tts": 905211
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229417177,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 73,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 67,
+      "tid": 12664,
+      "ts": 123229417210,
+      "tts": 620793
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229417177,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229417357,
+      "tts": 906059
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229433759,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 88,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 74,
+      "tid": 12664,
+      "ts": 123229433780,
+      "tts": 621288
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229433759,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 111,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 95,
+      "tid": 19988,
+      "ts": 123229433890,
+      "tts": 906892
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229450496,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 88,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 64,
+      "tid": 12664,
+      "ts": 123229450527,
+      "tts": 621798
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229450496,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 115,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229450665,
+      "tts": 907760
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229467149,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 90,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 83,
+      "tid": 12664,
+      "ts": 123229467168,
+      "tts": 622277
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229467149,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229467313,
+      "tts": 908505
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229483868,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 74,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 64,
+      "tid": 12664,
+      "ts": 123229483884,
+      "tts": 622786
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229483868,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 95,
+      "tid": 19988,
+      "ts": 123229483968,
+      "tts": 909316
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229500438,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 70,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 61,
+      "tid": 12664,
+      "ts": 123229500490,
+      "tts": 623229
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229500438,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229500564,
+      "tts": 910174
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229517122,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 136,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 80,
+      "tid": 12664,
+      "ts": 123229517135,
+      "tts": 624453
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229517122,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 117,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 97,
+      "tid": 19988,
+      "ts": 123229517330,
+      "tts": 913405
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229533798,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 87,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 79,
+      "tid": 12664,
+      "ts": 123229533814,
+      "tts": 624939
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229533798,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 120,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 100,
+      "tid": 19988,
+      "ts": 123229533953,
+      "tts": 914109
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229550520,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 75,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 65,
+      "tid": 12664,
+      "ts": 123229550557,
+      "tts": 625417
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229550520,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229550694,
+      "tts": 914822
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229567139,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 77,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 69,
+      "tid": 12664,
+      "ts": 123229567157,
+      "tts": 625903
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229567139,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229567284,
+      "tts": 915532
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229583898,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 75,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 67,
+      "tid": 12664,
+      "ts": 123229583916,
+      "tts": 626401
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229583898,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 111,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229583988,
+      "tts": 916247
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229600498,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 82,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 73,
+      "tid": 12664,
+      "ts": 123229600514,
+      "tts": 626896
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229600498,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 116,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 98,
+      "tid": 19988,
+      "ts": 123229600668,
+      "tts": 916979
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229617227,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 77,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 69,
+      "tid": 12664,
+      "ts": 123229617245,
+      "tts": 627397
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229617227,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 96,
+      "tid": 19988,
+      "ts": 123229617332,
+      "tts": 917710
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229633834,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 85,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 73,
+      "tid": 12664,
+      "ts": 123229633848,
+      "tts": 627860
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229633834,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 118,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 99,
+      "tid": 19988,
+      "ts": 123229633949,
+      "tts": 918471
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229650496,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 71,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 62,
+      "tid": 12664,
+      "ts": 123229650540,
+      "tts": 628350
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229650496,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 108,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 89,
+      "tid": 19988,
+      "ts": 123229650663,
+      "tts": 919196
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229667212,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 70,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 63,
+      "tid": 12664,
+      "ts": 123229667227,
+      "tts": 628790
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229667212,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 108,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 89,
+      "tid": 19988,
+      "ts": 123229667293,
+      "tts": 919857
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229683853,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 97,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 89,
+      "tid": 12664,
+      "ts": 123229683872,
+      "tts": 629232
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229683853,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 91,
+      "tid": 19988,
+      "ts": 123229684024,
+      "tts": 920528
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229700542,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 79,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 70,
+      "tid": 12664,
+      "ts": 123229700560,
+      "tts": 629729
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229700542,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229700684,
+      "tts": 921234
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229717246,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 72,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 64,
+      "tid": 12664,
+      "ts": 123229717262,
+      "tts": 630219
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229717246,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 96,
+      "tid": 19988,
+      "ts": 123229717335,
+      "tts": 921943
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229733888,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 106,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 96,
+      "tid": 12664,
+      "ts": 123229733917,
+      "tts": 630669
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229733888,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 122,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 103,
+      "tid": 19988,
+      "ts": 123229734097,
+      "tts": 922703
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229750636,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 71,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 63,
+      "tid": 12664,
+      "ts": 123229750655,
+      "tts": 631151
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229750636,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 96,
+      "tid": 19988,
+      "ts": 123229750739,
+      "tts": 923445
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229767232,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 76,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 67,
+      "tid": 12664,
+      "ts": 123229767286,
+      "tts": 631617
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229767232,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 90,
+      "tid": 19988,
+      "ts": 123229767405,
+      "tts": 924177
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229783884,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 87,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 69,
+      "tid": 12664,
+      "ts": 123229783901,
+      "tts": 632111
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229783884,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123229784100,
+      "tts": 924868
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229800571,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 98,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 82,
+      "tid": 12664,
+      "ts": 123229800587,
+      "tts": 632594
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229800571,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 120,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229800737,
+      "tts": 925545
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229817255,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 91,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 83,
+      "tid": 12664,
+      "ts": 123229817274,
+      "tts": 633096
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229817255,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 120,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 100,
+      "tid": 19988,
+      "ts": 123229817424,
+      "tts": 926236
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229833998,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 73,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 64,
+      "tid": 12664,
+      "ts": 123229834016,
+      "tts": 633681
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229833998,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 114,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 97,
+      "tid": 19988,
+      "ts": 123229834087,
+      "tts": 927010
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229850567,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 75,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 66,
+      "tid": 12664,
+      "ts": 123229850634,
+      "tts": 634147
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229850567,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229850708,
+      "tts": 927748
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229867240,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 81,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 74,
+      "tid": 12664,
+      "ts": 123229867254,
+      "tts": 634664
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229867240,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 91,
+      "tid": 19988,
+      "ts": 123229867351,
+      "tts": 928503
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229883933,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 93,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 82,
+      "tid": 12664,
+      "ts": 123229883948,
+      "tts": 635144
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229883933,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 133,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 106,
+      "tid": 19988,
+      "ts": 123229884043,
+      "tts": 929206
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229900728,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 74,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 65,
+      "tid": 12664,
+      "ts": 123229900742,
+      "tts": 635614
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229900728,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229900816,
+      "tts": 929937
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229917281,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 71,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 63,
+      "tid": 12664,
+      "ts": 123229917310,
+      "tts": 636105
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229917281,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 120,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 102,
+      "tid": 19988,
+      "ts": 123229917439,
+      "tts": 930666
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229933991,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 128,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 98,
+      "tid": 12664,
+      "ts": 123229934005,
+      "tts": 636663
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229933991,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123229934166,
+      "tts": 931375
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229950683,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 96,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 84,
+      "tid": 12664,
+      "ts": 123229950714,
+      "tts": 637187
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229950683,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123229950831,
+      "tts": 932067
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229967415,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 72,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 64,
+      "tid": 12664,
+      "ts": 123229967432,
+      "tts": 637728
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229967415,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 110,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229967501,
+      "tts": 932888
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229983994,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 91,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 82,
+      "tid": 12664,
+      "ts": 123229984015,
+      "tts": 638214
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123229983994,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123229984163,
+      "tts": 933557
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230000655,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 85,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 78,
+      "tid": 12664,
+      "ts": 123230000670,
+      "tts": 638708
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230000655,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 94,
+      "tid": 19988,
+      "ts": 123230000830,
+      "tts": 934387
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230017363,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 100,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 73,
+      "tid": 12664,
+      "ts": 123230017381,
+      "tts": 640174
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230017363,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 119,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 101,
+      "tid": 19988,
+      "ts": 123230017544,
+      "tts": 937678
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230034010,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 126,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 73,
+      "tid": 12664,
+      "ts": 123230034026,
+      "tts": 640691
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230034010,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 106,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 89,
+      "tid": 19988,
+      "ts": 123230034207,
+      "tts": 938436
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230050689,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 87,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 79,
+      "tid": 12664,
+      "ts": 123230050708,
+      "tts": 641186
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230050689,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 109,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123230050842,
+      "tts": 939188
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230067355,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 118,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 79,
+      "tid": 12664,
+      "ts": 123230067370,
+      "tts": 641673
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230067355,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 116,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 99,
+      "tid": 19988,
+      "ts": 123230067518,
+      "tts": 940023
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230084030,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 85,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 76,
+      "tid": 12664,
+      "ts": 123230084064,
+      "tts": 642163
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230084030,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 119,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 101,
+      "tid": 19988,
+      "ts": 123230084223,
+      "tts": 940759
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230100716,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 100,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 88,
+      "tid": 12664,
+      "ts": 123230100760,
+      "tts": 642658
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230100716,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 151,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 135,
+      "tid": 19988,
+      "ts": 123230100907,
+      "tts": 941489
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230117426,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 74,
+      "tid": 12664,
+      "ts": 123230117445,
+      "tts": 643290
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230117426,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 113,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 92,
+      "tid": 19988,
+      "ts": 123230117576,
+      "tts": 942325
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230134118,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 93,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 83,
+      "tid": 12664,
+      "ts": 123230134215,
+      "tts": 643766
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230134118,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 142,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 123,
+      "tid": 19988,
+      "ts": 123230134287,
+      "tts": 943182
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230150703,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 80,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 60,
+      "tid": 12664,
+      "ts": 123230150781,
+      "tts": 644259
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230150703,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 112,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 93,
+      "tid": 19988,
+      "ts": 123230150851,
+      "tts": 944018
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230167452,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 90,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 69,
+      "tid": 12664,
+      "ts": 123230167478,
+      "tts": 644747
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230167452,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 146,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 127,
+      "tid": 19988,
+      "ts": 123230167599,
+      "tts": 944722
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230184170,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 100,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 91,
+      "tid": 12664,
+      "ts": 123230184187,
+      "tts": 645295
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230184170,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 171,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 155,
+      "tid": 19988,
+      "ts": 123230184316,
+      "tts": 945711
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230200860,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 97,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 82,
+      "tid": 12664,
+      "ts": 123230200878,
+      "tts": 645878
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230200860,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 135,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 117,
+      "tid": 19988,
+      "ts": 123230201022,
+      "tts": 946711
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230217533,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 67,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 58,
+      "tid": 12664,
+      "ts": 123230217560,
+      "tts": 646501
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230217533,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 151,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 133,
+      "tid": 19988,
+      "ts": 123230217663,
+      "tts": 947511
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230234230,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 81,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 70,
+      "tid": 12664,
+      "ts": 123230234245,
+      "tts": 646978
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230234230,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 149,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 120,
+      "tid": 19988,
+      "ts": 123230234380,
+      "tts": 948473
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230250897,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 78,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 65,
+      "tid": 12664,
+      "ts": 123230250913,
+      "tts": 647522
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230250897,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 162,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 145,
+      "tid": 19988,
+      "ts": 123230251012,
+      "tts": 949285
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230267556,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 103,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 67,
+      "tid": 12664,
+      "ts": 123230267569,
+      "tts": 648094
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230267556,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 105,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 81,
+      "tid": 19988,
+      "ts": 123230267722,
+      "tts": 950400
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230284189,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 109,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 93,
+      "tid": 12664,
+      "ts": 123230284242,
+      "tts": 648277
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230284189,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 97,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 88,
+      "tid": 19988,
+      "ts": 123230284339,
+      "tts": 951024
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230300908,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 51,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 45,
+      "tid": 12664,
+      "ts": 123230300919,
+      "tts": 648443
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230300908,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 24,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 21,
+      "tid": 19988,
+      "ts": 123230301013,
+      "tts": 951283
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230317564,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 37,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 15952,
+      "tdur": 31,
+      "tid": 12664,
+      "ts": 123230317592,
+      "tts": 648559
+    },
+    {
+      "args": {
+        "begin_frame_args": {
+          "frame_time_us": 123230317564,
+          "interval_delta_us": 16672
+        }
+      },
+      "cat": "viz,input.scrolling",
+      "dur": 79,
+      "name": "ExternalBeginFrameSource::OnBeginFrame",
+      "ph": "X",
+      "pid": 44480,
+      "tdur": 75,
+      "tid": 19988,
+      "ts": 123230317669,
+      "tts": 951569
+    },
+    {
+      "args": {},
+      "cat": "cc",
+      "name": "Scheduler::BeginFrameDropped",
+      "ph": "I",
+      "pid": 44480,
+      "s": "t",
+      "tid": 19988,
+      "ts": 123230317687,
+      "tts": 951586
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 25335,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123228049862
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 25336,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x2"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123228066585
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x2"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123228083698
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123228083698
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 25399,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229116882
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229118899
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25400,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229133656
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229150348
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25401,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229150348
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229167042
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25402,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229167042
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229183697
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25403,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229183697
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229200376
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25404,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229200376
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229217029
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25405,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229217029
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229233717
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25406,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229233717
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229250432
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25407,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229250432
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229267194
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25408,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229267194
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229283820
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25409,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229283820
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229300442
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25410,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229300442
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229317134
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25411,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229317134
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229333766
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25412,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229333766
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229350447
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25413,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229350447
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229367165
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25414,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229367165
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229383774
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25415,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229383774
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229400447
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25416,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229400447
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229417177
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25417,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229417177
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229433759
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25418,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229433759
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229450496
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25419,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229450496
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229467149
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25420,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229467149
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229483868
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425234000,
+          "frame_sequence": 25421,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229483868
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229500438
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25422,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425234000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229500438
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229517122
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25423,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229517122
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229533798
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25424,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229533798
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229550520
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25425,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229550520
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229567139
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25426,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229567139
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229583898
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25427,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229583898
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229600498
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25428,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229600498
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229617227
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25429,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229617227
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229633834
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25430,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229633834
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229650496
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25431,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229650496
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229667212
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25432,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229667212
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229683853
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25433,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229683853
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229700542
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25434,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229700542
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229717246
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25435,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229717246
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229733888
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25436,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229733888
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229750636
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25437,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229750636
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229767232
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25438,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229767232
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229783884
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25439,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229783884
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229800571
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25440,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229800571
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229817255
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25441,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229817255
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229833998
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25442,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229833998
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229850567
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25443,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229850567
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229867240
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25444,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229867240
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229883933
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25445,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229883933
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229900728
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25446,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229900728
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229917281
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25447,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229917281
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229933991
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25448,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229933991
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229950683
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25449,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229950683
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229967415
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25450,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229967415
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229983994
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25451,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123229983994
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230000655
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25452,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230000655
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230017363
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25453,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230017363
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230034010
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25454,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230034010
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230050689
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25455,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230050689
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230067355
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25456,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230067355
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230084030
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25457,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230084030
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230100716
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25458,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230100716
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230117426
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25459,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230117426
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230134118
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25460,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230134118
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230150703
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25461,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230150703
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230167452
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25462,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230167452
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230184170
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25463,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230184170
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230200860
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25464,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230200860
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230217533
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25465,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230217533
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230234230
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25466,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230234230
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230250897
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": -4679843358425235000,
+          "frame_sequence": 25467,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 8,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": -4679843358425235000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230250897
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 44480,
+      "tid": 19988,
+      "ts": 123230267556
+    }
+  ],
+  "environment": {
+    "observedAnimationFrameHz": 59.9,
+    "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+    "activeWindowsPowerPlan": "Balanced",
+    "batteryDetected": false,
+    "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+    "device": "Windows desktop",
+    "displayResolutionCssPx": {
+      "width": 2560,
+      "height": 1080
+    },
+    "observedDisplayCadenceHz": 59.9,
+    "windowViewport": {
+      "widthCssPx": 2005,
+      "heightCssPx": 953,
+      "dpr": 1
+    },
+    "motionPreference": "normal"
+  }
+}

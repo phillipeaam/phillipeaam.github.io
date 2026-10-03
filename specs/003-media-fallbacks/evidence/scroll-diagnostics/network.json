@@ -1,0 +1,68 @@
+{
+  "capturedAt": "2026-10-03",
+  "method": "Chrome Resource Timing API after a fresh route load with Network.setCacheDisabled(true); local Astro server; no CPU/network throttling.",
+  "routes": {
+    "/": {
+      "gifRequests": [
+        {
+          "url": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 11463802,
+          "encodedBodySize": 11463502,
+          "durationMs": 287
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 7460749,
+          "encodedBodySize": 7460449,
+          "durationMs": 261
+        }
+      ],
+      "requestCount": 2,
+      "encodedBodyTotalBytes": 18923951,
+      "transferTotalBytes": 18924551
+    },
+    "/projects/": {
+      "gifRequests": [
+        {
+          "url": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 1561355,
+          "encodedBodySize": 1561055,
+          "durationMs": 211
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 7460749,
+          "encodedBodySize": 7460449,
+          "durationMs": 372
+        },
+        {
+          "url": "/projects/pathless/pathless-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 15504907,
+          "encodedBodySize": 15504607,
+          "durationMs": 479
+        },
+        {
+          "url": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "status": 200,
+          "fromDiskCache": false,
+          "transferSize": 11463802,
+          "encodedBodySize": 11463502,
+          "durationMs": 446
+        }
+      ],
+      "requestCount": 4,
+      "encodedBodyTotalBytes": 35989613,
+      "transferTotalBytes": 35990813
+    }
+  }
+}

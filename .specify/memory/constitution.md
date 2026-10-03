@@ -6,6 +6,14 @@ Sync Impact Report
 - Removed sections: none
 - Follow-up TODOs: none; ratification date set to initial adoption on 2026-09-30
 -->
+<!--
+Sync Impact Report
+- Version change: 1.0.0 → 1.1.0 (material expansion of Principle IV)
+- Modified principles: IV. Accessibility Is Part of Completion
+- Added sections: none
+- Removed sections: none
+- Follow-up TODOs: Remove this review report before committing the amended constitution.
+-->
 # Phillipe Augusto Portfolio Constitution
 
 ## Core Principles
@@ -31,7 +39,10 @@ pattern requires a demonstrated need and review.
 ### IV. Accessibility Is Part of Completion
 Applicable work MUST provide keyboard navigation, visible focus, semantic HTML,
 meaningful accessible names, reduced-motion support, and usable touch targets.
-Accessibility is a completion requirement, not optional polish.
+Animated project media MUST provide an accurate static fallback that remains
+available when reduced motion suppresses animation and until animation content
+is ready to display. Accessibility is a completion requirement, not optional
+polish.
 
 ### V. Progressive Enhancement
 Core content and navigation MUST remain usable without optional JavaScript.
@@ -89,4 +100,4 @@ Implementation reviews MUST check relevant changes against this constitution;
 exceptions require an explicit rationale and human review. The constitution does
 not replace project-specific evidence or the feature's review requirements.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-30 | **Last Amended**: 2026-09-30
+**Version**: 1.1.0 | **Ratified**: 2026-09-30 | **Last Amended**: 2026-10-02

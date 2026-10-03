@@ -1,0 +1,399 @@
+{
+  "capturedAt": "2026-10-03T21:34:47.246Z",
+  "browser": "Chrome/154.0.8037.95",
+  "window": "visible, maximized; DevTools open",
+  "network": "normal; no throttling",
+  "motion": "normal (reduced motion off)",
+  "routes": [
+    {
+      "route": "/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 4766,
+        "maxY": 4766,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 25490,
+        "frameReporters": 85,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 8,
+          "STATE_PRESENTED_ALL": 69,
+          "STATE_PRESENTED_PARTIAL": 8
+        },
+        "droppedFrames": 0,
+        "partiallyPresentedFrames": 8,
+        "schedulerBeginFrameDroppedEvents": 2,
+        "externalBeginFrameEvents": 149
+      },
+      "gifNetwork": {
+        "requested": [
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "loaded": [
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/home.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    },
+    {
+      "route": "/projects/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 6001,
+        "maxY": 6001,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 26480,
+        "frameReporters": 88,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 3,
+          "STATE_PRESENTED_ALL": 78,
+          "STATE_PRESENTED_PARTIAL": 7
+        },
+        "droppedFrames": 0,
+        "partiallyPresentedFrames": 7,
+        "schedulerBeginFrameDroppedEvents": 1,
+        "externalBeginFrameEvents": 165
+      },
+      "gifNetwork": {
+        "requested": [
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "http://localhost:4321/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "http://localhost:4321/projects/pathless/pathless-gameplay-preview.gif"
+        ],
+        "loaded": [
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "http://localhost:4321/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "http://localhost:4321/projects/pathless/pathless-gameplay-preview.gif"
+        ],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/projects.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    },
+    {
+      "route": "/work/ilhas-do-alfabeto/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 4466,
+        "maxY": 4466,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 18446,
+        "frameReporters": 70,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 3,
+          "STATE_PRESENTED_ALL": 67
+        },
+        "droppedFrames": 0,
+        "partiallyPresentedFrames": 0,
+        "schedulerBeginFrameDroppedEvents": 2,
+        "externalBeginFrameEvents": 143
+      },
+      "gifNetwork": {
+        "requested": [],
+        "loaded": [],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/work-ilhas-do-alfabeto.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    },
+    {
+      "route": "/work/wallaces-quest/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 6428,
+        "maxY": 6428,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 23763,
+        "frameReporters": 94,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 7,
+          "STATE_PRESENTED_ALL": 84,
+          "STATE_DROPPED": 1,
+          "STATE_PRESENTED_PARTIAL": 2
+        },
+        "droppedFrames": 1,
+        "partiallyPresentedFrames": 2,
+        "schedulerBeginFrameDroppedEvents": 1,
+        "externalBeginFrameEvents": 172
+      },
+      "gifNetwork": {
+        "requested": [
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+        ],
+        "loaded": [
+          "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+        ],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/work-wallaces-quest.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    },
+    {
+      "route": "/work/read-with-ello/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 7590,
+        "maxY": 7590,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 25493,
+        "frameReporters": 94,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 4,
+          "STATE_PRESENTED_ALL": 89,
+          "STATE_PRESENTED_PARTIAL": 1
+        },
+        "droppedFrames": 0,
+        "partiallyPresentedFrames": 1,
+        "schedulerBeginFrameDroppedEvents": 0,
+        "externalBeginFrameEvents": 185
+      },
+      "gifNetwork": {
+        "requested": [
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "loaded": [
+          "http://localhost:4321/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/work-read-with-ello.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    },
+    {
+      "route": "/work/craque-da-fluencia/",
+      "chrome": "Chrome/154.0.8037.95",
+      "viewport": {
+        "widthCssPx": 2005,
+        "heightCssPx": 953,
+        "dpr": 1
+      },
+      "visibleDuringCapture": true,
+      "pageHasFocus": false,
+      "reducedMotion": false,
+      "networkCondition": "normal; preview GIF requests allowed; no throttling",
+      "scrollMethod": "DevTools Runtime scrollTo smooth from top to bottom",
+      "scroll": {
+        "startY": 0,
+        "endY": 4552,
+        "maxY": 4552,
+        "completed": true
+      },
+      "trace": {
+        "totalEvents": 18702,
+        "frameReporters": 71,
+        "states": {
+          "STATE_NO_UPDATE_DESIRED": 3,
+          "STATE_PRESENTED_ALL": 68
+        },
+        "droppedFrames": 0,
+        "partiallyPresentedFrames": 0,
+        "schedulerBeginFrameDroppedEvents": 2,
+        "externalBeginFrameEvents": 145
+      },
+      "gifNetwork": {
+        "requested": [],
+        "loaded": [],
+        "failed": []
+      },
+      "evidence": "specs/003-media-fallbacks/evidence/scroll/work-craque-da-fluencia.json",
+      "environment": {
+        "observedAnimationFrameHz": 59.9,
+        "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+        "activeWindowsPowerPlan": "Balanced",
+        "batteryDetected": false,
+        "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+        "device": "Windows desktop",
+        "displayResolutionCssPx": {
+          "width": 2560,
+          "height": 1080
+        },
+        "observedDisplayCadenceHz": 59.9,
+        "windowViewport": {
+          "widthCssPx": 2005,
+          "heightCssPx": 953,
+          "dpr": 1
+        },
+        "motionPreference": "normal"
+      }
+    }
+  ],
+  "environment": {
+    "observedAnimationFrameHz": 59.9,
+    "measurement": "median requestAnimationFrame timestamp interval over 1.5 seconds in the visible Chrome page",
+    "activeWindowsPowerPlan": "Balanced",
+    "batteryDetected": false,
+    "displayModeApiRateQuery": "unavailable; the read-only Windows display mode query returned no value",
+    "device": "Windows desktop",
+    "displayResolutionCssPx": {
+      "width": 2560,
+      "height": 1080
+    },
+    "observedDisplayCadenceHz": 59.9,
+    "windowViewport": {
+      "widthCssPx": 2005,
+      "heightCssPx": 953,
+      "dpr": 1
+    },
+    "motionPreference": "normal"
+  }
+}

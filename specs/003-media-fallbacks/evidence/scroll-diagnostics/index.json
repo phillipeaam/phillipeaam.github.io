@@ -1,0 +1,302 @@
+{
+  "capturedAt": "2026-10-03",
+  "purpose": "Supplemental main-thread and animated-image diagnostics for representative scrolls. Controlled before/after frame comparison remains in ../scroll/.",
+  "environment": {
+    "browser": "Chrome 154.0.8037.95",
+    "viewportCssPixels": "2005x953",
+    "dpr": 1,
+    "displayRefreshRateHz": 60,
+    "reducedMotion": false,
+    "tabVisibility": "visible",
+    "scroll": "CDP Runtime.evaluate window.scrollTo({behavior:\"smooth\"}), visible page, top-to-bottom",
+    "server": "Astro dev server",
+    "platform": "Windows desktop",
+    "displayResolution": "2560x1080",
+    "windowState": "maximized",
+    "powerPlan": "not rechecked during supplemental trace (Balanced during the earlier T018/T019 capture)"
+  },
+  "results": [
+    {
+      "route": "/",
+      "page": {
+        "scrollHeightCssPixels": 5719,
+        "domNodes": 478,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [
+          "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "scrollDurationMs": 1425
+      },
+      "rendererMainThread": {
+        "runTaskCount": 454,
+        "maxRunTaskMs": 13.9,
+        "runTasksOver8Ms": 2,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 57,
+          "totalDurationMs": 25.48,
+          "maxDurationMs": 1.28
+        },
+        "layout": {
+          "count": 48,
+          "totalDurationMs": 10.92,
+          "maxDurationMs": 1.16
+        },
+        "paint": {
+          "count": 127,
+          "totalDurationMs": 44.44,
+          "maxDurationMs": 2.06
+        },
+        "script": {
+          "count": 175,
+          "totalDurationMs": 64.69,
+          "maxDurationMs": 2.81
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 69,
+        "droppedFrameTraceEvents": 3,
+        "animatedImageDecodeEvents": 2,
+        "animatedImageDecodeMaxMs": 10.45,
+        "animatedImageYuvDecodeEvents": 8,
+        "animatedImageYuvDecodeMaxMs": 27.09,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    },
+    {
+      "route": "/projects/",
+      "page": {
+        "scrollHeightCssPixels": 6954,
+        "domNodes": 630,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [
+          "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "/projects/pathless/pathless-gameplay-preview.gif",
+          "/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+        ],
+        "scrollDurationMs": 1552
+      },
+      "rendererMainThread": {
+        "runTaskCount": 370,
+        "maxRunTaskMs": 3.9,
+        "runTasksOver8Ms": 0,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 29,
+          "totalDurationMs": 8.64,
+          "maxDurationMs": 0.75
+        },
+        "layout": {
+          "count": 25,
+          "totalDurationMs": 4.42,
+          "maxDurationMs": 0.57
+        },
+        "paint": {
+          "count": 43,
+          "totalDurationMs": 24.15,
+          "maxDurationMs": 2
+        },
+        "script": {
+          "count": 34,
+          "totalDurationMs": 4.71,
+          "maxDurationMs": 1
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 79,
+        "droppedFrameTraceEvents": 3,
+        "animatedImageDecodeEvents": 9,
+        "animatedImageDecodeMaxMs": 5.28,
+        "animatedImageYuvDecodeEvents": 3,
+        "animatedImageYuvDecodeMaxMs": 42.05,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    },
+    {
+      "route": "/work/ilhas-do-alfabeto/",
+      "page": {
+        "scrollHeightCssPixels": 5419,
+        "domNodes": 254,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [],
+        "scrollDurationMs": 1334
+      },
+      "rendererMainThread": {
+        "runTaskCount": 267,
+        "maxRunTaskMs": 2.33,
+        "runTasksOver8Ms": 0,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "layout": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "paint": {
+          "count": 1,
+          "totalDurationMs": 0.58,
+          "maxDurationMs": 0.58
+        },
+        "script": {
+          "count": 25,
+          "totalDurationMs": 1.78,
+          "maxDurationMs": 0.13
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 67,
+        "droppedFrameTraceEvents": 0,
+        "animatedImageDecodeEvents": 0,
+        "animatedImageDecodeMaxMs": 0,
+        "animatedImageYuvDecodeEvents": 0,
+        "animatedImageYuvDecodeMaxMs": 0,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    },
+    {
+      "route": "/work/wallaces-quest/",
+      "page": {
+        "scrollHeightCssPixels": 7381,
+        "domNodes": 374,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [
+          "/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+        ],
+        "scrollDurationMs": 1539
+      },
+      "rendererMainThread": {
+        "runTaskCount": 339,
+        "maxRunTaskMs": 3.76,
+        "runTasksOver8Ms": 0,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "layout": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "paint": {
+          "count": 5,
+          "totalDurationMs": 3.4,
+          "maxDurationMs": 0.83
+        },
+        "script": {
+          "count": 29,
+          "totalDurationMs": 2.7,
+          "maxDurationMs": 0.24
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 81,
+        "droppedFrameTraceEvents": 2,
+        "animatedImageDecodeEvents": 7,
+        "animatedImageDecodeMaxMs": 1.6,
+        "animatedImageYuvDecodeEvents": 0,
+        "animatedImageYuvDecodeMaxMs": 0,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    },
+    {
+      "route": "/work/read-with-ello/",
+      "page": {
+        "scrollHeightCssPixels": 8543,
+        "domNodes": 440,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [
+          "/projects/ello-read/read-with-ello-gameplay-preview.gif"
+        ],
+        "scrollDurationMs": 1709
+      },
+      "rendererMainThread": {
+        "runTaskCount": 352,
+        "maxRunTaskMs": 1.38,
+        "runTasksOver8Ms": 0,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "layout": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "paint": {
+          "count": 6,
+          "totalDurationMs": 3.23,
+          "maxDurationMs": 0.72
+        },
+        "script": {
+          "count": 32,
+          "totalDurationMs": 3.41,
+          "maxDurationMs": 0.42
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 88,
+        "droppedFrameTraceEvents": 0,
+        "animatedImageDecodeEvents": 2,
+        "animatedImageDecodeMaxMs": 4.17,
+        "animatedImageYuvDecodeEvents": 2,
+        "animatedImageYuvDecodeMaxMs": 12.12,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    },
+    {
+      "route": "/work/craque-da-fluencia/",
+      "page": {
+        "scrollHeightCssPixels": 5505,
+        "domNodes": 260,
+        "gifPreviewsConfiguredToAutoplayBeforeScroll": [],
+        "scrollDurationMs": 1387
+      },
+      "rendererMainThread": {
+        "runTaskCount": 272,
+        "maxRunTaskMs": 1.18,
+        "runTasksOver8Ms": 0,
+        "runTasksOver16_7Ms": 0,
+        "runTasksOver50Ms": 0,
+        "styleRecalculation": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "layout": {
+          "count": 0,
+          "totalDurationMs": 0,
+          "maxDurationMs": 0
+        },
+        "paint": {
+          "count": 1,
+          "totalDurationMs": 0.59,
+          "maxDurationMs": 0.59
+        },
+        "script": {
+          "count": 26,
+          "totalDurationMs": 2.13,
+          "maxDurationMs": 0.18
+        }
+      },
+      "traceDiagnostics": {
+        "scrollDeltaFrames": 68,
+        "droppedFrameTraceEvents": 0,
+        "animatedImageDecodeEvents": 0,
+        "animatedImageDecodeMaxMs": 0,
+        "animatedImageYuvDecodeEvents": 0,
+        "animatedImageYuvDecodeMaxMs": 0,
+        "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+      }
+    }
+  ]
+}
