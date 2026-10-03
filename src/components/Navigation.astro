@@ -164,6 +164,36 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
     }
   }
 
+  if (archiveGroups.length > 0) {
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const destination = new URL(link.href, window.location.href);
+        if (destination.origin !== window.location.origin || destination.pathname !== window.location.pathname || !destination.hash) return;
+
+        let targetId: string;
+        try {
+          targetId = decodeURIComponent(destination.hash.slice(1));
+        } catch {
+          return;
+        }
+
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        if (destination.href !== window.location.href) {
+          window.history.pushState(null, '', `${destination.pathname}${destination.search}${destination.hash}`);
+        }
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+
+        const group = target.closest<HTMLElement>('.archive-group');
+        if (group) updateActiveLink(group.id);
+      });
+    });
+  }
+
   if (archiveGroups.length > 0 && 'IntersectionObserver' in window) {
     let archiveObserver: IntersectionObserver | undefined;
     let resizeFrame = 0;
