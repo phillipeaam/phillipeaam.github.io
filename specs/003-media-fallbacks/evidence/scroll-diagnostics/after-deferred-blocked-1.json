@@ -1,0 +1,3725 @@
+{
+  "route": "/work/wallaces-quest/",
+  "condition": "blocked",
+  "run": 1,
+  "chrome": "Chrome/154.0.8037.95",
+  "viewport": {
+    "widthCssPx": 2005,
+    "heightCssPx": 953,
+    "dpr": 1
+  },
+  "visible": true,
+  "reducedMotion": false,
+  "networkThrottle": "none",
+  "gifNetwork": {
+    "requested": [
+      "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+    ],
+    "loaded": [],
+    "failed": [
+      "http://localhost:4321/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+    ],
+    "conditionConfirmed": true
+  },
+  "scroll": {
+    "startY": 0,
+    "endY": 6428,
+    "maxY": 6428,
+    "completed": true
+  },
+  "trace": {
+    "eventCount": 23696,
+    "frameReporters": 87,
+    "states": {
+      "STATE_NO_UPDATE_DESIRED": 5,
+      "STATE_PRESENTED_ALL": 82
+    },
+    "droppedFrames": 0,
+    "partiallyPresentedFrames": 0,
+    "schedulerBeginFrameDroppedEvents": 3
+  },
+  "evidenceEvents": [
+    {
+      "args": {},
+      "cat": "cc",
+      "name": "Scheduler::BeginFrameDropped",
+      "ph": "I",
+      "pid": 4776,
+      "s": "t",
+      "tid": 36772,
+      "ts": 130762448403,
+      "tts": 6130992
+    },
+    {
+      "args": {},
+      "cat": "cc",
+      "name": "Scheduler::BeginFrameDropped",
+      "ph": "I",
+      "pid": 33072,
+      "s": "t",
+      "tid": 19004,
+      "ts": 130763293666,
+      "tts": 4760118
+    },
+    {
+      "args": {},
+      "cat": "cc",
+      "name": "Scheduler::BeginFrameDropped",
+      "ph": "I",
+      "pid": 4776,
+      "s": "t",
+      "tid": 36772,
+      "ts": 130763860082,
+      "tts": 6223381
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 46609,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 1,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130759791493
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 46610,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 1,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x2"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130759808333
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x2"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130759825202
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130759825202
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 46653,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130760525108
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 46654,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x5"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130760541745
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x5"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130760558662
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130760558662
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "frame_sequence": 46768,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_NO_UPDATE_DESIRED",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762442349
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762449363
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46769,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762459280
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762475949
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46770,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762475949
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762492690
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46771,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762492690
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762509356
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46772,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762509356
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762526057
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46773,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762526057
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762542698
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46774,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762542698
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762559368
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46775,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762559368
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762576032
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46776,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762576032
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762592694
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46777,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762592694
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762609361
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46778,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762609361
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762626024
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46779,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762626024
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762642650
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46780,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762642650
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762659285
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46781,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762659285
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762676079
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46782,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762676079
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762692699
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46783,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762692699
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762709428
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46784,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762709428
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762726014
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380554000,
+          "frame_sequence": 46785,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380554000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762726014
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762742781
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46786,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762742781
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762759382
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46787,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762759382
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762775990
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46788,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762775990
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762792692
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46789,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762792692
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762809381
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46790,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762809381
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762826063
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46791,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762826063
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762842788
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46792,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762842788
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762859398
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46793,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762859398
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762876074
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46794,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762876074
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762892781
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46795,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762892781
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762909432
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46796,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762909432
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762926104
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46797,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762926104
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762942841
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46798,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762942841
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762959502
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46799,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762959502
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762976253
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46800,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762976253
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762992869
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46801,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130762992869
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763009538
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46802,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763009538
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763026214
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46803,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763026214
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763043056
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46804,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763043056
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763059567
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46805,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763059567
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763076227
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46806,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763076227
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763092919
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46807,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763092919
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763109563
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46808,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763109563
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763126273
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46809,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763126273
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763142920
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46810,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763142920
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763159600
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46811,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763159600
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763176279
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46812,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763176279
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763192955
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46813,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763192955
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763209735
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46814,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763209735
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763226292
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46815,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763226292
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763242952
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46816,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763242952
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763259577
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46817,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763259577
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46817,
+          "frame_source": 4294967296,
+          "has_compositor_animation": false,
+          "has_high_latency": false,
+          "has_main_animation": false,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 1,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130763259577
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763276298
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46818,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763276298
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763292991
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x1"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 33072,
+      "tid": 19004,
+      "ts": 130763292991
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46819,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763292991
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763309689
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46820,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763309689
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763326300
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46821,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763326300
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763343022
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46822,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763343022
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763359700
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46823,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763359700
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763376362
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46824,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763376362
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763393142
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46825,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763393142
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763409719
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46826,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763409719
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763426382
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46827,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763426382
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763443072
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46828,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763443072
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763459875
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46829,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763459875
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763476390
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46830,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763476390
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763493063
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46831,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763493063
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763509776
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46832,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763509776
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763526421
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46833,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763526421
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763543052
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46834,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763543052
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763559781
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46835,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763559781
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763576395
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46836,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763576395
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763593156
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46837,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763593156
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763609728
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46838,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763609728
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763626467
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46839,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763626467
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763643136
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46840,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763643136
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763659811
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46841,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763659811
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763676521
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46842,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763676521
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763693116
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46843,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763693116
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763709822
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46844,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763709822
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763726515
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46845,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763726515
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763743215
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46846,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763743215
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763759793
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46847,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763759793
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763776523
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46848,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763776523
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763793175
+    },
+    {
+      "args": {
+        "frame_reporter": {
+          "affects_smoothness": false,
+          "checkerboarded_needs_raster": false,
+          "checkerboarded_needs_record": false,
+          "display_trace_id": 5722919893380555000,
+          "frame_sequence": 46849,
+          "frame_source": 4294967296,
+          "has_compositor_animation": true,
+          "has_high_latency": false,
+          "has_main_animation": true,
+          "has_missing_content": false,
+          "has_smooth_input_main": false,
+          "layer_tree_host_id": 21,
+          "scroll_state": "SCROLL_NONE",
+          "state": "STATE_PRESENTED_ALL",
+          "surface_frame_trace_id": 5722919893380555000
+        }
+      },
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "b",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763793175
+    },
+    {
+      "args": {},
+      "cat": "cc,benchmark,disabled-by-default-devtools.timeline.frame",
+      "id2": {
+        "local": "0x4"
+      },
+      "name": "PipelineReporter",
+      "ph": "e",
+      "pid": 4776,
+      "tid": 36772,
+      "ts": 130763809877
+    }
+  ]
+}

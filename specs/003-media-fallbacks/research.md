@@ -168,14 +168,22 @@ runs recorded 0/1/1 drops and blocked runs 0/0/0). The evidence supports
 reducing unnecessary eager media work as an experiment, not claiming a proven
 FPS improvement or a generally overloaded main thread.
 
-The current code already defers static poster images with native lazy loading,
-provides dimensions and asynchronous decoding, and avoids `will-change` and
-`content-visibility`. The next scoped experiment to consider is scheduling
-autoplay GIF requests only when their media area approaches the viewport. Keep
-the static fallback visible until the GIF is decoded, and evaluate network
-bytes/requests and presented-frame counts independently. General `content-visibility`
-work is not indicated by these traces. See the reusable measurement and
-rendering practice in [`docs/performance-guidelines.md`](../../docs/performance-guidelines.md).
+The code defers static poster images with native lazy loading, provides
+dimensions and asynchronous decoding, and avoids `will-change` and
+`content-visibility`. T021 implements the scoped autoplay experiment with a
+shared `IntersectionObserver` and a root margin of 75% of the viewport height.
+On cache-disabled cold loads with no scrolling, Home avoided 7,460,449 encoded
+GIF body bytes (39.4%) and `/projects/` avoided 26,968,109 bytes (74.9%). The
+deferred images loaded as they entered the prefetch range; reduced-motion loads
+requested no autoplay GIFs. The post-change Wallace's Quest comparison recorded
+allowed dropped-frame counts of 0/1/2 and blocked counts of 0/0/0; partial
+presentation counts were 1/2/3 and 0/0/0. This is a limited directional result
+from one route and three runs, not proof of a general FPS improvement. See
+`evidence/scroll-diagnostics/after-deferred-autoplay.json`,
+`after-deferred-autoplay-frames.json`, and the per-run traces. General
+`content-visibility` work is not indicated by these traces. See the reusable
+measurement and rendering practice in
+[`docs/performance-guidelines.md`](../../docs/performance-guidelines.md).
 
 Navigation also has a passive scroll listener throttled by
 `requestAnimationFrame` that stores scroll state in session storage; this is

@@ -133,6 +133,25 @@ follow [`docs/performance-guidelines.md`](../../docs/performance-guidelines.md).
 Record frame presentation separately from network transfer and image decode;
 frame sampling alone must not be used to attribute a cause.
 
+### Validate deferred autoplay requests
+
+1. With normal motion and browser cache disabled, load `/` and `/projects/`
+   without scrolling. In Network, confirm that autoplay GIFs whose media areas
+   are outside the configured near-viewport range have not been requested.
+   Record request counts and encoded body bytes against the baseline in
+   `evidence/scroll-diagnostics/network.json`.
+2. Scroll each page toward its media areas. Confirm each GIF request starts as
+   the area approaches the viewport, the matching WebP remains visible while
+   it loads/decodes, and the GIF replaces it only after readiness. Complete a
+   full scroll to confirm all intended autoplay previews can still play.
+3. Enable reduced motion and reload. Confirm autoplay GIFs are not requested
+   and the WebP remains visible. Check the existing hover and keyboard-focus
+   preview triggers on interactive cards.
+4. Repeat three visible-tab Wallace's Quest scroll recordings with GIFs allowed
+   and three with GIF requests blocked. Record dropped/partially presented
+   frames. Treat these as frame evidence; no FPS gain is assumed from byte
+   savings alone.
+
 References: [Chrome Rendering performance tools](https://developer.chrome.com/docs/devtools/rendering/performance),
 [Chrome Performance panel reference](https://developer.chrome.com/docs/devtools/performance/reference),
 [Chrome Performance Monitor](https://developer.chrome.com/docs/devtools/performance-monitor),

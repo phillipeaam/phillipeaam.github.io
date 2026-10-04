@@ -91,19 +91,23 @@ references without relying on the historical commit.
 ### User Story 4 - Scroll through the site without media-related stutter (Priority: P2)
 
 Visitors can scroll every site page without project animations causing
-repeatable dropped frames. The team can identify whether a slowdown comes from
-animated media before changing playback behavior.
+repeatable dropped frames. Autoplay previews outside the viewport's near-view
+range do not begin fetching or decoding until they approach the viewport. The
+team records network, decode, and frame outcomes separately so transfer savings
+are not presented as a frame-rate improvement.
 
 **Why this priority**: Several large GIF previews are configured to autoplay,
 and their shared component requests them as soon as it initializes, including
-when their media area is outside the viewport. This is a credible performance
-risk, but source inspection alone cannot establish that visitors experience
-low frame rates.
+when their media area is outside the viewport. A cold Home load requested about
+18.9 MB of GIF bodies and `/projects/` about 36.0 MB before scrolling. This is
+measured avoidable transfer/decode work; it is not proof of low visitor frame
+rates.
 
 **Independent Test**: Record a consistent scroll on each generated page route.
 For routes showing dropped frames, repeat the same recording with preview GIF
-requests blocked. Compare frame outcomes and rendering activity to determine
-whether animated media is responsible.
+requests blocked. Compare frame outcomes, GIF requests/bytes, and rendering
+activity separately to determine whether animated media affects smoothness and
+how much offscreen transfer can be deferred.
 
 **Acceptance Scenarios**:
 
@@ -120,8 +124,17 @@ whether animated media is responsible.
    the repeatable frame-drop pattern while preserving the static fallback,
    reduced-motion behavior, and intended visible preview behavior.
 4. **Given** no repeatable media-related issue is found, **When** the route
-   review is complete, **Then** the result is recorded and no scroll or preview
-   behavior is changed for performance alone.
+   review is complete, **Then** the result is recorded, and any reduction in
+   offscreen media requests is reported as a transfer/decode improvement only;
+   it is not claimed as an FPS improvement without frame evidence.
+5. **Given** an autoplay preview lies outside the near-viewport range, **When**
+   the page loads, **Then** its GIF request is deferred while its static fallback
+   remains visible; when it approaches the viewport, the GIF may load and only
+   replaces the fallback after it is ready.
+6. **Given** reduced motion is active, **When** an autoplay preview is outside
+   the viewport, **Then** its GIF is not requested. Hover and keyboard-focus
+   previews still start when directly requested, and browsers without
+   `IntersectionObserver` retain the existing preview behavior.
 
 ### Edge Cases
 
@@ -187,13 +200,16 @@ whether animated media is responsible.
   issue to media. Record the dropped-frame count for each of three recordings
   in each condition.
 - **FR-013**: A performance implementation change MUST be made only when the
-  controlled comparison reproduces dropped frames with GIFs allowed and removes
-  or reduces them when GIF requests are blocked. After comparing the six
-  recordings for each tested route, the team MUST record a decision to implement a media-specific
-  change, make no performance change, or investigate separately. A performance
-  change MUST address media workload while preserving fallback, reduced-motion,
-  and visible-preview requirements. If project media is not implicated, record
-  the result without expanding this feature into general site optimization.
+  controlled evidence identifies measurable project-media work or a repeatable
+  frame regression. Any reported FPS benefit MUST be supported by repeated
+  frame comparisons; reducing network requests or image decodes alone MUST NOT
+  be described as an FPS improvement. A change MUST preserve fallback,
+  reduced-motion, and visible-preview requirements. General site optimization
+  remains outside this feature.
+- **FR-014**: An autoplay GIF MUST NOT be requested until its media area enters
+  a documented near-viewport range. If `IntersectionObserver` is unavailable,
+  existing preview behavior MUST continue to work. An explicit hover or focus
+  request MUST continue to start a preview when reduced motion is not active.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -233,12 +249,15 @@ whether animated media is responsible.
   content page. Any route with frame drops has a
   same-condition GIF-blocked comparison with dropped-frame counts for each of
   three recordings per condition and a recorded decision on how to proceed.
-- **SC-008**: If a controlled comparison attributes repeatable dropped frames to
-  GIF previews and a decision is made to implement a change, the post-change
-  recording no longer shows the same repeated dropped-frame pattern while
-  previews remain correct when visible. If media is not implicated, record that
-  conclusion and make no performance-only change. If counts are inconclusive,
-  record the decision to investigate separately.
+- **SC-008**: When a media-scheduling change is evaluated, the report records
+  frame outcomes separately from request counts, transferred bytes, and decode
+  activity. It claims an FPS improvement only if repeated frame comparisons
+  support it.
+- **SC-009**: With normal motion enabled, autoplay GIFs outside the configured
+  near-viewport range are not requested on initial load; as their media areas
+  approach the viewport, they load and replace the static fallback only after
+  readiness. The measured reduction in no-scroll GIF requests and bytes is
+  recorded for Home and `/projects/` against the pre-change captures.
 
 ## Assumptions
 
@@ -251,8 +270,9 @@ whether animated media is responsible.
   their references are complete, but code changes require review against the
   current component contracts.
 - The performance concern is limited to project-media workload during scrolling.
-  The current autoplay behavior creates a hypothesis, not proof of a frame-rate
-  problem; unrelated scroll/navigation optimization requires separate scope.
+  Current autoplay behavior demonstrably requests large GIFs before users reach
+  their media areas, but does not prove a frame-rate problem; unrelated
+  scroll/navigation optimization requires separate scope.
 - The constitution carries the general principle for accurate static fallbacks
   and reduced motion; detailed format and frame-preparation rules belong in a
   project media guide. Any constitution edit is a separate Spec Kit constitution

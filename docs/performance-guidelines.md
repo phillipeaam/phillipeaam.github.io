@@ -71,14 +71,23 @@ devices, other browsers, or touch input, and the supplemental trace's internal
 `DroppedFrame` events are not interchangeable with the Performance panel's
 frame counts.
 
-Network evidence does show avoidable eager work: the Home page requests two
+Network evidence showed avoidable eager work: the Home page requested two
 autoplay GIFs before scrolling (18,923,951 encoded body bytes with cache
-disabled); `/projects/` requests four (35,989,613 bytes). The trace also records
-animated-image decode activity on worker threads. The controlled GIF-blocked
-comparison showed only a small directional frame-count difference, so this
-supports an experiment to defer autoplay GIF requests until their media areas
-approach the viewport. It does not establish that this will improve FPS. Keep
-frame counts, image requests/bytes, and decode activity as separate outcomes.
+disabled); `/projects/` requested four (35,989,613 bytes). A shared
+`IntersectionObserver` now defers autoplay requests until their media areas
+enter a prefetch range 75% of a viewport height tall. On the same cache-disabled
+desktop setup, a no-scroll Home load requested one GIF (11,463,502 bytes),
+avoiding 7,460,449 bytes (39.4%). `/projects/` requested two GIFs (9,021,504
+bytes), avoiding 26,968,109 bytes (74.9%). Full scrolling loaded every intended
+preview; reduced-motion loads requested zero autoplay GIFs. The evidence and
+limits are recorded in `specs/003-media-fallbacks/tasks.md` and its
+`evidence/scroll-diagnostics/` directory.
+
+After the change, three Wallace's Quest scroll traces with the GIF allowed
+recorded dropped frames 0/1/2 and partially presented frames 1/2/3. Three
+blocked traces recorded 0/0 in both measures. This is a small directional
+signal from one route, not proof of a general FPS improvement. Keep frame
+counts, image requests/bytes, and decode activity as separate outcomes.
 
 ## References
 

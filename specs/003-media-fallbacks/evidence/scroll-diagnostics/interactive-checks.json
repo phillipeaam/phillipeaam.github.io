@@ -1,0 +1,37 @@
+{
+  "capturedAt": "2026-10-03",
+  "browser": "Chrome 154.0.8037.95",
+  "viewport": "2005x953 CSS px emulated, DPR 1",
+  "checks": {
+    "pendingLoad": {
+      "pausedAt": "request before network transfer",
+      "whilePending": {
+        "fallbackVisible": true,
+        "animationVisible": false,
+        "animationSrcAssigned": true,
+        "animationComplete": false,
+        "scrollY": 110
+      },
+      "afterReady": {
+        "fallbackVisible": false,
+        "animationVisible": true,
+        "animationComplete": true,
+        "naturalWidth": 1280
+      }
+    },
+    "failedRequest": {
+      "fallbackVisible": true,
+      "animationVisible": false,
+      "animationSrcAssigned": true
+    },
+    "keyboardFocus": {
+      "focused": true,
+      "animationSrcAssigned": true,
+      "afterWait": {
+        "animationVisible": true,
+        "naturalWidth": 1280
+      }
+    }
+  },
+  "notBrowserSimulated": "The IntersectionObserver-unavailable path was reviewed in code (autoplayObserver is undefined, so autoplayCanLoad is true); the browser's native API was not successfully disabled for a runtime scenario."
+}

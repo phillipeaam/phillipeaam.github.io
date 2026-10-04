@@ -8,6 +8,7 @@
 - Existing autoplay, intrinsic dimensions, and fit settings.
 - The visitor's `prefers-reduced-motion` preference and current pointer/focus
   state where preview triggers already apply.
+- Whether an autoplay media area is within the near-viewport loading range.
 
 ## Observable behavior
 
@@ -25,6 +26,11 @@
    overlapping inactive layer is not announced as a duplicate image.
 7. Existing size, aspect ratio, `cover`/`contain` fit, captions, and preview
    triggers remain consistent with their current media context.
+8. An autoplay GIF outside the near-viewport loading range is not requested
+   until the area approaches. Hover or keyboard focus can request an interactive
+   preview directly when reduced motion is not active.
+9. If `IntersectionObserver` is unavailable, the current autoplay and explicit
+   preview behavior remains available rather than leaving a permanent fallback.
 
 ## Asset contract
 

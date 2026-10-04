@@ -21,8 +21,8 @@ separately to state the general fallback and reduced-motion principle.
 **Testing**: `git diff --check`, `npm run check`, `npm run build`, and manual media-state/reduced-motion review per [quickstart.md](quickstart.md). No new test suite is specified.
 **Target Platform**: Static portfolio served to desktop and mobile web browsers
 **Project Type**: Astro static web application
-**Performance Goals**: No numeric frame-rate target is specified. Record scroll performance on all six generated content page routes and compare routes with dropped frames under the same conditions with preview GIF requests blocked. The build also emits a redirect document at `/experience/`; cover it through the Experience section in the Home recording instead of treating it as a separate scroll page. Change preview scheduling only if this controlled comparison confirms a repeatable GIF-related regression; the static fallback must remain visible throughout.
-**Constraints**: Preserve GIF sources and existing trigger behavior; selected static assets from the historical commit use WebP; honor reduced-motion preferences; avoid unrelated image migration or presentation redesign.
+**Performance Goals**: Record scroll performance on all six generated content page routes and compare routes with dropped frames under the same conditions with preview GIF requests blocked. The build also emits a redirect document at `/experience/`; cover it through the Experience section in the Home recording instead of treating it as a separate scroll page. Defer autoplay GIF requests until their media areas approach the viewport to avoid eager offscreen transfers; report network/decode savings separately from any FPS outcome. The static fallback must remain visible until animation is ready.
+**Constraints**: Preserve GIF sources and existing hover/focus triggers; autoplay scheduling may wait until the media area approaches the viewport; selected static assets from the historical commit use WebP; honor reduced-motion preferences; preserve a fallback when `IntersectionObserver` is unavailable; avoid unrelated image migration or presentation redesign.
 **Scale/Scope**: The avatar and project media/references represented in the specified commit, plus the shared preview component, one media guide, and the general constitution principle.
 
 ## Constitution Check
@@ -135,10 +135,13 @@ principle amendment belongs in the existing constitution file.
    including the dropped-frame count for every recording. Then record a
    decision on whether
    to make a media-specific change, make no performance change, or investigate
-   separately. Source inspection shows autoplay previews can be requested
-   outside the viewport, but this is only a hypothesis until the paired
-   recordings support attribution. Any in-scope change must preserve fallback,
-   reduced-motion, and visible-preview behavior.
+   separately. The paired runs show only a small FPS signal, but browser network
+   measurements confirm that large autoplay GIFs are requested before users
+   reach their media areas. Add a narrow IntersectionObserver gate with a
+   prefetch margin of approximately 75% of the viewport height; validate the
+   actual no-scroll request reduction. Any in-scope change must preserve the
+   fallback, reduced-motion, and visible hover/focus-preview behavior. Do not
+   claim an FPS gain unless repeated frame measurements support it.
 
 ## Complexity Tracking
 
