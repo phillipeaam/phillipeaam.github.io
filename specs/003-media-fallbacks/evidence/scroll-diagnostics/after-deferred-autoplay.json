@@ -1,0 +1,360 @@
+{
+  "capturedAt": "2026-10-03",
+  "browser": "Chrome 154.0.8037.95",
+  "viewport": "maximized 2560x953 CSS px, DPR 1",
+  "tabVisibility": "visible",
+  "cacheDisabled": true,
+  "observerPrefetchMargin": "75% of viewport height",
+  "coldNoScrollComparison": {
+    "baselineSource": "network.json",
+    "home": {
+      "before": { "gifRequests": 2, "encodedBodyBytes": 18923951 },
+      "after": { "gifRequests": 1, "encodedBodyBytes": 11463502 },
+      "avoidedEncodedBodyBytes": 7460449,
+      "avoidedPercent": 39.4
+    },
+    "/projects/": {
+      "before": { "gifRequests": 4, "encodedBodyBytes": 35989613 },
+      "after": { "gifRequests": 2, "encodedBodyBytes": 9021504 },
+      "avoidedEncodedBodyBytes": 26968109,
+      "avoidedPercent": 74.9
+    },
+    "interpretation": "Transfer savings occur when users do not scroll into deferred preview areas; a full scroll loaded every intended preview. These measurements do not alone establish an FPS improvement."
+  },
+  "/": {
+    "beforeScroll": {
+      "route": "/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": false,
+      "scrollY": 0,
+      "areas": [
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 1230,
+          "bottom": 1610,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 1776,
+          "bottom": 2157,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        }
+      ],
+      "gifs": [
+        {
+          "url": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "encodedBodySize": 11463502,
+          "transferSize": 11463802
+        }
+      ]
+    },
+    "afterApproachingDeferred": {
+      "route": "/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": false,
+      "scrollY": 109,
+      "areas": [
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 1230,
+          "bottom": 1610,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 1776,
+          "bottom": 2157,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        }
+      ],
+      "gifs": [
+        {
+          "url": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "encodedBodySize": 11463502,
+          "transferSize": 11463802
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "encodedBodySize": 7460449,
+          "transferSize": 7460749
+        }
+      ]
+    },
+    "reducedMotion": {
+      "route": "/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": true,
+      "scrollY": 0,
+      "areas": [
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 1230,
+          "bottom": 1610,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 1776,
+          "bottom": 2157,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        }
+      ],
+      "gifs": []
+    }
+  },
+  "/projects/": {
+    "beforeScroll": {
+      "route": "/projects/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": false,
+      "scrollY": 0,
+      "areas": [
+        {
+          "src": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "top": 229,
+          "bottom": 528,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 793,
+          "bottom": 1091,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/pathless/pathless-gameplay-preview.gif",
+          "top": 3926,
+          "bottom": 4225,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        },
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 5066,
+          "bottom": 5365,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        }
+      ],
+      "gifs": [
+        {
+          "url": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "encodedBodySize": 1561055,
+          "transferSize": 1561355
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "encodedBodySize": 7460449,
+          "transferSize": 7460749
+        }
+      ]
+    },
+    "afterApproachingFirstDeferred": {
+      "route": "/projects/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": false,
+      "scrollY": 2259,
+      "areas": [
+        {
+          "src": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "top": 229,
+          "bottom": 528,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 793,
+          "bottom": 1091,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/pathless/pathless-gameplay-preview.gif",
+          "top": 3926,
+          "bottom": 4225,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 5066,
+          "bottom": 5365,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        }
+      ],
+      "gifs": [
+        {
+          "url": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "encodedBodySize": 1561055,
+          "transferSize": 1561355
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "encodedBodySize": 7460449,
+          "transferSize": 7460749
+        },
+        {
+          "url": "/projects/pathless/pathless-gameplay-preview.gif",
+          "encodedBodySize": 15504607,
+          "transferSize": 15504907
+        }
+      ]
+    },
+    "afterApproachingLastDeferred": {
+      "route": "/projects/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": false,
+      "scrollY": 3399,
+      "areas": [
+        {
+          "src": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "top": 229,
+          "bottom": 528,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 793,
+          "bottom": 1091,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/pathless/pathless-gameplay-preview.gif",
+          "top": 3926,
+          "bottom": 4225,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        },
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 5066,
+          "bottom": 5365,
+          "animationHasSrc": true,
+          "animationVisible": true,
+          "fallbackVisible": false
+        }
+      ],
+      "gifs": [
+        {
+          "url": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "encodedBodySize": 1561055,
+          "transferSize": 1561355
+        },
+        {
+          "url": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "encodedBodySize": 7460449,
+          "transferSize": 7460749
+        },
+        {
+          "url": "/projects/pathless/pathless-gameplay-preview.gif",
+          "encodedBodySize": 15504607,
+          "transferSize": 15504907
+        },
+        {
+          "url": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "encodedBodySize": 11463502,
+          "transferSize": 11463802
+        }
+      ]
+    },
+    "reducedMotion": {
+      "route": "/projects/",
+      "viewport": {
+        "width": 2560,
+        "height": 953
+      },
+      "visibility": "visible",
+      "reduced": true,
+      "scrollY": 0,
+      "areas": [
+        {
+          "src": "/projects/ello-learn/ello-learn-gameplay-preview.gif",
+          "top": 229,
+          "bottom": 528,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        },
+        {
+          "src": "/projects/ello-read/read-with-ello-gameplay-preview.gif",
+          "top": 793,
+          "bottom": 1091,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        },
+        {
+          "src": "/projects/pathless/pathless-gameplay-preview.gif",
+          "top": 3926,
+          "bottom": 4225,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        },
+        {
+          "src": "/projects/wallace-quest/wallace-quest-gameplay-preview.gif",
+          "top": 5066,
+          "bottom": 5365,
+          "animationHasSrc": false,
+          "animationVisible": false,
+          "fallbackVisible": true
+        }
+      ],
+      "gifs": []
+    }
+  }
+}

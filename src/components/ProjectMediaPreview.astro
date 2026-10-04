@@ -6,37 +6,40 @@ const {
   previewAlt,
   caption,
   autoplayPreview = false,
-  showAnimatedDirectly = false,
   posterWidth = 2556,
   posterHeight = 1432,
   posterFit = 'cover',
 } = Astro.props;
 ---
 <figure class="media-figure project-media-preview">
-  <div class="media-poster project-media-preview__poster" data-project-media-preview={showAnimatedDirectly ? undefined : ''} data-autoplay-preview={!showAnimatedDirectly && autoplayPreview ? 'true' : undefined} data-poster-src={showAnimatedDirectly ? undefined : posterSrc} data-preview-src={showAnimatedDirectly ? undefined : previewSrc} data-poster-alt={showAnimatedDirectly ? undefined : alt} data-preview-alt={showAnimatedDirectly ? undefined : previewAlt}>
-    {showAnimatedDirectly && previewSrc
-      ? <picture>
-          <source media="(prefers-reduced-motion: reduce)" srcset={posterSrc} />
-          <img
-            class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
-            src={previewSrc}
-            alt={previewAlt ?? alt}
-            loading="eager"
-            decoding="async"
-            width={posterWidth}
-            height={posterHeight}
-          />
-        </picture>
-      : <img
-          class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
-          src={posterSrc}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          width={posterWidth}
-          height={posterHeight}
-          data-project-media-image
-        />}
+  <div
+    class="media-poster project-media-preview__poster"
+    data-project-media-preview
+    data-autoplay-preview={autoplayPreview ? 'true' : undefined}
+    data-preview-src={previewSrc}
+    data-poster-alt={alt}
+    data-preview-alt={previewAlt ?? alt}
+  >
+    <img
+      class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']}
+      src={posterSrc}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      width={posterWidth}
+      height={posterHeight}
+      data-project-media-fallback
+    />
+    {previewSrc && <img
+      class:list={['media-poster-image', 'project-media-preview__animation', posterFit === 'contain' && 'media-poster-image--contain']}
+      alt=""
+      aria-hidden="true"
+      hidden
+      decoding="async"
+      width={posterWidth}
+      height={posterHeight}
+      data-project-media-animation
+    />}
   </div>
   {caption && <figcaption class="media-caption">{caption}</figcaption>}
 </figure>
@@ -46,49 +49,95 @@ const {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)');
   const refreshPreview = new Map<HTMLElement, () => void>();
-
-  const showPoster = (area: HTMLElement) => {
-    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
-    if (!image) return;
-    image.alt = area.dataset.posterAlt ?? '';
-    const posterSrc = area.dataset.posterSrc ?? '';
-    if (image.src !== new URL(posterSrc, window.location.href).href) image.src = posterSrc;
-  };
-
-  const showPreview = (area: HTMLElement) => {
-    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
-    const previewSrc = area.dataset.previewSrc;
-    if (!image || !previewSrc || reducedMotion.matches) return;
-    image.alt = area.dataset.previewAlt ?? area.dataset.posterAlt ?? '';
-    image.src = previewSrc;
-  };
+  const autoplayNearViewport = new WeakSet<HTMLElement>();
+  const autoplayObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const area = entry.target as HTMLElement;
+        autoplayNearViewport.add(area);
+        observer.unobserve(area);
+        refreshPreview.get(area)?.();
+      });
+    }, { rootMargin: `${Math.round(window.innerHeight * 0.75)}px 0px` })
+    : undefined;
 
   for (const area of previewAreas) {
     area.dataset.bound = 'true';
-    const image = area.querySelector<HTMLImageElement>('[data-project-media-image]');
+    const fallback = area.querySelector<HTMLImageElement>('[data-project-media-fallback]');
+    const animation = area.querySelector<HTMLImageElement>('[data-project-media-animation]');
+    const previewSrc = area.dataset.previewSrc;
     const link = area.closest('a');
-    image?.addEventListener('error', () => {
-      if (image.src === new URL(area.dataset.previewSrc ?? '', window.location.href).href) showPoster(area);
-    });
-
     let pointerActive = false;
     let focusActive = false;
-    const updatePreview = () => {
-      if (reducedMotion.matches) {
-        showPoster(area);
-        return;
-      }
+    let ready = false;
+    let failed = false;
+    let requested = area.dataset.autoplayPreview === 'true';
 
-      if (area.dataset.autoplayPreview === 'true') {
-        showPreview(area);
-        return;
-      }
-
-      if ((pointerActive && fineHover.matches) || focusActive) showPreview(area);
-      else showPoster(area);
+    const showFallback = () => {
+      if (!fallback || !animation) return;
+      fallback.hidden = false;
+      fallback.alt = area.dataset.posterAlt ?? '';
+      animation.hidden = true;
+      animation.alt = '';
+      animation.setAttribute('aria-hidden', 'true');
     };
-    refreshPreview.set(area, updatePreview);
 
+    const showAnimation = () => {
+      if (!fallback || !animation || !ready || reducedMotion.matches || !requested) {
+        showFallback();
+        return;
+      }
+      fallback.hidden = true;
+      fallback.alt = '';
+      animation.hidden = false;
+      animation.alt = area.dataset.previewAlt ?? area.dataset.posterAlt ?? '';
+      animation.removeAttribute('aria-hidden');
+    };
+
+    const loadAnimation = () => {
+      if (!animation || !previewSrc || reducedMotion.matches || failed || animation.src) return;
+      animation.addEventListener('load', () => {
+        if (animation.naturalWidth === 0 || animation.naturalHeight === 0) {
+          failed = true;
+          showFallback();
+          return;
+        }
+        animation.decode().then(() => {
+          ready = true;
+          showAnimation();
+        }).catch(() => {
+          failed = true;
+          showFallback();
+        });
+      }, { once: true });
+      animation.addEventListener('error', () => {
+        failed = true;
+        showFallback();
+      }, { once: true });
+      animation.src = previewSrc;
+    };
+
+    const updatePreview = () => {
+      const autoplayRequested = area.dataset.autoplayPreview === 'true';
+      const interactionRequested = (pointerActive && fineHover.matches) || focusActive;
+      requested = area.dataset.autoplayPreview === 'true'
+        || interactionRequested;
+      if (reducedMotion.matches || !requested || !previewSrc) {
+        showFallback();
+        return;
+      }
+      if (ready) showAnimation();
+      else {
+        showFallback();
+        const autoplayCanLoad = !autoplayRequested
+          || !autoplayObserver
+          || autoplayNearViewport.has(area);
+        if (autoplayCanLoad || interactionRequested) loadAnimation();
+      }
+    };
+
+    refreshPreview.set(area, updatePreview);
     area.addEventListener('pointerenter', () => {
       pointerActive = fineHover.matches;
       updatePreview();
@@ -105,11 +154,16 @@ const {
       focusActive = false;
       updatePreview();
     });
+    if (area.dataset.autoplayPreview === 'true' && autoplayObserver) {
+      autoplayObserver.observe(area);
+    }
+    updatePreview();
   }
 
   reducedMotion.addEventListener('change', () => {
     previewAreas.forEach((area) => refreshPreview.get(area)?.());
   });
-
-  fineHover.addEventListener('change', () => previewAreas.forEach((area) => refreshPreview.get(area)?.()));
+  fineHover.addEventListener('change', () => {
+    previewAreas.forEach((area) => refreshPreview.get(area)?.());
+  });
 </script>

@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-10-03",
+  "browser": "Chrome 154.0.8037.95",
+  "route": "/",
+  "trigger": "physical mouseMoved via Chrome DevTools Protocol",
+  "target": {
+    "x": 864.5,
+    "y": 476.71875,
+    "src": "/projects/pathless/pathless-gameplay-preview.gif"
+  },
+  "after": {
+    "hovered": true,
+    "srcAssigned": true,
+    "animationVisible": true,
+    "fallbackVisible": false,
+    "naturalWidth": 1280
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "route": "/work/wallaces-quest/",
+  "capturedAt": "2026-10-03",
+  "environment": {
+    "browser": "Chrome 154.0.8037.95",
+    "viewportCssPixels": "2005x953",
+    "dpr": 1,
+    "displayRefreshRateHz": 60,
+    "reducedMotion": false,
+    "tabVisibility": "visible",
+    "scroll": "CDP Runtime.evaluate window.scrollTo({behavior:\"smooth\"}), visible page, top-to-bottom",
+    "server": "Astro dev server",
+    "platform": "Windows desktop",
+    "displayResolution": "2560x1080",
+    "windowState": "maximized",
+    "powerPlan": "not rechecked during supplemental trace (Balanced during the earlier T018/T019 capture)"
+  },
+  "page": {
+    "scrollHeightCssPixels": 7381,
+    "domNodes": 374,
+    "gifPreviewsConfiguredToAutoplayBeforeScroll": [
+      "/projects/wallace-quest/wallace-quest-gameplay-preview.gif"
+    ],
+    "scrollDurationMs": 1539
+  },
+  "rendererMainThread": {
+    "runTaskCount": 339,
+    "maxRunTaskMs": 3.76,
+    "runTasksOver8Ms": 0,
+    "runTasksOver16_7Ms": 0,
+    "runTasksOver50Ms": 0,
+    "styleRecalculation": {
+      "count": 0,
+      "totalDurationMs": 0,
+      "maxDurationMs": 0
+    },
+    "layout": {
+      "count": 0,
+      "totalDurationMs": 0,
+      "maxDurationMs": 0
+    },
+    "paint": {
+      "count": 5,
+      "totalDurationMs": 3.4,
+      "maxDurationMs": 0.83
+    },
+    "script": {
+      "count": 29,
+      "totalDurationMs": 2.7,
+      "maxDurationMs": 0.24
+    }
+  },
+  "traceDiagnostics": {
+    "scrollDeltaFrames": 81,
+    "droppedFrameTraceEvents": 2,
+    "animatedImageDecodeEvents": 7,
+    "animatedImageDecodeMaxMs": 1.6,
+    "animatedImageYuvDecodeEvents": 0,
+    "animatedImageYuvDecodeMaxMs": 0,
+    "interpretation": "DroppedFrame trace events are supplemental Chromium scheduler diagnostics. Use DevTools Performance Frames track counts for the controlled T018/T019 comparison; these trace event counts are not interchangeable with those UI totals."
+  }
+}

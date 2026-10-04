@@ -1,0 +1,122 @@
+{
+  "capturedAt": "2026-10-03",
+  "browser": "Chrome 154.0.8037.95",
+  "responsive": [
+    {
+      "route": "/",
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 3,
+      "visibleFallbacks": 2,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 2,
+      "screenshot": "home-tablet.png"
+    },
+    {
+      "route": "/projects/",
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 4,
+      "visibleFallbacks": 2,
+      "visibleAnimations": 2,
+      "loadedPosterImages": 2,
+      "screenshot": "projects-tablet.png"
+    },
+    {
+      "route": "/work/wallaces-quest/",
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 1,
+      "visibleFallbacks": 0,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 1,
+      "screenshot": "work-wallaces-quest-tablet.png"
+    },
+    {
+      "route": "/work/read-with-ello/",
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 753,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 1,
+      "visibleFallbacks": 0,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 1,
+      "screenshot": "work-read-with-ello-tablet.png"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 3,
+      "visibleFallbacks": 2,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 2,
+      "screenshot": "home-mobile.png"
+    },
+    {
+      "route": "/projects/",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 4,
+      "visibleFallbacks": 3,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 2,
+      "screenshot": "projects-mobile.png"
+    },
+    {
+      "route": "/work/wallaces-quest/",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 1,
+      "visibleFallbacks": 0,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 1,
+      "screenshot": "work-wallaces-quest-mobile.png"
+    },
+    {
+      "route": "/work/read-with-ello/",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "hasHorizontalOverflow": false,
+      "mediaAreas": 1,
+      "visibleFallbacks": 0,
+      "visibleAnimations": 1,
+      "loadedPosterImages": 1,
+      "screenshot": "work-read-with-ello-mobile.png"
+    }
+  ],
+  "withoutJavaScript": {
+    "route": "/",
+    "scriptDisabled": true,
+    "mediaAreaPresent": true,
+    "fallbackSrc": "/projects/wallace-quest/wallace-quest-first-frame.webp",
+    "fallbackHidden": false,
+    "fallbackComplete": true,
+    "fallbackNaturalWidth": 2560,
+    "animationHidden": true,
+    "projectLinks": 16
+  },
+  "reducedMotionEnabledWhileGifRequestPaused": {
+    "gifPausedBeforeTransfer": true,
+    "reducedMotion": true,
+    "fallbackVisible": true,
+    "animationVisible": false,
+    "animationComplete": true,
+    "naturalWidth": 2560
+  },
+  "limitations": []
+}
