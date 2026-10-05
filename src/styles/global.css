@@ -437,7 +437,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .archive-record--compact .archive-record__actions { grid-column: 6 / -1; }
 
 /* Projects catalog: the complete archive stays text-first and visible in one list. */
-.archive-intro { padding-block: clamp(14px, calc(1.5vw + 2px), 20px) 23px; margin-bottom: 22px; }
+.archive-intro { padding-block: var(--anchor-gap) 23px; margin-bottom: 22px; }
 .archive-intro .eyebrow { margin-bottom: 10px; }
 .catalog-controls { display: grid; grid-template-columns: minmax(240px, 1.5fr) minmax(140px, .8fr) minmax(150px, .9fr) auto; gap: 12px; align-items: end; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .catalog-controls[hidden], .archive-record[hidden], .catalog-empty[hidden], .archive-record-list[hidden] { display: none; }
