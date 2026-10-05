@@ -2,36 +2,30 @@
 import MediaPoster from './MediaPoster.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ExternalLink from './ExternalLink.astro';
-const { id, anchorId, number, period, name, type, detail, product = detail, contribution, context, mediaLabel, media, posterSrc, previewSrc, cardPosterSrc, cardPosterAlt, href, linkLabel = 'View product', actions, kind = 'neutral', recent = false, simple = false, showMeta = true, showContext = true } = Astro.props;
-const primaryMedia = media?.find((item: { type: string }) => item.type === 'image');
-const thumbnailSrc = cardPosterSrc ?? primaryMedia?.src;
-const thumbnailPreviewSrc = previewSrc ?? primaryMedia?.previewSrc;
-const thumbnailAlt = cardPosterAlt ?? primaryMedia?.alt ?? `${name} project poster`;
-const projectActions = actions ?? (href ? [{ href, label: linkLabel }] : []);
-const archiveHref = simple && id ? `${import.meta.env.BASE_URL}projects/#${anchorId ?? id}` : undefined;
+import { isPortfolioIncluded, type ProjectRecord } from '../data/projects';
+const { project, number, recent = false, simple = false, showMeta = true, showContext = true } = Astro.props as { project: ProjectRecord; number?: string | number; recent?: boolean; simple?: boolean; showMeta?: boolean; showContext?: boolean };
+const primaryMedia = project.media?.find((item) => item.type === 'image');
+const archiveHref = simple && isPortfolioIncluded(project) && project.archiveCategory ? `${import.meta.env.BASE_URL}projects/#${project.anchorId ?? project.id}` : undefined;
 ---
-<article class:list={['supporting-card', recent && 'supporting-card--recent']} id={anchorId ?? (id && `work-${id}`)}>
-  {archiveHref && <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${name} project details`}>
-    {simple && thumbnailSrc
-      ? <ProjectMediaPreview posterSrc={thumbnailSrc} previewSrc={thumbnailPreviewSrc} alt={thumbnailAlt} previewAlt={primaryMedia?.previewAlt} posterWidth={primaryMedia?.posterWidth} posterHeight={primaryMedia?.posterHeight} posterFit={primaryMedia?.posterFit} />
-      : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />}
-  </a>}
-  {!archiveHref && (simple && thumbnailSrc
-    ? <ProjectMediaPreview posterSrc={thumbnailSrc} previewSrc={thumbnailPreviewSrc} alt={thumbnailAlt} previewAlt={primaryMedia?.previewAlt} posterWidth={primaryMedia?.posterWidth} posterHeight={primaryMedia?.posterHeight} posterFit={primaryMedia?.posterFit} />
-    : <MediaPoster label={`${name} media placeholder`} posterLabel={mediaLabel} posterSrc={posterSrc} previewSrc={previewSrc} kind={kind} compact />)}
+<article class:list={['supporting-card', recent && 'supporting-card--recent']} id={`work-${project.id}`}>
+  {archiveHref && (simple && primaryMedia
+    ? <ProjectMediaPreview posterSrc={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} linkHref={archiveHref} linkLabel={`View ${project.name} project details`} linkClass="supporting-card-media-link" />
+    : <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${project.name} project details`}><MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} posterSrc={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact /></a>)}
+  {!archiveHref && (simple && primaryMedia
+    ? <ProjectMediaPreview posterSrc={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} />
+    : <MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} posterSrc={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
-      <h3 class="sr-only">{name}</h3>
+      <h3 class="sr-only">{project.name}</h3>
     </> : <>
-    {showMeta && (number || period || type) && <p class="supporting-card-meta"><span>{number}{period && ` / ${period}`}</span><span>{type}</span></p>}
-    <h3>{name}</h3>
-    <p class="supporting-card-detail">{product}</p>
-    {contribution && <p class="supporting-card-contribution"><span>My contribution</span>{contribution}</p>}
-    {showContext && context && <p class="supporting-card-context">{context}</p>}
-    {actions && projectActions.length > 0 && <div class="project-actions" aria-label={`${name} links`}>
-      {projectActions.slice(0, 2).map((action: { href: string; label: string }) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
+    {showMeta && (number || project.period || project.type) && <p class="supporting-card-meta">{(number || project.period) && <span>{number}{project.period && ` / ${project.period}`}</span>}{project.type && <span>{project.type}</span>}</p>}
+    <h3>{project.name}</h3>
+    <p class="supporting-card-detail">{project.summary}</p>
+    {project.contribution && <p class="supporting-card-contribution"><span>My contribution</span>{project.contribution}</p>}
+    {showContext && project.context && <p class="supporting-card-context">{project.context}</p>}
+    {isPortfolioIncluded(project) && project.actions?.length && <div class="project-actions" aria-label={`${project.name} links`}>
+      {project.actions.slice(0, 2).map((action) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
     </div>}
-    {!actions && href && <ExternalLink class="supporting-card-link" href={href} icon>{linkLabel}</ExternalLink>}
     </>}
   </div>
 </article>

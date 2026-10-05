@@ -2,7 +2,7 @@
 
 This model describes the public archive and its browser interaction state. It does not prescribe a database or implementation library.
 
-**Current revision:** the catalog-only editorial projection below supersedes legacy `detailGroups`/`detailContent` hierarchy and older media-control eligibility descriptions. Existing source concepts and interaction states remain; historical descriptions are not instructions to restore separate Product/Contribution/Engineering focus sections or Stop/Play.
+**Current revision (integration with develop, 2026-10-05):** `ProjectRecord` in `src/data/projects.ts` is the single content source. The catalog-only editorial projection described below is a historical implementation, replaced by canonical `summary`, `context`, `type`, `period`, Role metadata, `contribution`, `technicalHighlights`, `contributionOutcome`, `workContext` and `technologies` fields on each record. Approved historical media reuse is recorded on the canonical media/icon fields, not in page-level path maps. See `docs/project-records.md`. The compact layout, expanded Selected contributions, interaction states and current media behavior remain; this integration does not restore legacy Product/Contribution/Engineering focus blocks or Stop/Play controls in the catalog.
 
 ## Project entry
 

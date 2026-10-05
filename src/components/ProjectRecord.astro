@@ -1,22 +1,27 @@
 ---
 import ExternalLink from './ExternalLink.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
-import type { CatalogEditorialContent, ProjectMedia, PublicProjectCatalogEntry } from '../data/projects';
+import { hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
 
-const { project, editorial, homePath = '/', approvedMedia = [], approvedIdentityImage } = Astro.props as { project: PublicProjectCatalogEntry; editorial: CatalogEditorialContent; homePath?: string; approvedMedia?: ProjectMedia[]; approvedIdentityImage?: string };
+const { project, homePath = '/' } = Astro.props as { project: ProjectRecord; homePath?: string };
+const approvedMedia = project.media?.filter((media) => media.catalogReuseApproved) ?? [];
+const approvedIdentityImage = project.catalogIconReuseApproved ? project.projectsIndexTitleIcon : undefined;
+const technologies = project.technologies ?? [];
 const recordId = project.anchorId ?? project.id;
-const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
-const { role, context, productType, period } = editorial.facts;
-const narrative = editorial.contributionNarrative;
+const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
+const role = project.specs?.find(({ label }) => label === 'Role')?.value;
+const { context, type: productType } = project;
+const period = project.period === 'Undated' ? undefined : project.period;
+const narrative = project.contribution ? { summary: project.contribution, highlights: project.technicalHighlights ?? [], outcome: project.contributionOutcome } : undefined;
 const titleId = `archive-title-${project.id}`;
 const summaryId = `archive-summary-${project.id}`;
 const eligibleMedia = approvedMedia.filter((media) => media.src && media.alt && (media.type !== 'gif' || media.posterSrc));
 const [primaryMedia, ...detailMedia] = eligibleMedia.filter((media, index, items) => items.findIndex((item) => item.src === media.src) === index);
 const publicMetadata = project.specs?.filter(({ label }) => !['Role', 'Context', 'Period', 'Type', 'Stack', 'Engine', 'Tools'].includes(label)) ?? [];
 const hasFacts = Boolean(role || context || productType || period);
-const hasDetails = Boolean(narrative || editorial.additionalContext || hasFacts || publicMetadata.length || project.technologies.length || detailMedia.length || caseHref || project.actions?.length);
+const hasDetails = Boolean(narrative || project.additionalContext || hasFacts || publicMetadata.length || technologies.length || detailMedia.length || caseHref || project.actions?.length);
 ---
-<li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={project.technologies.join('|')}>
+<li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={technologies.join('|')}>
   <article class:list={['archive-record__entry', primaryMedia && 'archive-record__entry--media']} aria-labelledby={titleId}>
     {primaryMedia && <div class="archive-record__primary-media"><ArchiveMedia media={primaryMedia} projectName={project.name} hideControls /></div>}
     <div class="archive-record__entry-content">
@@ -26,7 +31,7 @@ const hasDetails = Boolean(narrative || editorial.additionalContext || hasFacts 
           <h2 id={titleId}><a class="archive-record__title-link" href={`#${recordId}`}>{project.name}</a></h2>
         </div>
       </header>
-      <p class="archive-record__overview" id={summaryId}>{editorial.summary}</p>
+      <p class="archive-record__overview" id={summaryId}>{project.summary}</p>
       {hasDetails && <button class="archive-record__details-toggle" type="button" aria-expanded="false" aria-controls={`details-${recordId}`} data-record-toggle hidden>More details</button>}
     </div>
     {hasDetails && <details class="archive-record__details" id={`details-${recordId}`}>
@@ -42,7 +47,7 @@ const hasDetails = Boolean(narrative || editorial.additionalContext || hasFacts 
             {productType && <div><dt>Type:</dt><dd>{productType}</dd></div>}
             {period && <div><dt>Period:</dt><dd>{period}</dd></div>}
           </dl>}
-          {editorial.additionalContext && <p>{editorial.additionalContext}</p>}
+          {project.additionalContext && <p>{project.additionalContext}</p>}
           {narrative && <section class="archive-record__contribution" aria-labelledby={`contribution-${recordId}`}>
             <h3 class="archive-record__label" id={`contribution-${recordId}`}>Selected contributions</h3>
             <p>{narrative.summary}</p>
@@ -51,10 +56,10 @@ const hasDetails = Boolean(narrative || editorial.additionalContext || hasFacts 
             </ul>}
             {narrative.outcome && <p>{narrative.outcome}</p>}
           </section>}
-          {project.technologies.length > 0 && <div class="archive-record__technology-group">
+          {technologies.length > 0 && <div class="archive-record__technology-group">
             <p class="archive-record__label">Technology</p>
             <ul class="archive-record__technology-list" aria-label={`${project.name} technologies`}>
-              {project.technologies.map((technology) => <li>{technology}</li>)}
+              {technologies.map((technology) => <li>{technology}</li>)}
             </ul>
           </div>}
           {publicMetadata.length > 0 && <dl class="archive-record__specs">

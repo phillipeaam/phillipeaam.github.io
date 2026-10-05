@@ -1,30 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
-import { catalogEditorialById, projectInventoryGroups, type ProjectMedia } from '../../data/projects';
+import { projectInventoryGroups } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
 // Preserve the archive's existing editorial group order while presenting one list.
 const orderedProjects = projectInventoryGroups.flatMap((group) => group.projects);
-const contexts = [...new Set(orderedProjects.map(({ workContext }) => workContext))];
-const technologies = [...new Set(orderedProjects.flatMap(({ technologies: values }) => values))].sort((a, b) => a.localeCompare(b));
+const contexts = [...new Set(orderedProjects.flatMap(({ workContext }) => workContext ? [workContext] : []))];
+const technologies = [...new Set(orderedProjects.flatMap(({ technologies: values }) => values ?? []))].sort((a, b) => a.localeCompare(b));
 const contextLabel = (context: string) => context === 'professional' ? 'Professional' : context === 'independent' ? 'Independent' : 'Study';
-// User confirmed reuse of the previously displayed catalog media (2026-10-05).
-// This allowlist is scoped to those existing sources; future assets need review.
-const reusedCatalogSources: Record<string, { identity: string; fallback: string; preview: string }> = {
-  'learn-with-ello': { identity: '/projects/ello-learn/ello-learn-poster.webp', fallback: '/projects/ello-learn/ello-learn-first-frame.webp', preview: '/projects/ello-learn/ello-learn-gameplay-preview.gif' },
-  'read-with-ello': { identity: '/projects/ello-read/read-with-ello-poster.webp', fallback: '/projects/ello-read/read-with-ello-first-frame.webp', preview: '/projects/ello-read/read-with-ello-gameplay-preview.gif' },
-  pathless: { identity: '/projects/pathless/pathless-poster.webp', fallback: '/projects/pathless/pathless-first-frame.webp', preview: '/projects/pathless/pathless-gameplay-preview.gif' },
-  'wallaces-quest': { identity: '/projects/wallace-quest/wallace-quest-poster.webp', fallback: '/projects/wallace-quest/wallace-quest-first-frame.webp', preview: '/projects/wallace-quest/wallace-quest-gameplay-preview.gif' },
-};
-const approvedCatalogMedia: Record<string, ProjectMedia[]> = Object.fromEntries(orderedProjects.map((project) => [project.id, (project.media ?? []).filter((media) => {
-  const source = reusedCatalogSources[project.id];
-  return source && media.type === 'image' && media.src === source.fallback && media.previewSrc === source.preview;
-})]));
-const approvedCatalogIdentity: Record<string, string> = Object.fromEntries(orderedProjects.flatMap((project) => {
-  const source = reusedCatalogSources[project.id];
-  return source && project.identityImage === source.identity ? [[project.id, source.identity]] : [];
-}));
 ---
 <BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s projects across professional, independent, and study contexts." contextualNavigation={true}>
   <main class="archive-content content-width" data-project-catalog data-total={orderedProjects.length}>
@@ -76,7 +60,7 @@ const approvedCatalogIdentity: Record<string, string> = Object.fromEntries(order
     <p class="catalog-count" data-catalog-count aria-live="polite">Showing {orderedProjects.length} of {orderedProjects.length} projects</p>
     <p class="catalog-empty" data-catalog-empty hidden>No projects match these filters.</p>
     <ol class="archive-record-list" data-catalog-list>
-      {orderedProjects.map((project) => <ProjectRecord project={project} editorial={catalogEditorialById[project.id]} homePath={homePath} approvedMedia={approvedCatalogMedia[project.id] ?? []} approvedIdentityImage={approvedCatalogIdentity[project.id]} />)}
+      {orderedProjects.map((project) => <ProjectRecord project={project} homePath={homePath} />)}
     </ol>
   </main>
 </BaseLayout>

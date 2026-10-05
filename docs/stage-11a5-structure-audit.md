@@ -46,7 +46,7 @@ Current structure is shallow and understandable; no folder reshuffle is proposed
 | Files | Classification | Initial finding |
 | --- | --- | --- |
 | `data/projects.ts` | KEEP | Home/Work data and poster/preview fields are in use or reserved for Stage 11B. |
-| `data/cases.ts` | KEEP | Supplies the four generated case pages and their narrative/evidence structures. |
+| `data/cases.ts` | Historical audit baseline | At this audit's baseline it supplied case pages and narrative/evidence. Feature 007 subsequently consolidated those sections under each record's optional `caseStudy` area in `data/projects.ts` and removed this file. |
 | `data/experience.ts` | KEEP | Rendered by Home and Experience route. |
 | `social links` | KEEP | Currently authored in `pages/index.astro`; no separate duplicate data source found. |
 

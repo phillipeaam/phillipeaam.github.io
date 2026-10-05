@@ -3,21 +3,17 @@ import ExternalLink from './ExternalLink.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
 import MediaPoster from './MediaPoster.astro';
-import type { ProjectInventoryEntry } from '../data/projects';
+import { hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
 
-const { project, homePath = '/' } = Astro.props as { project: ProjectInventoryEntry; homePath?: string };
+const { project, homePath = '/' } = Astro.props as { project: ProjectRecord; homePath?: string };
 const titleId = `archive-title-${project.id}`;
-const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
+const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
 const [leadMedia, ...supportingMedia] = project.media ?? [];
 const metadataLabels = ['Role', 'Period', 'Stack', 'Context'] as const;
-const metadata = metadataLabels.map((label) => {
-  const value = project.specs?.find((spec) => spec.label === label)?.value;
-  if (!value) throw new Error(`Rich project "${project.id}" is missing required metadata: ${label}.`);
-  return { label, value };
+const metadata = metadataLabels.flatMap((label) => {
+  const value = label === 'Context' ? project.context : project.specs?.find((spec) => spec.label === label)?.value ?? (label === 'Period' ? project.period : undefined);
+  return value ? [{ label, value }] : [];
 });
-if (!project.contribution || !project.engineeringFocus) {
-  throw new Error(`Rich project "${project.id}" must provide contribution and engineering focus.`);
-}
 ---
 <article aria-labelledby={titleId}>
   <div class="archive-record__rich-grid">
@@ -25,43 +21,43 @@ if (!project.contribution || !project.engineeringFocus) {
       <div class="archive-record__media">
         {leadMedia
           ? leadMedia.previewSrc && leadMedia.type === 'image'
-            ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
+            ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} autoplayPreview={leadMedia.autoplayPreview} />
             : <ArchiveMedia media={leadMedia} projectName={project.name} />
           : <MediaPoster label={project.evidenceLabel ?? project.name} kind={project.kind ?? 'neutral'} caption={project.mediaCaption} />}
         {supportingMedia.length > 0 && <div class="archive-record__supporting-media">
           {supportingMedia.slice(0, 3).map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
         </div>}
       </div>
-      <p class="archive-record__overview">{project.product}</p>
-      {(caseHref || project.actions?.length) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
+      <p class="archive-record__overview">{project.summary}</p>
+      {(caseHref || (isPortfolioIncluded(project) && project.actions?.length)) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
         {caseHref && <a href={caseHref} aria-label={`View ${project.name} case study`}>View case study <span aria-hidden="true">→</span></a>}
-        {project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
+        {isPortfolioIncluded(project) && project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
       </nav>}
     </div>
     <div class="archive-record__details">
       <header class="archive-record__header">
         <div class="archive-record__identity">
-          {project.identityImage && <img class="archive-record__identity-image" src={project.identityImage} alt="" width="52" height="52" loading="lazy" decoding="async" />}
+          {project.projectsIndexTitleIcon && <img class="archive-record__title-icon" src={project.projectsIndexTitleIcon} alt="" width="52" height="52" loading="lazy" decoding="async" />}
           <h3 id={titleId}>{project.name}</h3>
         </div>
       </header>
-      <dl class="archive-record__specs">
+      {metadata.length > 0 && <dl class="archive-record__specs">
         {metadata.map(({ label, value }) => <div>
           <dt>{label}</dt>
           <dd class:list={[label === 'Stack' && 'archive-record__stack-value']}>
             {label === 'Stack' ? value.split(' · ').map((item, index, items) => <Fragment><span class="archive-record__stack-item">{item}</span>{index < items.length - 1 && <span class="archive-record__stack-separator" aria-hidden="true">·</span>}</Fragment>) : value}
           </dd>
         </div>)}
-      </dl>
+      </dl>}
       <div class="archive-record__body">
-        <div class="archive-record__contribution archive-record__contribution--primary">
+        {project.contribution && <div class="archive-record__contribution archive-record__contribution--primary">
           <p class="archive-record__label">My contribution</p>
           <p>{project.contribution}</p>
-        </div>
-        <div class="archive-record__contribution archive-record__contribution--engineering">
+        </div>}
+        {project.engineeringFocus && <div class="archive-record__contribution archive-record__contribution--engineering">
           <p class="archive-record__label">Engineering focus</p>
           <p>{project.engineeringFocus}</p>
-        </div>
+        </div>}
       </div>
     </div>
   </div>

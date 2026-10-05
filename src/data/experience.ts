@@ -19,7 +19,7 @@ export const experience: Experience[] = [
       'Worked on book-library UI and loading paths; adapted GraphQL client tooling for Unity features.',
     ],
     selectedWork: [
-      { projectId: 'read-with-ello' },
+      { projectId: 'read-with-ello', label: 'Read With Ello' },
       { projectId: 'learn-with-ello', label: 'Ello 2.0' },
     ],
   },
@@ -31,13 +31,13 @@ export const experience: Experience[] = [
       'Adapted Craque da Fluência assessment flows for speech-recognition integration.',
     ],
     selectedWork: [
-      { projectId: 'ilhas-do-alfabeto' },
+      { projectId: 'ilhas-do-alfabeto', label: 'Ilhas do Alfabeto' },
       { projectId: 'flui', label: 'Flui' },
-      { projectId: 'craque-da-fluencia' },
-      { projectId: 'craque-da-leitura' },
-      { projectId: 'avaliacao-diagnostica' },
-      { projectId: 'tabuada-na-fazenda' },
-      { projectId: 'avaliacao-lingua-portuguesa' },
+      { projectId: 'craque-da-fluencia', label: 'Craque da Fluência' },
+      { projectId: 'craque-da-leitura', label: 'Craque da Leitura' },
+      { projectId: 'avaliacao-diagnostica', label: 'Avaliação Diagnóstica' },
+      { projectId: 'tabuada-na-fazenda', label: 'Tabuada na Fazenda' },
+      { projectId: 'avaliacao-lingua-portuguesa', label: 'Avaliação da Língua Portuguesa' },
     ],
   },
   {
@@ -48,10 +48,10 @@ export const experience: Experience[] = [
       'Integrated client features with REST APIs and data-access layers.',
     ],
     selectedWork: [
-      { projectId: 'iab-testes' },
+      { projectId: 'iab-testes', label: 'IAB Testes' },
       { projectId: 'iab-digital-zero-a-quatro', label: 'Zero a Quatro' },
       { projectId: 'morada-verde-inventory-flow', label: 'MVIF' },
-      { projectId: 'mypush' },
+      { projectId: 'mypush', label: 'MyPush' },
     ],
   },
 ];

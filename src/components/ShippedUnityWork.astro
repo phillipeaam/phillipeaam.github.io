@@ -1,8 +1,10 @@
 ---
-import { otherWork } from '../data/projects';
+import { getProjectRecord, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
 import SupportingProject from './SupportingProject.astro';
-const projects = otherWork.filter((item) => ['tabuada-na-fazenda', 'craque-da-leitura', 'flui'].includes(item.id));
+const projects = ['tabuada-na-fazenda', 'craque-da-leitura', 'flui']
+  .map((id) => getProjectRecord(id))
+  .filter((project): project is ProjectRecord => project !== undefined && isPortfolioIncluded(project));
 ---
 <div class="supporting-grid">
-  {projects.map((item, index) => <SupportingProject {...item} number={`0${index + 1}`} linkLabel="Official product page" />)}
+  {projects.map((project, index) => <SupportingProject project={project} number={`0${index + 1}`} />)}
 </div>
