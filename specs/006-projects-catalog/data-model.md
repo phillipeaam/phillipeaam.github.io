@@ -2,7 +2,7 @@
 
 This model describes the public archive and its browser interaction state. It does not prescribe a database or implementation library.
 
-**Current revision (integration with develop, 2026-10-05):** `ProjectRecord` in `src/data/projects.ts` is the single content source. The catalog-only editorial projection described below is a historical implementation, replaced by canonical `summary`, `context`, `type`, `period`, Role metadata, `contribution`, `technicalHighlights`, `contributionOutcome`, `workContext` and `technologies` fields on each record. Approved historical media reuse is recorded on the canonical media/icon fields, not in page-level path maps. See `docs/project-records.md`. The compact layout, expanded Selected contributions, interaction states and current media behavior remain; this integration does not restore legacy Product/Contribution/Engineering focus blocks or Stop/Play controls in the catalog.
+**Current revision (integration with develop, 2026-10-05):** `ProjectRecord` in `src/data/projects.ts` is the single content source. The catalog-only editorial projection described below is a historical implementation, replaced by canonical `summary`, `context`, `type`, `period`, Role metadata, `contribution`, `technicalHighlights`, `contributionOutcome`, `workContext` and `technologies` fields on each record. Approved historical media reuse is recorded on the canonical media/icon fields, not in page-level path maps. See `docs/project-records.md`. The compact layout, expanded Selected contributions, interaction states and current media behavior remain. A later user decision removes animation controls globally; no Stop/Play UI is required or rendered on any surface.
 
 ## Project entry
 
@@ -22,7 +22,7 @@ One public record rendered in the archive. Its underlying editorial source remai
 | `editorialGroup` | Optional existing display group/order | Must not imply unsupported technology or employment context. |
 | `searchText` | Normalized public searchable corpus derived from name, summary, contribution, period, context, technologies, and other displayed public metadata/details | Derived, not separately authored; exclude deferred/internal data. Normalize case, trim, and diacritics consistently. |
 | `details` | Optional expanded project content such as longer description, engineering focus, specs and media | Belongs to the same project entry; no invented content. |
-| `media[]` | Approved image/video/GIF metadata | Optional. When provided and provenance/authorization are supported by canonical records, select the first eligible main item for the collapsed entry; render remaining approved items only in expanded details. For animation, show an accurate static alternative and accessible play/pause behavior; do not reduce the media to an outbound GIF link. Omit unverified sources rather than using placeholders as evidence. |
+| `media[]` | Approved image/video/GIF metadata | Optional. When provided and provenance/authorization are supported by canonical records, select the first eligible main item for the collapsed entry; render remaining approved items only in expanded details. For animation, show an accurate static alternative, retain its configured activation and reduced-motion behavior, and render no pause/play control. Do not reduce the media to an outbound GIF link. Omit unverified sources rather than using placeholders as evidence. |
 | `detailGroups` | Structured groups for contribution, engineering focus, context, metadata, technologies, approved media, and actions | Derived from available verified record fields. Omit empty groups; use consistent labels and order. |
 | `caseStudySlug` | Route key for one of the existing case studies | Optional; if present, resolves to a valid existing case route. |
 | `actions[]` | Existing external action labels and destinations | Optional; include only valid destinations. |
@@ -113,7 +113,7 @@ O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no basel
 | `contributionNarrative.outcome` | Optional verified result; no mandatory metric and no invented impact. |
 | `additionalContext` | Optional product context only when needed to understand contribution; not a repeated summary or mandatory Product section. |
 
-Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. Historical allowlist reuse is distinct from documentary rights verification; no source additions. /projects/ has no Stop/Play, reduced motion/fallback remain, other consumers retain controls.
+Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. Historical allowlist reuse is distinct from documentary rights verification; no source additions. No surface renders Stop/Play; reduced motion and fallback remain.
 
 Missing map entries use verified existing summary/facts without synthesizing Selected contributions from legacy engineering prose. Revised records must use explicit catalog values rather than fall back to mixed Type/Context data. Public corpus derives only from rendered public values, including highlight titles/bodies/outcome/additionalContext; exclude source URLs to private records and withdrawn text.
 

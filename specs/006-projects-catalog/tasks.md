@@ -8,6 +8,8 @@ description: "Task list for the searchable projects catalog"
 
 **Prerequisites**: `plan.md`, `spec.md`, `research.md`, `data-model.md`, `contracts/projects-catalog.md`, `quickstart.md`
 
+**Nota de precedência (2026-10-05):** T013, T032 e T056 registram trabalho histórico da implementação em uma versão anterior e não são instruções para reintroduzir controles. A decisão vigente remove Stop/Play de todas as superfícies. Nas validações pendentes, conferir a ausência desses controles globalmente, preservando fallback, acionamento configurado e movimento reduzido.
+
 **Tests**: Sem a introdução de um runner automatizado: o repositório não possui um. As verificações manuais listadas são necessárias para os critérios de descoberta, acessibilidade e responsividade definidos na spec.
 
 **Organization**: Tarefas agrupadas pelas histórias de usuário e prioridades descritas em `spec.md`.
@@ -88,7 +90,7 @@ description: "Task list for the searchable projects catalog"
 
 - [X] T011 [P] [US4] Complete em `src/pages/projects/index.astro` os rótulos persistentes, associações entre controles e descrições, estados semânticos e região de status concisa/polite para contagem e vazio, sem transformar a lista inteira em região viva.
 - [X] T012 [P] [US4] Ajuste `src/styles/global.css` para estados de foco claramente visíveis e alvos utilizáveis por toque, sem depender de hover ou somente de cor para significado.
-- [X] T013 [P] [US4] Preserve uma alternativa estática precisa para cada mídia animada e o comportamento de movimento reduzido; adicione controle visível, acessível e operável por teclado para pausar/parar mídia automática contínua em `src/components/ProjectMediaPreview.astro`.
+- [X] T013 [P] [US4] **Registro histórico de implementação:** a versão então validada de `src/components/ProjectMediaPreview.astro` incluiu um controle visível de pausa/parada, junto à alternativa estática e ao comportamento de movimento reduzido. O controle foi removido globalmente por decisão posterior do usuário em 2026-10-05; este item não autoriza sua reintrodução.
 - [X] T014 [US4] Use a matriz de acessibilidade/no-script de `specs/006-projects-catalog/quickstart.md` e registre em `specs/006-projects-catalog/evaluation.md` resultados de teclado, foco, leitor de tela, redução de movimento e disponibilidade sem JavaScript.
 
 **Checkpoint**: Critérios essenciais de teclado, estado e conteúdo sem scripts estão cobertos conforme FR-014–FR-017 e SC-005–SC-006.
@@ -161,7 +163,7 @@ description: "Task list for the searchable projects catalog"
 
 - [X] T030 [P] [US3] Audite cada mídia candidata em `src/data/projects.ts` contra `docs/stage-10-content-register.md` e `docs/repository-evidence-pass.md`; mantenha apenas origens com provenance e autorização verificadas e registre cobertura e lacunas em `specs/006-projects-catalog/evaluation.md`.
 - [X] T031 [P] [US3] Reorganize `src/components/ProjectRecord.astro` para agrupar conteúdo disponível com rótulos consistentes, incluir tecnologias dentro de Project details, renderizar mídia aprovada inline e omitir grupos vazios, sem alterar destinos de case/ações ou IDs existentes.
-- [X] T032 [P] [US3] Ajuste `src/components/ArchiveMedia.astro` e `src/components/ProjectMediaPreview.astro` para mostrar animação aprovada inline com alternativa estática fiel, respeito a movimento reduzido e controle acessível de pausa/reprodução; não reduzir GIF a link externo.
+- [X] T032 [P] [US3] **Registro histórico de implementação:** `src/components/ArchiveMedia.astro` e `src/components/ProjectMediaPreview.astro` chegaram a exibir animação inline com alternativa estática, movimento reduzido e controle de pausa/reprodução. A apresentação inline permanece; o controle foi removido globalmente por decisão posterior do usuário em 2026-10-05.
 - [X] T033 [US3] Reflua mídia e detalhes em telas largas e estreitas em `src/styles/global.css`; disponha a mídia em uma coluna ao lado dos detalhes no desktop e acima do texto no celular, conforme decisão registrada em `specs/006-projects-catalog/spec.md`.
 - [X] T034 [US3] Valide nos registros que têm mídia aprovada a apresentação inline, alternativa estática, pausa/reprodução e comportamento responsivo; confirme também os quatro cases, ações externas, expansão independente e deep links conforme `specs/006-projects-catalog/quickstart.md`, registrando falhas e fontes sem prova em `specs/006-projects-catalog/evaluation.md`.
 
@@ -291,11 +293,11 @@ T001–T047 permanecem como histórico com seus estados originais. T003/T015/T03
 
 ### Fase 16 — US4 (P1): mídia acessível e resiliência
 
-**Independent Test**: fallback correto em carregamento/falha/reduced motion/no-JS; controle de movimento por teclado/toque; nenhum GIF distante solicitado fora da regra existente.
+**Independent Test**: fallback correto em carregamento/falha/reduced motion/no-JS; ausência de controle de animação em todas as superfícies; nenhum GIF distante solicitado fora da regra existente.
 
-- [X] T056 [US4] Integre reutilização de `src/components/ProjectMediaPreview.astro` e `src/components/ArchiveMedia.astro` com configuração anterior preservada: fallback primeiro-frame/lazy, autoplay near-viewport 75%, acionamentos existentes, decode antes da troca, falha estática, dimensões/fit/legenda, Stop/Play e reduced motion inicial/dinâmico; ajustar compartilhados apenas se necessário e sem impor pausa inicial/offscreen unload. FR-014, FR-028–FR-029; SC-018.
+- [X] T056 [US4] **Registro histórico de implementação:** a integração de `src/components/ProjectMediaPreview.astro` e `src/components/ArchiveMedia.astro` preservou fallback do primeiro frame/lazy, autoplay near-viewport 75%, acionamentos existentes, decode antes da troca, estado estático em falha, dimensões/fit/legenda, Stop/Play e reduced motion inicial/dinâmico. Os controles foram removidos globalmente por decisão posterior do usuário em 2026-10-05; fallback e demais comportamentos permanecem sujeitos a FR-014, FR-028–FR-029 e SC-018.
 - [X] T057 [US4] Complete semântica/estado do disclosure, ícone decorativo, descrição única da mídia, foco visível e controles por teclado/toque em `src/components/ProjectRecord.astro` e `src/styles/global.css`; preservar conteúdo e disclosure sem JS e filtros indisponíveis quando não inicializados em `src/pages/projects/index.astro`. FR-015–FR-017, FR-026–FR-027, FR-030; SC-005–SC-007.
-- [ ] T058 [US4] Execute cenários 18–19 e matriz acessível de `specs/006-projects-catalog/quickstart.md` com rede lenta/GIF bloqueado, reduced motion inicial e mudança durante carga, Stop/Play, leitor de tela, teclado, toque, ausência de observer e JS desativado; registre resultados reais/não executados em `specs/006-projects-catalog/evaluation.md`. Se compartilhados mudarem, verificar previews da Home/cases sem redesenhar essas áreas.
+- [ ] T058 [US4] Execute cenários 18–19 e matriz acessível de `specs/006-projects-catalog/quickstart.md` com rede lenta/GIF bloqueado, reduced motion inicial e mudança durante carga, ausência de controles de animação em todas as páginas, leitor de tela, teclado, toque, ausência de observer e JS desativado; registre resultados reais/não executados em `specs/006-projects-catalog/evaluation.md`. Se compartilhados mudarem, verificar previews da Home/cases sem redesenhar essas áreas.
 
 ### Fase 17 — US3 (P2): detalhes completos
 

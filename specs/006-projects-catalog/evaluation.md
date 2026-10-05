@@ -2,6 +2,8 @@
 
 This record tracks implementation validation against SC-001–SC-013, including the clarification updates and convergence work. No participant study or before/after usability comparison is in scope.
 
+**Current behavior note (2026-10-05):** entries below that mention Stop/Play or pause controls are observations of an earlier implementation and remain here as historical evidence only. The user later requested removal of animation controls from every page; those controls are not current requirements. The code and all site surfaces should be checked for their absence if this criterion is revisited.
+
 ## Success criteria
 
 | Criterion | Validation evidence | Status | Notes |

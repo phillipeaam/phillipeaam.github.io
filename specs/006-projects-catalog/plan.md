@@ -6,6 +6,8 @@
 
 **Revisão vigente — 2026-10-05:** o complemento Selected contributions ao final define o desenho atual e substitui trechos anteriores de hierarquia, controles/provenance de mídia e gates. Os trechos substituídos são histórico; não executar decisões antigas nem interpretar PASS histórico como conformidade atual. T064 registra o alinhamento documental, não implementação.
 
+**Decisão vigente sobre mídia — 2026-10-05:** não renderizar botão Stop/Play ou qualquer controle equivalente em nenhuma página. Referências anteriores neste plano a botão de pausa, controle explícito/acessível ou preservação de controles para Home/cases são históricas e substituídas. Preservar fallback estático, acionamento por configuração, falhas e reduced motion; não declarar conformidade completa da animação contínua.
+
 ## Summary
 
 Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos os projetos publicados reconhecíveis. A página renderizará registros e detalhes no HTML estático do Astro; um script cliente pequeno aprimorará busca, menus pesquisáveis de seleção múltipla para Context e Technology, contador e estado vazio. Cada ficha poderá expandir detalhes localmente por um disclosure nativo, com estrutura editorial consistente e tags nos detalhes. Na entrada recolhida, mídia principal aprovada fica à esquerda; à direita ficam ícone de identidade antes do título, descrição curta e More details. Contexto, contribuição, período, tipo e ações ficam nos detalhes; mídia complementar também, sem repetir mídia principal. O cabeçalho reutiliza a composição da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. Rótulos visíveis precedem a busca e cada faceta; somente um menu de faceta fica aberto por vez, sem perder seleções. O plano conserva IDs, ordem editorial e destinos válidos, e padroniza os divisores.
@@ -26,7 +28,7 @@ Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos
 
 **Performance Goals**: Filtragem local dos 19 registros atuais sem requisições de rede. A spec não estabelece um SLO numérico; esta feature não introduz um limite de performance ou benchmark novo.
 
-**Constraints**: Conteúdo e links centrais úteis sem JavaScript; somente fatos, tags, tecnologias e mídias confirmados; preservar identificadores e links de case; múltiplos detalhes podem ficar abertos; controles indisponíveis não aparentam funcionar; filtros Context e Technology usam menus com busca e seleção múltipla independente, mas no máximo um menu pode ficar aberto por vez; rótulos visíveis ficam acima de cada controle; cabeçalho segue exatamente a hierarquia editorial aprovada na Home; respeitar movimento reduzido, pausa de mídia contínua, apresentação inline de mídia autorizada e design editorial existente.
+**Constraints**: Conteúdo e links centrais úteis sem JavaScript; somente fatos, tags, tecnologias e mídias confirmados; preservar identificadores e links de case; múltiplos detalhes podem ficar abertos; controles indisponíveis não aparentam funcionar; filtros Context e Technology usam menus com busca e seleção múltipla independente, mas no máximo um menu pode ficar aberto por vez; rótulos visíveis ficam acima de cada controle; cabeçalho segue exatamente a hierarquia editorial aprovada na Home; respeitar movimento reduzido, fallback estático, acionamento de mídia configurado, apresentação inline de mídia autorizada e design editorial existente. Não adicionar controles de animação.
 
 **Scale/Scope**: 19 projetos publicados atualmente. Inventário e total devem derivar dos dados reais, com preparação para inclusões futuras sem framework genérico. Mudanças limitadas a `/projects/`, seus componentes/dados e estilos diretamente necessários.
 
@@ -39,14 +41,14 @@ Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos
 | I. Evidence-first claims | Facetas, resumos, períodos, contribuições e mídia usam somente fontes verificadas; não inferir tecnologias de prosa ou nome do projeto. | PASS |
 | II. Shared patterns | Reutilizar componentes e contrato comuns das fichas; variação apenas por dados existentes. | PASS |
 | III. Approved visual systems | Preservar identidade editorial e reaproveitar padrões atuais; sem redesign alheio ao arquivo. | PASS |
-| IV. Accessibility | HTML semântico/disclosures, rótulos, teclado, foco visível, estado anunciável, toque, alternativa estática e controle de animação contínua. | PASS |
+| IV. Accessibility | HTML semântico/disclosures, rótulos, teclado, foco visível, estado anunciável, toque, alternativa estática e movimento reduzido. Nenhum controle de animação em qualquer superfície, conforme decisão do usuário; isso não declara conformidade completa do autoplay. | PASS |
 | V. Progressive enhancement | Todos os registros e disclosures nativos são conteúdo base; ativar filtros somente depois da inicialização do script. | PASS |
 | VI. Responsive verification | Validar desktop, tablet e celular, incluindo reflow estreito; relatar apenas viewports efetivamente testados na implementação. | PASS |
 | VII. Small scope | Limitar a página, inventário, componentes e estilos necessários. | PASS |
 | VIII. Validation | Na implementação, executar diff check, diagnóstico Astro, build e validações manuais relevantes; distinguir verificações feitas e não feitas. | PASS |
 | IX. Human review | Entregar mudança visual/estrutural para revisão humana antes de aprovação para merge/push. | PASS |
 
-Não há violações conhecidas que exijam justificativa. O controle de pausa para animação contínua poderá alterar o componente de mídia compartilhado apenas no necessário para cumprir o requisito de acessibilidade.
+**Histórico substituído:** versões anteriores deste plano propunham controle de pausa para animação contínua. A decisão atual do usuário remove esses controles globalmente. A validação não deve tratá-los como requisito nem declarar conformidade completa do autoplay.
 
 ## Project Structure
 
@@ -72,7 +74,7 @@ src/
 ├── pages/projects/index.astro       # conteúdo base, controles e total
 ├── components/ProjectRecord.astro  # entrada, disclosure e detalhes estruturados
 ├── components/Navigation.astro     # navegação contextual Back/Contact
-├── components/ProjectMediaPreview.astro # mídia inline aprovada e pausa quando aplicável
+├── components/ProjectMediaPreview.astro # mídia inline aprovada; sem controle de animação
 ├── components/ArchiveMedia.astro   # renderização inline de mídia de arquivo
 └── styles/global.css               # layout responsivo, estado e foco
 ```
@@ -146,7 +148,7 @@ Base: docs/projects-catalog-hiring-review.md e fontes canônicas registradas na 
 
 ### Mídia: política vigente
 
-A allowlist atual das quatro fontes históricas permanece exata, com identidade/fallback/preview separados. Reutilização é decisão do usuário, não prova de direitos. Nenhuma nova fonte é promovida. Preservar near-viewport/autoplay/fallback/reduced motion e ausência de Stop/Play em /projects/; controles de Home/cases permanecem. Revisão editorial não resolve direitos ainda não documentados nem certifica acessibilidade do movimento contínuo.
+A allowlist atual das quatro fontes históricas permanece exata, com identidade/fallback/preview separados. Reutilização é decisão do usuário, não prova de direitos. Nenhuma nova fonte é promovida. Preservar near-viewport/autoplay/fallback/reduced motion e ausência de Stop/Play em todas as superfícies. Revisão editorial não resolve direitos ainda não documentados nem certifica acessibilidade do movimento contínuo.
 
 ### Gates atuais, antes e depois do desenho
 
@@ -154,7 +156,7 @@ A allowlist atual das quatro fontes históricas permanece exata, com identidade/
 | --- | --- |
 | I — Evidência | Conteúdo novo requer matriz de claims/fontes e limites; não afirmar direitos demonstrados para reutilização histórica. Lacunas de mídia já registradas permanecem. |
 | II / III — Padrões e sistema aprovado | Uma composição/projeção comum; cabeçalho e estilos aprovados preservados. |
-| IV / V — Acesso e conteúdo base | Narrativa semântica, teclado/foco, fallback e redução de movimento preservados; disclosure nativo sem JS. Não declarar conformidade integral do autoplay sem controle. |
+| IV / V — Acesso e conteúdo base | Narrativa semântica, teclado/foco, fallback e redução de movimento preservados; disclosure nativo sem JS. Nenhum controle de animação em nenhuma página por decisão do usuário. Não declarar conformidade integral do autoplay. |
 | VI — Responsividade | Planejada em 320/390/820/1280; execução e evidências posteriores. |
 | VII — Escopo | /projects/ e projeção exclusiva; nenhuma alteração editorial na Home/cases. |
 | VIII / IX — Validação e revisão | Diff/check/build, revisão editorial, acessibilidade/reflow e aprovação humana posterior; nenhum resultado presumido. |

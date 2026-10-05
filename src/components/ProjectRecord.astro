@@ -23,7 +23,7 @@ const hasDetails = Boolean(narrative || project.additionalContext || hasFacts ||
 ---
 <li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={technologies.join('|')}>
   <article class:list={['archive-record__entry', primaryMedia && 'archive-record__entry--media']} aria-labelledby={titleId}>
-    {primaryMedia && <div class="archive-record__primary-media"><ArchiveMedia media={primaryMedia} projectName={project.name} hideControls /></div>}
+    {primaryMedia && <div class="archive-record__primary-media"><ArchiveMedia media={primaryMedia} projectName={project.name} /></div>}
     <div class="archive-record__entry-content">
       <header class="archive-record__header">
         <div class="archive-record__identity">
@@ -38,7 +38,7 @@ const hasDetails = Boolean(narrative || project.additionalContext || hasFacts ||
       <summary aria-describedby={summaryId}>More details</summary>
       <div class:list={['archive-record__details-layout', detailMedia.length === 0 && 'archive-record__details-layout--text-only']}>
         {detailMedia.length > 0 && <div class="archive-record__media-column" aria-label={`${project.name} media`}>
-          {detailMedia.map((media) => <ArchiveMedia media={media} projectName={project.name} hideControls />)}
+          {detailMedia.map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
         </div>}
         <div class="archive-record__details-content">
           {hasFacts && <dl class="archive-record__specs archive-record__facts">

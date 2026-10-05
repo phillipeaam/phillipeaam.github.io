@@ -5,7 +5,7 @@ Data: 2026-10-05. Mesma feature 006, mesma branch feature/006-projects-catalog. 
 | Achado anterior | Recomendação | Ação realizada nesta rodada |
 | --- | --- | --- |
 | I1 — plano/modelo/contrato antigos | Alinhar antes de implementar. | plan, data-model, contrato e research receberam desenho vigente, projeção exclusiva catalogEditorialById e precedência explícita sobre trechos históricos. T064 concluída documentalmente. |
-| I2 — Stop/Play exigido após remoção | Aplicar decisão vigente e registrar limites. | FR-014/FR-028/SC-018 alinhados; não restaurar controle no catálogo. Preservar fallback/reduced motion e controles nos outros usos; não declarar conformidade integral de movimento contínuo. |
+| I2 — Stop/Play exigido após remoção | Aplicar decisão vigente e registrar limites. | FR-014/FR-028/SC-018 alinhados à decisão global: não restaurar controle em nenhuma página. Preservar fallback/reduced motion; não declarar conformidade integral de movimento contínuo. |
 | I3 — reutilização confundida com direitos | Distinguir decisão e comprovação documental. | FR-019/SC-010 e desenho distinguem allowlist histórica autorizada e evidência de direitos. Nenhuma fonte nova permitida sem documentação; limites canônicos permanecem. |
 | D1 — cenários duplicados | Consolidar matriz mantendo rastreabilidade. | quickstart recebeu roteiro A–G que associa vários SC a cenários únicos. T065 concluída documentalmente. |
 

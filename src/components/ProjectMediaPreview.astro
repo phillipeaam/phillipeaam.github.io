@@ -8,8 +8,6 @@ const {
   posterWidth = 2556,
   posterHeight = 1432,
   posterFit = 'cover',
-  showControls = false,
-  hideControls = false,
   autoplayPreview = false,
   linkHref,
   linkLabel,
@@ -34,7 +32,6 @@ const {
       data-project-media-animation
     />}
   </div>
-  {!hideControls && (autoplayPreview || showControls) && <button class="project-media-preview__toggle" type="button" data-preview-toggle aria-label="Stop animation" hidden>Stop animation</button>}
   {caption && <figcaption class="media-caption">{caption}</figcaption>}
 </figure>
 
@@ -62,12 +59,10 @@ const {
     const animation = area.querySelector<HTMLImageElement>('[data-project-media-animation]');
     const previewSrc = area.dataset.previewSrc;
     const link = area.querySelector<HTMLAnchorElement>('.project-media-preview__link') ?? area.closest('a');
-    const toggle = area.parentElement?.querySelector<HTMLButtonElement>('[data-preview-toggle]');
     let pointerActive = false;
     let focusActive = false;
     let ready = false;
     let failed = false;
-    let manualOverride: boolean | null = null;
     let requested = area.dataset.autoplayPreview === 'true';
 
     const showFallback = () => {
@@ -117,14 +112,7 @@ const {
     const updatePreview = () => {
       const autoplayRequested = area.dataset.autoplayPreview === 'true';
       const interactionRequested = (pointerActive && fineHover.matches) || focusActive;
-      requested = manualOverride ?? (autoplayRequested || interactionRequested);
-      if (toggle) {
-        toggle.hidden = false;
-        toggle.disabled = reducedMotion.matches;
-        const label = reducedMotion.matches ? 'Animation paused by reduced-motion preference' : requested ? 'Stop animation' : 'Play animation';
-        toggle.textContent = label;
-        toggle.setAttribute('aria-label', label);
-      }
+      requested = autoplayRequested || interactionRequested;
       if (reducedMotion.matches || !requested || !previewSrc) {
         showFallback();
         if (animation && (reducedMotion.matches || !requested)) {
@@ -143,10 +131,6 @@ const {
     };
 
     refreshPreview.set(area, updatePreview);
-    toggle?.addEventListener('click', () => {
-      manualOverride = !requested;
-      updatePreview();
-    });
     area.addEventListener('pointerenter', () => {
       pointerActive = fineHover.matches;
       updatePreview();

@@ -1,6 +1,6 @@
 # Research: Projects Catalog
 
-**Current revision:** decisions in the Selected contributions addendum below supersede historical hierarchy/control statements in this document.
+**Current revision:** decisions in the Selected contributions addendum and the media-control decision at the end of this file supersede historical hierarchy/control statements in this document. Current behavior has no Stop/Play UI on any site surface.
 
 ## 1. Client-side search in a static Astro archive
 
@@ -24,7 +24,7 @@ Sources: [WAI-ARIA APG: Listbox Pattern](https://www.w3.org/WAI/ARIA/apg/pattern
 
 ## 8. Project detail hierarchy and verified media
 
-**Decision**: Keep a compact project entry as the default. Expanding it reveals structured, consistently labeled groups for product context, contribution, engineering focus, verified metadata/technology, approved media, and valid actions; omit empty groups. Render an approved preview inline within the expanded project instead of sending a GIF visitor to another tab. Preserve an accurate static frame and accessible pause/play behavior for animation.
+**Historical decision, superseded below:** Keep a compact project entry as the default. Expanding it reveals structured, consistently labeled groups for product context, contribution, engineering focus, verified metadata/technology, approved media, and valid actions; omit empty groups. Render an approved preview inline within the expanded project instead of sending a GIF visitor to another tab. Preserve an accurate static frame. The former recommendation for an animation pause/play control is no longer current.
 
 **Rationale**: This directly addresses the requested details formatting and the current `ArchiveMedia.astro` behavior, which turns GIF records into an external “Open animation” link. The current public entry renderer (`ProjectRecord.astro`) does not render `project.media`; the catalog must consume the existing evidence-bearing media field when verified. The user clarified the layout: a media column alongside details on desktop, stacked above text on mobile; route the implementation for visual review.
 
@@ -64,7 +64,7 @@ Sources: [W3C ARIA22 status message technique](https://www.w3.org/WAI/WCAG22/Tec
 
 ## 4. Motion and responsive behavior
 
-**Decision**: Preserve the existing static fallback and reduced-motion behavior for animated previews, and provide a visible accessible pause/stop control for any automatically moving media that continues alongside other content. Verify responsive reflow without page-level horizontal scrolling on narrow screens.
+**Historical decision, superseded below:** Preserve the existing static fallback and reduced-motion behavior for animated previews, and provide a visible accessible pause/stop control for any automatically moving media that continues alongside other content. The current product decision is to provide no animation control anywhere on the site. Verify responsive reflow without page-level horizontal scrolling on narrow screens.
 
 **Rationale**: Reduced motion does not replace a user control for automatically moving content that continues beyond five seconds. The catalogue must remain usable on narrow screens and must not require horizontal browsing to recognize entries.
 
@@ -118,9 +118,13 @@ O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no basel
 **Rationale:** evita regressão editorial em consumidores existentes e torna atuação/mecanismos claros sem concatenar três parágrafos repetitivos. Fontes: docs/projects-catalog-hiring-review.md e páginas canônicas de Notion relacionadas na spec. Pesquisa já consultada; não foi coletada evidência nova de contratação.
 **Alternatives considered:** modificar globalmente product/contribution (risco para Home/cases); concatenar campos (mantém repetição); manter três blocos obrigatórios (não atende pedido); exigir três highlights/métricas (fabricaria conteúdo em registros limitados).
 
-**Decision:** reutilizar fontes históricas da allowlist conforme autorização do usuário, sem chamar isso de prova de direitos; manter ausência de Stop/Play apenas no catálogo e preservar fallback/reduced motion.
+**Decision:** reutilizar fontes históricas da allowlist conforme autorização do usuário, sem chamar isso de prova de direitos; manter a ausência de Stop/Play em todas as páginas e preservar fallback/reduced motion.
 **Rationale:** alinha documentos às decisões vigentes sem inventar autorização de terceiros ou declarar conformidade integral. Constituição IV atual exige acesso, fallback e redução de movimento; não contém uma exigência textual específica de botão Stop/Play. Isso não equivale a uma auditoria de conformidade da animação contínua.
 **Alternatives considered:** recolocar controle sem pedido (reverte decisão); esconder fontes históricas automaticamente (reverte reaproveitamento); certificar direitos/acessibilidade (evidência insuficiente). Novas fontes continuam condicionadas à documentação.
+
+## Decisão vigente de animação — 2026-10-05
+
+Por decisão explícita do usuário, remover o botão Stop/Play e qualquer controle equivalente de animação de todas as superfícies: Home, catálogo, estudos de caso e demais consumidores de `ProjectMediaPreview`. Não reintroduzir controle visível, acessível por teclado ou alternativo em nenhum componente compartilhado. Preservar configuração por registro (near-viewport ou hover/foco), fallback estático, falha e reduced motion. Esta é uma decisão de produto; não declara conformidade completa para animação automática contínua. Os registros de controles em inspeções históricas descrevem versões anteriores.
 
 **Decision:** um roteiro único de validação referencia vários critérios equivalentes, preservando IDs SC-001–SC-024.
 **Rationale:** reduz duplicação de execução sem perder rastreabilidade. Comparação com participantes permanece pesquisa futura; não é gate nem promessa de aumento de contratação.

@@ -2,7 +2,7 @@
 
 This is the user-facing interaction contract for `/projects/`. It is independent of implementation framework and complements [the feature spec](../spec.md) and [data model](../data-model.md).
 
-**Current precedence:** the editorial contract below supersedes prior expanded-group/media-control statements in this document. Older statements remain historical; do not restore the three-section presentation or animation buttons in /projects/.
+**Current precedence:** this contract and the 2026-10-05 global animation-control decision supersede prior expanded-group/media-control statements in this document. Older statements remain historical; do not restore the three-section presentation or animation buttons on any site surface.
 
 ## Current editorial contract — 2026-10-05
 
@@ -12,7 +12,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Facts have distinct meanings: individual role, organization/team/circumstance, product nature, documented period; no stack in Type or Role repeated in Context. Omit absent facts and empty groups.
 - Keep public product behavior distinguishable from attributable individual work; preserve team, historical era and release boundaries. No automatic concatenation of source paragraphs or copying full cases.
 - Revised public detail text is searchable, including highlight headings/bodies; internal sources/drafts/withdrawn claims are excluded. Preserve existing facet semantics, counts, order, hashes, four cases, external destinations and independent expansion.
-- Preserve exact historical media allowlist reused by user authorization; never label it proof of third-party rights. New sources require documentation. No Stop/Play in /projects/, as requested; fallback, proximity loading and reduced motion remain. This contract does not certify complete autoplay accessibility or unresolved republication rights.
+- Preserve exact historical media allowlist reused by user authorization; never label it proof of third-party rights. New sources require documentation. No Stop/Play or equivalent animation control on any site surface, as requested; fallback, configured loading and reduced motion remain. This contract does not certify complete autoplay accessibility or unresolved republication rights.
 - Header typography, support line-height 24px, spacing, media width 300px, flexible entry height, text width and dividers remain approved baseline. No new text-width caps, clipping, hover-only content or horizontal page scrolling.
 - No new public endpoints, analytics, third-party integration or content changes to Home/cases.
 
@@ -57,7 +57,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Render media inline only when provenance/authorization is supported by canonical project evidence; omit unverified sources instead of presenting placeholders as evidence.
 - Every animated preview has an accurate static alternative that represents the approved media.
 - Reduced-motion preference suppresses or replaces nonessential animation.
-- Automatically moving media that continues alongside other content has an accessible visible pause/stop control; the user can understand and operate that control without hover.
+- **Historical requirement, superseded by the user decision recorded above:** Automatically moving media that continues alongside other content has an accessible visible pause/stop control; the user can understand and operate that control without hover. This is not a current implementation requirement.
 
 ## Responsive and no-script behavior
 
