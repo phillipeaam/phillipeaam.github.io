@@ -34,3 +34,11 @@
 - This checklist confirms specification quality only; it does not indicate implementation completion or human approval.
 - Feature 006 now specifies the compact searchable project catalog with independently expandable details; the former horizontal-selector/single-active-detail proposal was removed at the user's request.
 
+
+### Revalidação do complemento — 2026-10-05
+
+- [x] Entradas recolhidas, detalhes, desktop/celular e ausência de mídia/CTA possuem requisitos verificáveis (FR-002, FR-026–FR-030; SC-016–SC-018).
+- [x] Histórico de ícone e comportamento de GIF/fallback documentado com referências concretas, sem prescrever framework ou API nos requisitos.
+- [x] Provenance, teclado, movimento reduzido, conteúdo sem scripts e cabeçalho aprovado preservados.
+- [x] Localização anterior da mídia/metadados reconciliada na spec; decisões históricas preservadas e artefatos dependentes explicitamente pendentes de alinhamento.
+- [x] Não há marcadores de esclarecimento pendentes; spec pronta para planejamento, sem implicar aprovação visual ou implementação concluída.

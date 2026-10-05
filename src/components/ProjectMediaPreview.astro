@@ -10,6 +10,7 @@ const {
   posterHeight = 1432,
   posterFit = 'cover',
   showControls = false,
+  hideControls = false,
 } = Astro.props;
 ---
 <figure class="media-figure project-media-preview">
@@ -42,7 +43,7 @@ const {
       data-project-media-animation
     />}
   </div>
-  {(autoplayPreview || showControls) && <button class="project-media-preview__toggle" type="button" data-preview-toggle aria-label="Stop animation" hidden>Stop animation</button>}
+  {!hideControls && (autoplayPreview || showControls) && <button class="project-media-preview__toggle" type="button" data-preview-toggle aria-label="Stop animation" hidden>Stop animation</button>}
   {caption && <figcaption class="media-caption">{caption}</figcaption>}
 </figure>
 

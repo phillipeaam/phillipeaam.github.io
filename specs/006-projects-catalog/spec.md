@@ -3,6 +3,7 @@
 **Feature Branch**: `[006-projects-catalog]`
 **Created**: 2026-10-04
 **Status**: Draft
+**Updated**: 2026-10-05 — complemento da apresentação das entradas; sem nova feature.
 **Input**: Redesenhar `/projects/` como catálogo compacto pesquisável, com cabeçalho no padrão da Home, busca/facetas rotuladas, no máximo um menu de filtro aberto por vez, contador e detalhes expansíveis junto a cada projeto. Todos os projetos devem ser reconhecíveis sem depender de miniaturas, hover ou rolagem horizontal.
 
 ## Clarifications
@@ -33,9 +34,12 @@ Como visitante, quero ver os projetos disponíveis em uma lista compacta, reconh
 **Acceptance Scenarios**:
 
 1. **Given** o arquivo contém projetos com e sem mídia, **When** a pessoa abre a página, **Then** encontra uma entrada textual reconhecível para cada projeto publicado.
-2. **Given** um projeto tem fatos de contexto, contribuição ou período verificados, **When** a pessoa percorre sua entrada, **Then** esses sinais aparecem de forma compacta sem atribuir fatos ausentes; tecnologias e tags ficam nos detalhes expandidos.
+2. **Given** um projeto tem fatos de contexto, contribuição ou período verificados, **When** a pessoa percorre sua entrada, **Then** a entrada recolhida apresenta nome e descrição curta; contexto, contribuição, período e tecnologias ficam nos detalhes, sem atribuir fatos ausentes.
 3. **Given** a pessoa abre a página em viewport estreito, **When** percorre os resultados, **Then** consegue ler cada entrada sem rolagem horizontal da página e sem depender de hover.
 4. **Given** a pessoa abre a página, **When** compara o cabeçalho e as entradas com a Home, **Then** vê a composição aprovada da seção “More Projects”, com título “All Projects”, chips de tecnologia apenas nos detalhes expandidos e divisores uniformes.
+
+5. **Given** um projeto possui mídia principal e ícone aprovados, **When** sua entrada está recolhida, **Then** a mídia aparece à esquerda e o ícone antes do título à direita no desktop; no celular, a mídia fica acima, mantendo título, descrição e expansão legíveis.
+6. **Given** um projeto não possui mídia ou ícone aprovado, **When** sua entrada é apresentada, **Then** título, descrição e detalhes disponíveis continuam utilizáveis sem áreas visuais vazias.
 
 ### User Story 2 - Encontrar projetos por texto e facetas (Priority: P1)
 
@@ -65,12 +69,14 @@ Como visitante, quero expandir uma entrada no próprio lugar para ler detalhes e
 
 **Acceptance Scenarios**:
 
-1. **Given** uma entrada possui detalhes públicos adicionais, **When** a pessoa ativa “Show project details”, **Then** os detalhes daquele mesmo projeto são exibidos junto à entrada.
+1. **Given** uma entrada possui detalhes públicos adicionais, **When** a pessoa ativa “Project details”, **Then** os detalhes daquele mesmo projeto são exibidos junto à entrada.
 2. **Given** uma entrada possui um estudo de caso, **When** a pessoa escolhe o link, **Then** chega ao case correspondente; o link mantém nome acessível e destino correto.
 3. **Given** uma entrada não possui mídia, detalhes expansíveis ou ação externa válida, **When** é apresentada, **Then** não mostra controles vazios nem promete conteúdo indisponível.
 4. **Given** uma pessoa abre um deep link existente de projeto, **When** a página carrega, **Then** o item correspondente continua localizável mesmo se a organização visual do arquivo mudar.
 5. **Given** os detalhes de um projeto estão abertos, **When** a pessoa expande outro projeto, **Then** ambos permanecem abertos e podem ser recolhidos independentemente.
-6. **Given** um projeto tem mídia aprovada por evidência, **When** a pessoa abre seus detalhes, **Then** a mídia aparece inline ao lado do conteúdo no desktop e acima dele no celular, com alternativa estática e controles de movimento aplicáveis.
+6. **Given** um projeto tem mídia aprovada por evidência, **When** a pessoa abre seus detalhes, **Then** a mídia principal já aparece na entrada recolhida, à esquerda do título/descrição no desktop e acima deles no celular; expandir revela os dados adicionais sem duplicar a mídia principal, com alternativa estática e controles de movimento aplicáveis.
+
+7. **Given** uma entrada está recolhida, **When** a pessoa expande Project details, **Then** encontra contexto, contribuição, período, tecnologias e ações existentes, sem repetir a mídia principal nem o mesmo resumo.
 
 ### User Story 4 - Usar navegação acessível e conteúdo essencial sem scripts (Priority: P1)
 
@@ -87,8 +93,12 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 3. **Given** a preferência de redução de movimento está ativa, **When** a pessoa vê o catálogo ou abre detalhes, **Then** animação não é necessária para entender ou operar o conteúdo.
 4. **Given** comportamentos interativos opcionais não estão disponíveis, **When** a pessoa abre a página, **Then** entradas, conteúdo essencial e links continuam disponíveis em forma legível.
 
+5. **Given** um GIF com autoplay configurado está distante da área visível, **When** a pessoa se aproxima da entrada, **Then** o GIF começa a carregar na faixa de aproximação e o fallback permanece até estar pronto.
+6. **Given** a animação falha ou movimento reduzido é ativado durante a carga, **When** a solicitação termina, **Then** a alternativa estática permanece visível e links continuam utilizáveis.
+
 ### Edge Cases
 
+- Mídia principal ausente, GIF sem fallback válido ou falha do ícone não podem impedir identificação textual; mídia complementar não deve duplicar a principal.
 - Busca vazia, somente espaços, sem acentos ou com diferenças de caixa deve ter comportamento previsível; normalizar caixa, espaços laterais e diacríticos para facilitar correspondência em português.
 - Busca dentro de uma faceta sem correspondência deve mostrar estado vazio no próprio menu e não deve alterar projetos nem contador até uma opção ser marcada.
 - Texto pode corresponder a vários projetos ou somente a metadados; o contador acompanha projetos correspondentes, não palavras ou mídias.
@@ -105,7 +115,7 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 ### Functional Requirements
 
 - **FR-001**: A página MUST apresentar uma entrada identificável para cada projeto publicado no arquivo, atualmente 19, sem exigir seleção por miniatura ou rolagem horizontal.
-- **FR-002**: Cada entrada MUST apresentar nome e resumo conciso do produto; contexto e contribuição MUST aparecer quando houver informação pública verificada. Período MUST aparecer somente quando disponível e confirmado. Os chips/tags de tecnologia MUST ficar nos detalhes expandidos, e não na entrada compacta.
+- **FR-002**: Cada entrada recolhida MUST apresentar nome, resumo conciso do produto, pôster como ícone antes do título quando aprovado e mídia principal quando aprovada. Contexto, contribuição, período, tipo de produto, tecnologias e ações MUST aparecer somente nos detalhes expandidos quando disponíveis e verificados; não repetir o resumo ou a mídia principal desnecessariamente.
 - **FR-003**: O arquivo MAY preservar agrupamentos editoriais úteis, mas MUST manter contexto profissional, tipo de produto e tecnologias como dimensões distintas e não induzir classificação incorreta.
 - **FR-004**: A pessoa MUST poder pesquisar por nome, descrição do produto, contribuição e metadados públicos apresentados no arquivo, incluindo tecnologias e contexto.
 - **FR-005**: A busca MUST ignorar caixa, espaços no início/fim e diferença entre letras acentuadas e não acentuadas; MUST atualizar quais entradas correspondem à consulta.
@@ -120,16 +130,22 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - **FR-014**: Mídia animada MUST manter alternativa estática precisa, respeitar preferência de redução de movimento e oferecer controle acessível de pausa/parada quando movimento automático contínuo estiver presente.
 - **FR-015**: Os controles MUST ter rótulos, semântica e estado acessíveis; operações MUST funcionar por teclado e toque, com foco visível e sem dependência de hover.
 - **FR-016**: O conteúdo essencial e links MUST permanecer legíveis e utilizáveis quando comportamentos interativos opcionais não estão disponíveis; controles sem comportamento funcional MUST não ser apresentados como ativos.
-- **FR-017**: Em larguras móveis, entradas, controles e detalhes com mídia MUST adaptar-se sem sobreposição, perda de conteúdo essencial ou rolagem horizontal da página; mídia aprovada fica acima do texto dos detalhes.
+- **FR-017**: Em larguras móveis, entradas, controles e detalhes com mídia MUST adaptar-se sem sobreposição, perda de conteúdo essencial ou rolagem horizontal da página; a mídia principal aprovada fica acima da identidade e descrição da entrada no celular; os detalhes aparecem junto à mesma entrada abaixo do resumo.
 - **FR-018**: A página MUST preservar a identidade visual editorial já estabelecida e limitar mudanças à experiência de /projects/ e às áreas diretamente necessárias para ela.
-- **FR-019**: Quando o inventário fornecer mídia com origem e autorização verificadas, Project details MUST exibi-la inline junto à ficha; mídia sem essa documentação MUST permanecer oculta até ser validada.
-- **FR-020**: Detalhes expandidos MUST organizar contribuição, foco de engenharia, contexto, metadados confirmados, tecnologias, mídia aprovada e links disponíveis com hierarquia visual consistente; grupos sem conteúdo MUST ser omitidos.
+- **FR-019**: Quando o inventário fornecer mídia com origem e autorização verificadas, a entrada recolhida MUST exibir a mídia principal inline junto ao título e descrição; mídia complementar, se houver, pertence aos detalhes; mídia sem essa documentação MUST permanecer oculta até ser validada.
+- **FR-020**: Detalhes expandidos MUST organizar contribuição, foco de engenharia, contexto, metadados confirmados, tecnologias, período, tipo de produto, mídia complementar aprovada e links disponíveis com hierarquia visual consistente; grupos sem conteúdo MUST ser omitidos.
 - **FR-021**: Entradas do catálogo MUST usar divisores consistentes em espessura, cor, espaçamento e continuidade, sem variação visual involuntária entre projetos.
 - **FR-022**: O cabeçalho de `/projects/` MUST reutilizar o padrão aprovado da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. MUST omitir o rótulo “PROJECT ARCHIVE” e a apresentação anterior.
 - **FR-023**: A busca dentro de um menu de faceta MUST limitar apenas as opções visíveis naquele menu até que a pessoa selecione/desmarque valores; o texto digitado no menu não pode, sozinho, filtrar projetos nem alterar o contador de projetos.
 - **FR-024**: O campo de busca MUST ter o rótulo visível “Search for”; as facetas MUST ter rótulos visíveis “Context” e “Technology” acima de seus respectivos controles de seleção.
 - **FR-025**: No máximo um menu de faceta pode estar aberto por vez. Abrir um menu MUST fechar o outro sem limpar, alterar ou perder valores selecionados nele; ativar novamente o menu aberto MUST recolhê-lo.
 
+- **FR-026**: No desktop, a entrada recolhida MUST organizar mídia principal à esquerda e, à direita, identidade (ícone antes do título), descrição curta e “Project details”, cujo indicador de expansão mostra “+” quando recolhido. O controle MUST manter nome e estado acessíveis e aceitar teclado e toque. Detalhes MUST permanecer associados ao item sem navegação para outra página.
+- **FR-027**: O ícone MUST reutilizar a apresentação anterior: 52×52, cantos arredondados de 10px, borda discreta, imagem recortada sem distorção e espaço de 14px até o título. Pode coexistir com a mídia principal à esquerda, pois identifica o projeto. Sem pôster aprovado, MUST omitir o ícone sem espaço vazio; o título continua suficiente. O ícone redundante ao título MUST não duplicar o anúncio do nome em leitores de tela.
+- **FR-028**: A mídia MUST preservar as configurações existentes de dimensões, proporção, enquadramento, legenda e acionamento. Para autoplay configurado, a animação MUST ser solicitada ao aproximar-se da área visível (referência existente: margem de 75% da altura da janela), sem exigir expansão ou hover. Não impor pausa inicial como nova regra; movimento reduzido e pausa/parada explícita continuam prevalecendo. Projetos sem autoplay configurado MUST conservar seus acionamentos existentes.
+- **FR-029**: Cada GIF MUST manter sua alternativa estática existente e precisa, derivada do primeiro frame, visível desde o conteúdo inicial e durante carregamento/preparação. A animação MUST substituir a imagem apenas quando pronta, sem mudar a geometria da área. Falha de carregamento/preparação MUST manter o fallback e os links utilizáveis. Movimento reduzido MUST impedir solicitação/revelação automática do GIF e manter o fallback, inclusive se a preferência mudar durante o carregamento. Apenas a descrição da camada visível deve ser anunciada.
+- **FR-030**: Sem GIF aprovado, a entrada MAY usar mídia estática aprovada existente. Sem mídia principal aprovada, MUST usar composição textual sem coluna vazia, placeholder de evidência ou dados inventados; um ícone aprovado pode continuar antes do título. Sem detalhes adicionais ou destinos válidos, MUST omitir controles/CTAs vazios. Sem scripts, fallback, texto, detalhes e links MUST permanecer utilizáveis.
+- **FR-031**: O cabeçalho All Projects MUST conservar tipografia, entrelinha de 24px do texto de apoio e espaçamentos já aprovados; a reorganização dos registros MUST não alterar esse bloco ou outras áreas da Home/cases.
 ### Key Entities *(include if feature involves data)*
 
 - **Project entry**: Nome, resumo do produto, contexto profissional/independente/estudo, contribuição, período, tecnologias verificadas, grupo editorial, mídia, case/destinos e identificador estável, conforme campos existentes.
@@ -152,13 +168,17 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - **SC-007**: Em viewports móveis definidos para validação, nenhuma entrada ou controle se sobrepõe, perde conteúdo essencial ou força rolagem horizontal da página.
 - **SC-008**: O cabeçalho segue o padrão da seção “More Projects” na Home, exibindo eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio; não exibe “PROJECT ARCHIVE” nem a apresentação anterior.
 - **SC-009**: Em 100% das entradas, os chips de tecnologia não aparecem no resumo fechado; após expansão, todos os valores de tecnologia verificados daquele projeto aparecem nos detalhes e continuam pesquisáveis/filtráveis.
-- **SC-010**: Em 100% dos projetos com mídia aprovada e verificada, a expansão mostra a mídia inline no layout responsivo definido; nenhuma fonte sem provenance/autorização verificadas é exibida.
+- **SC-010**: Em 100% dos projetos com mídia aprovada e verificada, a entrada recolhida mostra a mídia principal inline no layout responsivo definido; expandir não duplica essa mídia; nenhuma fonte sem provenance/autorização verificadas é exibida.
 - **SC-011**: Todas as fronteiras entre entradas do catálogo usam o mesmo tratamento de divisor e espaçamento definido pelo padrão de estilo.
 - **SC-012**: Context e Technology permitem busca de opções e seleção múltipla independente; uma consulta digitada somente no campo interno de uma faceta não altera resultados nem contador de projetos.
 - **SC-013**: Quando a busca de opções de uma faceta não encontra valores, o estado vazio aparece dentro daquele menu; os critérios de projeto e sua contagem permanecem inalterados.
 - **SC-014**: “Search for”, “Context” e “Technology” são rótulos visíveis e posicionados acima dos respectivos campos/seletores.
 - **SC-015**: Em todas as interações dos filtros, nunca há mais de um menu de faceta aberto; alternar entre eles preserva todas as seleções e resultados correntes.
 
+- **SC-016**: Em todas as entradas com mídia principal aprovada, ela está disponível antes de expandir; desktop apresenta mídia à esquerda e identidade/descrição à direita, celular apresenta mídia acima, sem rolagem horizontal. Ícones aprovados seguem a referência anterior; entradas sem mídia ou ícone não reservam áreas vazias.
+- **SC-017**: Em todas as entradas, contribuição, contexto, período, tipo de produto, tecnologias e CTAs disponíveis aparecem nos detalhes, não na entrada recolhida; nenhuma expansão repete a mídia principal ou o mesmo resumo sem conteúdo adicional.
+- **SC-018**: Nos cenários de GIF distante, aproximação, carregamento lento, falha, movimento reduzido inicial/dinâmico e scripts indisponíveis, a alternativa estática correta permanece disponível até a animação estar pronta e autorizada a tocar; quando a detecção de proximidade estiver disponível, nenhum autoplay distante é solicitado antes da faixa de aproximação. Quando esse recurso estiver indisponível, preservar o comportamento existente de autoplay, respeitando movimento reduzido e os controles de parada. Pausa/parada permanece operável por teclado e toque.
+- **SC-019**: Comparação do cabeçalho antes/depois confirma entrelinha de 24px, tipografia e espaçamentos aprovados preservados. Matriz de regressão de busca/facetas, contagem, deep links, quatro cases e expansão independente mantém os resultados anteriores.
 ## Assumptions
 
 - O arquivo atual contém 19 registros publicados; o total exibido deve acompanhar o catálogo real após inclusões ou remoções futuras, em vez de permanecer fixo em 19.
@@ -170,10 +190,37 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - Chips/tags que identificam tecnologia permanecem disponíveis para busca/filtros e dentro de Project details, mas não aparecem no resumo compacto de cada projeto.
 - O texto, título e composição do cabeçalho da página de catálogo acompanham a seção “More Projects” da Home; “All Projects” identifica a rota completa alcançada pelo link homônimo.
 - Os rótulos Search for, Context e Technology aparecem acima de seus respectivos controles; a interação das facetas mantém no máximo um menu aberto e preserva seleções ao alternar.
-- Mídia verificada aparece em coluna ao lado dos detalhes no desktop e acima deles no celular; a revisão visual da implementação continua necessária conforme a constituição do projeto.
+- Mídia principal verificada aparece à esquerda da identidade/descrição da entrada recolhida no desktop e acima delas no celular; detalhes adicionais ficam junto à entrada. Esta decisão substitui a localização anterior da mídia apenas nos detalhes, preservada como histórico na seção Clarifications. A revisão visual continua necessária conforme a constituição.
 - A feature não cria novos estudos de caso, conteúdo biográfico, claims de impacto, mídia, autorização de uso ou integração de analytics.
-- A feature não inclui estudo de usabilidade com participantes nem comparação antes/depois; a validação desta etapa usa os critérios funcionais, de acessibilidade e responsividade SC-001–SC-012.
+- A feature não inclui estudo de usabilidade com participantes nem comparação antes/depois; a validação desta etapa usa os critérios funcionais, de acessibilidade e responsividade SC-001–SC-019.
 - Esta feature agora ocupa o número 006. A hipótese anterior de ficha única e faixa horizontal foi substituída pelo catálogo compacto com busca, filtros e detalhes expansíveis descrito nesta spec.
 - Os resultados da auditoria independente e as decisões atuais do inventário foram consultados para fundamentar a abordagem. O registro mais antigo do inventário que recomenda navegação por âncoras sem filtros antecede este pedido explícito de busca e facetas; este escopo mais recente prevalece para esta feature, sem reescrever o histórico.
 - Qualquer atualização de dados ou componente compartilhado será limitada ao necessário para a descoberta do arquivo e preservará outras seções/cases bloqueados para mudanças.
 
+
+## Complemento de apresentação — 2026-10-05
+
+Este pedido integra a feature 006 e prevalece sobre os requisitos anteriores de localização da mídia e de metadados na entrada recolhida. As respostas anteriores em Clarifications são registro histórico; a permissão de várias entradas expandidas continua válida, distinta da regra de um único menu de faceta aberto.
+
+### Referências inspecionadas
+
+- Commit `6679f07`, `src/components/RichProjectRecord.astro`: identidade com pôster de 52×52 antes do título, imagem decorativa, carregamento lazy e decodificação assíncrona. O estilo existente define borda, raio de 10px e distância de 14px.
+- Commit `b0daafa` e contrato `specs/003-media-fallbacks/contracts/media-preview.md`: autoplay adiado até aproximação; fallback WebP do primeiro frame até carga/decodificação completa; falhas e movimento reduzido preservam a imagem. A referência de aproximação é 75% da altura da janela em ambos os sentidos; interação existente pode solicitar preview diretamente. Na ausência do mecanismo de detecção de proximidade, o comportamento existente permite autoplay; ausência de scripts conserva o fallback.
+- `src/components/ProjectMediaPreview.astro` atual conserva esses mecanismos e acrescenta controles de parar/reproduzir. Interromper restaura a imagem estática; não pressupor congelamento de frame do GIF, nem descarregamento ao sair da área visível (não são comportamentos existentes).
+- `src/data/projects.ts` distingue `identityImage` (ícone/pôster de identidade) e fontes da mídia/fallback. Essas imagens têm funções distintas e podem coexistir, conforme solicitado.
+- `src/pages/projects/index.astro` mantém atualmente a lista de mídias aprovadas vazia. A presença de um asset ou de uma implementação anterior não comprova autorização/provenance. A nova apresentação não autoriza preencher essa lista sem evidência canônica nem mostrar mídia indiscriminadamente.
+
+### Conflitos e limites para o próximo planejamento
+
+- A clarificação histórica sobre mídia ao lado dos detalhes foi substituída por mídia na entrada recolhida; FR-002, FR-017, FR-019, FR-020 e SC-010 foram alinhados.
+- `plan.md`, `contracts/projects-catalog.md`, `data-model.md`, `research.md`, `quickstart.md` e o complemento T048–T063 de `tasks.md` foram alinhados a esta revisão em 2026-10-05. Tarefas e evidências anteriores permanecem como histórico e não comprovam os requisitos novos; a implementação e sua validação continuam pendentes.
+- Uma entrada usa a primeira mídia principal aprovada na ordem editorial existente; demais mídias aprovadas são complementares nos detalhes. Uma mídia animada sem alternativa estática válida não é elegível para apresentação automática.
+- Não foram criados assets, dados, autorização, código, nova spec ou branch. Não há ambiguidade de apresentação que exija nova decisão neste pedido; elegibilidade de cada mídia continua condicionada à documentação.
+
+### Confirmação de reaproveitamento — 2026-10-05
+
+O usuário confirmou nesta conversa o reaproveitamento dos pôsteres de identidade e GIFs que já eram apresentados nesta branch antes do catálogo. Para este complemento, essa confirmação autoriza reutilizar exclusivamente as mesmas fontes existentes de Ello Learn, Read With Ello, Pathless e Wallace’s Quest, verificadas no histórico 6679f07 e nos dados atuais, mantendo fallback/enquadramento/autoplay. Não representa aprovação de mídia nova nem comprovação adicional de direitos de terceiros; a decisão e os paths são registrados em evaluation.md. A exigência anterior de aguardar nova documentação para esse conjunto é substituída pela confirmação explícita de reutilização do usuário. Novas fontes continuam sujeitas ao gate documental.
+
+### Ajuste visual solicitado — 2026-10-05
+
+Por instrução explícita do usuário, retirar o botão Stop/Play das mídias nas entradas do catálogo e compactar suas alturas. Essa decisão substitui para /projects/ a exigência anterior de controle visível de pausa, mantendo autoplay, fallback e preferência de movimento reduzido existentes; outros usos do componente continuam com seus controles. Registrar a divergência com Constituição IV e FR-014/SC-018 (controle de movimento), sem afirmar conformidade completa. Entradas têm altura flexível, sem corte de texto; mídia principal limitada a 220px de largura e padding vertical 12px/14px, preservando o cabeçalho aprovado.

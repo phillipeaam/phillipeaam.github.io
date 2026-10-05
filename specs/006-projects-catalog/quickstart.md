@@ -47,7 +47,7 @@ Expected: Astro diagnostics and production build complete successfully; the diff
 
 ## Validation record
 
-The feature does not include a participant study or before/after usability comparison. Record results for SC-001–SC-015 in `specs/006-projects-catalog/evaluation.md`, including the scenarios run, actual viewport widths, accessibility checks, build diagnostics, and any unmet criterion or validation not performed. Do not present manual checks as participant research.
+The feature does not include a participant study or before/after usability comparison. Record results for SC-001–SC-019 in `specs/006-projects-catalog/evaluation.md`, including the scenarios run, actual viewport widths, accessibility checks, build diagnostics, and any unmet criterion or validation not performed. Do not present manual checks as participant research.
 
 ## Related artifacts
 
@@ -55,3 +55,13 @@ The feature does not include a participant study or before/after usability compa
 - [Implementation plan](plan.md)
 - [Data model](data-model.md)
 - [UI contract](contracts/projects-catalog.md)
+
+## Complemento: matriz de validação nova (não executada)
+
+15. Compare a entrada recolhida com o histórico 6679f07: mídia principal à esquerda e identidade/resumo/controle à direita em desktop; ícone 52×52, raio 10px, gap 14px. Em 320px, 390px, 820px e 1280px, confirmar reflow sem overflow; registrar apenas larguras efetivamente verificadas.
+16. Expandir projeto: contribuição, contexto, tipo, período, stack, foco de engenharia e ações disponíveis nos detalhes; resumo e mídia principal não duplicados. Conferir quatro cases, destinos válidos e múltiplas expansões independentes.
+17. Inspecionar fontes/citações de autorização para mídia e identidade. Exercitar entrada sem mídia, sem ícone, sem GIF, sem CTA e sem detalhes; não inventar assets. Se o inventário elegível permanecer vazio, registrar testes visuais de mídia como não executados, não como sucesso; testar componente com fontes canônicas verificadas somente se disponíveis.
+18. Com rede observada, confirmar GIF distante não solicitado; aproximar a entrada até a faixa de 75% da altura do viewport e observar fallback até load/decode, depois troca sem salto de layout. Aplicar carregamento lento e bloquear GIF para confirmar fallback. Conferir proporção, fit, legenda e acionamentos configurados.
+19. Movimento reduzido no carregamento inicial e ativado durante carga/reprodução: fallback correto, sem revelar animação pela conclusão tardia. Stop/Play por teclado/toque respeitam preferência; ícone não duplica nome anunciado e apenas camada de mídia ativa possui descrição acessível. Verificar ausência de observer como fallback de autoplay existente e JS desativado como fallback estático/disclosure nativo.
+20. Reexecutar cenários 1–14 após mover metadados para detalhes: corpus continua pesquisável, OR/AND, contador, limpeza, estado vazio, exclusividade dos menus, hashes e teclado permanecem corretos. Conferir cabeçalho contra versão aprovada, incluindo entrelinha 24px e margens. Verificar que Home/cases não foram redesenhados e, se componente compartilhado mudar, seus previews continuam corretos.
+21. Executar diff/check/build, atualizar evaluation.md com evidências, lacunas e validações não feitas, e encaminhar mudança visual para revisão humana; não marcar aprovação por resultado automático.

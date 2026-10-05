@@ -84,3 +84,63 @@ Coverage: all four project media entries currently declared for the catalog were
 | `git diff --check` | Pass | Exit code 0; Git emitiu avisos de normalização LF/CRLF para arquivos Astro. |
 
 Limite desta rodada: não foi feita inspeção com leitor de tela falante nem revalidação em viewports mobile/tablet. A análise da árvore de acessibilidade não substitui validação com tecnologia assistiva.
+
+## Complemento de entradas — implementação 2026-10-05
+
+### Baseline e elegibilidade (T048–T050)
+
+Antes: contexto/período/contribuição na entrada e mídia dentro dos detalhes. Cabeçalho já implementado, entrelinha 24px aprovada pelo usuário; T040–T043 cobertos por código/capturas da Fase 11 e nova inspeção. Nenhum novo asset/conteúdo foi criado.
+
+Inspecionados docs/stage-10-content-register.md, docs/repository-evidence-pass.md, docs/media-guidelines.md e fontes de src/data/projects.ts. Os documentos confirmam referências públicas, responsabilidades e padrões de mídia, mas não autorização/provenance individual dos arquivos de identidade/preview. Para cada conjunto existente (Wallace’s Quest, Read With Ello, Pathless, Ello Learn), a decisão nesta rodada é **não elegível por documentação insuficiente**: pôster identityImage, first-frame WebP e GIF permanecem omitidos. Demais projetos não recebem mídia inferida. approvedCatalogMedia e approvedCatalogIdentity permanecem vazios; ausência de assets elegíveis não é aprovação implícita. Dados originais permanecem preservados.
+
+### Implementação
+
+ProjectRecord usa primeira mídia elegível como principal antes do bloco de identidade/texto, complementares nos detalhes, fontes duplicadas removidas e GIF sem poster omitido. Ícone recebe fonte aprovada separadamente, alt vazio e 52×52; CSS restaura borda/raio10px/gap14px. Variante sem mídia não reserva coluna. Entrada recolhida exibe nome, resumo e Project details; contexto, tipo, período, contribuição, engenharia, tecnologias e links ficam nos detalhes. Product adicional apresenta só o restante da descrição, sem repetir o resumo. Stack/Engine/Tools são representados por tecnologias e não repetidos como specs. IDs, cases, filtros e dados originais preservados.
+
+ArchiveMedia/ProjectMediaPreview são reutilizados sem alteração de código compartilhado; os comportamentos existentes de near-viewport, fallback, autoplay, Stop/Play e reduced motion foram inspecionados em fonte, não revalidados com mídia no catálogo vazio. Sem JS, markup nativo conserva texto/disclosures; teste real com JS desativado ainda pendente.
+
+### Evidências executadas no navegador integrado
+
+| Cenário | Resultado real |
+|---|---|
+| Estado inicial | 19 registros, contador Showing 19 of 19 projects, sem mídia não aprovada. |
+| Reflow recolhido e expandido | 320, 390, 820, 1280 CSS px; document.scrollWidth não supera innerWidth. Duas expansões simultâneas verificadas nessas quatro larguras. |
+| Busca | Ello=2, Unity=11, GraphQL (espaços/caixa alta)=2, lingua portuguesa=1, LÍNGUA PORTUGUESA com espaços=1, Pathless=1; contagem coincide com registros visíveis. GraphQL está nos detalhes e continua pesquisável recolhido. |
+| Vazio e limpeza | Consulta no-matching-xyz produz 0/19 e mensagem concisa; Clear all filters restaura 19/19. |
+| OR/AND | Professional + Independent =18/19; combinados com Unity=10/19, todos correspondem a um contexto selecionado e à tecnologia. |
+| Busca local da faceta | Consulta sem opções mantém contador 10/19 e mostra vazio local; valores selecionados preservados. |
+| Menus e rótulos | Em 390 e 1280px, abrir Technology fecha Context, rótulos ficam acima de summary e sem overflow; seleções de Context preservadas. |
+| Detalhes/teclado | Enter em summary expande; duas entradas abertas simultaneamente; foco em SUMMARY com outline solid. Conteúdo adicional, contexto, período, contribuição e tecnologias verificados no primeiro registro. |
+| Cases | Quatro destinos existentes verificados no DOM: read-with-ello, ilhas-do-alfabeto, craque-da-fluencia, wallaces-quest. Não foram abertos destinos externos. |
+| Hash | Carga direta #pathless revela registro, contador 19/19; preservação do ID confirmada. Navegação hash dinâmica enquanto filtrado ainda não reexecutada. |
+| Cabeçalho | Entrelinha computada 24px em todas as larguras; código do cabeçalho e margem superior não alterados. |
+
+Captura local: artifacts/screenshots/catalog-entry-review.jpg (arquivo temporário ignorado no Git).
+
+### Validação técnica
+
+- npm run check: 0 erros, 0 warnings, 2 hints já existentes (make_contact_sheets.js CommonJS; index não usado em FeaturedProject).
+- npm run build: sucesso, 7 páginas estáticas.
+- git diff --check: sucesso na rodada antes deste registro; normalização LF/CRLF é aviso, não erro.
+
+### Pendências reais e critérios
+
+SC-001–SC-004/SC-008–SC-009/SC-011–SC-017/SC-019: conteúdo/comportamentos principais cobertos pelas verificações acima, com exceções explicitadas (mídia ausente e inspeção não exaustiva de todos os destinos). SC-007 tem reflow nas quatro larguras com registros textuais reais; variante com mídia não foi exercitada. SC-010/SC-016/SC-018 com mídia não foram executados porque não há fonte elegível. SC-005/SC-006 continuam parciais: falta execução sem JS e leitor de tela falante; árvore/DOM e ativação por teclado não substituem essas verificações.
+
+T053/T055/T058/T060 permanecem pendentes por cobertura parcial das matrizes completas; T044 continua parcial. T062 registra comandos efetivos, não aprovação de todos os critérios. T063 aguarda revisão humana deste novo layout; aprovação anterior do cabeçalho não aprova entradas novas. Não há merge/push/commit nesta rodada.
+
+Verificação adicional: com consulta sem resultados ativa, navegação para /projects/#pathless limpou a busca e restaurou 19/19, revelando o alvo; nenhum link de ação possui href ausente. Captura final mostra catálogo no topo. A pergunta sobre documentação de autorização foi enviada ao usuário; nenhuma mídia foi habilitada aguardando essa fonte.
+
+## Reaproveitamento confirmado pelo usuário — 2026-10-05
+
+Resposta à pergunta de elegibilidade: o usuário confirmou que os pôsteres e GIFs já eram apresentados antes nesta branch e pediu reaproveitar esse conjunto. A decisão anterior de omissão por falta de novo registro é superada por essa instrução explícita, limitada às fontes do baseline 6679f07. Não foi inferida permissão para novos assets nem afirmada prova adicional de direitos de terceiros.
+
+Allowlist reaproveitada, com pôster / fallback / animação:
+- Ello Learn: /projects/ello-learn/ello-learn-poster.webp; /projects/ello-learn/ello-learn-first-frame.webp; /projects/ello-learn/ello-learn-gameplay-preview.gif.
+- Read With Ello: /projects/ello-read/read-with-ello-poster.webp; /projects/ello-read/read-with-ello-first-frame.webp; /projects/ello-read/read-with-ello-gameplay-preview.gif.
+- Pathless: /projects/pathless/pathless-poster.webp; /projects/pathless/pathless-first-frame.webp; /projects/pathless/pathless-gameplay-preview.gif.
+- Wallace’s Quest: /projects/wallace-quest/wallace-quest-poster.webp; /projects/wallace-quest/wallace-quest-first-frame.webp; /projects/wallace-quest/wallace-quest-gameplay-preview.gif.
+
+Dados de configuração são os mesmos do inventário; novas fontes não entram automaticamente. No browser, quatro mídias principais e quatro ícones confirmados; caixas dos ícones 52px. No topo, Ello Learn e Read With Ello carregaram animação; Pathless a y=2615px e Wallace a y=3212px mantiveram fallback e img animado sem src, comprovando adiamento para previews distantes. Stop no primeiro preview remove src, restaura fallback e muda controle para Play; reprodução reativada. Com mídia: 320/390px uma coluna, 820/1280px duas colunas, sem overflow em todas as larguras, entrelinha do cabeçalho 24px. Captura: artifacts/screenshots/catalog-media-review.jpg.
+
+Ainda não executados nesta rodada: mídia bloqueada/rede lenta, movimento reduzido inicial/dinâmico, ausência de observer, leitor de tela falante e JavaScript desativado. Essas pendências permanecem em T058 e revisão humana em T063. A aprovação de reaproveitar fontes não equivale à aprovação do novo layout.

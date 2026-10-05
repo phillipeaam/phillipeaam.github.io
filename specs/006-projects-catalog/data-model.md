@@ -20,7 +20,7 @@ One public record rendered in the archive. Its underlying editorial source remai
 | `editorialGroup` | Optional existing display group/order | Must not imply unsupported technology or employment context. |
 | `searchText` | Normalized public searchable corpus derived from name, summary, contribution, period, context, technologies, and other displayed public metadata/details | Derived, not separately authored; exclude deferred/internal data. Normalize case, trim, and diacritics consistently. |
 | `details` | Optional expanded project content such as longer description, engineering focus, specs and media | Belongs to the same project entry; no invented content. |
-| `media[]` | Approved image/video/GIF metadata | Optional. When provided and provenance/authorization are supported by canonical records, render inline within expanded details. For animation, show an accurate static alternative and accessible play/pause behavior; do not reduce the media to an outbound GIF link. Omit unverified sources rather than using placeholders as evidence. |
+| `media[]` | Approved image/video/GIF metadata | Optional. When provided and provenance/authorization are supported by canonical records, select the first eligible main item for the collapsed entry; render remaining approved items only in expanded details. For animation, show an accurate static alternative and accessible play/pause behavior; do not reduce the media to an outbound GIF link. Omit unverified sources rather than using placeholders as evidence. |
 | `detailGroups` | Structured groups for contribution, engineering focus, context, metadata, technologies, approved media, and actions | Derived from available verified record fields. Omit empty groups; use consistent labels and order. |
 | `caseStudySlug` | Route key for one of the existing case studies | Optional; if present, resolves to a valid existing case route. |
 | `actions[]` | Existing external action labels and destinations | Optional; include only valid destinations. |
@@ -77,3 +77,18 @@ Each project has independent open/closed state. Multiple entries may be open sim
 - `SearchQuery` and `FacetSelection` derive a subset from the archive.
 - `ResultSummary` describes that subset against the unfiltered archive total.
 - Disclosure state belongs to a project entry and does not constrain other entries.
+
+## Entry presentation projection — 2026-10-05
+
+- `identityImage`: optional existing identity poster, independently evidence-gated; decorative alongside project name, not inferred from GIF fallback. “Absent or unverified identity image is omitted without reserved space.”
+- `primaryMedia`: first eligible source in existing editorial media order. “Animated media requires an accurate static fallback.” Eligibility includes provenance/authorization and valid existing sources.
+- `supplementaryMedia[]`: remaining eligible sources, excluding primary duplicates; detail-only.
+- `collapsedContent`: project name, concise product summary, eligible identity image and primary media, and detail toggle if additional content exists.
+- `detailContent`: available verified context, workContext label, product type, contribution, period, engineering focus, technology, metadata, additional product description only when richer than summary, supplementary media and destinations. “Omit missing fields and empty groups.” These details remain searchable.
+- `mediaEligibility`: documented source-to-evidence decision, not authorization inferred from file presence or older rendering. No new backend/model storage is required; documentation lives in evaluation.md and canonical evidence references.
+- Preview transitions: static → requested near viewport/allowed existing interaction → loading with static → ready animated. Failure, reduced motion or stop → static. Play respects reduced motion; only active visual layer is announced. Exiting viewport does not introduce new unload behavior. Without proximity observer, preserve existing fallback-to-autoplay behavior; without JS, static remains.
+
+This projection supersedes prior wording about all media belonging to expanded details; independent disclosure/filter states are unchanged.
+
+### Decisão posterior de reutilização (2026-10-05)
+O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.

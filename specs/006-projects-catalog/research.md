@@ -26,7 +26,7 @@ Sources: [WAI-ARIA APG: Listbox Pattern](https://www.w3.org/WAI/ARIA/apg/pattern
 
 **Rationale**: This directly addresses the requested details formatting and the current `ArchiveMedia.astro` behavior, which turns GIF records into an external “Open animation” link. The current public entry renderer (`ProjectRecord.astro`) does not render `project.media`; the catalog must consume the existing evidence-bearing media field when verified. The user clarified the layout: a media column alongside details on desktop, stacked above text on mobile; route the implementation for visual review.
 
-**Alternatives considered**: Leave animated media as a link (does not meet the requested inline detail experience); expose every media source without evidence review (conflicts with Principle I); use a carousel or separate detail route (adds navigation and does not improve per-entry organization).
+**Alternatives considered**: Leave animated media as a link (does not meet the requested inline entry experience); expose every media source without evidence review (conflicts with Principle I); use a carousel or separate detail route (adds navigation and does not improve per-entry organization).
 
 Sources: [WAI-ARIA APG: Disclosure Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/), [WAI-ARIA APG: Checkbox Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).
 
@@ -94,3 +94,18 @@ Repository evidence inspected: `src/data/projects.ts`, `src/pages/projects/index
 - Search applies to the public visible/detail text corpus; internal/deferred records are excluded.
 - The filter control taxonomy needs explicit verified data fields rather than one mixed tag list.
 - The existing project has `npm run check` and `npm run build`, but no dedicated test runner.
+
+## 10. Complemento 2026-10-05: identidade e previews existentes
+
+**Decision**: A mídia principal ocupa a entrada recolhida; ícone existente identifica o título, mesmo quando há GIF ao lado. Metadados e mídia complementar ficam nos detalhes. Reutilizar o comportamento atual e o contrato 003.
+
+**Rationale**: Inspeção de `6679f07:src/components/RichProjectRecord.astro` mostra ícone decorativo 52×52, lazy/async. `src/styles/global.css` preserva raio 10px, borda e gap 14px. `b0daafa` e `specs/003-media-fallbacks/contracts/media-preview.md` comprovam o desenho técnico de proximidade, fallback do primeiro frame, decode, falha e movimento reduzido. A implementação atual de ProjectMediaPreview conserva o observer de 75% e adiciona controles de parar/reproduzir. Esses registros documentam comportamento; não comprovam direitos de mídia.
+
+**Alternatives considered**: Pausa inicial para todos os GIFs (não corresponde ao pedido/configuração validada); reconstruir um player (duplicação); usar fallback de gameplay como ícone de identidade (confunde funções); mostrar todos os assets existentes como aprovados (viola evidência); manter mídia só na expansão (decisão substituída).
+
+**Eligibility**: A lista `approvedCatalogMedia` atual está vazia. Conferir docs/stage-10-content-register.md e docs/repository-evidence-pass.md por fonte, inclusive identidade; documentar vínculo ou lacuna. Ausência de prova exige omissão, sem bloquear entrega da composição textual. Não criar mídia nem alterar conteúdos para preencher lacunas. Este complemento prevalece sobre decisões anteriores deste documento de mídia apenas nos detalhes.
+
+Revisão de pesquisa local confirmou: PublicProjectCatalogEntry já retém identityImage/media por extensão do inventário; não exige reinvenção do tipo. docs/media-guidelines.md complementa contrato 003, mas instruções de uso não são prova de autorização individual.
+
+### Decisão posterior de reutilização (2026-10-05)
+O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.

@@ -1,52 +1,53 @@
 ---
 import ExternalLink from './ExternalLink.astro';
-import ProjectMediaPreview from './ProjectMediaPreview.astro';
+import ArchiveMedia from './ArchiveMedia.astro';
 import type { ProjectMedia, PublicProjectCatalogEntry } from '../data/projects';
 
-const { project, homePath = '/', approvedMedia = [] } = Astro.props as { project: PublicProjectCatalogEntry; homePath?: string; approvedMedia?: ProjectMedia[] };
+const { project, homePath = '/', approvedMedia = [], approvedIdentityImage } = Astro.props as { project: PublicProjectCatalogEntry; homePath?: string; approvedMedia?: ProjectMedia[]; approvedIdentityImage?: string };
 const recordId = project.anchorId ?? project.id;
 const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
 const period = project.period && project.period !== 'Undated' ? project.period : undefined;
 const titleId = `archive-title-${project.id}`;
 const summaryId = `archive-summary-${project.id}`;
 const contextLabel = project.workContext === 'professional' ? 'Professional' : project.workContext === 'independent' ? 'Independent' : 'Study';
-const detailMedia = approvedMedia.filter((media) => media.type === 'image' && media.src && media.alt);
-const publicMetadata = project.specs?.filter(({ label }) => label !== 'Context' && label !== 'Period') ?? [];
-const hasDetails = Boolean(project.contribution || project.engineeringFocus || project.context || publicMetadata.length || project.technologies.length || detailMedia.length || caseHref || project.actions?.length);
+const eligibleMedia = approvedMedia.filter((media) => media.src && media.alt && (media.type !== 'gif' || media.posterSrc));
+const [primaryMedia, ...detailMedia] = eligibleMedia.filter((media, index, items) => items.findIndex((item) => item.src === media.src) === index);
+const publicMetadata = project.specs?.filter(({ label }) => !['Context', 'Period', 'Type', 'Stack', 'Engine', 'Tools'].includes(label)) ?? [];
+const hasDetails = Boolean(project.contribution || project.engineeringFocus || project.context || project.workContext || period || project.type || publicMetadata.length || project.technologies.length || detailMedia.length || caseHref || project.actions?.length);
 const displayType = project.type.replace(/^professional(?:\s*[·:—-]\s*|\s+)/i, '');
 const productSummary = project.product.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() ?? project.product;
+const additionalProduct = project.product.slice(productSummary.length).trim();
 ---
-<li class:list={['archive-record', project.contribution && 'archive-record--has-contribution']} id={recordId} data-project-record data-context={project.workContext} data-technologies={project.technologies.join('|')}>
-  <article aria-labelledby={titleId}>
-    <header class="archive-record__header">
-      <div class="archive-record__identity">
-        <h2 id={titleId}><a class="archive-record__title-link" href={`#${recordId}`}>{project.name}</a></h2>
-        <p class="archive-record__context">{contextLabel}{displayType ? ` · ${displayType}` : ''}</p>
-      </div>
-      {period && <span class="archive-record__period">{period}</span>}
-    </header>
-    <div class="archive-record__body">
+<li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={project.technologies.join('|')}>
+  <article class:list={['archive-record__entry', primaryMedia && 'archive-record__entry--media']} aria-labelledby={titleId}>
+    {primaryMedia && <div class="archive-record__primary-media"><ArchiveMedia media={primaryMedia} projectName={project.name} hideControls /></div>}
+    <div class="archive-record__entry-content">
+      <header class="archive-record__header">
+        <div class="archive-record__identity">
+          {approvedIdentityImage && <img class="archive-record__identity-image" src={approvedIdentityImage} alt="" width="52" height="52" loading="lazy" decoding="async" />}
+          <h2 id={titleId}><a class="archive-record__title-link" href={`#${recordId}`}>{project.name}</a></h2>
+        </div>
+      </header>
       <p class="archive-record__overview" id={summaryId}>{productSummary}</p>
-    </div>
-    {project.contribution && <div class="archive-record__contribution archive-record__contribution--teaser">
-      <p class="archive-record__label">Contribution</p>
-      <p>{project.contribution}</p>
-    </div>}
     {hasDetails && <details class="archive-record__details">
       <summary aria-describedby={summaryId}>Project details</summary>
       <div class:list={['archive-record__details-layout', detailMedia.length === 0 && 'archive-record__details-layout--text-only']}>
         {detailMedia.length > 0 && <div class="archive-record__media-column" aria-label={`${project.name} media`}>
-          {detailMedia.map((media) => <ProjectMediaPreview posterSrc={media.src} previewSrc={media.previewSrc} alt={media.alt} previewAlt={media.previewAlt} caption={media.caption ?? project.mediaCaption} autoplayPreview={media.autoplayPreview} posterWidth={media.posterWidth} posterHeight={media.posterHeight} posterFit={media.posterFit} showControls={Boolean(media.previewSrc)} />)}
+          {detailMedia.map((media) => <ArchiveMedia media={media} projectName={project.name} hideControls />)}
         </div>}
         <div class="archive-record__details-content">
-          {productSummary !== project.product && <div class="archive-record__contribution">
+          {additionalProduct && <div class="archive-record__contribution">
             <p class="archive-record__label">Product</p>
-            <p>{project.product}</p>
+            <p>{additionalProduct}</p>
           </div>}
-          {project.context && <div class="archive-record__contribution">
+          {(project.context || contextLabel) && <div class="archive-record__contribution">
             <p class="archive-record__label">Context</p>
-            <p>{project.context}</p>
+            <p>{contextLabel}{project.context ? ` · ${project.context}` : ''}</p>
           </div>}
+          {(period || displayType) && <dl class="archive-record__specs">
+            {displayType && <div><dt>Type</dt><dd>{displayType}</dd></div>}
+            {period && <div><dt>Period</dt><dd>{period}</dd></div>}
+          </dl>}
           {project.contribution && <div class="archive-record__contribution">
             <p class="archive-record__label">Contribution</p>
             <p>{project.contribution}</p>
@@ -71,5 +72,6 @@ const productSummary = project.product.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() ??
         </div>
       </div>
     </details>}
+    </div>
   </article>
 </li>

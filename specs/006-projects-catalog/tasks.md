@@ -252,11 +252,84 @@ T001 (registro de validação)
 
 **Independent Test (US1/US2)**: Abrir `/projects/`, comparar o cabeçalho com “More Projects” na Home, confirmar o título “All Projects”, os rótulos visíveis acima dos controles e que abrir uma faceta fecha a outra sem descartar seleções.
 
-- [ ] T040 [US1] Reestruture o cabeçalho de `src/pages/projects/index.astro` para usar a composição compartilhada da Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o texto de apoio existente em `src/pages/index.astro`.
-- [ ] T041 [P] [US1] Reutilize o estilo compartilhado `.section-heading--major` em `src/styles/global.css` para o cabeçalho do catálogo e remova overrides que recriem a composição editorial já definida.
-- [ ] T042 [P] [US2] Posicione rótulos visíveis “Search for”, “Context” e “Technology” acima do campo e seletores correspondentes em `src/pages/projects/index.astro`, preservando busca principal, busca de opções e multisseleção.
-- [ ] T043 [US2] Atualize a interação dos menus de faceta em `src/pages/projects/index.astro` para permitir no máximo um menu aberto por vez; abrir o outro fecha o atual e preserva valores selecionados e consulta local de opções.
+- [X] T040 [US1] Reestruture o cabeçalho de `src/pages/projects/index.astro` para usar a composição compartilhada da Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o texto de apoio existente em `src/pages/index.astro`.
+- [X] T041 [P] [US1] Reutilize o estilo compartilhado `.section-heading--major` em `src/styles/global.css` para o cabeçalho do catálogo e remova overrides que recriem a composição editorial já definida.
+- [X] T042 [P] [US2] Posicione rótulos visíveis “Search for”, “Context” e “Technology” acima do campo e seletores correspondentes em `src/pages/projects/index.astro`, preservando busca principal, busca de opções e multisseleção.
+- [X] T043 [US2] Atualize a interação dos menus de faceta em `src/pages/projects/index.astro` para permitir no máximo um menu aberto por vez; abrir o outro fecha o atual e preserva valores selecionados e consulta local de opções.
 - [ ] T044 [US4] Verifique nomes acessíveis, estado de expansão, foco por teclado e aprimoramento progressivo dos rótulos e menus em `src/pages/projects/index.astro` e `src/styles/global.css`; controles de filtro continuam indisponíveis sem o script inicializado.
-- [ ] T045 [US1] Valide a hierarquia e os textos do cabeçalho contra a Home em viewports representativos, conforme cenário 12 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
-- [ ] T046 [US2] Valide a posição dos rótulos e a exclusividade/preservação de estado das facetas em viewports representativos, conforme cenário 13 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
-- [ ] T047 Execute `npm run check`, `npm run build` e `git diff --check` após T045–T046 e registre os resultados reais em `specs/006-projects-catalog/evaluation.md`.
+- [X] T045 [US1] Valide a hierarquia e os textos do cabeçalho contra a Home em viewports representativos, conforme cenário 12 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
+- [X] T046 [US2] Valide a posição dos rótulos e a exclusividade/preservação de estado das facetas em viewports representativos, conforme cenário 13 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
+- [X] T047 Execute `npm run check`, `npm run build` e `git diff --check` após T045–T046 e registre os resultados reais em `specs/006-projects-catalog/evaluation.md`.
+
+## Complemento ativo — 2026-10-05
+
+T001–T047 permanecem como histórico com seus estados originais. T003/T015/T031/T033 descrevem apresentação substituída; não executar suas instruções de localização de mídia/metadados novamente. T040–T047 permanecem pendentes no registro, mas suas entregas aparentemente existentes serão auditadas por T048/T060/T062, sem presumir conclusão ou alterar marcadores sem prova. Para este complemento executar T048–T063. Avaliações anteriores não validam novos cenários. Nenhum teste é executado durante geração destas tarefas.
+
+### Fase 12 — Setup
+
+- [X] T048 Confronte código atual, histórico 6679f07/b0daafa e entregas T040–T047 com `specs/006-projects-catalog/spec.md`; registre baseline, itens cobertos/prova e lacunas em `specs/006-projects-catalog/evaluation.md`, preservando aprovação do cabeçalho de 24px e margens.
+
+### Fase 13 — Fundação
+
+- [X] T049 Audite mídia principal, complementar e identityImage de `src/data/projects.ts` contra `docs/stage-10-content-register.md`, `docs/repository-evidence-pass.md` e `docs/media-guidelines.md`; registre fonte, autorização/provenance, fallback e decisão individual em `specs/006-projects-catalog/evaluation.md`. “Absent or unverified identity image is omitted without reserved space.” Não criar autorização ou assets; ausência de evidência mantém composição textual e é lacuna registrada, não aprovação. FR-013, FR-019, FR-027–FR-030.
+- [X] T050 Configure projeção explícita de identidade, primeira mídia principal elegível na ordem editorial e demais complementares em `src/pages/projects/index.astro`, usando dados existentes de `src/data/projects.ts` sem novas dependências e respeitando decisões T049; “Animated media requires an accurate static fallback.” Não promover automaticamente assets antigos; excluir duplicatas da mídia principal. FR-019, FR-029–FR-030.
+
+### Fase 14 — US1 (P1): entrada reconhecível
+
+**Independent Test**: entrada recolhida com mídia à esquerda/identidade à direita no desktop, empilhada no celular; sem mídia, nenhum espaço vazio, todos os projetos nomeados.
+
+- [X] T051 [US1] Reorganize a entrada recolhida em `src/components/ProjectRecord.astro` com mídia principal aprovada, ícone decorativo existente antes do título, descrição curta e controle Project details com indicador + recolhido; retirar teaser de contribuição/contexto/período sem perder esses dados. FR-001–FR-003, FR-026–FR-027, FR-030.
+- [X] T052 [US1] Ajuste `src/styles/global.css` para desktop em duas colunas e celular empilhado, variante textual sem coluna vazia, ícone 52×52/borda/raio10px/gap14px e divisores consistentes; preservar cabeçalho/24px/margens e não redesenhar Home/cases. FR-017–FR-018, FR-021–FR-022, FR-027, FR-031; SC-001, SC-007–SC-008, SC-011, SC-016, SC-019.
+- [ ] T053 [US1] Execute cenários 15/17/20 de `specs/006-projects-catalog/quickstart.md` para entrada recolhida, nomes longos, ausência de mídia/ícone e geometria do cabeçalho; registre medidas/evidências em `specs/006-projects-catalog/evaluation.md`, sem declarar testes de mídia executados se nenhuma fonte for elegível.
+
+### Fase 15 — US2 (P1): preservar descoberta
+
+**Independent Test**: termos movidos aos detalhes continuam pesquisáveis e matriz OR/AND, contagem e restauração continuam correta.
+
+- [X] T054 [US2] Audite e ajuste somente se necessário o corpus público/filtragem de `src/pages/projects/index.astro` após mudança dos registros: nome, descrição, contribuição, contexto, período e tecnologia pesquisáveis, caixa/espaços/acentos, OR intrafaceta/AND entre facetas e busca, contador match/total, limpeza, vazio e dados derivados. FR-004–FR-010, FR-023–FR-025; SC-002–SC-004, SC-012–SC-015.
+- [ ] T055 [US2] Execute cenários 1–9/13 de `specs/006-projects-catalog/quickstart.md`, incluindo termos presentes apenas nos detalhes recolhidos e menus independentes com um aberto por vez; registre matriz, contagens e regressões em `specs/006-projects-catalog/evaluation.md`.
+
+### Fase 16 — US4 (P1): mídia acessível e resiliência
+
+**Independent Test**: fallback correto em carregamento/falha/reduced motion/no-JS; controle de movimento por teclado/toque; nenhum GIF distante solicitado fora da regra existente.
+
+- [X] T056 [US4] Integre reutilização de `src/components/ProjectMediaPreview.astro` e `src/components/ArchiveMedia.astro` com configuração anterior preservada: fallback primeiro-frame/lazy, autoplay near-viewport 75%, acionamentos existentes, decode antes da troca, falha estática, dimensões/fit/legenda, Stop/Play e reduced motion inicial/dinâmico; ajustar compartilhados apenas se necessário e sem impor pausa inicial/offscreen unload. FR-014, FR-028–FR-029; SC-018.
+- [X] T057 [US4] Complete semântica/estado do disclosure, ícone decorativo, descrição única da mídia, foco visível e controles por teclado/toque em `src/components/ProjectRecord.astro` e `src/styles/global.css`; preservar conteúdo e disclosure sem JS e filtros indisponíveis quando não inicializados em `src/pages/projects/index.astro`. FR-015–FR-017, FR-026–FR-027, FR-030; SC-005–SC-007.
+- [ ] T058 [US4] Execute cenários 18–19 e matriz acessível de `specs/006-projects-catalog/quickstart.md` com rede lenta/GIF bloqueado, reduced motion inicial e mudança durante carga, Stop/Play, leitor de tela, teclado, toque, ausência de observer e JS desativado; registre resultados reais/não executados em `specs/006-projects-catalog/evaluation.md`. Se compartilhados mudarem, verificar previews da Home/cases sem redesenhar essas áreas.
+
+### Fase 17 — US3 (P2): detalhes completos
+
+**Independent Test**: detalhes mostram fatos/destinos disponíveis, sem duplicar mídia principal/resumo; múltiplos registros permanecem expandidos e hashes revelam item filtrado.
+
+- [X] T059 [US3] Organize dados adicionais em `src/components/ProjectRecord.astro`: contexto/workContext, tipo, período, contribuição, engenharia, tecnologias, specs sem duplicatas, descrição adicional somente quando mais completa, mídia complementar e quatro cases/ações válidas. “Omit missing fields and empty groups.” Preservar expansão independente/IDs, omitir CTAs ausentes e não repetir mídia principal/resumo. FR-002, FR-011–FR-012, FR-020, FR-026, FR-030; SC-009–SC-010, SC-017.
+- [ ] T060 [US3] Execute cenários 10–14/16 de `specs/006-projects-catalog/quickstart.md` para metadados nos detalhes, expansão simultânea, filtros ocultando item e hashes diretos/filtrados, cases/ações e projetos sem CTA/detalhes; ajuste regressões necessárias em `src/components/ProjectRecord.astro`/`src/pages/projects/index.astro` e registre em `specs/006-projects-catalog/evaluation.md`.
+
+### Fase 18 — validação e revisão
+
+- [X] T061 Valide reflow do catálogo recolhido/expandido em 320px, 390px, 820px e 1280px conforme `specs/006-projects-catalog/quickstart.md`; registre larguras realmente executadas, falhas e lacunas de mídia em `specs/006-projects-catalog/evaluation.md` (SC-007, SC-016; Constituição VI).
+- [X] T062 Execute `git diff --check`, `npm run check` e `npm run build`; consolide cobertura SC-001–SC-019 e resultados efetivos em `specs/006-projects-catalog/evaluation.md`, discriminando não executado, não aplicável e falhas (Constituição VIII).
+- [ ] T063 Apresente evidências e versão visual do complemento para revisão humana e registre somente decisão real em `specs/006-projects-catalog/evaluation.md`; não considerar código/checks como aprovação para merge/push (Constituição IX).
+
+### Dependências e execução incremental
+
+T048 → T049 → T050 → T051 → T052 → T053 (MVP US1). Depois T054 → T055 (US2), T056 → T057 → T058 (US4), T059 → T060 (US3), T061 → T062 → T063. Ordem sequencial evita colisões em ProjectRecord, stylesheet e evaluation.md. Não há marcador [P] neste complemento porque implementação e registros compartilham arquivos. Exemplos de trabalho separável: após T050, inspeção de rede do componente pode ocorrer junto à revisão visual de US1; após T059, leitura da matriz de filtros e inspeção de links podem ocorrer juntas, consolidando evaluation.md sequencialmente. Nenhum desses exemplos autoriza edição concorrente do mesmo arquivo.
+
+### Cobertura do complemento
+
+| Requisitos | Tarefas |
+|---|---|
+| FR-001–FR-003 | T051, T059 |
+| FR-004–FR-010 | T054, T055 |
+| FR-011–FR-012 | T059, T060 |
+| FR-013 | T049, T050, T053 |
+| FR-014 | T056, T058 |
+| FR-015–FR-016 | T057, T058 |
+| FR-017–FR-018 | T052, T057, T061 |
+| FR-019–FR-020 | T049, T050, T059 |
+| FR-021–FR-022 | T052, T053 |
+| FR-023–FR-025 | T054, T055 |
+| FR-026–FR-027 | T051, T052, T057, T059 |
+| FR-028–FR-029 | T050, T056, T058 |
+| FR-030 | T049, T050, T053, T057, T059 |
+| FR-031 | T048, T052, T053 |
+| SC-001–SC-019 | T053, T055, T058, T060–T063, conforme matriz quickstart |

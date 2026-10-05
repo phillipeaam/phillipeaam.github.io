@@ -8,7 +8,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Each entry exposes its stable existing project ID as a link target.
 - The total is derived from the complete public inventory.
 - Search and facet controls become interactive only after their behavior is initialized. If initialization is unavailable, all entries and their core links remain usable and controls do not appear functional.
-- Compact entry information includes the project name, concise product summary, and available verified context, contribution, or period. Technology chips are not shown in the compact entry. Missing facts are omitted.
+- Compact entry information includes project name, concise product summary, approved identity icon and primary media; context, contribution, period, product type and actions belong to details. Technology chips are not shown in the compact entry. Missing facts are omitted.
 - The page heading reuses the approved “More Projects” section-heading pattern and copy from Home: eyebrow “BREADTH, AT A GLANCE”, title “All Projects”, and its existing supporting sentence. The “PROJECT ARCHIVE” eyebrow and prior page intro are removed.
 - Every record boundary uses the same divider style and spacing.
 
@@ -30,8 +30,8 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 
 - A project with additional details exposes an independently operable disclosure next to/within that project entry. Opening one item does not close another.
 - Expanded content uses consistent labels and hierarchy for available product/context, contribution, engineering focus, metadata, technology chips, approved media, and actions; empty sections are omitted.
-- Verified media appears inline in the expanded entry. Unverified media is omitted; approved GIF previews retain a static alternative and accessible motion controls rather than being reduced to an external link.
-- On desktop, the media occupies a column alongside project details; on mobile, it appears above the detail text.
+- Verified primary media appears inline in the collapsed entry; only supplementary media appears in details. Unverified media is omitted; approved GIF previews retain a static alternative and accessible motion controls rather than being reduced to an external link.
+- On desktop, primary media is left of identity/summary; on mobile it is above them. Details remain associated with their own entry; no duplication of primary media or unchanged summary.
 - Disclosure state is announced semantically. Controls work with keyboard and touch and show visible focus.
 - Existing case-study links, valid external actions, and project deep links remain associated with the correct record.
 - When an incoming project hash points to a record hidden by current filters, clear the criteria needed to reveal it, then position the record. The same rule applies on initial load with a project hash.
@@ -58,3 +58,14 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Result changes and empty state are conveyed through a concise polite status message without turning the entire results list into a live region.
 - Each facet disclosure and nested checkbox group communicates its label, expanded/selected state, option-search purpose, and no-option-match state without a custom ARIA listbox/menu composite.
 - Do not rely on hover, color alone, animation, or thumbnail artwork to convey identity or state.
+
+## Preserved identity and media behavior — 2026-10-05
+
+Identity icon follows the earlier 52×52 poster treatment, border, 10px radius and 14px title gap; it may coexist with primary media and is decorative when redundant to title. Omit absent/unverified icons and omit empty media columns.
+
+Preserve configured autoplay and triggers; autoplay GIF loads near viewport (existing 75%-height margin), not upon expanding details. Static first-frame fallback is present before scripts, during loading and decode, and on failure. Swap only after readiness without changing geometry. Reduced motion suppresses automatic request/reveal and wins over late completion; stop restores fallback. Keep accessible motion controls, one announced image layer, existing aspect/fit/dimensions/captions, and no new offscreen-unload behavior. Without observer preserve existing autoplay; without JS preserve static image and native details. No GIF with invalid fallback is eligible. Eligibility applies independently to icon and primary/supplementary media.
+
+Header typography, approved spacing and 24px supporting-copy line height remain unchanged. Search/filter OR/AND, counts, hash recovery, four cases and independent multi-open project details are regressions to preserve.
+
+### Decisão posterior de reutilização (2026-10-05)
+O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
