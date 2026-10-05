@@ -379,6 +379,88 @@ export const projectInventory: PublicProjectCatalogEntry[] = [
   };
 });
 
+export type TechnicalHighlight = { title: string; body: string };
+export type CatalogEditorialContent = {
+  summary: string;
+  facts: { role?: string; context?: string; productType?: string; period?: string };
+  contributionNarrative?: { summary: string; highlights: TechnicalHighlight[]; outcome?: string };
+  additionalContext?: string;
+};
+
+// Catalog-only copy. Shared Home and case records above remain unchanged.
+const catalogFactsById: Record<string, Partial<CatalogEditorialContent['facts']>> = {
+  'learn-with-ello': { context: 'Ello', productType: 'Reading and math learning platform' },
+  'read-with-ello': { context: 'Ello', productType: 'Mobile reading product' },
+  pathless: { context: 'Brackeys Game Jam 2026.2 · three-person team', productType: 'Rescue-and-exploration game', period: 'Aug–Sep 2026 · one-week jam, followed by post-jam work' },
+  'wallaces-quest': { role: 'Independent Unity Developer / Gameplay Programmer', context: 'Independent project', productType: 'Tactical turn-based RPG prototype', period: '2020–2021 · revisited 2026' },
+  'ilhas-do-alfabeto': { context: 'Instituto Alfa e Beto', productType: 'Literacy game' },
+  'craque-da-fluencia': { context: 'Instituto Alfa e Beto', productType: 'Reading-fluency product' },
+  flui: { context: 'Instituto Alfa e Beto', productType: 'Literacy game' },
+  'tabuada-na-fazenda': { context: 'Instituto Alfa e Beto', productType: 'Math game' },
+  'craque-da-leitura': { context: 'Instituto Alfa e Beto' },
+  'avaliacao-diagnostica': { context: 'Instituto Alfa e Beto' },
+  'avaliacao-lingua-portuguesa': { context: 'Instituto Alfa e Beto', productType: 'Interactive language assessment' },
+  'iab-digital-zero-a-quatro': { context: 'Cedro Technologies' },
+  'iab-testes': { context: 'Cedro Technologies' },
+  'sweets-and-shadows': { context: 'Mini Jam 144 · two-person team · 72 hours', productType: 'Action game' },
+  'radwasteland-echoes': { context: 'Ludum Dare 55 · solo jam', productType: 'Strategy / RPG game' },
+  'angry-world': { context: 'Ludum Dare 38', productType: 'Space action game' },
+  'survive-and-escape': { productType: 'Windows puzzle game' },
+};
+const catalogNarratives: Record<string, CatalogEditorialContent['contributionNarrative']> = {
+  pathless: {
+    summary: 'I implemented the proximity radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. I integrated these systems into mission progression, extraction, restart, and results reporting, with some work continuing after the jam deadline.',
+    highlights: [
+      { title: 'Proximity radio guidance', body: 'Distance maps to discrete signal strengths through data-driven definitions. The scanner communicates proximity rather than direction or triangulation.' },
+      { title: 'Mission and rescue integration', body: 'Events and delegates connect mission state to rescue accounting and results; Unity Awaitable sequences arrival. The calamity baseline and scene assembly include collaborator or shared work.' },
+    ],
+  },
+  'learn-with-ello': {
+    summary: 'I contributed to quest progression and rewards across configuration-driven models, completion services, and Flutter screens. I connected home activities to learning-agent requests across Python services and client routing, and implemented the parent-gate flow.',
+    highlights: [
+      { title: 'Progression reliability', body: 'Completion validates interaction IDs and suppresses repeated rewards, keeping local progress resilient to noncritical sync and analytics failures.' },
+      { title: 'Request coordination', body: 'Guarded initialization and shared in-flight requests prevent duplicate work across configured flows. This is bounded feature integration, not ownership of the whole backend or ML/speech platform.' },
+    ],
+  },
+  'read-with-ello': {
+    summary: 'My work spanned the reading experience, Book Library, quest progression, rewards and Prize Store, alongside Unity-side GraphQL integration. These selected contributions also include onboarding, shared UI, and lifecycle work within the wider team codebase.',
+    highlights: [
+      { title: 'Content-heavy mobile flows', body: 'Reusable uGUI and Addressables-backed content boundaries support transitions between library, reading, quest, and reward screens.' },
+      { title: 'Service-backed client features', body: 'Asynchronous client responses connect progression surfaces to services. The scope is the Unity client, without a claim of backend, speech-system, or release-process ownership.' },
+    ],
+  },
+  'wallaces-quest': {
+    summary: 'I implemented the historical encounter’s turn and action flow, connecting grid movement, attacks, damage resolution, and combat feedback. In 2021, I separated grid search into a module and demo; the 2026 migration did not fully reconnect these systems.',
+    highlights: [
+      { title: 'Turn ownership and action completion', body: 'Movement and attack routines signal completion separately from turn advancement; battle-state changes feed victory and defeat evaluation in the historical combat implementation.' },
+      { title: 'Grid-search module boundary', body: 'The extracted module separates walkability, node adjacency, and route search. Cost-plus-Manhattan scoring does not establish optimal A*: already-open nodes are not updated when a cheaper path is found.' },
+    ],
+  },
+};
+
+const catalogSummaries: Record<string, string> = {
+  'learn-with-ello': 'A Flutter reading-and-math product for children, connecting learning activities with daily quests, progression, rewards, and learning-agent interactions.',
+  'read-with-ello': 'A Unity mobile reading product for children, combining book discovery, interactive reading, quests, and rewards.',
+  pathless: 'A rescue-and-exploration game made by a three-person team for Brackeys Game Jam 2026.2. Players use proximity radio signals to find and assist survivors before extracting under an escalating calamity.',
+  'wallaces-quest': 'A tactical turn-based RPG prototype built around grid movement, positioning, and combat choices. The public prototype represents the historical combat implementation.',
+};
+
+export const catalogEditorialById: Record<string, CatalogEditorialContent> = Object.fromEntries(projectInventory.map((project) => {
+  const period = project.period ?? project.specs?.find(({ label }) => label === 'Period')?.value;
+  const existingContribution = project.contribution;
+  return [project.id, {
+    summary: catalogSummaries[project.id] ?? project.product,
+    facts: {
+      role: project.specs?.find(({ label }) => label === 'Role')?.value,
+      context: project.context,
+      productType: project.type,
+      period: period && period !== 'Undated' ? period : undefined,
+      ...catalogFactsById[project.id],
+    },
+    contributionNarrative: catalogNarratives[project.id] ?? (existingContribution ? { summary: existingContribution, highlights: [] } : undefined),
+  }];
+}));
+
 export const homeSupportingProjects = projectInventory
   .filter((project) => project.showOnHome)
   .sort((a, b) => (a.homeOrder ?? Number.MAX_SAFE_INTEGER) - (b.homeOrder ?? Number.MAX_SAFE_INTEGER));

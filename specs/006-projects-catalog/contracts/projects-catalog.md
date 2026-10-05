@@ -2,6 +2,20 @@
 
 This is the user-facing interaction contract for `/projects/`. It is independent of implementation framework and complements [the feature spec](../spec.md) and [data model](../data-model.md).
 
+**Current precedence:** the editorial contract below supersedes prior expanded-group/media-control statements in this document. Older statements remain historical; do not restore the three-section presentation or animation buttons in /projects/.
+
+## Current editorial contract — 2026-10-05
+
+- Collapsed entry remains media | identity/title/product description/More details on desktop, stacked on mobile. JS toggle stays beside description; no-JS native disclosure remains usable at the beginning of full-width details below both columns.
+- Expanded order: compact verified facts; Selected contributions if supported; verified technologies/useful metadata; supplementary eligible media if any; existing actions. Necessary product context may accompany the contribution; no mandatory Product section.
+- Selected contributions contains one or two sentences of individual scope and zero to three specific technical highlights. Two or three are preferred when supported; absence of evidence never creates a quota or inferred authorship. Optional outcome requires evidence, not necessarily numbers.
+- Facts have distinct meanings: individual role, organization/team/circumstance, product nature, documented period; no stack in Type or Role repeated in Context. Omit absent facts and empty groups.
+- Keep public product behavior distinguishable from attributable individual work; preserve team, historical era and release boundaries. No automatic concatenation of source paragraphs or copying full cases.
+- Revised public detail text is searchable, including highlight headings/bodies; internal sources/drafts/withdrawn claims are excluded. Preserve existing facet semantics, counts, order, hashes, four cases, external destinations and independent expansion.
+- Preserve exact historical media allowlist reused by user authorization; never label it proof of third-party rights. New sources require documentation. No Stop/Play in /projects/, as requested; fallback, proximity loading and reduced motion remain. This contract does not certify complete autoplay accessibility or unresolved republication rights.
+- Header typography, support line-height 24px, spacing, media width 300px, flexible entry height, text width and dividers remain approved baseline. No new text-width caps, clipping, hover-only content or horizontal page scrolling.
+- No new public endpoints, analytics, third-party integration or content changes to Home/cases.
+
 ## Initial page state
 
 - The page contains one recognizable text entry for every published project in editorial order.
@@ -26,7 +40,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Selected values can be removed individually. Clear-all resets query and both facets.
 - Focus remains on the control that initiated an update unless the user activates another control; filtering must not unexpectedly move focus.
 
-## Project details and links
+## More details and links
 
 - A project with additional details exposes an independently operable disclosure next to/within that project entry. Opening one item does not close another.
 - Expanded content uses consistent labels and hierarchy for available product/context, contribution, engineering focus, metadata, technology chips, approved media, and actions; empty sections are omitted.

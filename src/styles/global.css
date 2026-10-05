@@ -942,10 +942,32 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .archive-content .archive-record__entry-content .archive-record__identity-image { flex: none; width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 10px; object-fit: cover; }
 .archive-record__primary-media { min-width: 0; }
 .archive-record__primary-media .media-figure, .archive-record__primary-media .archive-media { margin: 0; }
-.archive-content .archive-record__entry-content .archive-record__details { grid-column: auto; margin: 0; }
-.archive-record__entry-content .archive-record__details-layout { grid-template-columns: minmax(0, 1fr); }
+.archive-content .archive-record__entry > .archive-record__details { grid-column: 1 / -1; margin: 0; }
+.archive-record__entry > .archive-record__details .archive-record__details-layout { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 700px) {
   .archive-content .archive-record > .archive-record__entry--media { grid-template-columns: minmax(0, 1fr); }
 }
 
 .archive-record__primary-media { width: 100%; max-width: 300px; }
+.archive-record__entry > .archive-record__details .archive-record__details-content { max-width: none; }
+.archive-record__details-toggle { display: flex; align-items: center; width: fit-content; min-height: 36px; padding: 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 13px; cursor: pointer; }
+.archive-record__details-toggle::before { content: '+'; width: 1em; color: var(--accent); font-size: 16px; line-height: 1; }
+.archive-record__details-toggle[aria-expanded='true']::before { content: '−'; }
+.archive-record__details-toggle[hidden], .archive-record__details > summary[hidden] { display: none; }
+.archive-record__entry > .archive-record__details:not([open]):has(> summary[hidden]) { display: none; }
+/* Use the same reading measure for the entry description and extra prose. */
+.archive-content .archive-record__details-content .archive-record__contribution { max-width: none; font-size: 14px; }
+.archive-content .archive-record__details-content .archive-record__contribution p:last-child { font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+
+.archive-content .archive-record__details-content .archive-record__technology-group { max-width: none; }
+.archive-content .archive-record__overview { max-width: none; }
+.archive-content .archive-record__details-content .archive-record__facts { gap: 4px; }
+.archive-content .archive-record__details-content .archive-record__facts > div { grid-template-columns: 64px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+.archive-content .archive-record__facts dt { font-size: 14px; letter-spacing: normal; text-transform: none; }
+.archive-content .archive-record__facts dd { font-size: 14px; line-height: 1.5; }
+
+/* Catalog editorial details; preserve approved entry/header geometry. */
+.archive-content .archive-record__contribution h3.archive-record__label { margin: 0 0 8px; font-size: 11px; line-height: 1.5; }
+.archive-content .archive-record__highlights { margin: 10px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.5; }
+.archive-content .archive-record__highlights li + li { margin-top: 8px; }
+.archive-content .archive-record__highlights strong { font-weight: 600; }

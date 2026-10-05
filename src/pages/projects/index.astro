@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
-import { projectInventoryGroups, type ProjectMedia } from '../../data/projects';
+import { catalogEditorialById, projectInventoryGroups, type ProjectMedia } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
 // Preserve the archive's existing editorial group order while presenting one list.
@@ -76,7 +76,7 @@ const approvedCatalogIdentity: Record<string, string> = Object.fromEntries(order
     <p class="catalog-count" data-catalog-count aria-live="polite">Showing {orderedProjects.length} of {orderedProjects.length} projects</p>
     <p class="catalog-empty" data-catalog-empty hidden>No projects match these filters.</p>
     <ol class="archive-record-list" data-catalog-list>
-      {orderedProjects.map((project) => <ProjectRecord project={project} homePath={homePath} approvedMedia={approvedCatalogMedia[project.id] ?? []} approvedIdentityImage={approvedCatalogIdentity[project.id]} />)}
+      {orderedProjects.map((project) => <ProjectRecord project={project} editorial={catalogEditorialById[project.id]} homePath={homePath} approvedMedia={approvedCatalogMedia[project.id] ?? []} approvedIdentityImage={approvedCatalogIdentity[project.id]} />)}
     </ol>
   </main>
 </BaseLayout>

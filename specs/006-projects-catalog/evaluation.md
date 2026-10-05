@@ -144,3 +144,56 @@ Allowlist reaproveitada, com pôster / fallback / animação:
 Dados de configuração são os mesmos do inventário; novas fontes não entram automaticamente. No browser, quatro mídias principais e quatro ícones confirmados; caixas dos ícones 52px. No topo, Ello Learn e Read With Ello carregaram animação; Pathless a y=2615px e Wallace a y=3212px mantiveram fallback e img animado sem src, comprovando adiamento para previews distantes. Stop no primeiro preview remove src, restaura fallback e muda controle para Play; reprodução reativada. Com mídia: 320/390px uma coluna, 820/1280px duas colunas, sem overflow em todas as larguras, entrelinha do cabeçalho 24px. Captura: artifacts/screenshots/catalog-media-review.jpg.
 
 Ainda não executados nesta rodada: mídia bloqueada/rede lenta, movimento reduzido inicial/dinâmico, ausência de observer, leitor de tela falante e JavaScript desativado. Essas pendências permanecem em T058 e revisão humana em T063. A aprovação de reaproveitar fontes não equivale à aprovação do novo layout.
+
+## Implementação editorial — 2026-10-05
+
+Código: projeção exclusiva catalogEditorialById em src/data/projects.ts, consumo somente na rota /projects/ e apresentação My contribution em ProjectRecord. Home/cases conservam dados originais. Mídias/allowlist/controladores não foram alterados. Cabeçalho e CSS de geometria não foram editados; estilos novos limitados a heading/lista editorial.
+
+### Matriz dos 19 registros
+
+Fonte L = dados públicos anteriores em src/data/projects.ts, limitados por docs/stage-10-content-register.md e docs/repository-evidence-pass.md; não representa nova auditoria de repositório privado. Fontes canônicas N estão vinculadas na seção Fontes consultadas da spec. Apenas quatro narrativas receberam novos destaques; contribuições curtas já publicadas foram preservadas, sem inferir mecanismos adicionais.
+
+| Registro | Fonte / conteúdo aproveitado | Limites e apresentação |
+| --- | --- | --- |
+| Ello Learn | N Ello 2.0 + L; quests/rewards, agent integration, parent gate | 2 destaques, sem ownership integral de backend/ML/speech/release; Sep–Nov2025; Type sem stack. |
+| Read With Ello | N Read With Ello + L; Library/quests/client GraphQL | 2 destaques; Unity client, não backend/speech/release; case preservado. |
+| Tabuada | L; contribuição minigames/tutorials/farm/progression | Parágrafo anterior, zero destaques; nenhum resultado novo. |
+| Craque da Leitura | L; produto de leitura e organização | Sem contribuição atribuída; facts/actions existentes. |
+| Flui | L; gameplay/minigames/maintenance | Parágrafo anterior, zero destaques; sem liderança inferida. |
+| Ilhas | L + Stage10; Desafio/shared systems | Parágrafo existente, zero destaques; não ampliar ownership; case preservado. |
+| Craque da Fluência | L + Stage10; word model/assessment/integration | Parágrafo existente, zero destaques; não criar autoria recognition engine; case preservado. |
+| Avaliação da Língua Portuguesa | L; produto interativo de avaliação | Sem contribuição atribuída/período inventado; Type sem Unity. |
+| Avaliação Diagnóstica | L; school assessment | Sem contribuição/período inventados; ações existentes. |
+| IAB Testes | L; tablet assessment/Cedro | Sem contribuição/período inventados. |
+| IAB Digital | L; early-childhood platform/Cedro | Sem contribuição/período inventados. |
+| MyPush | L; mobile client/service product | Sem contribuição/período inventados; contexto genérico conservado. |
+| MVIF | L; inventory/business workflow | Sem contribuição/período inventados; contexto genérico conservado. |
+| Pathless | N Pathless + L; scanner/HUD, assistance/rescue/mission | 2 destaques; calamity/scene shared; período inclui post-jam Aug–Sep2026; não alegar tudo no deadline binary. |
+| RadWasteland | L; Ludum Dare55 solo/product | Sem contribuição inferida pelo contexto solo; facts/actions existentes. |
+| Sweets and Shadows | L; MiniJam144/team2/72h | Sem converter Development/design em claim detalhada; produto action game. |
+| Wallace | N Wallace + L; turn/completion/grid module | 2 destaques; 2020–2021 revisited2026; não current combat/optimal A*/performance; case/actions existentes. |
+| Angry World | L; Ludum Dare38/space action | Sem autoria inferida; actions existentes. |
+| Survive & Escape | L; Windows puzzle study | Type sem stack; C++/raylib em Technology; sem contribuição/período inventados. |
+
+Retiradas repetições obrigatórias Product/Contribution/Engineering focus. Descrições dos quatro registros completos revisadas explicitamente; demais descrições existentes preservadas integralmente. Sem outcomes quantitativos ou novos CTAs. Rastreabilidade acima permanece interna e não é renderizada/indexada.
+
+### Resultados efetivamente obtidos
+
+- Astro check: 0 erros, 0 warnings, 2 hints preexistentes (make_contact_sheets.js e FeaturedProject.astro).
+- Production build: sucesso, sete páginas, quatro cases existentes gerados.
+- git diff --check: passou; mensagens CRLF não são erro de whitespace.
+- DOM do catálogo: 19 registros; 8 My contribution (quatro com dois highlights, quatro somente parágrafo); restantes sem seção vazia; quatro hrefs de cases corretos.
+- Busca Request coordination: 1/19; texto inexistente: 0/19; clear: 19/19.
+- Context Independent OR Study: 6/19; AND Technology C#: 2/19; apenas um menu aberto, seleções preservadas.
+- Teclado Enter abre/recolhe Read With Ello; foco visível. Duas entradas abertas simultaneamente confirmadas.
+- Deep link #pathless carregado e registro localizado; lista19 restaurada. Não executada matriz inteira de hashes sob filtros.
+- 320/390/820/1280px com Ello Learn expandido: sem overflow horizontal; detalhe abaixo de mídia/conteúdo e mesma largura do article (257/327/757/1200px). Cabeçalho support line-height24px observado. Viewport restaurado.
+- Árvore de acessibilidade expõe h3/lista/fatos/estado de expansão; isso não equivale a teste com leitor de tela real.
+
+### Pendências honestas
+
+Não executados nesta rodada: leitor de tela real, toque físico, JS desativado no navegador, rede lenta/GIF bloqueado, observer indisponível, movimento reduzido inicial/dinâmico e matriz completa de hashes/filtros. Não declarar SC-001–SC-024 integralmente aprovado. T075/T076/T077 e pendências históricas de validação conservam status incompleto quando seu cenário total não foi executado. T078 e T063 dependem de revisão humana; nenhuma aprovação foi presumida. Nenhum merge/push/commit realizado.
+
+### Revisão de rótulo e amplitude — 2026-10-05
+
+Por pedido do usuário, o rótulo vigente passa de My contribution para Selected contributions em /projects/ e nos documentos ativos. A ficha apresenta exemplos selecionados, não um inventário completo da atuação. No Read With Ello, o resumo agora menciona experiência de leitura, Book Library, quests/progression, rewards/Prize Store, GraphQL e trabalho complementar de onboarding/UI/lifecycle, já sustentados nos dados e fontes consultados. A declaração do usuário sobre amplitude motiva a revisão, sem publicar ownership de todas as áreas do app. Registros anteriores deste arquivo conservam o rótulo observado na época. Home e cases não foram alterados. Não foram executados novos testes nesta edição de texto.

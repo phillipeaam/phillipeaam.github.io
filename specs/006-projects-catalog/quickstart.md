@@ -65,3 +65,19 @@ The feature does not include a participant study or before/after usability compa
 19. Movimento reduzido no carregamento inicial e ativado durante carga/reprodução: fallback correto, sem revelar animação pela conclusão tardia. Stop/Play por teclado/toque respeitam preferência; ícone não duplica nome anunciado e apenas camada de mídia ativa possui descrição acessível. Verificar ausência de observer como fallback de autoplay existente e JS desativado como fallback estático/disclosure nativo.
 20. Reexecutar cenários 1–14 após mover metadados para detalhes: corpus continua pesquisável, OR/AND, contador, limpeza, estado vazio, exclusividade dos menus, hashes e teclado permanecem corretos. Conferir cabeçalho contra versão aprovada, incluindo entrelinha 24px e margens. Verificar que Home/cases não foram redesenhados e, se componente compartilhado mudar, seus previews continuam corretos.
 21. Executar diff/check/build, atualizar evaluation.md com evidências, lacunas e validações não feitas, e encaminhar mudança visual para revisão humana; não marcar aprovação por resultado automático.
+
+## Roteiro vigente — complemento editorial (não executado)
+
+Este roteiro substitui exigências históricas de três grupos separados, pausa por Stop/Play no catálogo e mídia apenas nos detalhes. Não repetir cenários equivalentes por IDs distintos. Preservar o restante da matriz de busca/facetas e links.
+
+| Cenário | Procedimento e resultado esperado | Critérios |
+| --- | --- | --- |
+| A — Conteúdo e fontes | Revisar 19 registros; confrontar afirmações com matriz canônica. Selected contributions só com autoria sustentada; highlights 0–3 conforme conteúdo; sem duplicação ou impacto inventado. Fatos semanticamente distintos, períodos qualificados. | SC-020–SC-022 |
+| B — Estados ausentes | Avaliar profissional/independente/estudo, contribuição limitada/ausente, sem mídia/ícone/período/resultado/CTA. Omitir campos/grupos sem quota artificial; todos os nomes reconhecíveis. | SC-001, SC-009, SC-016–SC-017, SC-020–SC-022 |
+| C — Busca e facetas | Nomes, produto, termos exclusivos dos títulos/body dos highlights; caixa/acentos; OR intrafaceta e AND entre facetas/query. Contagens corretas, clear, vazio; notas privadas/withdrawn não encontram registro. Um menu aberto, escolhas preservadas. | SC-002–SC-004, SC-012–SC-015, SC-023 |
+| D — Links e expansão | Quatro cases, ações existentes, hashes diretos/filtrados, múltiplos details independentes; esconder projeto esconde seus detalhes. Não criar destinos. | SC-005, SC-017, SC-023–SC-024 |
+| E — Reflow e baseline | 320/390/820/1280px: detalhes sob as duas colunas, More details junto à descrição com JS; fallback nativo sem JS. Sem overlap/corte/overflow; cabeçalho/24px/margens, mídia300px/flexível e largura textual aprovados preservados. | SC-007–SC-008, SC-011, SC-016, SC-019, SC-024 |
+| F — Acesso e mídia | Teclado, toque, leitor de tela, foco/estado, sem JS. Allowlist exata histórica e classificação documental correta; rede lenta/falha/proximidade/reduced motion inicial/dinâmico. Nenhum Stop/Play no catálogo; controles de outros consumidores preservados. Não declarar direitos/conformidade integral não demonstrados. | SC-005–SC-006, SC-010, SC-018, SC-024 |
+| G — Entrega | Diff/check/build conforme constituição; registrar apenas resultados reais e lacunas em evaluation.md. Revisão humana de narrativa e composição antes de considerar aprovada. | Constituição VI/VIII/IX |
+
+Pré-condição editorial: plan/data-model/contrato alinhados e matriz por projeto preparada. Registrar viewports realmente usados e checks não executados. Estudos com participantes continuam fora desta implementação. Evidência antiga não comprova os requisitos novos; sem execução nesta rodada.

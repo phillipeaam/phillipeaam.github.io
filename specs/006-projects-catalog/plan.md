@@ -4,9 +4,11 @@
 
 **Input**: Feature specification from `/specs/006-projects-catalog/spec.md`
 
+**Revisão vigente — 2026-10-05:** o complemento Selected contributions ao final define o desenho atual e substitui trechos anteriores de hierarquia, controles/provenance de mídia e gates. Os trechos substituídos são histórico; não executar decisões antigas nem interpretar PASS histórico como conformidade atual. T064 registra o alinhamento documental, não implementação.
+
 ## Summary
 
-Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos os projetos publicados reconhecíveis. A página renderizará registros e detalhes no HTML estático do Astro; um script cliente pequeno aprimorará busca, menus pesquisáveis de seleção múltipla para Context e Technology, contador e estado vazio. Cada ficha poderá expandir detalhes localmente por um disclosure nativo, com estrutura editorial consistente e tags nos detalhes. Na entrada recolhida, mídia principal aprovada fica à esquerda; à direita ficam ícone de identidade antes do título, descrição curta e Project details. Contexto, contribuição, período, tipo e ações ficam nos detalhes; mídia complementar também, sem repetir mídia principal. O cabeçalho reutiliza a composição da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. Rótulos visíveis precedem a busca e cada faceta; somente um menu de faceta fica aberto por vez, sem perder seleções. O plano conserva IDs, ordem editorial e destinos válidos, e padroniza os divisores.
+Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos os projetos publicados reconhecíveis. A página renderizará registros e detalhes no HTML estático do Astro; um script cliente pequeno aprimorará busca, menus pesquisáveis de seleção múltipla para Context e Technology, contador e estado vazio. Cada ficha poderá expandir detalhes localmente por um disclosure nativo, com estrutura editorial consistente e tags nos detalhes. Na entrada recolhida, mídia principal aprovada fica à esquerda; à direita ficam ícone de identidade antes do título, descrição curta e More details. Contexto, contribuição, período, tipo e ações ficam nos detalhes; mídia complementar também, sem repetir mídia principal. O cabeçalho reutiliza a composição da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. Rótulos visíveis precedem a busca e cada faceta; somente um menu de faceta fica aberto por vez, sem perder seleções. O plano conserva IDs, ordem editorial e destinos válidos, e padroniza os divisores.
 
 ## Technical Context
 
@@ -81,6 +83,8 @@ src/
 
 Sem violações da constituição; nenhuma complexidade adicional a justificar.
 
+**Correção de estado:** a afirmação acima descreve o desenho anterior. O complemento registra limites conhecidos de mídia e não declara conformidade integral; ver gates atuais abaixo. Não há nova dependência ou complexidade de runtime prevista.
+
 ## Planning Decisions
 
 - Cada projeto permanece como entrada textual visível; poster é complementar.
@@ -89,8 +93,8 @@ Sem violações da constituição; nenhuma complexidade adicional a justificar.
 - Cada faceta usa um menu separado com busca e seleção múltipla. A implementação deve preferir inputs checkbox nativos agrupados em disclosure nativo, evitando um widget ARIA combobox/listbox personalizado quando o conjunto de opções inclui controles checkbox interativos. Os rótulos visíveis “Search for”, “Context” e “Technology” ficam acima dos respectivos controles.
 - Os menus Context e Technology são mutuamente exclusivos quanto ao estado aberto: abrir um fecha o outro; valores marcados e busca interna de opções permanecem ao alternar entre facetas. Fechar e reabrir o mesmo menu também preserva esse estado.
 - Valores múltiplos da mesma faceta usam OR; busca e facetas entre si usam AND.
-- Tecnologia/tag não aparece como chip no resumo compacto; continua indexável para busca, selecionável no filtro e visível em Project details.
-- Project details agrupa contexto, contribuição, período, tipo, foco de engenharia, tecnologias, ações e mídia complementar em rótulos consistentes, omitindo grupos vazios; mídia principal fica na entrada recolhida; GIFs não ficam reduzidos a um link para outra aba.
+- Tecnologia/tag não aparece como chip no resumo compacto; continua indexável para busca, selecionável no filtro e visível em More details.
+- More details agrupa contexto, contribuição, período, tipo, foco de engenharia, tecnologias, ações e mídia complementar em rótulos consistentes, omitindo grupos vazios; mídia principal fica na entrada recolhida; GIFs não ficam reduzidos a um link para outra aba.
 - Cabeçalho de `/projects/` reutiliza a composição e o texto da seção “More Projects” na Home — eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e texto de apoio existente — e abandona a apresentação anterior; divisores das entradas mantêm o mesmo ritmo e tratamento visual.
 - Disclosures são independentes e podem permanecer abertos juntos; ocultar uma entrada filtrada também oculta seus detalhes.
 - IDs permanecem estáveis. Ao abrir um hash de projeto, o catálogo deve limpar critérios incompatíveis antes de posicionar o destino, para que deep links antigos continuem visíveis.
@@ -123,3 +127,40 @@ MVP: resolver elegibilidade e construir entrada recolhida responsiva; depois com
 
 ### Decisão posterior de reutilização (2026-10-05)
 O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
+
+## Desenho vigente — Selected contributions — 2026-10-05
+
+### Phase 0 — pesquisa e decisões
+
+Base: docs/projects-catalog-hiring-review.md e fontes canônicas registradas na spec. Nenhuma tecnologia nova, serviço, banco ou pesquisa com participantes é necessária. A pesquisa já existente fundamenta a hipótese editorial; não mede ganhos de contratação. Decisões e alternativas estão no complemento de research.md.
+
+### Phase 1 — projeção e apresentação
+
+- Manter fontes e consumidores atuais de Home/cases. Em `src/data/projects.ts`, definir `CatalogEditorialContent` e um mapa `catalogEditorialById` de conteúdo exclusivo do catálogo, indexado pelo ID existente. Não substituir globalmente product/contribution/specs usados por outros consumidores.
+- Campos da projeção: `summary`, `facts` (role/context/productType/period), `contributionNarrative` opcional (summary/highlights/outcome), `additionalContext` opcional e tecnologias/actions existentes preservadas. `TechnicalHighlight` contém title/body, sem atributo que implique autoria por padrão. Tipos/regras completos em data-model.md.
+- Em `src/pages/projects/index.astro`, resolver a projeção para cada registro. Para ID sem narrativa revisada, aproveitar descrição/fatos verificados, sem gerar narrativa por concatenação ou converter engineeringFocus em claim individual. Não remover registros por ausência de narrativa.
+- `ProjectRecord.astro` recebe a projeção do catálogo e mantém entrada recolhida. Detalhes ocupam segunda linha de largura disponível: fatos → Selected contributions quando disponível → tecnologias/metadados úteis → mídia complementar quando existente → ações. Contexto adicional necessário acompanha narrativa, sem bloco Product obrigatório. Descrição curta deve ser editada explicitamente; fallback inicial pode usar resumo existente sem implicar aprovação editorial nova.
+- Preservar botão junto à descrição no fluxo com JS, estado acessível e disclosure nativo na segunda linha sem JS. Nenhum framework de UI novo.
+- O script atual indexa texto público renderizado; manter a derivação após todos os detalhes renderizados, incluindo títulos/body dos highlights. Não incluir campos internos de evidência, texto removido ou fontes privadas no DOM. Preservar OR/AND, normalização, total, ordem, hashes e expansão independente.
+- CSS escopado a `.archive-content`: fatos compactos e highlights com quebra natural; manter mídia 300px/altura flexível, cabeçalho/24px/espaçamentos, divisores e ausência de novos limites de largura. Não alterar componentes compartilhados de mídia por este complemento.
+
+### Mídia: política vigente
+
+A allowlist atual das quatro fontes históricas permanece exata, com identidade/fallback/preview separados. Reutilização é decisão do usuário, não prova de direitos. Nenhuma nova fonte é promovida. Preservar near-viewport/autoplay/fallback/reduced motion e ausência de Stop/Play em /projects/; controles de Home/cases permanecem. Revisão editorial não resolve direitos ainda não documentados nem certifica acessibilidade do movimento contínuo.
+
+### Gates atuais, antes e depois do desenho
+
+| Princípio | Resultado do desenho vigente |
+| --- | --- |
+| I — Evidência | Conteúdo novo requer matriz de claims/fontes e limites; não afirmar direitos demonstrados para reutilização histórica. Lacunas de mídia já registradas permanecem. |
+| II / III — Padrões e sistema aprovado | Uma composição/projeção comum; cabeçalho e estilos aprovados preservados. |
+| IV / V — Acesso e conteúdo base | Narrativa semântica, teclado/foco, fallback e redução de movimento preservados; disclosure nativo sem JS. Não declarar conformidade integral do autoplay sem controle. |
+| VI — Responsividade | Planejada em 320/390/820/1280; execução e evidências posteriores. |
+| VII — Escopo | /projects/ e projeção exclusiva; nenhuma alteração editorial na Home/cases. |
+| VIII / IX — Validação e revisão | Diff/check/build, revisão editorial, acessibilidade/reflow e aprovação humana posterior; nenhum resultado presumido. |
+
+Nenhum gate novo do desenho editorial exige alterar constituição ou decisões do usuário. Limites herdados não são certificados como PASS; permanecem explícitos para revisão. Sem unknown técnico pendente.
+
+### Sequência e validação
+
+Documentos → matriz dos 19 registros → projeção → narrativa/fatos → renderização/estilos → revisão editorial → regressões de descoberta/acesso/links → diff/check/build → revisão humana. SC-001–SC-024 são consolidados na matriz única de quickstart.md; não executar duas vezes cenários equivalentes apenas por dois IDs. Implementação e validação do desenho não foram executadas nesta rodada.

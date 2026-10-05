@@ -2,6 +2,8 @@
 
 This model describes the public archive and its browser interaction state. It does not prescribe a database or implementation library.
 
+**Current revision:** the catalog-only editorial projection below supersedes legacy `detailGroups`/`detailContent` hierarchy and older media-control eligibility descriptions. Existing source concepts and interaction states remain; historical descriptions are not instructions to restore separate Product/Contribution/Engineering focus sections or Stop/Play.
+
 ## Project entry
 
 One public record rendered in the archive. Its underlying editorial source remains `src/data/projects.ts`.
@@ -92,3 +94,27 @@ This projection supersedes prior wording about all media belonging to expanded d
 
 ### Decisão posterior de reutilização (2026-10-05)
 O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
+
+## Catalog-only editorial projection — current
+
+`catalogEditorialById` maps existing project IDs to `CatalogEditorialContent` in src/data/projects.ts; only /projects/ consumes it. Underlying Home/case data remain unchanged. Relationships with IDs, technologies, actions and media reuse source values; don't invent alternate destinations.
+
+| Field | Constraint |
+| --- | --- |
+| `summary` | Required, non-empty, evidence-based product description. Do not automatically concatenate legacy fields. |
+| `facts.role` | Optional verified individual function/scope; omit when unsupported. |
+| `facts.context` | Optional verified organization/team/circumstance; do not repeat Role or prefix the work classification twice. |
+| `facts.productType` | Optional verified product nature; exclude stack and work-context classification. |
+| `facts.period` | Optional documented period; retain era/release qualifiers when necessary. |
+| `contributionNarrative` | Optional; absent without verified individual contribution. No empty section. |
+| `contributionNarrative.summary` | Required, non-empty when narrative exists; one or two sentences, preserving essential ownership boundaries. |
+| `contributionNarrative.highlights[]` | Zero to three distinct supported highlights; target two or three when evidence permits, allow one or zero. Never fill a quota with inferred claims. |
+| `TechnicalHighlight.title` / `body` | Required, non-empty; title specific to the project, body explains documented problem/mechanism; don't imply personal decision authorship without evidence. |
+| `contributionNarrative.outcome` | Optional verified result; no mandatory metric and no invented impact. |
+| `additionalContext` | Optional product context only when needed to understand contribution; not a repeated summary or mandatory Product section. |
+
+Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. Historical allowlist reuse is distinct from documentary rights verification; no source additions. /projects/ has no Stop/Play, reduced motion/fallback remain, other consumers retain controls.
+
+Missing map entries use verified existing summary/facts without synthesizing Selected contributions from legacy engineering prose. Revised records must use explicit catalog values rather than fall back to mixed Type/Context data. Public corpus derives only from rendered public values, including highlight titles/bodies/outcome/additionalContext; exclude source URLs to private records and withdrawn text.
+
+Traceability lives in evaluation.md as a per-project editorial matrix: source reference, supported claim, scope/era qualifiers and omissions. It is internal, not included in public text or search. Editorial states: legacy → drafted against evidence → reviewed against source → human reviewed. Do not infer human approval from build/check success.

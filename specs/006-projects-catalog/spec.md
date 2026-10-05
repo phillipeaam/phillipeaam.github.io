@@ -3,7 +3,7 @@
 **Feature Branch**: `[006-projects-catalog]`
 **Created**: 2026-10-04
 **Status**: Draft
-**Updated**: 2026-10-05 — complemento da apresentação das entradas; sem nova feature.
+**Updated**: 2026-10-05 — complemento editorial dos detalhes e metadados; mesma feature, sem implementação nesta etapa.
 **Input**: Redesenhar `/projects/` como catálogo compacto pesquisável, com cabeçalho no padrão da Home, busca/facetas rotuladas, no máximo um menu de filtro aberto por vez, contador e detalhes expansíveis junto a cada projeto. Todos os projetos devem ser reconhecíveis sem depender de miniaturas, hover ou rolagem horizontal.
 
 ## Clarifications
@@ -96,7 +96,31 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 5. **Given** um GIF com autoplay configurado está distante da área visível, **When** a pessoa se aproxima da entrada, **Then** o GIF começa a carregar na faixa de aproximação e o fallback permanece até estar pronto.
 6. **Given** a animação falha ou movimento reduzido é ativado durante a carga, **When** a solicitação termina, **Then** a alternativa estática permanece visível e links continuam utilizáveis.
 
+### User Story 5 - Avaliar contribuição e profundidade técnica (Priority: P1)
+
+Como recrutador ou avaliador técnico, quero entender a atuação individual e os mecanismos relevantes de cada projeto, para avaliar experiência profissional sem ler três blocos repetitivos ou confundir produto e autoria.
+
+**Why this priority**: A descoberta já identifica o produto; o aprofundamento deve tornar concreta a competência do profissional, mantendo os limites da evidência.
+
+**Independent Test**: Revisar entradas representativas de trabalho profissional, independente e contribuição limitada, comparando cada afirmação com sua fonte e verificando organização, campos ausentes e busca dos destaques.
+
+**Acceptance Scenarios**:
+
+1. **Given** uma entrada com contribuição e mecanismos comprovados, **When** a pessoa abre More details, **Then** vê fatos compactos seguidos de Selected contributions, com um parágrafo de atuação e dois ou três destaques específicos quando disponíveis, em vez de três blocos obrigatórios repetitivos.
+2. **Given** evidência limitada, **When** os detalhes são abertos, **Then** a seção pode ter apenas parágrafo ou um destaque, sem inventar resultados para completar a estrutura.
+3. **Given** ausência de contribuição individual comprovada, **When** a pessoa abre a entrada, **Then** continua vendo produto e fatos/destinos disponíveis sem Selected contributions vazio ou autoria inferida.
+4. **Given** um mecanismo documentado mas sua decisão individual não atribuída, **When** o conteúdo o descreve, **Then** distingue funcionamento técnico de atuação pessoal e conserva limites de equipe e época.
+5. **Given** metadados com função, organização, tipo, período e tecnologias comprovados, **When** os detalhes aparecem, **Then** cada fato ocupa sua dimensão definida, com rótulo/valor compactos e sem duplicações entre campos.
+6. **Given** um termo presente somente em um destaque público, **When** a pessoa pesquisa por ele, **Then** encontra a entrada correta; texto privado ou retirado não produz resultado.
+7. **Given** entrada expandida no desktop ou celular, **When** a pessoa lê os detalhes por teclado ou tecnologia assistiva, **Then** acessa conteúdo organizado abaixo das duas colunas, sem mudança do cabeçalho, das mídias ou da largura de texto aprovada; sem scripts, a expansão de fallback continua utilizável.
+
 ### Edge Cases
+
+- Contribuição limitada pode produzir apenas um parágrafo ou um único destaque comprovado; não fabricar conteúdo para atingir dois ou três destaques.
+- Produto sem contribuição individual comprovada conserva descrição, fatos e destinos disponíveis, sem seção Selected contributions vazia nem atribuição inferida a partir de mídia ou cargo.
+- Uma fonte pode descrever o funcionamento do sistema sem comprovar quem decidiu sua arquitetura; distinguir descrição técnica e autoria individual.
+- Fontes canônicas recentes podem corrigir registros locais históricos. Preservar o histórico documental, mas não publicar afirmações superadas; conflitos factuais devem ser registrados para revisão editorial.
+- A reorganização editorial pode remover termos redundantes; todo conteúdo público efetivamente apresentado, incluindo destaques expandidos, deve continuar pesquisável, sem indexar notas privadas ou texto histórico retirado.
 
 - Mídia principal ausente, GIF sem fallback válido ou falha do ícone não podem impedir identificação textual; mídia complementar não deve duplicar a principal.
 - Busca vazia, somente espaços, sem acentos ou com diferenças de caixa deve ter comportamento previsível; normalizar caixa, espaços laterais e diacríticos para facilitar correspondência em português.
@@ -127,25 +151,32 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - **FR-011**: Cada entrada com detalhes adicionais MUST permitir expansão e recolhimento independentes no próprio contexto do item; várias entradas podem permanecer expandidas simultaneamente e seu estado aberto/fechado deve ser comunicado. Busca/filtragem não pode apresentar detalhes pertencentes a uma entrada que deixou de corresponder.
 - **FR-012**: Links para os quatro estudos de caso existentes, ações externas válidas e identificadores de deep link MUST permanecer associados ao projeto correto. Destinos ausentes não podem gerar CTA vazio ou enganoso.
 - **FR-013**: A ausência de poster ou de autorização/provenance de mídia não pode impedir reconhecimento textual do projeto nem levar à apresentação de placeholder como evidência real.
-- **FR-014**: Mídia animada MUST manter alternativa estática precisa, respeitar preferência de redução de movimento e oferecer controle acessível de pausa/parada quando movimento automático contínuo estiver presente.
+- **FR-014**: Mídia animada MUST manter alternativa estática precisa e respeitar preferência de redução de movimento. Conforme decisão explícita posterior do usuário, /projects/ conserva a configuração atual sem botão Stop/Play; este complemento não adiciona controles nem declara conformidade completa do movimento automático contínuo. Outros usos dos componentes mantêm seus controles existentes.
 - **FR-015**: Os controles MUST ter rótulos, semântica e estado acessíveis; operações MUST funcionar por teclado e toque, com foco visível e sem dependência de hover.
 - **FR-016**: O conteúdo essencial e links MUST permanecer legíveis e utilizáveis quando comportamentos interativos opcionais não estão disponíveis; controles sem comportamento funcional MUST não ser apresentados como ativos.
 - **FR-017**: Em larguras móveis, entradas, controles e detalhes com mídia MUST adaptar-se sem sobreposição, perda de conteúdo essencial ou rolagem horizontal da página; a mídia principal aprovada fica acima da identidade e descrição da entrada no celular; os detalhes aparecem junto à mesma entrada abaixo do resumo.
 - **FR-018**: A página MUST preservar a identidade visual editorial já estabelecida e limitar mudanças à experiência de /projects/ e às áreas diretamente necessárias para ela.
-- **FR-019**: Quando o inventário fornecer mídia com origem e autorização verificadas, a entrada recolhida MUST exibir a mídia principal inline junto ao título e descrição; mídia complementar, se houver, pertence aos detalhes; mídia sem essa documentação MUST permanecer oculta até ser validada.
-- **FR-020**: Detalhes expandidos MUST organizar contribuição, foco de engenharia, contexto, metadados confirmados, tecnologias, período, tipo de produto, mídia complementar aprovada e links disponíveis com hierarquia visual consistente; grupos sem conteúdo MUST ser omitidos.
+- **FR-019**: A entrada recolhida MUST conservar a allowlist exata de fontes existentes autorizadas pelo usuário para reutilização em Ello Learn, Read With Ello, Pathless e Wallace’s Quest. Essa decisão de reutilização MUST não ser descrita como comprovação de direitos de terceiros. Mídia nova ou diferente da allowlist MUST permanecer oculta sem documentação de origem e autorização; mídia complementar elegível pertence aos detalhes. Nenhuma fonte nova é autorizada por este complemento.
+- **FR-020**: Detalhes expandidos MUST apresentar, em ordem, fatos compactos disponíveis (Role, Context, Type e Period), a seção Selected contributions quando sustentada por evidência, tecnologias e demais metadados úteis, mídia complementar aprovada quando existente e ações válidas. Product, Contribution e Engineering focus MUST deixar de ser três blocos obrigatórios separados; informação relevante MUST ser reorganizada sem perda de limites de autoria. Grupos sem conteúdo MUST ser omitidos.
 - **FR-021**: Entradas do catálogo MUST usar divisores consistentes em espessura, cor, espaçamento e continuidade, sem variação visual involuntária entre projetos.
 - **FR-022**: O cabeçalho de `/projects/` MUST reutilizar o padrão aprovado da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. MUST omitir o rótulo “PROJECT ARCHIVE” e a apresentação anterior.
 - **FR-023**: A busca dentro de um menu de faceta MUST limitar apenas as opções visíveis naquele menu até que a pessoa selecione/desmarque valores; o texto digitado no menu não pode, sozinho, filtrar projetos nem alterar o contador de projetos.
 - **FR-024**: O campo de busca MUST ter o rótulo visível “Search for”; as facetas MUST ter rótulos visíveis “Context” e “Technology” acima de seus respectivos controles de seleção.
 - **FR-025**: No máximo um menu de faceta pode estar aberto por vez. Abrir um menu MUST fechar o outro sem limpar, alterar ou perder valores selecionados nele; ativar novamente o menu aberto MUST recolhê-lo.
 
-- **FR-026**: No desktop, a entrada recolhida MUST organizar mídia principal à esquerda e, à direita, identidade (ícone antes do título), descrição curta e “Project details”, cujo indicador de expansão mostra “+” quando recolhido. O controle MUST manter nome e estado acessíveis e aceitar teclado e toque. Detalhes MUST permanecer associados ao item sem navegação para outra página.
+- **FR-026**: No desktop, a entrada recolhida MUST organizar mídia principal à esquerda e, à direita, identidade (ícone antes do título), descrição curta e “More details”, cujo indicador mostra “+” recolhido e “−” expandido. O controle MUST conservar sua posição junto à descrição, nome e estado acessíveis, teclado e toque. Detalhes MUST ocupar uma segunda linha abaixo de ambas as colunas, usando a largura disponível, associados ao item sem navegação para outra página. Sem scripts, preservar expansão utilizável; o controle nativo de fallback pode acompanhar o início dos detalhes.
 - **FR-027**: O ícone MUST reutilizar a apresentação anterior: 52×52, cantos arredondados de 10px, borda discreta, imagem recortada sem distorção e espaço de 14px até o título. Pode coexistir com a mídia principal à esquerda, pois identifica o projeto. Sem pôster aprovado, MUST omitir o ícone sem espaço vazio; o título continua suficiente. O ícone redundante ao título MUST não duplicar o anúncio do nome em leitores de tela.
-- **FR-028**: A mídia MUST preservar as configurações existentes de dimensões, proporção, enquadramento, legenda e acionamento. Para autoplay configurado, a animação MUST ser solicitada ao aproximar-se da área visível (referência existente: margem de 75% da altura da janela), sem exigir expansão ou hover. Não impor pausa inicial como nova regra; movimento reduzido e pausa/parada explícita continuam prevalecendo. Projetos sem autoplay configurado MUST conservar seus acionamentos existentes.
+- **FR-028**: A mídia MUST preservar as configurações existentes de dimensões, proporção, enquadramento, legenda e acionamento. Para autoplay configurado, a animação MUST ser solicitada ao aproximar-se da área visível (referência existente: margem de 75% da altura da janela), sem exigir expansão ou hover. Não impor pausa inicial como nova regra; movimento reduzido prevalece e a ausência de Stop/Play em /projects/ segue FR-014. Projetos sem autoplay configurado MUST conservar seus acionamentos existentes.
 - **FR-029**: Cada GIF MUST manter sua alternativa estática existente e precisa, derivada do primeiro frame, visível desde o conteúdo inicial e durante carregamento/preparação. A animação MUST substituir a imagem apenas quando pronta, sem mudar a geometria da área. Falha de carregamento/preparação MUST manter o fallback e os links utilizáveis. Movimento reduzido MUST impedir solicitação/revelação automática do GIF e manter o fallback, inclusive se a preferência mudar durante o carregamento. Apenas a descrição da camada visível deve ser anunciada.
 - **FR-030**: Sem GIF aprovado, a entrada MAY usar mídia estática aprovada existente. Sem mídia principal aprovada, MUST usar composição textual sem coluna vazia, placeholder de evidência ou dados inventados; um ícone aprovado pode continuar antes do título. Sem detalhes adicionais ou destinos válidos, MUST omitir controles/CTAs vazios. Sem scripts, fallback, texto, detalhes e links MUST permanecer utilizáveis.
 - **FR-031**: O cabeçalho All Projects MUST conservar tipografia, entrelinha de 24px do texto de apoio e espaçamentos já aprovados; a reorganização dos registros MUST não alterar esse bloco ou outras áreas da Home/cases.
+- **FR-032**: Selected contributions MUST começar por um parágrafo curto de uma ou duas frases sobre atuação individual e escopo comprovados. Quando disponíveis, MUST incluir dois ou três destaques técnicos distintos com títulos específicos do projeto. Com evidência limitada, MAY apresentar um único destaque ou apenas o parágrafo; sem contribuição comprovada, MUST omitir a seção. Não cortar limites de autoria essenciais para cumprir a extensão.
+- **FR-033**: Cada destaque MUST explicar um problema concreto e o mecanismo empregado quando ambos forem documentados; consequências, decisões pessoais, resultados e métricas MUST aparecer apenas quando suas fontes os sustentarem. Funcionamento geral do sistema MUST não ser apresentado como decisão ou autoria individual sem comprovação. Não exigir um resultado ou uma métrica para completar a ficha.
+- **FR-034**: A reorganização MUST preservar informações relevantes verificadas sem concatenar automaticamente os três textos antigos. MUST eliminar afirmações repetidas que não acrescentam informação. Contexto adicional do produto MAY integrar o trecho relevante apenas quando necessário para entender a contribuição; não repetir a descrição recolhida nem duplicar estudos de caso completos. Exemplos da pesquisa MUST não ser tratados como textos aprovados para publicação.
+- **FR-035**: Role MUST representar função/escopo individual; Context, organização/equipe/circunstância; Type, natureza do produto; Period, período documentado; Technology, tecnologias confirmadas. Os fatos MUST usar rótulo e valor na mesma linha quando houver espaço, com quebra natural no celular. MUST evitar função duplicada em Context, classificação profissional repetida e stack em Type; omitir valores ausentes, sem inferência. A classificação usada pela faceta Context permanece distinta do texto contextual exibido.
+- **FR-036**: A busca MUST incluir o conteúdo público revisado, inclusive parágrafo de atuação, títulos/textos dos destaques e contexto adicional apresentado nos detalhes. MUST excluir notas privadas, histórico superado e rascunhos não publicados. Filtros, contador, OR/AND, ordem editorial, deep links, quatro cases e expansão independente MUST preservar seus comportamentos existentes.
+- **FR-037**: Esta revisão MUST preservar composição responsiva, mídias existentes autorizadas para reutilização, fallback, carregamento por aproximação, movimento reduzido, posição do controle e configurações visuais aprovadas. MUST não reintroduzir limites de largura de texto removidos sem decisão específica do usuário, nem alterar a Home ou os estudos de caso.
+
 ### Key Entities *(include if feature involves data)*
 
 - **Project entry**: Nome, resumo do produto, contexto profissional/independente/estudo, contribuição, período, tecnologias verificadas, grupo editorial, mídia, case/destinos e identificador estável, conforme campos existentes.
@@ -154,6 +185,10 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - **Technology facet**: Tecnologia confirmada associada ao projeto; múltiplos valores selecionados usam correspondência OR.
 - **Result summary**: Número de projetos que correspondem aos critérios atuais e total de projetos publicados sem filtros.
 - **Expanded details**: Conteúdo adicional opcional de uma entrada, aberto junto a ela e vinculado à mesma identidade de projeto.
+- **Contribution narrative**: Parágrafo de atuação individual, destaques técnicos opcionais e resultados/evidências opcionais, conforme conteúdo comprovado; organização editorial única não apaga a distinção factual entre produto, contribuição e funcionamento técnico.
+- **Technical highlight**: Título específico e explicação de problema/mecanismo, com consequência apenas quando documentada; não equivale a atribuição automática de decisões ao autor.
+- **Compact project facts**: Role, Context, Type e Period com significados distintos e campos ausentes omitidos; tecnologias mantêm dimensão própria.
+- **Claim evidence**: Fonte canônica e limite de autoria/época que sustentam uma afirmação; rastreabilidade editorial interna não expõe documentação privada no catálogo.
 
 ## Success Criteria *(mandatory)*
 
@@ -168,7 +203,7 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - **SC-007**: Em viewports móveis definidos para validação, nenhuma entrada ou controle se sobrepõe, perde conteúdo essencial ou força rolagem horizontal da página.
 - **SC-008**: O cabeçalho segue o padrão da seção “More Projects” na Home, exibindo eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio; não exibe “PROJECT ARCHIVE” nem a apresentação anterior.
 - **SC-009**: Em 100% das entradas, os chips de tecnologia não aparecem no resumo fechado; após expansão, todos os valores de tecnologia verificados daquele projeto aparecem nos detalhes e continuam pesquisáveis/filtráveis.
-- **SC-010**: Em 100% dos projetos com mídia aprovada e verificada, a entrada recolhida mostra a mídia principal inline no layout responsivo definido; expandir não duplica essa mídia; nenhuma fonte sem provenance/autorização verificadas é exibida.
+- **SC-010**: Em 100% dos projetos com mídia elegível, a entrada recolhida mostra a mídia principal inline no layout responsivo definido e expandir não duplica essa mídia. Todas as fontes pertencem à allowlist histórica autorizada pelo usuário ou possuem documentação própria; nenhuma fonte nova é introduzida sem verificação. A evidência distingue autorização de reutilização e comprovação de direitos.
 - **SC-011**: Todas as fronteiras entre entradas do catálogo usam o mesmo tratamento de divisor e espaçamento definido pelo padrão de estilo.
 - **SC-012**: Context e Technology permitem busca de opções e seleção múltipla independente; uma consulta digitada somente no campo interno de uma faceta não altera resultados nem contador de projetos.
 - **SC-013**: Quando a busca de opções de uma faceta não encontra valores, o estado vazio aparece dentro daquele menu; os critérios de projeto e sua contagem permanecem inalterados.
@@ -177,8 +212,13 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 
 - **SC-016**: Em todas as entradas com mídia principal aprovada, ela está disponível antes de expandir; desktop apresenta mídia à esquerda e identidade/descrição à direita, celular apresenta mídia acima, sem rolagem horizontal. Ícones aprovados seguem a referência anterior; entradas sem mídia ou ícone não reservam áreas vazias.
 - **SC-017**: Em todas as entradas, contribuição, contexto, período, tipo de produto, tecnologias e CTAs disponíveis aparecem nos detalhes, não na entrada recolhida; nenhuma expansão repete a mídia principal ou o mesmo resumo sem conteúdo adicional.
-- **SC-018**: Nos cenários de GIF distante, aproximação, carregamento lento, falha, movimento reduzido inicial/dinâmico e scripts indisponíveis, a alternativa estática correta permanece disponível até a animação estar pronta e autorizada a tocar; quando a detecção de proximidade estiver disponível, nenhum autoplay distante é solicitado antes da faixa de aproximação. Quando esse recurso estiver indisponível, preservar o comportamento existente de autoplay, respeitando movimento reduzido e os controles de parada. Pausa/parada permanece operável por teclado e toque.
+- **SC-018**: Nos cenários de GIF distante, aproximação, carregamento lento, falha, movimento reduzido inicial/dinâmico e scripts indisponíveis, a alternativa estática correta permanece disponível até a animação estar pronta e autorizada a tocar; com detecção de proximidade, nenhum autoplay distante é solicitado antes da faixa existente. Sem esse recurso, preservar fallback de autoplay existente respeitando movimento reduzido. /projects/ não apresenta Stop/Play, conforme decisão do usuário; outros usos preservam seus controles. Esse resultado não comprova conformidade completa do movimento automático contínuo.
 - **SC-019**: Comparação do cabeçalho antes/depois confirma entrelinha de 24px, tipografia e espaçamentos aprovados preservados. Matriz de regressão de busca/facetas, contagem, deep links, quatro cases e expansão independente mantém os resultados anteriores.
+- **SC-020**: Em 100% das entradas revisadas com contribuição comprovada, os detalhes apresentam Selected contributions com atuação individual identificável; não há três blocos obrigatórios separados Product/Contribution/Engineering focus. Entradas sem contribuição comprovada não exibem seção vazia ou autoria inferida.
+- **SC-021**: Em revisão editorial de todas as entradas alteradas, cada afirmação de autoria, decisão, período e resultado corresponde a uma fonte e ao seu limite documentado; nenhuma métrica, CTA ou responsabilidade integral é acrescentada sem suporte. Afirmações idênticas sobre a mesma atuação não se repetem entre descrição, parágrafo e destaques sem acrescentar informação.
+- **SC-022**: Todos os fatos disponíveis usam seus significados definidos em FR-035; Type não lista stack e Context não repete Role. Casos com dados ausentes, contribuição limitada, sem mídia/pôster/CTA/resultado permanecem legíveis sem campos ou grupos vazios.
+- **SC-023**: Na matriz de regressão, termos representativos exclusivos dos destaques públicos encontram o projeto correto e atualizam a contagem; notas privadas e rascunhos não publicados não geram correspondência. Todos os quatro destinos de case e os deep links existentes continuam associados aos mesmos projetos.
+- **SC-024**: Em desktop e celular, expandir mantém identidade/descrição e o controle associados ao projeto e apresenta detalhes abaixo da composição inicial, sem corte, sobreposição ou rolagem horizontal. Teclado, leitor de tela e ausência de scripts permitem acessar todo conteúdo adicional e os links. Cabeçalho e larguras de texto aprovados não sofrem alteração por este complemento.
 ## Assumptions
 
 - O arquivo atual contém 19 registros publicados; o total exibido deve acompanhar o catálogo real após inclusões ou remoções futuras, em vez de permanecer fixo em 19.
@@ -192,13 +232,15 @@ Como pessoa que navega por teclado, leitor de tela, toque ou com movimento reduz
 - Os rótulos Search for, Context e Technology aparecem acima de seus respectivos controles; a interação das facetas mantém no máximo um menu aberto e preserva seleções ao alternar.
 - Mídia principal verificada aparece à esquerda da identidade/descrição da entrada recolhida no desktop e acima delas no celular; detalhes adicionais ficam junto à entrada. Esta decisão substitui a localização anterior da mídia apenas nos detalhes, preservada como histórico na seção Clarifications. A revisão visual continua necessária conforme a constituição.
 - A feature não cria novos estudos de caso, conteúdo biográfico, claims de impacto, mídia, autorização de uso ou integração de analytics.
-- A feature não inclui estudo de usabilidade com participantes nem comparação antes/depois; a validação desta etapa usa os critérios funcionais, de acessibilidade e responsividade SC-001–SC-019.
+- A feature não inclui estudo de usabilidade com participantes nem comparação antes/depois; a validação desta etapa usa os critérios funcionais, editoriais, de acessibilidade e responsividade SC-001–SC-024. O método de comparação com participantes em docs/projects-catalog-hiring-review.md permanece pesquisa futura, não gate de implementação nem promessa de ganho de contratação.
 - Esta feature agora ocupa o número 006. A hipótese anterior de ficha única e faixa horizontal foi substituída pelo catálogo compacto com busca, filtros e detalhes expansíveis descrito nesta spec.
 - Os resultados da auditoria independente e as decisões atuais do inventário foram consultados para fundamentar a abordagem. O registro mais antigo do inventário que recomenda navegação por âncoras sem filtros antecede este pedido explícito de busca e facetas; este escopo mais recente prevalece para esta feature, sem reescrever o histórico.
 - Qualquer atualização de dados ou componente compartilhado será limitada ao necessário para a descoberta do arquivo e preservará outras seções/cases bloqueados para mudanças.
 
 
 ## Complemento de apresentação — 2026-10-05
+
+**Registro histórico:** esta seção documenta inspeções e decisões anteriores. Para a hierarquia editorial, o complemento Selected contributions ao final e FR-020/FR-026/FR-032–FR-037 prevalecem. Referências a lista de mídia vazia, Project details ou mídia de 220px descrevem estados anteriores, não a configuração atual; a largura aprovada posteriormente é 300px. A confirmação posterior de reaproveitamento e a remoção de Stop/Play continuam válidas. Esta revisão editorial não reabre essas decisões nem declara concluída sua validação histórica.
 
 Este pedido integra a feature 006 e prevalece sobre os requisitos anteriores de localização da mídia e de metadados na entrada recolhida. As respostas anteriores em Clarifications são registro histórico; a permissão de várias entradas expandidas continua válida, distinta da regra de um único menu de faceta aberto.
 
@@ -224,3 +266,45 @@ O usuário confirmou nesta conversa o reaproveitamento dos pôsteres de identida
 ### Ajuste visual solicitado — 2026-10-05
 
 Por instrução explícita do usuário, retirar o botão Stop/Play das mídias nas entradas do catálogo e compactar suas alturas. Essa decisão substitui para /projects/ a exigência anterior de controle visível de pausa, mantendo autoplay, fallback e preferência de movimento reduzido existentes; outros usos do componente continuam com seus controles. Registrar a divergência com Constituição IV e FR-014/SC-018 (controle de movimento), sem afirmar conformidade completa. Entradas têm altura flexível, sem corte de texto; mídia principal limitada a 220px de largura e padding vertical 12px/14px, preservando o cabeçalho aprovado.
+
+### Detalhes abaixo da composição inicial — 2026-10-05
+
+Por revisão do usuário, o controle passa a More details (+ recolhido, − expandido). A composição inicial conserva mídia na coluna 1 e pôster/título/descrição na coluna 2. O disclosure ocupa uma segunda linha completa abaixo de ambas, e seus dados adicionais não ficam limitados à coluna 2. Expansão nativa independente, teclado e comportamento sem scripts preservados. Esta revisão complementa a mesma feature.
+
+## Complemento editorial — Selected contributions — 2026-10-05
+
+### Decisões de especificação e limites
+
+- O pedido atual especifica fatos compactos, Selected contributions, tecnologias/metadados úteis e ações; substitui a obrigação de apresentar Product, Contribution e Engineering focus como blocos separados. O registro da hipótese anterior permanece como histórico, sem autorizar repetição na apresentação nova.
+- O rótulo é Selected contributions. Dois ou três destaques são o alvo quando há evidência suficiente, não uma quota: um destaque ou apenas parágrafo são válidos em registros limitados. Resultados são opcionais.
+- Descrição recolhida explica o produto; o conteúdo adicional de produto permanece apenas quando necessário para compreender a contribuição. A seleção e revisão editorial não se resumem a extrair a primeira frase ou concatenar campos anteriores.
+- A composição inicial, largura de mídia aprovada de 300px, altura flexível, posição do controle, segunda linha de detalhes, largura disponível do texto e cabeçalho aprovado permanecem. Não criar schema ou solução de componente nesta etapa.
+- Reorganização visual não apaga os conceitos factuais de produto, atuação e engenharia. A revisão deve preservar rastreabilidade interna e limitar alterações públicas a /projects/, sem modificar conteúdo compartilhado da Home/cases inadvertidamente.
+- A spec permanece Draft. Checklist documental não comprova aprovação de exemplos, conteúdo publicado, implementação ou resultado de contratação. Não há ambiguidade de apresentação pendente que exija nova pergunta neste pedido.
+
+### Fontes consultadas e prioridade factual
+
+- [Estudo local](../../docs/projects-catalog-hiring-review.md), `src/components/ProjectRecord.astro`, `src/data/projects.ts`, estilos atuais, constituição e registros `docs/stage-10-content-register.md` / `docs/repository-evidence-pass.md`.
+- [Portfólio — Site pessoal](https://app.notion.com/p/3e5761878dbd81be92a1f751cbe38702): apresentação pública curada, atuação explícita, desafio/implementação/evidência, sem publicar o workspace inteiro. Sua proibição antiga de uma página Archive é anterior ao pedido de /projects/ e não substitui o escopo atual.
+- [Portfolio Project Inventory](https://app.notion.com/p/3e5761878dbd81789220e79c8143bffb): densidade proporcional à evidência, cases preservados e referências às fontes por projeto. Agrupamentos e decisões antigas de navegação não prevalecem sobre busca/facetas desta feature.
+- [Pathless — Project Source of Truth](https://app.notion.com/p/3e8761878dbd8175af5dc8691940b02c): atuação comprovada em scanner/HUD, assistência e integração de missão; baseline de calamidade e montagem de cena possuem limites de colaboração. Parte da evidência é posterior ao prazo; não afirmar que tudo estava no binário submetido. Esta fonte atualiza a antiga pendência de ownership no registro local de Stage 10.
+- [Ello 2.0 — Project Source of Truth](https://app.notion.com/p/3e9761878dbd81f7b009cf2af87e9370): trabalho Flutter/Python de Sep–Nov 2025, distinto de Read With Ello; não atribuir ML/speech, toda plataforma/backend ou release ownership. Atualiza a classificação antiga de continuação não distinta no registro local de auditoria.
+- [Read With Ello — Project Source of Truth](https://app.notion.com/p/3e9761878dbd810fb178c40c91cf724d): contribuição Unity/client; relação entre história versionada e release público permanece qualificada, sem autoria de backend ou speech.
+- [Wallace’s Quest — Project Source of Truth](https://app.notion.com/p/3ea761878dbd817d8375cf872af8114a): distinguir combate de 2020, módulos de 2021 e revisita/migração de 2026; não afirmar combate atual utilizável, optimalidade de A* ou performance medida. O período atual no catálogo não representa automaticamente todo esse histórico.
+- Fontes canônicas recentes por projeto prevalecem para suas afirmações sobre notas gerais/históricas. A confirmação de reutilização de mídia pelo usuário permanece registrada, mas não vira comprovação de direitos: Wallace restringe republicação de mídia composta, e as fontes de Ello registram permissões ainda não resolvidas. Este complemento não adiciona nem reautoriza mídias, mantendo explícita a distinção entre configuração aprovada e comprovação factual/documental.
+
+### Conflitos para o próximo planejamento
+
+**Registro histórico da especificação:** a tabela abaixo registra pendências identificadas antes do planejamento. Na rodada seguinte de plan/clarify/tasks, os artefatos foram alinhados; T064–T065 concluídas, T066–T078 pendentes. A tabela não representa o estado atual desses documentos. Implementação/conteúdo público/evidências novas ainda não foram produzidos.
+
+| Artefato | Divergência/pêndencia | Alinhamento necessário |
+| --- | --- | --- |
+| `plan.md` | Resumo e hierarquia ainda citam Project details e grupos separados de engenharia/contribuição. | Incorporar More details, fatos compactos e narrativa única com destaques opcionais, preservando composição e fallback sem scripts. |
+| `tasks.md` | T031/T051 e conclusões anteriores descrevem implementação da apresentação anterior. | Preservar tarefas e evidências históricas; acrescentar trabalho e validação deste complemento sem considerar os requisitos novos cumpridos. |
+| `data-model.md` | detailGroups/detailContent mantêm grupos separados e não definem narrativa/destaques nem semântica compacta revisada. | Planejar representação editorial e rastreabilidade, sem mistura de dimensões ou perda de indexação pública. |
+| `contracts/projects-catalog.md` | Contrato de detalhes mantém Product/contribution/engineering focus como grupos. | Definir nova hierarquia, estados de ausência e preservação da busca, links e expansão. |
+| `research.md` | Decisão anterior de hierarquia/mídia não reflete todo o estado atual. | Incorporar estudo local e fontes canônicas, distinguindo recomendações, decisões e histórico. |
+| `quickstart.md` / `evaluation.md` | Evidências existentes não verificam a nova narrativa, metadados ou indexação dos destaques. | Planejar revisão editorial e regressão responsiva/acessível; não converter estudo futuro com participantes em gate. |
+| Conteúdo atual | Corte automático de product; contexto/função/stack misturados em fatos; três grupos visíveis. Fontes atuais podem qualificar períodos e claims. | Revisar por projeto com fonte canônica antes da publicação; preservar fatos úteis sem inferir autoria ou resultados. |
+
+Os artefatos acima não foram replanejados nesta etapa. A atualização fica limitada à spec existente e ao checklist documental; não altera código, assets, fichas publicadas, Notion, branch ou feature.

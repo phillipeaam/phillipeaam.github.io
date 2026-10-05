@@ -333,3 +333,73 @@ T048 → T049 → T050 → T051 → T052 → T053 (MVP US1). Depois T054 → T05
 | FR-030 | T049, T050, T053, T057, T059 |
 | FR-031 | T048, T052, T053 |
 | SC-001–SC-019 | T053, T055, T058, T060–T063, conforme matriz quickstart |
+
+## Complemento editorial — Selected contributions — 2026-10-05
+
+**Status:** T064–T074 concluídas; T075–T077 com validação parcial registrada e T078 aguardando revisão humana. T001–T063 conservam seu estado histórico e não comprovam os requisitos deste complemento. Plan/data-model/contracts foram alinhados ao desenho vigente. Não iniciar mudanças de código antes de T064–T066 e da resolução dos achados bloqueantes do analyze. Nenhuma nova feature, branch ou suíte de testes está prevista.
+
+### Fase 19 — Preparação documental
+
+- [X] T064 Alinhe `specs/006-projects-catalog/plan.md`, `data-model.md`, `contracts/projects-catalog.md` e `research.md` com FR-020, FR-026 e FR-032–FR-037: narrativa única, fatos compactos, highlights opcionais, projeção exclusiva do catálogo e rastreabilidade. Defina representação e transição dos dados públicos antes de implementar; marque decisões anteriores como históricas, preserve fontes e registre conflitos de mídia sem presumir comprovação de direitos. Executada por pedido explícito de speckit-plan em 2026-10-05; não representa implementação.
+- [X] T065 Atualize `specs/006-projects-catalog/quickstart.md` com matriz editorial e regressão SC-020–SC-024: contribuição extensa/limitada/ausente, campos ausentes, autoria de equipe, época, busca exclusiva de destaques, conteúdo privado excluído, desktop/celular/teclado/leitor de tela/sem scripts. Preserve cenários válidos anteriores, discriminando decisões históricas substituídas. Não adicionar pesquisa com participantes como gate.
+
+### Fase 20 — Fundação de conteúdo
+
+- [X] T066 Revise os 19 registros de `src/data/projects.ts` e suas fontes canônicas citadas em `specs/006-projects-catalog/spec.md`; documente em `specs/006-projects-catalog/evaluation.md` uma matriz por projeto com claims permitidas, limites, metadados disponíveis, trechos relevantes e destino existente. Priorize fontes recentes por projeto sobre registros antigos; não alterar fichas públicas neste levantamento. FR-033–FR-035, SC-021–SC-022, Constituição I.
+- [X] T067 Implemente em `src/data/projects.ts` CatalogEditorialContent, TechnicalHighlight e catalogEditorialById, projeção exclusiva de /projects/ definida em T064, sem mudar texto compartilhado da Home ou cases. Preserve IDs e dimensões distintas; respeite as restrições atuais: “Optional; omitted when not supported.”, “Required; evidence-based.”, “Omit missing fields and empty groups.” e “Zero or more; derive only from explicit `Stack`, `Engine`, or `Tools` metadata in the project record. Do not infer from title, platform labels, arbitrary context, or broad product prose. Render in expanded details, not as chips in the compact entry.” Respeite data-model.md: summary obrigatório/não vazio/evidence-based; contributionNarrative ausente sem atuação comprovada; summary da narrativa uma ou duas frases sem cortar limites essenciais; highlights zero a três distintos com title/body não vazios; outcome/additionalContext opcionais documentados. Nenhum source privado no DOM. FR-002–FR-003, FR-032–FR-037.
+
+### Fase 21 — US5 (P1): atuação e profundidade técnica
+
+**Independent Test:** em entradas profissional, independente e limitada/sem contribuição, identificar atuação e mecanismos conforme fonte; fatos distintos, sem quota artificial, autoria inferida ou repetição.
+
+- [X] T068 [US5] Redija a narrativa pública exclusiva do catálogo em `src/data/projects.ts` conforme matriz T066 e projeção T067: Selected contributions começa com uma ou duas frases; dois ou três highlights específicos quando sustentados, um ou nenhum quando limitados. Preserve limites de autoria, equipe, época e release; não publicar automaticamente os exemplos de `docs/projects-catalog-hiring-review.md`. Resultado/métrica opcional e comprovado. FR-032–FR-034, SC-020–SC-021.
+- [X] T069 [US5] Revise fatos compactos exclusivos do catálogo em `src/data/projects.ts`: Role = função/escopo; Context = organização/equipe/circunstância; Type = produto; Period = período; Technology = stack confirmada. Omitir ausentes, retirar função duplicada em Context e stack em Type sem inventar classificações; preservar a faceta workContext e evidências da matriz em `specs/006-projects-catalog/evaluation.md`. FR-003, FR-035, SC-022.
+- [X] T070 [US5] Atualize `src/components/ProjectRecord.astro` para fatos compactos seguidos de Selected contributions e highlights opcionais, tecnologias/metadados úteis, mídia complementar e ações válidas. Remova obrigação de três blocos Product/Contribution/Engineering focus e concatenação automática; contexto adicional só quando necessário. Omitir seção sem atuação comprovada e todos os grupos/CTAs vazios; preservar fontes/destinos e IDs. FR-020, FR-030, FR-032–FR-035, SC-020–SC-022.
+- [X] T071 [US5] Ajuste apenas estilos necessários em `src/styles/global.css` para narrativa e highlights legíveis, rótulo/valor na mesma linha quando couber e quebra natural no celular. Preserve detalhes abaixo das duas colunas, posição de More details, texto sem novos limites de largura, mídia 300px/altura flexível, divisores e cabeçalho/24px/espaçamentos aprovados. Não alterar Home/cases nem controles de mídia. FR-017–FR-018, FR-021, FR-026, FR-031, FR-035, FR-037, SC-024.
+- [X] T072 [US5] Revise todas as entradas alteradas contra T066 e FR-032–FR-035; registre em `specs/006-projects-catalog/evaluation.md` correspondência de fonte e claim, ausência de repetição, estados limitados e omissões. Verifique que copy descreve mecanismo sem atribuir decisão pessoal não comprovada e que cases não foram reproduzidos integralmente. SC-020–SC-022; não marcar como aprovação humana.
+
+### Fase 22 — US1 / US2 / US4 (P1): preservar descoberta e acesso
+
+**Independent Tests:** US1 mantém nomes/descrições reconhecíveis; US2 encontra termos dos destaques com OR/AND e contagem correta; US4 permite ler/expandir sem scripts, por teclado e leitor de tela, com movimento reduzido.
+
+- [X] T073 [US1] Confira entrada recolhida em `src/components/ProjectRecord.astro` e `src/pages/projects/index.astro` após a projeção: produto compreensível, ícone aprovado, mídia e More details na posição existente, nenhum campo vazio ou contribuição profunda na descrição. Registre comparação do cabeçalho/identidade/divisores em `specs/006-projects-catalog/evaluation.md`. FR-001–FR-003, FR-026–FR-031, FR-037; SC-001, SC-008, SC-016–SC-017, SC-019.
+- [X] T074 [US2] Atualize o corpus público em `src/pages/projects/index.astro` e a projeção de `src/data/projects.ts` para incluir títulos/textos de highlights e contexto adicional realmente exibidos, excluindo notas privadas, claims históricas retiradas e drafts não publicados. Preserve normalização, filtros OR/AND, ordem, menus independentes, limpeza, contador e vazio. Registre matriz de correspondências em `specs/006-projects-catalog/evaluation.md`. FR-004–FR-010, FR-023–FR-025, FR-036; SC-002–SC-004, SC-012–SC-015, SC-023.
+- [ ] T075 [US4] Verifique semântica da narrativa, headings/listas, estado e nome de expansão, foco visível, ordem de leitura, teclado/toque/leitor de tela e conteúdo sem JS em `src/components/ProjectRecord.astro`; avalie movimento reduzido/fallback sem redesenhar as mídias. Registre executado/não executado em `specs/006-projects-catalog/evaluation.md`; ajuste somente regressões do complemento. FR-015–FR-017, FR-029–FR-030, FR-037; SC-005–SC-007, SC-024.
+
+### Fase 23 — US3 (P2): links e expansão
+
+**Independent Test:** quatro cases, links externos e hashes continuam corretos; várias entradas abrem/recolhem independentemente e filtros não deixam conteúdo órfão.
+
+- [ ] T076 [US3] Execute cenários de quatro cases/ações válidas, IDs antigos, hash de item filtrado e expansão simultânea em `src/pages/projects/index.astro` / `src/components/ProjectRecord.astro`; preserve detalhe em segunda linha e botão junto à descrição, com fallback nativo sem scripts. Registre em `specs/006-projects-catalog/evaluation.md`; não criar CTAs novos para destinos ausentes. FR-011–FR-012, FR-026, FR-036; SC-009, SC-017, SC-023–SC-024.
+
+### Fase 24 — Validação e revisão humana
+
+- [ ] T077 Execute validação prevista em `specs/006-projects-catalog/quickstart.md` em 320px, 390px, 820px e 1280px, incluindo itens expandidos, texto longo e estados ausentes; execute diff/check/build conforme Constituição VIII e registre somente resultados reais em `specs/006-projects-catalog/evaluation.md`. Consolide SC-001–SC-024, distinguindo histórico, novo, não executado e falha; não afirmar conformidade de mídia se conflitos documentais persistirem.
+- [ ] T078 Apresente as entradas e a matriz editorial para revisão humana e registre somente respostas reais em `specs/006-projects-catalog/evaluation.md`. Atualize estado das tarefas/documentos com evidências efetivas, sem tratar checks como aprovação de publicação/merge/push nem prometer ganho de contratação. Constituição IX, SC-021.
+
+### Dependências, execução e MVP
+
+T064 → T065 → T066 → T067 → T068 → T069 → T070 → T071 → T072. Este é o primeiro incremento editorial US5. Depois T073 → T074 → T075 → T076 → T077 → T078 completam preservação e validação. Não iniciar implementação com desenho pendente ou achados CRITICAL não resolvidos. Pendências antigas T053/T055/T058/T060/T063 continuam visíveis; seus cenários úteis podem ser consolidados na validação nova, sem marcá-las concluídas por inferência.
+
+Sem marcadores [P]: várias tarefas compartilham `src/data/projects.ts`, `ProjectRecord.astro` ou `evaluation.md`. Inspeção de links e leitura independente das fontes podem ocorrer juntas após T071; consolidar registros sequencialmente. Nenhuma delegação ou edição concorrente é necessária.
+
+### Cobertura atual do complemento
+
+| Requisito | Tarefas novas |
+| --- | --- |
+| FR-001–FR-003 | T067, T069, T073 |
+| FR-004–FR-010, FR-023–FR-025 | T074 |
+| FR-011–FR-012 | T076 |
+| FR-013–FR-014, FR-019, FR-028 | T064, T075, T077; preservação, com conflitos herdados sujeitos a analyze |
+| FR-015–FR-018 | T071, T075, T077 |
+| FR-020–FR-022, FR-026–FR-027, FR-029–FR-031 | T070, T071, T073, T075, T076 |
+| FR-032–FR-034 | T066, T068, T070, T072 |
+| FR-035 | T066, T069–T072 |
+| FR-036 | T074, T076 |
+| FR-037 | T067, T071, T073, T075, T077 |
+| SC-001–SC-019 | T073–T077, conforme matriz T065 |
+| SC-020–SC-022 | T066, T068–T072, T078 |
+| SC-023 | T074, T076 |
+| SC-024 | T071, T075–T077 |
+
+**Resumo:** 15 tarefas novas (T064–T078), 11 concluídas e 4 pendentes: preparação/fundação 4; US5 5; US1 1; US2 1; US4 1; US3 1; validação/revisão 2. Planejamento alinhado por solicitação explícita; implementação editorial concluída; validação complementar e revisão humana permanecem pendentes. Limites factuais de mídia são registrados, não certificados como resolvidos.

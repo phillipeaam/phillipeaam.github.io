@@ -1,5 +1,7 @@
 # Research: Projects Catalog
 
+**Current revision:** decisions in the Selected contributions addendum below supersede historical hierarchy/control statements in this document.
+
 ## 1. Client-side search in a static Astro archive
 
 **Decision**: Keep project data and all catalog entries in Astro-generated HTML, then use a small native client script to enhance query, facets, result summary, clear action, and empty state. Do not add an API, server rendering adapter, external search service, framework hydration, or dependency for 19 local records.
@@ -109,3 +111,17 @@ Revisão de pesquisa local confirmou: PublicProjectCatalogEntry já retém ident
 
 ### Decisão posterior de reutilização (2026-10-05)
 O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
+
+## Selected contributions — decisões atuais, 2026-10-05
+
+**Decision:** usar projeção editorial exclusiva do catálogo (catalogEditorialById), narrativa única e fatos semanticamente distintos; não modificar os campos compartilhados da Home/cases.
+**Rationale:** evita regressão editorial em consumidores existentes e torna atuação/mecanismos claros sem concatenar três parágrafos repetitivos. Fontes: docs/projects-catalog-hiring-review.md e páginas canônicas de Notion relacionadas na spec. Pesquisa já consultada; não foi coletada evidência nova de contratação.
+**Alternatives considered:** modificar globalmente product/contribution (risco para Home/cases); concatenar campos (mantém repetição); manter três blocos obrigatórios (não atende pedido); exigir três highlights/métricas (fabricaria conteúdo em registros limitados).
+
+**Decision:** reutilizar fontes históricas da allowlist conforme autorização do usuário, sem chamar isso de prova de direitos; manter ausência de Stop/Play apenas no catálogo e preservar fallback/reduced motion.
+**Rationale:** alinha documentos às decisões vigentes sem inventar autorização de terceiros ou declarar conformidade integral. Constituição IV atual exige acesso, fallback e redução de movimento; não contém uma exigência textual específica de botão Stop/Play. Isso não equivale a uma auditoria de conformidade da animação contínua.
+**Alternatives considered:** recolocar controle sem pedido (reverte decisão); esconder fontes históricas automaticamente (reverte reaproveitamento); certificar direitos/acessibilidade (evidência insuficiente). Novas fontes continuam condicionadas à documentação.
+
+**Decision:** um roteiro único de validação referencia vários critérios equivalentes, preservando IDs SC-001–SC-024.
+**Rationale:** reduz duplicação de execução sem perder rastreabilidade. Comparação com participantes permanece pesquisa futura; não é gate nem promessa de aumento de contratação.
+**Alternatives considered:** repetir cenários por ID; excluir IDs históricos sem registro. Nenhum desconhecido técnico ou pergunta de produto permanece para este desenho.
