@@ -6,7 +6,7 @@ import Icon from '../components/Icon.astro';
 import SupportingProject from '../components/SupportingProject.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
-import { featuredProjects, homeSupportingProjects } from '../data/projects';
+import { homeFeaturedProjects, homeSupportingProjects } from '../data/projects';
 import { experience } from '../data/experience';
 const homePath = import.meta.env.BASE_URL;
 const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
@@ -27,7 +27,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 
   <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
     <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">WORK, IN DEPTH</p><h2 id="featured-title">Selected work</h2></div><p><span class="section-support-line">Commercial gameplay, independent combat systems, and</span> <span class="section-support-line">production Unity engineering.</span></p></header>
-    <div class="featured-list">{featuredProjects.map((project, index) => <FeaturedProject project={project} index={index + 1} reverse={index % 2 === 1} />)}</div>
+    <div class="featured-list">{homeFeaturedProjects.map((project, index) => <FeaturedProject project={project} reverse={index % 2 === 1} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
@@ -43,7 +43,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
       <a class="section-footer-action" href={`${homePath}projects/`}><span class="section-footer-action__label">See all projects</span><span class="section-footer-action__icon" aria-hidden="true">→</span></a>
     </div>
     <div class="supporting-grid">
-      {homeSupportingProjects.map((item) => <SupportingProject {...item} simple />)}
+      {homeSupportingProjects.map((project) => <SupportingProject project={project} simple />)}
     </div>
   </section>
 

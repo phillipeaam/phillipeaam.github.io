@@ -14,13 +14,13 @@ const { project, media, summary, statement, links } = Astro.props;
         alt={media.alt}
         previewAlt={media.previewAlt}
         caption={media.caption}
-        autoplayPreview={media.autoplayPreview}
         posterWidth={media.posterWidth}
         posterHeight={media.posterHeight}
         posterFit={media.posterFit}
+        autoplayPreview={media.autoplayPreview}
       />
     : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
-  {links && <div class="case-hero__actions">{links.map((link: { label: string; href: string }) => <a class="text-link" href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
+  {links?.length > 0 && <div class="case-hero__actions">{links.map((link: { label: string; href: string }) => <a class="text-link" href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
 </header>
 
 <style>

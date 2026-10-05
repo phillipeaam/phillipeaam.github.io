@@ -4,24 +4,40 @@ import CaseHero from '../../components/CaseHero.astro';
 import EngineeringStory from '../../components/EngineeringStory.astro';
 import NextProject from '../../components/NextProject.astro';
 import WallaceWeaponAreaDiagram from '../../components/WallaceWeaponAreaDiagram.astro';
-import { caseStudies } from '../../data/cases';
+import { getProjectFact, getProjectRecord, hasPublishableCaseStudy, isPortfolioIncluded, projectRecords } from '../../data/projects';
 
 export function getStaticPaths() {
-  return caseStudies.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+  return projectRecords.flatMap((project) => {
+    if (!isPortfolioIncluded(project) || !hasPublishableCaseStudy(project)) return [];
+    const item = project.caseStudy;
+    return { params: { slug: item.slug }, props: { item, project } };
+  });
 }
 
-const { item } = Astro.props;
+const { item, project } = Astro.props;
+const canonicalHeroMedia = project.media?.[0];
+const heroMedia = canonicalHeroMedia
+  ? { ...canonicalHeroMedia, ...item.heroMediaPresentation }
+  : undefined;
+const heroSummary = item.heroSummaryFields?.map((label: string) => getProjectFact(project, label)).filter(Boolean).join(' · ');
+const glance = (item.glanceFields ?? [])
+  .map((label: string) => ({ label, value: getProjectFact(project, label) }))
+  .filter((fact): fact is { label: string; value: string } => Boolean(fact.value));
+const nextProjectRecord = item.nextProjectId ? getProjectRecord(item.nextProjectId) : undefined;
+const nextProject = nextProjectRecord && isPortfolioIncluded(nextProjectRecord) && hasPublishableCaseStudy(nextProjectRecord)
+  ? { ...nextProjectRecord, slug: nextProjectRecord.caseStudy.slug }
+  : undefined;
 ---
-<BaseLayout title={`${item.project.name} — Gameplay Engineering Case Study | Phillipe Augusto`} description={item.metaDescription} caseNavigation={true}>
-  <div class="case-page content-width" data-kind={item.project.kind}>
-    <CaseHero project={item.project} media={item.media} summary={item.heroSummary} statement={item.heroStatement} links={item.heroLinks ? item.evidenceLinks : undefined} />
-    <section class="case-glance" aria-labelledby="glance-title"><h2 id="glance-title" class="eyebrow">AT A GLANCE</h2><dl>{item.glance.map((fact: { label: string; value: string }) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl></section>
-    <section class="case-context"><div><p class="eyebrow">{item.scopeLabel}</p><h2>Project context</h2><p>{item.scope}</p></div><div><p class="eyebrow">{item.ownershipLabel}</p><h2>{item.contributionHeading ?? 'Ownership'}</h2><p>{item.ownership}</p></div></section>
-    <section class="case-selected-stories" aria-labelledby="selected-stories-title"><h2 id="selected-stories-title">Selected Engineering Stories</h2><p>{item.selectedStories}</p></section>
-    <div class="case-stories">{item.stories.map((story: any, index: number) => <EngineeringStory story={story} index={index + 1} kind={item.project.kind} />)}</div>
+<BaseLayout title={`${project.name} — Gameplay Engineering Case Study | Phillipe Augusto`} description={item.metaDescription ?? project.summary} caseNavigation={true}>
+  <div class="case-page content-width" data-kind={project.kind}>
+    <CaseHero project={project} media={heroMedia} summary={heroSummary} statement={item.heroStatement} links={item.heroLinks ? item.evidenceLinks : undefined} />
+    {glance.length > 0 && <section class="case-glance" aria-labelledby="glance-title"><h2 id="glance-title" class="eyebrow">AT A GLANCE</h2><dl>{glance.map((fact: { label: string; value: string }) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl></section>}
+    <section class="case-context"><div>{item.scopeLabel && <p class="eyebrow">{item.scopeLabel}</p>}<h2>Project context</h2><p>{project.summary}</p></div>{(project.contribution || item.caseBoundary) && <div>{item.ownershipLabel && <p class="eyebrow">{item.ownershipLabel}</p>}<h2>{item.contributionHeading ?? 'Ownership'}</h2>{project.contribution && <p>{project.contribution}</p>}{item.caseBoundary && <p>{item.caseBoundary}</p>}</div>}</section>
+    {item.selectedStories && <section class="case-selected-stories" aria-labelledby="selected-stories-title"><h2 id="selected-stories-title">Selected Engineering Stories</h2><p>{item.selectedStories}</p></section>}
+    <div class="case-stories">{item.stories.map((story: any, index: number) => <EngineeringStory story={story} index={index + 1} kind={project.kind} />)}</div>
     {item.supporting && <section class="case-supporting" aria-labelledby="case-supporting-title"><p class="eyebrow">SUPPORTING ENGINEERING WORK</p><h2 id="case-supporting-title">{item.supporting.title}</h2><p>{item.supporting.text}</p>{item.supporting.visual === 'weapon-area' && <WallaceWeaponAreaDiagram />}</section>}
-    <section class="quiet-section"><p class="eyebrow">REFLECTION</p><h2>What I would carry forward</h2><p>{item.reflection}</p></section>
-    <NextProject project={caseStudies.find((candidate) => candidate.slug === item.nextSlug)?.project ?? caseStudies[0].project} />
+    {item.reflection && <section class="quiet-section"><p class="eyebrow">REFLECTION</p><h2>What I would carry forward</h2><p>{item.reflection}</p></section>}
+    {nextProject && <NextProject project={nextProject} />}
   </div>
 </BaseLayout>
 

@@ -1,10 +1,11 @@
 ---
-import type { Story } from '../data/cases';
+import type { Story } from '../data/projects';
 import NarrativeFlowDiagram from './NarrativeFlowDiagram.astro';
 import WallaceGridSearchDiagram from './WallaceGridSearchDiagram.astro';
 
 const { story, index } = Astro.props as { story: Story; index: number };
 const narrative = story.narrative;
+const narrativeBlocks = narrative?.blocks ?? [];
 if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative content');
 ---
 <section class="engineering-story narrative-story" aria-labelledby={`story-${index}`}>
@@ -14,15 +15,15 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
     <p class="narrative-story__takeaway">{story.framing}</p>
     <p class="narrative-story__intro">{narrative.intro}</p>
   </header>
-  <div class:list={['narrative-story__content', narrative.media && 'narrative-story__content--with-media', narrative.layout === 'editorial' && 'narrative-story__content--editorial']}>
-    <div class="narrative-story__blocks">
-      {narrative.blocks.map((block) => (
+  {(narrativeBlocks.length || narrative.media) && <div class:list={['narrative-story__content', narrative.media && 'narrative-story__content--with-media', narrative.layout === 'editorial' && 'narrative-story__content--editorial']}>
+    {narrativeBlocks.length > 0 && <div class="narrative-story__blocks">
+      {narrativeBlocks.map((block) => (
         <section class="narrative-story__block">
           <h3>{block.label}</h3>
           <p>{block.text}</p>
         </section>
       ))}
-    </div>
+    </div>}
     {narrative.media && <div class="narrative-story__media">
       <figure class:list={['narrative-story__figure', narrative.media.variant === 'portrait' && 'narrative-story__figure--portrait']} style={narrative.media.maxWidth ? `--narrative-media-max-width: ${narrative.media.maxWidth}px` : undefined}>
         <picture>
@@ -32,8 +33,8 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
         <figcaption class="media-caption">{narrative.media.caption}</figcaption>
       </figure>
     </div>}
-  </div>
-  {narrative.visual === 'grid-search' ? <WallaceGridSearchDiagram /> : <NarrativeFlowDiagram diagram={narrative.diagram} />}
+  </div>}
+  {narrative.visual === 'grid-search' ? <WallaceGridSearchDiagram /> : narrative.diagram && <NarrativeFlowDiagram diagram={narrative.diagram} />}
   {narrative.technical && <details class="narrative-story__technical">
     <summary>{narrative.technical.label}<span aria-hidden="true">+</span></summary>
     <div>

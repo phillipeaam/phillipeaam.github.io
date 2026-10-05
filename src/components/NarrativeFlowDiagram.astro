@@ -1,9 +1,9 @@
 ---
-import type { NarrativeDiagram } from '../data/cases';
+import type { NarrativeDiagram } from '../data/projects';
 
-const { diagram } = Astro.props as { diagram: NarrativeDiagram };
+const { diagram } = Astro.props as { diagram?: NarrativeDiagram };
 ---
-<figure class="narrative-flow" aria-label={diagram.title}>
+{diagram && <figure class="narrative-flow" aria-label={diagram.title}>
   <figcaption class="narrative-flow__heading">
     <span class="eyebrow">SYSTEM MODEL</span>
     <strong>{diagram.title}</strong>
@@ -31,7 +31,7 @@ const { diagram } = Astro.props as { diagram: NarrativeDiagram };
     {diagram.notes.map((note) => <p><strong>{note.label}</strong><span>{note.text}</span></p>)}
   </div>}
   <p class="narrative-flow__caption">{diagram.caption}</p>
-</figure>
+</figure>}
 
 <style>
   .narrative-flow { margin: 0; padding: clamp(18px, 3vw, 32px); border: 1px solid color-mix(in srgb, var(--project-accent) 28%, var(--line)); border-radius: 4px; background: var(--media); }

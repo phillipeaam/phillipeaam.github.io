@@ -6,8 +6,9 @@ const { item } = Astro.props as { item: Experience };
 const homePath = import.meta.env.BASE_URL;
 const selectedWork = item.selectedWork.map((reference) => {
   const project = resolveExperienceWork(reference.projectId, homePath);
-  return { ...project, label: reference.label ?? project.name };
-});
+  const href = project.caseStudy ? project.href : undefined;
+  return { href, label: project.included ? project.name : reference.label ?? project.name };
+}).filter((reference) => reference.label);
 ---
 <article class="experience-entry">
   <header class="experience-entry-header">
@@ -29,6 +30,6 @@ const selectedWork = item.selectedWork.map((reference) => {
     <p class="experience-context">{item.context}</p>
     <p class="experience-subheading">Selected highlights</p>
     <ul class="experience-highlights">{item.highlights.map((highlight) => <li>{highlight}</li>)}</ul>
-    {selectedWork.length > 0 && <nav class="experience-selected-work" aria-label={`Selected work at ${item.organization}`}><span class="experience-subheading">Selected work</span><ul class="experience-work-list">{selectedWork.map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul></nav>}
+    {selectedWork.length > 0 && <nav class="experience-selected-work" aria-label={`Selected work at ${item.organization}`}><span class="experience-subheading">Selected work</span><ul class="experience-work-list">{selectedWork.map((link) => <li>{link.href ? <a href={link.href}>{link.label}</a> : link.label}</li>)}</ul></nav>}
   </div>
 </article>

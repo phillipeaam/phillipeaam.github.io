@@ -99,6 +99,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .featured-list { display: grid; gap: var(--s-24); }
 .featured-project { display: grid; grid-template-areas: 'media copy'; grid-template-columns: 1.42fr 1fr; gap: var(--s-12); align-items: center; }
 .featured-project__media-link { grid-area: media; display: block; min-width: 0; color: inherit; }
+.featured-project > .project-media-preview { grid-area: media; min-width: 0; }
 .featured-project__media-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .featured-project.is-reversed { grid-template-areas: 'copy media'; grid-template-columns: 1fr 1.42fr; }
 .featured-copy { grid-area: copy; padding-block: 8px; }
@@ -397,7 +398,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .archive-record--rich .archive-record__details { display: flex; flex-direction: column; gap: 0; }
 .archive-record--rich .archive-record__header { display: flex; grid-column: auto; margin-bottom: var(--project-rich-title-gap); }
 .archive-record--rich .archive-record__identity { display: flex; align-items: center; gap: 14px; min-width: 0; }
-.archive-record--rich .archive-record__identity-image { flex: none; width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 10px; object-fit: cover; }
+.archive-record--rich .archive-record__title-icon { flex: none; width: 52px; height: 52px; border: 1px solid var(--line); border-radius: 10px; object-fit: cover; }
 .archive-record--rich .archive-record__header h3 { margin-bottom: 0; }
 .archive-record--rich .archive-record__specs { grid-column: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--project-rich-facts-gap) 20px; margin-bottom: var(--project-rich-facts-gap); }
 .archive-record--rich .archive-record__specs > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -449,7 +450,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
   .archive-record--rich .archive-record__details { display: contents; }
   .archive-record--rich .archive-record__header { order: 1; }
   .archive-record--rich .archive-record__header { margin-bottom: 17px; }
-  .archive-record--rich .archive-record__identity-image { width: 41px; height: 41px; border-radius: 9px; }
+  .archive-record--rich .archive-record__title-icon { width: 41px; height: 41px; border-radius: 9px; }
   .archive-record--rich .archive-record__media-column { order: 2; }
   .archive-record--rich .archive-record__specs { order: 3; }
   .archive-record--rich .archive-record__body { order: 4; }

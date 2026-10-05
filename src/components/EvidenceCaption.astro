@@ -1,7 +1,7 @@
 ---
 const { behavior, contribution } = Astro.props;
 ---
-<div class="evidence-caption">
-  <p><span>VISIBLE BEHAVIOR</span>{behavior}</p>
-  <p><span>CONTRIBUTION CONTEXT</span>{contribution}</p>
-</div>
+{(behavior || contribution) && <div class="evidence-caption">
+  {behavior && <p><span>VISIBLE BEHAVIOR</span>{behavior}</p>}
+  {contribution && <p><span>CONTRIBUTION CONTEXT</span>{contribution}</p>}
+</div>}
