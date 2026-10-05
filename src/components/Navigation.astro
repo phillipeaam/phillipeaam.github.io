@@ -13,10 +13,6 @@ const isHome = Astro.url.pathname === homePath;
 const { contextual = false } = Astro.props;
 const contextualItems = [
   { id: 'home', label: '← Back', href: homePath, className: 'nav-link--return' },
-  { id: 'professional-game', label: 'Professional', href: '#professional-game' },
-  { id: 'professional-product', label: 'Software', href: '#professional-product' },
-  { id: 'independent-game', label: 'Independent', href: '#independent-game' },
-  { id: 'study-archive', label: 'Study', href: '#study-archive' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 const caseItems = [

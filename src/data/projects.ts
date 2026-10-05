@@ -3,6 +3,7 @@ export type ProjectCategory = 'professional-game' | 'professional-product' | 'in
 export type ProjectMedia = {
   type: 'image' | 'gif' | 'video' | 'youtube';
   src: string;
+  posterSrc?: string;
   previewSrc?: string;
   alt?: string;
   previewAlt?: string;
@@ -15,6 +16,8 @@ export type ProjectMedia = {
 };
 
 export type ProjectAction = { href: string; label: string };
+
+export type ProjectWorkContext = 'professional' | 'independent' | 'study';
 
 export type Project = {
   slug: string;
@@ -228,6 +231,8 @@ export type ProjectInventoryEntry = {
   anchorId?: string;
   name: string;
   archiveCategory: ProjectCategory;
+  workContext?: ProjectWorkContext;
+  technologies?: string[];
   period?: string;
   type: string;
   product: string;
@@ -246,6 +251,27 @@ export type ProjectInventoryEntry = {
   archivePresentation?: 'rich' | 'standard' | 'compact';
   specs?: { label: string; value: string }[];
 };
+
+export type PublicProjectCatalogEntry = ProjectInventoryEntry & {
+  workContext: ProjectWorkContext;
+  technologies: string[];
+};
+
+const workContextByCategory: Record<ProjectCategory, ProjectWorkContext> = {
+  'professional-game': 'professional',
+  'professional-product': 'professional',
+  'independent-game': 'independent',
+  'study-archive': 'study',
+};
+
+const verifiedTechnologySpecLabels = new Set(['Stack', 'Engine', 'Tools']);
+
+const extractVerifiedTechnologies = (specs?: ProjectInventoryEntry['specs']): string[] =>
+  [...new Set((specs ?? [])
+    .filter(({ label }) => verifiedTechnologySpecLabels.has(label))
+    .flatMap(({ value }) => value.split(/\s*(?:·|\/)\s*/))
+    .map((technology) => technology.trim())
+    .filter(Boolean))];
 
 const deferredPublicArchiveIds = new Set(['radwasteland-echoes', 'angry-world', 'survive-and-escape']);
 const publicArchiveEntries: ProjectInventoryEntry[] = deferredOtherWork
@@ -328,7 +354,7 @@ const archiveDetails: Record<string, Partial<Pick<ProjectInventoryEntry, 'archiv
   'morada-verde-inventory-flow': { archivePresentation: 'compact' },
 };
 
-export const projectInventory: ProjectInventoryEntry[] = [
+export const projectInventory: PublicProjectCatalogEntry[] = [
   ...featuredProjects.map((project) => ({
     id: project.slug,
     name: project.name,
@@ -344,7 +370,14 @@ export const projectInventory: ProjectInventoryEntry[] = [
   })),
   ...otherWork,
   ...publicArchiveEntries,
-].map((project) => ({ ...project, ...archiveDetails[project.id] }));
+].map((project) => {
+  const entry = { ...project, ...archiveDetails[project.id] };
+  return {
+    ...entry,
+    workContext: workContextByCategory[entry.archiveCategory],
+    technologies: extractVerifiedTechnologies(entry.specs),
+  };
+});
 
 export const homeSupportingProjects = projectInventory
   .filter((project) => project.showOnHome)

@@ -1,0 +1,79 @@
+# Data Model: Projects Catalog
+
+This model describes the public archive and its browser interaction state. It does not prescribe a database or implementation library.
+
+## Project entry
+
+One public record rendered in the archive. Its underlying editorial source remains `src/data/projects.ts`.
+
+| Field | Meaning | Validation / behavior |
+|---|---|---|
+| `id` | Stable project identity and deep-link anchor | Unique among rendered archive records; preserve current IDs and aliases. |
+| `name` | Public project name | Required, non-empty. |
+| `productSummary` | Concise product description visible in the compact entry | Required; evidence-based. Existing `product` field is the current source. |
+| `workContext` | Professional, independent, or study context used by the Context facet | Derived from the verified archive classification; distinct from the existing free-form `context` description and product type. |
+| `context` | Existing descriptive context text, where present | Searchable public detail only; never use arbitrary prose as a Context facet value. |
+| `contribution` | Verified individual contribution | Optional; omitted when not supported. |
+| `period` | Verified time period | Optional; render only if present and confirmed. |
+| `technologies[]` | Verified technology/tool values for the Technology facet and detail chips | Zero or more; derive only from explicit `Stack`, `Engine`, or `Tools` metadata in the project record. Do not infer from title, platform labels, arbitrary context, or broad product prose. Render in expanded details, not as chips in the compact entry. |
+| `productType` | Product nature (for example, game or software/product) | Distinct from context and technology; not automatically a facet in this feature. |
+| `editorialGroup` | Optional existing display group/order | Must not imply unsupported technology or employment context. |
+| `searchText` | Normalized public searchable corpus derived from name, summary, contribution, period, context, technologies, and other displayed public metadata/details | Derived, not separately authored; exclude deferred/internal data. Normalize case, trim, and diacritics consistently. |
+| `details` | Optional expanded project content such as longer description, engineering focus, specs and media | Belongs to the same project entry; no invented content. |
+| `media[]` | Approved image/video/GIF metadata | Optional. When provided and provenance/authorization are supported by canonical records, render inline within expanded details. For animation, show an accurate static alternative and accessible play/pause behavior; do not reduce the media to an outbound GIF link. Omit unverified sources rather than using placeholders as evidence. |
+| `detailGroups` | Structured groups for contribution, engineering focus, context, metadata, technologies, approved media, and actions | Derived from available verified record fields. Omit empty groups; use consistent labels and order. |
+| `caseStudySlug` | Route key for one of the existing case studies | Optional; if present, resolves to a valid existing case route. |
+| `actions[]` | Existing external action labels and destinations | Optional; include only valid destinations. |
+
+### Current work-context mapping to verify during implementation
+
+- `professional-game` and `professional-product` → `Professional` context.
+- `independent-game` → `Independent` context.
+- `study-archive` → `Study` context.
+
+This mapping describes work context only. It does not infer `productType` or technology. Confirm any ambiguous records against project evidence before assigning filter values. Current group names must not be used as technology values.
+
+## Search query
+
+| Field | Meaning | Validation / behavior |
+|---|---|---|
+| `rawText` | Current user-entered text | Empty or whitespace-only query imposes no restriction. |
+| `normalizedText` | Trimmed, case-folded, diacritic-insensitive query | Derived identically to each record's searchable corpus. |
+
+Matching is substring-based against the normalized public searchable corpus. A project matches if the entire normalized query is found in that corpus.
+
+## Facet selection
+
+| Field | Meaning | Validation / behavior |
+|---|---|---|
+| `contexts[]` | Selected context values in the Context disclosure filter | Empty means unrestricted; multiple selections use OR. Options can be searched within the open control; selection uses native checkbox state. |
+| `technologies[]` | Selected technology values in the Technology disclosure filter | Empty means unrestricted; multiple selections use OR. Options can be searched within the open control; selection uses native checkbox state. |
+| `facetQuery` | Temporary text used to find an option within one facet menu | Separate per facet; filters visible option labels only and does not itself narrow project results. |
+| `openFacet` | Currently expanded facet selector | Either `context`, `technology`, or none; at most one facet selector is open. Opening the other selector closes this one but preserves its selections and option-search text. |
+
+Across different facets and the text query, matching uses AND. A project must match the query, at least one selected context when present, and at least one selected technology when present.
+
+Visible labels precede their controls: “Search for” labels the main query field, while “Context” and “Technology” identify their respective facet selectors. The selector labels remain visible whether a menu is open or closed.
+
+## Result summary
+
+| Field | Meaning |
+|---|---|
+| `matchingCount` | Number of public project entries matching current criteria |
+| `archiveTotal` | Number of published public project entries before filtering; data-derived |
+| `hasResults` | Whether `matchingCount` is greater than zero |
+| `activeCriteria[]` | Removable representations of active query/facet selections |
+
+The accessible status announces a concise summary such as “Showing 4 of 19 projects” or a useful zero-results message. Count records, not media or individual matching tokens.
+
+## Expanded details state
+
+Each project has independent open/closed state. Multiple entries may be open simultaneously. The disclosure is associated with its own entry and its state is conveyed semantically. When filtering removes an entry from visible results, its entire entry and expanded content are hidden from the rendered result set; its state may reset closed so it does not reopen unexpectedly after criteria change.
+
+## Relationships
+
+- The archive contains an ordered set of `ProjectEntry` records.
+- Each `ProjectEntry` may reference zero or one case study, zero or more actions and zero or more media items.
+- `SearchQuery` and `FacetSelection` derive a subset from the archive.
+- `ResultSummary` describes that subset against the unfiltered archive total.
+- Disclosure state belongs to a project entry and does not constrain other entries.

@@ -6,11 +6,12 @@ const { project, index = 1, reverse = false } = Astro.props;
 const [leadMedia] = project.media ?? [];
 ---
 <article class:list={['featured-project', reverse && 'is-reversed']} data-kind={project.kind}>
-  <a class="featured-project__media-link" href={`/work/${project.slug}/`} aria-label={`Open ${project.name} case study`}>
+  <div class="featured-project__media-link">
     {leadMedia?.type === 'image' && leadMedia.previewSrc
       ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
       : <MediaPoster label={project.evidenceLabel} kind={project.kind} />}
-  </a>
+    <a class="featured-project__media-hitbox" href={`/work/${project.slug}/`} aria-label={`Open ${project.name} case study`}></a>
+  </div>
   <div class="featured-copy">
     <h3><a href={`/work/${project.slug}/`}>{project.name}</a></h3>
     <p class="project-product">{project.product}</p>

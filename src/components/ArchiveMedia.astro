@@ -1,11 +1,11 @@
 ---
 import type { ProjectMedia } from '../data/projects';
+import ProjectMediaPreview from './ProjectMediaPreview.astro';
 const { media, projectName } = Astro.props as { media: ProjectMedia; projectName: string };
 ---
-<figure class="archive-media">
-  {media.type === 'image' && <img src={media.src} alt={media.alt ?? `${projectName} visual evidence`} loading="lazy" decoding="async" width="1280" height="720" />}
-  {media.type === 'gif' && <a href={media.src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${projectName} animation in a new tab`}>Open animation <span aria-hidden="true">↗</span></a>}
-  {media.type === 'video' && <video controls preload="none" aria-label={media.title ?? `${projectName} video evidence`}><source src={media.src} /></video>}
-  {media.type === 'youtube' && <iframe src={media.src} title={media.title ?? `${projectName} video evidence`} loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>}
-  {media.caption && <figcaption>{media.caption}</figcaption>}
-</figure>
+<div class="archive-media">
+  {media.type === 'image' && <ProjectMediaPreview posterSrc={media.src} previewSrc={media.previewSrc} alt={media.alt ?? `${projectName} visual evidence`} previewAlt={media.previewAlt} caption={media.caption} autoplayPreview={media.autoplayPreview} posterWidth={media.posterWidth} posterHeight={media.posterHeight} posterFit={media.posterFit} showControls={Boolean(media.previewSrc)} />}
+  {media.type === 'gif' && media.posterSrc && <ProjectMediaPreview posterSrc={media.posterSrc} previewSrc={media.src} alt={media.alt ?? `${projectName} visual evidence`} previewAlt={media.previewAlt} caption={media.caption} autoplayPreview={media.autoplayPreview} posterWidth={media.posterWidth} posterHeight={media.posterHeight} posterFit={media.posterFit} showControls />}
+  {media.type === 'video' && <figure><video controls preload="none" aria-label={media.title ?? `${projectName} video evidence`}><source src={media.src} /></video>{media.caption && <figcaption>{media.caption}</figcaption>}</figure>}
+  {media.type === 'youtube' && <figure><iframe src={media.src} title={media.title ?? `${projectName} video evidence`} loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>{media.caption && <figcaption>{media.caption}</figcaption>}</figure>}
+</div>

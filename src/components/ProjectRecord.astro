@@ -1,52 +1,75 @@
 ---
 import ExternalLink from './ExternalLink.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
-import ArchiveMedia from './ArchiveMedia.astro';
-import RichProjectRecord from './RichProjectRecord.astro';
-import type { ProjectInventoryEntry } from '../data/projects';
+import type { ProjectMedia, PublicProjectCatalogEntry } from '../data/projects';
 
-const { project, homePath = '/' } = Astro.props as { project: ProjectInventoryEntry; homePath?: string };
+const { project, homePath = '/', approvedMedia = [] } = Astro.props as { project: PublicProjectCatalogEntry; homePath?: string; approvedMedia?: ProjectMedia[] };
 const recordId = project.anchorId ?? project.id;
-const tier = project.archivePresentation ?? 'compact';
 const caseHref = project.caseStudySlug ? `${homePath}work/${project.caseStudySlug}/` : undefined;
-const [leadMedia, ...supportingMedia] = project.media ?? [];
 const period = project.period && project.period !== 'Undated' ? project.period : undefined;
 const titleId = `archive-title-${project.id}`;
+const summaryId = `archive-summary-${project.id}`;
+const contextLabel = project.workContext === 'professional' ? 'Professional' : project.workContext === 'independent' ? 'Independent' : 'Study';
+const detailMedia = approvedMedia.filter((media) => media.type === 'image' && media.src && media.alt);
+const publicMetadata = project.specs?.filter(({ label }) => label !== 'Context' && label !== 'Period') ?? [];
+const hasDetails = Boolean(project.contribution || project.engineeringFocus || project.context || publicMetadata.length || project.technologies.length || detailMedia.length || caseHref || project.actions?.length);
+const displayType = project.type.replace(/^professional(?:\s*[·:—-]\s*|\s+)/i, '');
+const productSummary = project.product.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() ?? project.product;
 ---
-<li class:list={['archive-record', `archive-record--${tier}`, leadMedia && 'archive-record--media', tier === 'rich' && !leadMedia && 'archive-record--no-media']} id={recordId}>
-  {tier === 'rich' ? <RichProjectRecord project={project} homePath={homePath} /> : <article aria-labelledby={titleId}>
+<li class:list={['archive-record', project.contribution && 'archive-record--has-contribution']} id={recordId} data-project-record data-context={project.workContext} data-technologies={project.technologies.join('|')}>
+  <article aria-labelledby={titleId}>
     <header class="archive-record__header">
       <div class="archive-record__identity">
-        <h3 id={titleId}>{project.name}</h3>
-        <p class="archive-record__context">{project.context ?? project.type}</p>
+        <h2 id={titleId}><a class="archive-record__title-link" href={`#${recordId}`}>{project.name}</a></h2>
+        <p class="archive-record__context">{contextLabel}{displayType ? ` · ${displayType}` : ''}</p>
       </div>
       {period && <span class="archive-record__period">{period}</span>}
     </header>
-    {leadMedia && <div class="archive-record__media">
-      {leadMedia.previewSrc && leadMedia.type === 'image'
-        ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} caption={leadMedia.caption} autoplayPreview={leadMedia.autoplayPreview} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} />
-        : <ArchiveMedia media={leadMedia} projectName={project.name} />}
-      {supportingMedia.length > 0 && <div class="archive-record__supporting-media">
-        {supportingMedia.slice(0, 3).map((media) => <ArchiveMedia media={media} projectName={project.name} />)}
-      </div>}
+    <div class="archive-record__body">
+      <p class="archive-record__overview" id={summaryId}>{productSummary}</p>
+    </div>
+    {project.contribution && <div class="archive-record__contribution archive-record__contribution--teaser">
+      <p class="archive-record__label">Contribution</p>
+      <p>{project.contribution}</p>
     </div>}
-      <div class="archive-record__body">
-        <p class="archive-record__overview">{project.product}</p>
-        {project.contribution && <div class="archive-record__contribution">
-          <p class="archive-record__label">My contribution</p>
-          <p>{project.contribution}</p>
+    {hasDetails && <details class="archive-record__details">
+      <summary aria-describedby={summaryId}>Project details</summary>
+      <div class:list={['archive-record__details-layout', detailMedia.length === 0 && 'archive-record__details-layout--text-only']}>
+        {detailMedia.length > 0 && <div class="archive-record__media-column" aria-label={`${project.name} media`}>
+          {detailMedia.map((media) => <ProjectMediaPreview posterSrc={media.src} previewSrc={media.previewSrc} alt={media.alt} previewAlt={media.previewAlt} caption={media.caption ?? project.mediaCaption} autoplayPreview={media.autoplayPreview} posterWidth={media.posterWidth} posterHeight={media.posterHeight} posterFit={media.posterFit} showControls={Boolean(media.previewSrc)} />)}
         </div>}
-        {project.engineeringFocus && <div class="archive-record__contribution">
-          <p class="archive-record__label">Engineering focus</p>
-          <p>{project.engineeringFocus}</p>
-        </div>}
+        <div class="archive-record__details-content">
+          {productSummary !== project.product && <div class="archive-record__contribution">
+            <p class="archive-record__label">Product</p>
+            <p>{project.product}</p>
+          </div>}
+          {project.context && <div class="archive-record__contribution">
+            <p class="archive-record__label">Context</p>
+            <p>{project.context}</p>
+          </div>}
+          {project.contribution && <div class="archive-record__contribution">
+            <p class="archive-record__label">Contribution</p>
+            <p>{project.contribution}</p>
+          </div>}
+          {project.engineeringFocus && <div class="archive-record__contribution">
+            <p class="archive-record__label">Engineering focus</p>
+            <p>{project.engineeringFocus}</p>
+          </div>}
+          {project.technologies.length > 0 && <div class="archive-record__technology-group">
+            <p class="archive-record__label">Technology</p>
+            <ul class="archive-record__technology-list" aria-label={`${project.name} technologies`}>
+              {project.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+          </div>}
+          {publicMetadata.length > 0 && <dl class="archive-record__specs">
+            {publicMetadata.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
+          </dl>}
+          {(caseHref || project.actions?.length) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
+            {caseHref && <a href={caseHref}>View case study <span aria-hidden="true">→</span></a>}
+            {project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
+          </nav>}
+        </div>
       </div>
-      {(project.specs?.length ?? 0) > 0 && <dl class="archive-record__specs">
-        {project.specs?.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
-      </dl>}
-      {(caseHref || project.actions?.length) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
-        {caseHref && <a href={caseHref} aria-label={`View ${project.name} case study`}>View case study <span aria-hidden="true">→</span></a>}
-        {project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
-      </nav>}
-  </article>}
+    </details>}
+  </article>
 </li>
