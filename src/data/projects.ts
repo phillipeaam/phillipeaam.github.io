@@ -1314,12 +1314,12 @@ export const projectRecords: ProjectRecord[] = [
     "id": "diggy-the-dog",
     "name": "Diggy, the dog",
     "archiveCategory": "independent-game",
-    "summary": "A collaborative Unity 2D game built around dog movement, randomized obstacles, and distance-based progression.",
-    "type": "2D obstacle game",
-    "context": "Collaborative game project",
-    "period": "Apr 2021 · updated Oct 2026",
-    "contribution": "I contributed to parts of the prototype and gameplay integration, including movement, obstacle spawning, distance presentation, and parts of the phase start/end flow. In 2026, I updated project settings and adapted selected scripts for Unity 6.6.",
-    "engineeringFocus": "The obstacle spawner samples randomized positions within configured bounds and rejects candidate points inside existing colliders. A later update adapts selected project configuration and scripts to Unity 6.6; the available analysis does not include a build or runtime validation.",
+    "summary": "A 2D chase game where a dog pursues a mole underground while avoiding obstacles.",
+    "type": "2D chase game",
+    "context": "Ludum Dare 48 · team project",
+    "period": "23–26 Apr 2021",
+    "contribution": "Alongside our regular work, we set aside two evenings to make a game together for Ludum Dare 48. Discussing the theme, ‘Deeper and deeper,’ one teammate suggested a mole because it digs deep; another added a dog chasing it. Together, we shaped the premise: a dog digging beneath its garden to catch the intruding mole. I built on a teammate's player movement, taking on the chase rules and player feedback.",
+    "engineeringFocus": "The chase logic connects mole behavior and outcome triggers to the team's existing player movement. The obstacle spawner samples positions within configured bounds and rejects points inside existing colliders; the distance display gives the player feedback on the remaining course.",
     "workContext": "independent",
     "technologies": [
       "Unity",
@@ -1332,16 +1332,16 @@ export const projectRecords: ProjectRecord[] = [
     ],
     "technicalHighlights": [
       {
-        "title": "Randomized obstacle placement",
-        "body": "The spawner chooses candidate positions from configured bounds and rejects points contained by existing colliders. This describes the static implementation; playtesting and full collider-overlap behavior were not verified."
+        "title": "Chase and outcome triggers",
+        "body": "Implemented the mole behavior and start/end triggers, and extended the existing player controller with stopping behavior. These connect movement to the race rules: start the mole, win on player contact, or lose at the end trigger."
       },
       {
-        "title": "Distance and phase flow",
-        "body": "Repository history records distance presentation and contributions to phase start/end integration, without a measured gameplay outcome."
+        "title": "Randomized obstacle generation",
+        "body": "Created a spawner that samples random positions within configured bounds to produce different obstacle layouts. It rejects candidate points inside existing collider bounds before applying prefab scale and rotation; this tests placement points rather than the full obstacle footprint."
       },
       {
-        "title": "Unity 6.6 project update",
-        "body": "A 2026 commit updates project configuration and adapts selected scripts. The available analysis did not compile or run this revision."
+        "title": "Distance feedback",
+        "body": "Added a TextMesh Pro counter that updates the distance to the end of the course during play, making the remaining distance visible alongside the chase."
       }
     ],
     "tags": [
@@ -1352,7 +1352,7 @@ export const projectRecords: ProjectRecord[] = [
     "specs": [
       {
         "label": "Role",
-        "value": "Gameplay systems contributor"
+        "value": "Game Engineer"
       },
       {
         "label": "Engine",
@@ -1360,7 +1360,7 @@ export const projectRecords: ProjectRecord[] = [
       },
       {
         "label": "Period",
-        "value": "Apr 2021 · updated Oct 2026"
+        "value": "23–26 Apr 2021"
       }
     ],
     "archiveOrder": 6,
@@ -1377,6 +1377,12 @@ export const projectRecords: ProjectRecord[] = [
         "posterHeight": 960,
         "posterFit": "contain",
         "catalogReuseApproved": true
+      }
+    ],
+    "actions": [
+      {
+        "href": "https://phillipeaam.itch.io/diggy-the-dog",
+        "label": "Play on itch.io"
       }
     ],
     "projectsIndexTitleIcon": "/projects/diggy/diggy-poster.webp",
