@@ -815,7 +815,7 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .more-projects .supporting-card .media-poster::after { display: none; }
 .more-projects .supporting-card-copy { min-width: 0; }
 .more-projects .supporting-card h3 { min-height: 1.2em; margin-bottom: 3px; }
-.more-projects .supporting-card h3.sr-only { min-height: 0; margin: 0; }
+.more-projects .supporting-card-copy--simple h3 { margin: 10px 0 0; font-size: 16px; line-height: 1.4; }
 .more-projects .supporting-card-copy--simple { display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
 .more-projects .supporting-card:target { outline: 1px solid var(--accent); outline-offset: 10px; }
 .supporting-grid--recent { grid-template-columns: minmax(0,1fr); }

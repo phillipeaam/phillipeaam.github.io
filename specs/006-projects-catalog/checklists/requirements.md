@@ -58,3 +58,15 @@
 - [x] Nenhum marcador NEEDS CLARIFICATION foi introduzido; documentos prontos para speckit-plan, sem indicar implementação concluída.
 
 **Limites da validação:** a spec inclui referências históricas técnicas como evidência, não instruções novas de implementação. As divergências antigas de controle/provenance de mídia estão explicitamente registradas e não foram resolvidas por esta revisão editorial. Checklist não é relatório de speckit-analyze nem validação visual/acessível do site.
+
+### Revalidação do complemento — prioridades 2–5 — 2026-10-05
+
+- [x] A faceta Technology usa a tag canônica única Unity, sem opções por versão, mantém fatos específicos confirmados e conserva OR/AND sem inferir tecnologia por prosa (FR-038, SC-025).
+- [x] Cartões de More Projects na Home têm cenário testável para nome sempre visível, nome acessível, placeholders, mídia ausente, viewport e zoom, sem ampliar redesign ou curadoria (US6, FR-039, SC-026).
+- [x] Cenários de carregamento, fallback, falha, movimento reduzido e consumidores globais preservam a decisão de não exibir Stop/Play e distinguem especificação de validação realmente executada (US4, FR-040–FR-042, SC-027, SC-031).
+- [x] Requisitos de navegação/a11y cobrem semântica, filtros, disclosures, leitores de tela, posição restaurada e landmark principal sem tratar inspeção de fonte como resultado de runtime (FR-042–FR-043, SC-028, SC-031).
+- [x] Cenários de período/escopo distinguem períodos do projeto e do vínculo profissional, preservam fases documentadas e não exigem case ou relação de Experience inexistentes (US7, FR-044, SC-029–SC-030).
+- [x] Conflitos com plan/tasks/contrato/modelo/roteiros e documentos de evidência estão identificados para etapa posterior, sem afirmar que foram resolvidos (registro final da spec).
+- [x] Nenhum marcador NEEDS CLARIFICATION foi introduzido; pressupostos e critérios estão definidos e a spec continua Draft.
+
+**Resultado desta revalidação:** os itens acima avaliam a qualidade documental do complemento. Nenhum teste visual, de browser, performance ou acessibilidade foi executado; estes resultados permanecem pendentes para implementação e avaliação.

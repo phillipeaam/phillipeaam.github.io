@@ -8,9 +8,11 @@
 
 **Decisão vigente sobre mídia — 2026-10-05:** não renderizar botão Stop/Play ou qualquer controle equivalente em nenhuma página. Referências anteriores neste plano a botão de pausa, controle explícito/acessível ou preservação de controles para Home/cases são históricas e substituídas. Preservar fallback estático, acionamento por configuração, falhas e reduced motion; não declarar conformidade completa da animação contínua.
 
+**Revisão vigente — prioridades 2–5 — 2026-10-05:** FR-038–FR-044 e US6/US7 estendem esta mesma feature à tag única `Unity` na faceta (sem opções por versão), aos nomes sempre visíveis nos cartões Home More Projects e à validação transversal de mídias, navegação, acessibilidade e períodos/escopo. Inspeção documental identifica cenários; nenhum desses resultados está validado em runtime.
+
 ## Summary
 
-Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos os projetos publicados reconhecíveis. A página renderizará registros e detalhes no HTML estático do Astro; um script cliente pequeno aprimorará busca, menus pesquisáveis de seleção múltipla para Context e Technology, contador e estado vazio. Cada ficha poderá expandir detalhes localmente por um disclosure nativo, com estrutura editorial consistente e tags nos detalhes. Na entrada recolhida, mídia principal aprovada fica à esquerda; à direita ficam ícone de identidade antes do título, descrição curta e More details. Contexto, contribuição, período, tipo e ações ficam nos detalhes; mídia complementar também, sem repetir mídia principal. O cabeçalho reutiliza a composição da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. Rótulos visíveis precedem a busca e cada faceta; somente um menu de faceta fica aberto por vez, sem perder seleções. O plano conserva IDs, ordem editorial e destinos válidos, e padroniza os divisores.
+Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos os projetos publicados reconhecíveis. A página renderizará registros e detalhes no HTML estático do Astro; um script cliente pequeno aprimorará busca, menus pesquisáveis de seleção múltipla para Context e Technology, contador e estado vazio. Cada ficha poderá expandir detalhes localmente por um disclosure nativo, com estrutura editorial consistente e tags nos detalhes. Na entrada recolhida, mídia principal aprovada fica à esquerda; à direita ficam ícone de identidade antes do título, descrição curta e More details. Contexto, contribuição, período, tipo e ações ficam nos detalhes; mídia complementar também, sem repetir mídia principal. O cabeçalho reutiliza a composição da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. Rótulos visíveis precedem a busca e cada faceta; somente um menu de faceta fica aberto por vez, sem perder seleções. O plano conserva IDs, ordem editorial e destinos válidos, e padroniza os divisores. O complemento atual corrige a descoberta Unity/Unity 6, mostra títulos nos cartões Home More Projects e valida mídia, navegação, acessibilidade e coerência de períodos/escopo entre dados centrais, catálogo, cases existentes e Experience.
 
 ## Technical Context
 
@@ -26,11 +28,11 @@ Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos
 
 **Project Type**: Site de portfólio Astro, predominantemente estático.
 
-**Performance Goals**: Filtragem local dos 19 registros atuais sem requisições de rede. A spec não estabelece um SLO numérico; esta feature não introduz um limite de performance ou benchmark novo.
+**Performance Goals**: Filtragem local dos 20 registros atuais sem requisições de rede. A spec não estabelece um SLO numérico; esta feature não introduz um limite de performance ou benchmark novo.
 
 **Constraints**: Conteúdo e links centrais úteis sem JavaScript; somente fatos, tags, tecnologias e mídias confirmados; preservar identificadores e links de case; múltiplos detalhes podem ficar abertos; controles indisponíveis não aparentam funcionar; filtros Context e Technology usam menus com busca e seleção múltipla independente, mas no máximo um menu pode ficar aberto por vez; rótulos visíveis ficam acima de cada controle; cabeçalho segue exatamente a hierarquia editorial aprovada na Home; respeitar movimento reduzido, fallback estático, acionamento de mídia configurado, apresentação inline de mídia autorizada e design editorial existente. Não adicionar controles de animação.
 
-**Scale/Scope**: 19 projetos publicados atualmente. Inventário e total devem derivar dos dados reais, com preparação para inclusões futuras sem framework genérico. Mudanças limitadas a `/projects/`, seus componentes/dados e estilos diretamente necessários.
+**Scale/Scope**: 20 projetos publicados atualmente. Inventário e total devem derivar dos dados reais, com preparação para inclusões futuras sem framework genérico. Mudanças abrangem `/projects/`, os cartões Home More Projects, a taxonomia central de tecnologias e correções estritamente necessárias de semântica/validação compartilhada; reconciliar período e escopo com Experience e cases onde existam. Não redesenhar Selected work, conteúdo não relacionado da Home, cases ou páginas inteiras.
 
 ## Constitution Check
 
@@ -102,6 +104,10 @@ Sem violações da constituição; nenhuma complexidade adicional a justificar.
 - IDs permanecem estáveis. Ao abrir um hash de projeto, o catálogo deve limpar critérios incompatíveis antes de posicionar o destino, para que deep links antigos continuem visíveis.
 - Sem JavaScript, todos os registros e links continuam disponíveis; filtros interativos ficam ocultos ou indisponíveis, sem sugerir que funcionam.
 - A mídia principal aprovada aparece à esquerda da identidade/descrição na entrada recolhida em telas largas e acima delas em celular; realizar revisão visual antes de tratar a implementação como aprovada para merge/push.
+- A faceta Technology apresenta somente a tag canônica `Unity`, sem opções por versão. Registros com Unity confirmada recebem essa tag; uma versão como Unity 6 pode continuar como fato separado nos detalhes, sem gerar opção adicional e sem inferência por prosa.
+- Cartões simples da seção Home More Projects mostram permanentemente o nome, inclusive com mídia ausente ou falha; cartões Featured/Selected work já identificados seguem inalterados.
+- Validar em execução proximidade, rede, load/decode/falha, fallback, preferência reduced motion inicial/dinâmica, teclado, leitor de tela, fontes lentas/falhas e retorno à posição. Nenhum Stop/Play em qualquer consumidor; inspeção estática não prova runtime nem conformidade integral de animação contínua.
+- Comparar períodos de projeto/fase com emprego em Experience e escopo individual/equipe em registro central, catálogo e cases publicados. Corrigir apenas com evidência; divergências sem solução ficam registradas como pendência.
 
 ## Complemento de entradas — desenho 2026-10-05
 
@@ -130,7 +136,9 @@ MVP: resolver elegibilidade e construir entrada recolhida responsiva; depois com
 ### Decisão posterior de reutilização (2026-10-05)
 O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
 
-## Desenho vigente — Selected contributions — 2026-10-05
+## Registro histórico — desenho Selected contributions anterior à centralização — 2026-10-05
+
+Os passos desta seção refletem o desenho anterior à integração posterior de `develop`. A centralização dos novos campos em `ProjectRecord` foi registrada em `data-model.md`; não criar novamente `CatalogEditorialContent`/`catalogEditorialById` nem uma cópia exclusiva para o catálogo. As regras editoriais de Selected contributions e a composição de apresentação continuam válidas.
 
 ### Phase 0 — pesquisa e decisões
 
@@ -138,8 +146,8 @@ Base: docs/projects-catalog-hiring-review.md e fontes canônicas registradas na 
 
 ### Phase 1 — projeção e apresentação
 
-- Manter fontes e consumidores atuais de Home/cases. Em `src/data/projects.ts`, definir `CatalogEditorialContent` e um mapa `catalogEditorialById` de conteúdo exclusivo do catálogo, indexado pelo ID existente. Não substituir globalmente product/contribution/specs usados por outros consumidores.
-- Campos da projeção: `summary`, `facts` (role/context/productType/period), `contributionNarrative` opcional (summary/highlights/outcome), `additionalContext` opcional e tecnologias/actions existentes preservadas. `TechnicalHighlight` contém title/body, sem atributo que implique autoria por padrão. Tipos/regras completos em data-model.md.
+- **Histórico substituído:** criar `CatalogEditorialContent` e `catalogEditorialById` exclusivos, conforme tarefa T067. A integração posterior de `develop` centralizou esses campos no `ProjectRecord`; essa tarefa descreve o estado histórico e não deve ser repetida.
+- Use a definição vigente de dados canônicos em `data-model.md`; a apresentação pública mantém as regras de evidência/editoria desta seção, consumindo o registro central compartilhado.
 - Em `src/pages/projects/index.astro`, resolver a projeção para cada registro. Para ID sem narrativa revisada, aproveitar descrição/fatos verificados, sem gerar narrativa por concatenação ou converter engineeringFocus em claim individual. Não remover registros por ausência de narrativa.
 - `ProjectRecord.astro` recebe a projeção do catálogo e mantém entrada recolhida. Detalhes ocupam segunda linha de largura disponível: fatos → Selected contributions quando disponível → tecnologias/metadados úteis → mídia complementar quando existente → ações. Contexto adicional necessário acompanha narrativa, sem bloco Product obrigatório. Descrição curta deve ser editada explicitamente; fallback inicial pode usar resumo existente sem implicar aprovação editorial nova.
 - Preservar botão junto à descrição no fluxo com JS, estado acessível e disclosure nativo na segunda linha sem JS. Nenhum framework de UI novo.
@@ -148,7 +156,7 @@ Base: docs/projects-catalog-hiring-review.md e fontes canônicas registradas na 
 
 ### Mídia: política vigente
 
-A allowlist atual das quatro fontes históricas permanece exata, com identidade/fallback/preview separados. Reutilização é decisão do usuário, não prova de direitos. Nenhuma nova fonte é promovida. Preservar near-viewport/autoplay/fallback/reduced motion e ausência de Stop/Play em todas as superfícies. Revisão editorial não resolve direitos ainda não documentados nem certifica acessibilidade do movimento contínuo.
+A allowlist inicialmente composta pelas quatro fontes históricas foi ampliada em 2026-10-06 pela solicitação explícita do usuário para incluir as mídias do Diggy documentadas em evaluation.md, mantendo identidade, fallback e preview separados. Reutilização é decisão do usuário, não prova independente de direitos de terceiros. Não promover outras fontes. Preservar near-viewport/autoplay/fallback/reduced motion e ausência de Stop/Play em todas as superfícies. Revisão editorial não resolve direitos ainda não documentados nem certifica acessibilidade do movimento contínuo.
 
 ### Gates atuais, antes e depois do desenho
 
@@ -158,11 +166,46 @@ A allowlist atual das quatro fontes históricas permanece exata, com identidade/
 | II / III — Padrões e sistema aprovado | Uma composição/projeção comum; cabeçalho e estilos aprovados preservados. |
 | IV / V — Acesso e conteúdo base | Narrativa semântica, teclado/foco, fallback e redução de movimento preservados; disclosure nativo sem JS. Nenhum controle de animação em nenhuma página por decisão do usuário. Não declarar conformidade integral do autoplay. |
 | VI — Responsividade | Planejada em 320/390/820/1280; execução e evidências posteriores. |
-| VII — Escopo | /projects/ e projeção exclusiva; nenhuma alteração editorial na Home/cases. |
+| VII — Escopo | Desenho histórico: /projects/ e projeção exclusiva; substituído pela revisão vigente de prioridades 2–5 ao final deste plano. |
 | VIII / IX — Validação e revisão | Diff/check/build, revisão editorial, acessibilidade/reflow e aprovação humana posterior; nenhum resultado presumido. |
 
 Nenhum gate novo do desenho editorial exige alterar constituição ou decisões do usuário. Limites herdados não são certificados como PASS; permanecem explícitos para revisão. Sem unknown técnico pendente.
 
 ### Sequência e validação
 
-Documentos → matriz dos 19 registros → projeção → narrativa/fatos → renderização/estilos → revisão editorial → regressões de descoberta/acesso/links → diff/check/build → revisão humana. SC-001–SC-024 são consolidados na matriz única de quickstart.md; não executar duas vezes cenários equivalentes apenas por dois IDs. Implementação e validação do desenho não foram executadas nesta rodada.
+Documentos → matriz dos 19 registros → conteúdo central canônico → narrativa/fatos → renderização/estilos → revisão editorial → regressões de descoberta/acesso/links → diff/check/build → revisão humana. SC-001–SC-024 são consolidados na matriz única de quickstart.md; não executar duas vezes cenários equivalentes apenas por dois IDs. Implementação e validação do desenho não foram executadas nesta rodada.
+
+## Revisão vigente — prioridades 2–5 — 2026-10-05
+
+Esta seção é o plano ativo para FR-038–FR-044 e SC-025–SC-031. Ela estende o catálogo sem criar feature ou branch nova. Os planos anteriores de escopo exclusivo em `/projects/` e as tarefas anteriores a este complemento são históricos e não comprovam a cobertura nova.
+
+### Phase 0 — pesquisa local e decisões
+
+- Usar `src/data/projects.ts` e `docs/project-records.md` como fontes centrais de tecnologia/períodos e rastrear os registros de evidência citados na spec. Normalizar na faceta para a tag canônica única `Unity`; não criar relação/lista de opções por versão. `Unity 6` permanece um fato opcional de Pathless, separado da tag. Não classificar por texto solto.
+- Auditar consumidores atuais da Home, Experience e cases para períodos/escopo. O intervalo de emprego Ello não substitui períodos de projetos Ello; fase Wallace/revisita não deve ser achatada. O catálogo não cria case ou vínculo Experience ausente.
+- A matriz de mídia/acessibilidade e o registro de navegação no quickstart definem execução; nenhum resultado é presumido nesta fase documental.
+
+### Phase 1 — dados, apresentação e verificação
+
+- Consumir os campos e a taxonomia central existentes em `src/data/projects.ts`; não criar mapa paralelo exclusivo do catálogo. A faceta expõe uma única tag `Unity`, derivada de tecnologia/engine Unity confirmada, e não opções de versão. Preservar fato de versão nos detalhes quando confirmado; manter OR na mesma faceta e AND entre query/facetas.
+- No cartão simples SupportingProject, mostrar permanentemente o nome sem anúncio redundante para leitor de tela; placeholder, erro ou ausência de imagem não removem a identidade. Featured/Selected work que já mostra nome segue inalterado.
+- Validar em execução estados de rede/proximidade/load/decode/falha e mudança dinâmica de reduced motion; observar pedidos de rede e fallback. Nenhum Stop/Play. Corrigir apenas comportamento reproduzivelmente divergente dos critérios; não adicionar dependência de testes sem decisão.
+- Auditar valores em fonte central e consumidores públicos. Comparar período de projeto/fase com emprego, cases com catálogo e autoria individual com equipe. Registrar divergência sem fonte conclusiva como pendência.
+- Incluir cenários de Home, `/projects/`, Experience e cases existentes no quickstart/evaluation. Registrar viewport, leitor/tecnologia assistiva, rede/movimento e se veio de inspeção ou execução. Revisão humana continua gate de aprovação visual/editorial.
+
+### Sequência e gates
+
+Tag canônica Unity e rastreabilidade no registro central → filtro Unity único/fato opcional Unity 6 → nomes Home visíveis → auditoria/correção de mídia, acesso e navegação → períodos/escopo por fonte canônica → execução responsiva/funcional/acessível → diff check, Astro check e build → revisão humana. SC-025–SC-031 só recebem resultado aprovado após execução reproduzível; documentação e inspeção de código não substituem runtime.
+
+### Gate constitucional atualizado
+
+| Princípio | Decisão de planejamento |
+|---|---|
+| I — Evidência | Taxonomia, períodos, responsabilidade e mídia têm referências rastreáveis. Divergência inconclusiva permanece pendente. |
+| II/III — Padrões visuais | Reusar estrutura atual dos cartões e registros; preservar design aprovado fora dos pontos pedidos. |
+| IV/V — Acesso e aprimoramento progressivo | Nome visível, mídia estática base, reduced motion, foco/teclado/leitor de tela e conteúdo sem JS entram na validação; sem controles Stop/Play. |
+| VI — Responsividade | Executar viewports reais de Home e catálogo; relatar apenas valores verificados. |
+| VII — Escopo | Alterações se limitam aos consumidores mencionados e regressões observadas; sem redesign geral. |
+| VIII/IX — Entrega | `git diff --check`, `npm run check`, `npm run build`, runtime apropriado e revisão humana antes de aprovação. Nenhum resultado foi obtido nesta etapa documental. |
+
+Sem desconhecido de produto que exija nova rodada de clarify antes da atualização do plano. A execução de `setup-plan.sh` não concluiu por uma restrição de escrita do ambiente ao usar o caminho absoluto `/c/Users/...`; os artefatos existentes foram atualizados diretamente, sem mudar `.specify/feature.json`.

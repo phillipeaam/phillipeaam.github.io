@@ -198,4 +198,110 @@ Não executados nesta rodada: leitor de tela real, toque físico, JS desativado 
 
 ### Revisão de rótulo e amplitude — 2026-10-05
 
+### Auditoria de período e escopo entre superfícies — 2026-10-05
+
+| Projeto / fase | Registro central (`src/data/projects.ts`) | Case existente | Experience | Evidência local e decisão |
+| --- | --- | --- | --- | --- |
+| Read With Ello | O intervalo anterior `Oct 2022–Aug 2025` não tem fonte de período específico do projeto nos documentos locais. Role e tecnologias confirmadas (`Unity`, `C#`, `uGUI`, `Addressables`, `GraphQL`, `Firebase`, `GrowthBook`) permanecem. | Case existente; histórias de Library, quests e GraphQL delimitam trabalho no cliente Unity e colaboração, sem afirmar propriedade de todo o produto. Removido `Period` dos campos de visão geral. | Relacionado ao emprego na Ello, `Oct 2022–Dec 2025`; isso é período do vínculo, não do produto/projeto. | `docs/stage-10-content-register.md` confirma o intervalo de emprego e limites das contribuições. `docs/other-work-inventory.md` declara que as datas do projeto não estão listadas. Período próprio removido; período do emprego preservado.
+| Ello 2.0: Learn Reading & Math | O intervalo anterior `Sep–Nov 2025` não tem fonte de período específico do projeto nos documentos locais. Role, Flutter/Dart/Python/GraphQL/Protocol Buffers/GrowthBook/Provider e contribuição documentada permanecem. | Não há case próprio nem foi criado. | Relacionado ao emprego na Ello `Oct 2022–Dec 2025`; não representa as datas do projeto. | `docs/other-work-inventory.md` diz que o período específico não é mostrado e que o registro representa continuidade do produto; `docs/repository-evidence-pass.md` registra que escopo individual distinto ainda não estava estabelecido. Removido o período sem fonte. A relação existente em Experience e o conteúdo atual não foram removidos; a atribuição individual mais detalhada permanece limitada pelas fontes e requer revisão editorial se a classificação do produto mudar.
+| Wallace’s Quest | `2020–2021 · revisited 2026`; tecnologias Unity/C#/Tilemap/ScriptableObjects/uGUI e fatos do projeto preservados. | Case existente diferencia combate/coordenação em 2020 e módulo de pathfinding em 2021, retomado em 2026. | Não há vínculo de emprego correspondente; nenhum item de Experience foi criado. | `docs/stage-10-content-register.md` e `src/data/projects.ts` mantêm a distinção de fases e limites de autoria; período permanece qualificado, sem achatar revisita na fase original.
+
+O alinhamento não preenche lacunas: datas da empresa não são copiadas para projetos, os quatro cases permanecem os já publicados e diferenças de escopo sem evidência suficiente ficam registradas como pendência editorial.
+
+### Implementação e verificação — 2026-10-05
+
+#### Mudanças aplicadas
+
+- A taxonomia central exporta `getTechnologyFacetTags`, que converte somente valores factuais estruturados `Unity`/`Unity <versão>` para a única faceta `Unity`. A ficha continua exibindo o valor exato registrado (`Unity 6` em Pathless); a busca do catálogo e o filtro recebem a mesma projeção.
+- Cartões simples de More Projects exibem agora o título sob a miniatura, em estado padrão, sem depender de hover/foco. Cartões destacados não foram alterados.
+- `/projects/` deixou de aninhar um segundo `<main>` dentro do landmark de `BaseLayout`; o catálogo é uma section nomeada por All Projects. Escape fecha a faceta aberta e devolve foco ao seu summary.
+- A restauração da posição usa um limite de espera de 3,5s, libera o estado de restauração mesmo se as fontes demorarem, tolera ausência/rejeição de Font Loading API, e as operações de `sessionStorage` da navegação falham abertas quando indisponíveis.
+- Períodos próprios de Read With Ello e Ello 2.0 foram removidos das fichas e da visão geral do case Read With Ello por falta de fonte local de datas de projeto. Experience mantém Ello `Oct 2022–Dec 2025` como duração do emprego. Wallace mantém `2020–2021 · revisited 2026` e os marcos descritos no case.
+
+#### Evidência de runtime observada
+
+| Cenário | Condição observada | Resultado |
+| --- | --- | --- |
+| Catálogo inicial | `/projects/`, browser local em viewport padrão (captura observada: 802×868) | 19/19 entradas visíveis; títulos e detalhes recolhidos; nenhum filtro ativo. |
+| Busca e faceta Unity | Busquei `Unity` dentro de Technology; havia uma única opção correspondente. Selecioná-la atualizou o contador para 11/19 e manteve Pathless visível. O fato exato `Unity 6` continua nos detalhes. |
+| Busca sem acentos | Pesquisa `avaliacao` | 2/19 resultados: Avaliação da Língua Portuguesa e Avaliação Diagnóstica. |
+| Teclado/faceta | Abri Context e pressionei Escape | A faceta fechou e o foco retornou ao seu botão summary. Foco visível e leitor de tela dedicado não foram medidos nesta rodada. |
+| Expansão / campo ausente | Expandi Ello 2.0: Learn Reading & Math | Role, Context e Type foram mostrados; não apareceu Period sem fonte. Selected contributions, highlights, tecnologia e três ações existentes foram apresentados. |
+| Títulos na Home | More Projects em estado padrão, sem hover; verificação da árvore de acessibilidade e captura de tela | Pathless, Flui e Tabuada na Fazenda têm headings visíveis sob as miniaturas; nome não depende da imagem. Selected work manteve seus títulos atuais. |
+| Estrutura de landmarks | Inspeção de source + build | BaseLayout fornece o único `<main id="main">`; a página do catálogo agora usa `<section aria-labelledby="projects-heading">`. Não foi feita auditoria de árvore de landmark com tecnologia assistiva real. |
+
+#### Diagnósticos
+
+- `git diff --check`: passou; apenas avisos de conversão LF→CRLF do Git em arquivos com finais de linha mistos.
+- `npm run check`: 0 erros, 0 warnings e 1 hint preexistente (`make_contact_sheets.js`, CommonJS convertido para ES module).
+- `npm run build`: passou; 7 páginas estáticas foram geradas, incluindo `/projects/` e os quatro cases existentes.
+
+#### Cobertura restante, ainda não validada
+
+- Não executados: viewports controlados de 320/390/820/1280px e zoom; JavaScript desligado; leitor de tela real e toque físico; rede lenta/bloqueio de GIF, pedido de rede distante/próximo, falhas load/decode, ausência de IntersectionObserver e `prefers-reduced-motion` inicial/dinâmico; retorno repetido à posição salva com fontes lentas/falhas; matriz completa de OR/AND, clear-all, zero resultados, quatro rotas de case e todos os hashes filtrados.
+- A mudança de navegação e o fallback foram inspecionados e compilados, mas SC-027, SC-028 e SC-031 continuam parciais até executar esses cenários. Nenhuma validação de leitor de tela ou de conformidade WCAG completa é alegada.
+- Os checkboxes de Context e Technology receberam `aria-label` explícito. A árvore de acessibilidade automatizada disponível nesta rodada ainda apresentou os checkboxes sem nome textual; não classifico SC-028 como aprovado sem confirmar com inspeção acessível mais completa/leitor de tela.
+- A revisão visual/editorial humana de contribuições e da composição dos cartões ainda não foi recebida. Nenhuma aprovação de publicação, merge ou push foi inferida.
+
 Por pedido do usuário, o rótulo vigente passa de My contribution para Selected contributions em /projects/ e nos documentos ativos. A ficha apresenta exemplos selecionados, não um inventário completo da atuação. No Read With Ello, o resumo agora menciona experiência de leitura, Book Library, quests/progression, rewards/Prize Store, GraphQL e trabalho complementar de onboarding/UI/lifecycle, já sustentados nos dados e fontes consultados. A declaração do usuário sobre amplitude motiva a revisão, sem publicar ownership de todas as áreas do app. Registros anteriores deste arquivo conservam o rótulo observado na época. Home e cases não foram alterados. Não foram executados novos testes nesta edição de texto.
+
+### Verificação complementar após nova execução — 2026-10-05
+
+No navegador local, abri `/projects/` e executei verificações focadas de busca, faceta, expansão e estrutura:
+
+- Buscar `GraphQL` atualizou o contador para `2 of 19`; limpar filtros restaurou `19 of 19`.
+- A faceta Technology ofereceu uma única opção `Unity`; selecioná-la atualizou o contador para `11 of 19`. O rótulo visível continuou singular, sem versão Unity 6 como opção separada.
+- Context com `Independent` e `Study` marcou `6 of 19`; ao abrir Technology, Context fechou (`[false, true]` nos estados `open`). Combinar `C#` reduziu o contador a `2 of 19`; limpar retornou a `19 of 19`.
+- A expansão do primeiro registro exibiu Role, Context, Type e Selected contributions. A inspeção encontrou 19 disclosures de projeto e zero botões de animação.
+- `npm run check`: 0 erros, 0 warnings e 1 hint de CommonJS preexistente em `make_contact_sheets.js`. `npm run build`: sucesso, 7 páginas estáticas.
+- A aba local foi devolvida à Home ao final.
+
+Esta rodada não completou as matrizes integrais T055/T060/T087. Contadores comprovam os casos listados, não todos os nomes visíveis sob cada combinação. Seguem sem execução nesta sessão os cenários de rede lenta/falha e timing de mídia, reduced motion inicial/dinâmico, ausência de IntersectionObserver, leitor de tela real, toque físico, JavaScript desligado, fontes lentas/falhas com retornos repetidos e viewports controlados/zoom. T044, T053, T055, T058, T060, T063, T075–T078 e T082–T091 continuam pendentes conforme seu escopo; não se presume aprovação visual/editorial nem conclusão de critério apenas pela inspeção de código ou por estes checks focados.
+
+### Fase 30 — evidências finais no Chrome/DevTools — 2026-10-05
+
+Executado com Chrome isolado via Playwright/CDP em `http://localhost:4321/`; não foi usado o perfil pessoal. Condições deliberadamente simuladas são registradas como emulação, não como falha de serviço real.
+
+| Cenário | Condição e resultado observado | Limite |
+| --- | --- | --- |
+| Catálogo e filtros | 19 projetos. Nome completo Pathless: 1/19; termo parcial `path`: 2/19; termo de conteúdo `Prize Store`: 1/19; ` GRAPHQL `: 2/19; `avaliacao`: 2/19; consulta sem correspondência: 0/19. Context `Independent` OR `Study`: 6/19. Tecnologia `C#` OR `Unity`: 11/19. Context combinado com `C#`: 5/19; acrescentar GraphQL: 0/19. Limpeza restaurou 19/19. Busca local de opção sem resultados não alterou resultados nem seleções. | Resultados correspondem às consultas acima, não a uma prova exaustiva de todos os termos possíveis. |
+| Menus e teclado | Abrir Context focou e selecionou seu campo interno; abrir Technology fechou Context. Escape fechou o menu e devolveu foco ao summary. O teste de teclado também abriu/fechou disclosure e confirmou foco visível. | Leitura por tecnologia assistiva real não executada. |
+| Semântica/landmarks | Árvore de acessibilidade do Chromium apresentou o campo Search for, caixas Context com nomes acessíveis e disclosures; sete rotas (`/`, `/projects/`, `/experience/` e quatro cases) responderam 200 e exibiram um `<main>` cada. Nenhum controle Stop/Play apareceu nessas rotas. | Árvore AX do browser não substitui leitor de tela. |
+| Hash, expansão e conteúdo sem JS | Hash `#pathless` sob filtro sem resultados restaurou a lista e levou ao projeto; expansões independentes funcionaram e itens filtrados não mantiveram detalhes visíveis. Com JavaScript desativado: 19 artigos, 19 disclosures nativos, links no DOM, filtros escondidos e conteúdo textual disponível. | Ainda não foi executado leitor de tela. |
+| Responsividade e toque emulado | Viewports 320, 390, 820 e 1280 CSS px: sem overflow horizontal; mídia acima do texto em celular e ao lado em desktop; detalhes na linha inferior ocupando a largura do item. Em 390 px com emulação touch, toque abriu Context e More details. | Zoom do browser e toque em aparelho físico não testados. |
+| GIF distante/próximo | Em página fresca, Pathless manteve o pôster e nenhum `src` de GIF antes da faixa do observer; ao entrar na faixa de 75% do viewport, atribuiu `src` e iniciou uma requisição. | Browser local e DevTools; timing exato depende do ambiente. |
+| Rede lenta/bloqueada e falha | Com rede limitada (700 ms e 32 KB/s), pôster ficou visível enquanto o GIF ainda carregava. Rota de GIF abortada manteve o pôster visível e a animação oculta. Resposta simulada `image/gif` inválida (dimensões zero) preservou o fallback; em outra execução, rejeitei diretamente `HTMLImageElement.decode()` e confirmei quatro chamadas interceptadas, pôster visível e animação oculta. | Falhas foram simuladas pelo DevTools/Playwright; não são relato de defeito em arquivo publicado. |
+| Movimento reduzido | `prefers-reduced-motion: reduce` desde o início produziu zero requisições de GIF no catálogo; ativação durante carga deixou o pôster visível e impediu revelação tardia da animação. | Emulação DevTools, não configuração de sistema/dispositivo. |
+| Sem observer | Ao remover `IntersectionObserver`, os previews seguiram o fallback de autoplay sem observer já implementado e iniciaram carregamento sem erro de script funcional; pôster permaneceu até cada mídia ficar pronta. | Ausência da API foi injetada pelo teste, não é dispositivo real. |
+| Fontes lentas/falhas e volta à Home | Com fontes atrasadas 700 ms, três retornos repetidos restauraram a rolagem salva sem revelar o topo antes da posição final. Antes da correção, `document.fonts.ready` rejeitada deixava a posição em y=0 até o timeout de segurança. Depois da correção, três retornos com rejeição restauraram imediatamente y=2712, conteúdo visível e sem flags de carregamento/restauração. | Falha da Font Loading API foi simulada por rejeição controlada. |
+| Build | `npm run check`: 0 erros, 0 warnings e 1 hint preexistente de CommonJS em `make_contact_sheets.js`. `npm run build`: sucesso, sete páginas estáticas. `git diff --check`: exit 0; somente avisos Git de conversão LF→CRLF. | Nenhum teste automatizado novo foi adicionado. |
+
+#### Correção aplicada
+
+`src/layouts/BaseLayout.astro` agora transforma uma eventual rejeição de `document.fonts.ready` em conclusão recuperável antes da espera pela posição salva. O timeout de segurança continua disponível. Repetição três vezes confirmou posição y=2712 já no primeiro estado visível, sem flash no topo e sem deriva.
+
+#### O que ainda aguarda validação humana/dispositivo
+
+Leitor de tela falante real; revisão visual/editorial dos registros e do layout; zoom de browser e aparelho touch físico. Não declaro auditoria WCAG completa, aprovação editorial, estudo com participantes ou ganho de contratação. Essas limitações permanecem nas tarefas de revisão/acessibilidade correspondentes. Nenhum commit, merge ou push foi feito.
+
+### Diggy — decisão de reutilização e arquivos exatos — 2026-10-06
+
+Por solicitação explícita do usuário, a ficha de Diggy exibe estes arquivos no catálogo:
+
+| Uso | Fonte fornecida pelo usuário | Arquivo no projeto |
+| --- | --- | --- |
+| Ícone antes do título | `public/projects/diggy-poster.png` | `public/projects/diggy/diggy-poster.webp` |
+| Preview animado | `public/projects/diggy-gameplay-preview.gif` | `public/projects/diggy/diggy-gameplay-preview.gif` |
+| Fallback estático do GIF | Primeiro quadro de `public/projects/diggy-gameplay-preview.gif` | `public/projects/diggy/diggy-first-frame.webp` |
+
+A autorização registrada é para reutilizar esses arquivos exatos no portfólio, conforme a instrução do usuário de incluí-los na ficha. Ela não é apresentada como verificação independente de direitos de terceiros. Os WebP são derivados dos arquivos fornecidos; o GIF mantém carregamento por aproximação, primeiro quadro como fallback e a configuração existente de movimento reduzido. O registro central define `catalogReuseApproved` e `catalogIconReuseApproved` somente nesta ficha.
+
+A lista de quatro projetos registrada em 2026-10-05 descreve a decisão vigente naquela data; a solicitação posterior adicionou Diggy e está refletida em FR-019/SC-010 e na política atual do plano/modelo/contrato. Nenhuma outra mídia nova é aprovada por essa extensão.
+
+### Validação parcial de acessibilidade e revisão adiada — 2026-10-06
+
+- Inspeção atual da árvore de acessibilidade do Chromium em `/projects/#diggy-the-dog`: o campo de busca aparece nomeado “Search for”; os botões das facetas aparecem como “Context All” e “Technology All”; a imagem de Diggy tem descrição acessível; “More details” aparece recolhido. Essa inspeção não equivale a operar um leitor de tela real.
+- A Fase 30 já registra teclado, funcionamento sem JavaScript, 320/390/820/1280 CSS px e toque emulado. Permanecem sem execução: leitor de tela falante real, zoom do navegador e toque em aparelho físico. T092 continua pendente; não declaro SC-028 completo.
+- A revisão visual/editorial humana T093 foi adiada por solicitação do usuário em 2026-10-06. Nenhuma aprovação editorial ou visual é inferida.
+- A árvore atual do Chromium mostra `Showing 20 of 20 projects`, incluindo Diggy; FR-001, FR-008, SC-001, escala do plano e instruções correntes de quickstart foram atualizados do inventário anterior de 19 para 20. As matrizes de resultados antigas permanecem registros datados, não resultados atuais.
+- Após as atualizações documentais: `npm run check` passou com 0 erros, 0 warnings e 1 hint preexistente de CommonJS em `make_contact_sheets.js`; `npm run build` gerou as 7 páginas estáticas; `git diff --check` passou. Git exibiu somente avisos de normalização LF/CRLF.

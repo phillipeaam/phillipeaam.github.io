@@ -6,7 +6,7 @@ Data: 2026-10-05. Mesma feature 006, mesma branch feature/006-projects-catalog. 
 | --- | --- | --- |
 | I1 — plano/modelo/contrato antigos | Alinhar antes de implementar. | plan, data-model, contrato e research receberam desenho vigente, projeção exclusiva catalogEditorialById e precedência explícita sobre trechos históricos. T064 concluída documentalmente. |
 | I2 — Stop/Play exigido após remoção | Aplicar decisão vigente e registrar limites. | FR-014/FR-028/SC-018 alinhados à decisão global: não restaurar controle em nenhuma página. Preservar fallback/reduced motion; não declarar conformidade integral de movimento contínuo. |
-| I3 — reutilização confundida com direitos | Distinguir decisão e comprovação documental. | FR-019/SC-010 e desenho distinguem allowlist histórica autorizada e evidência de direitos. Nenhuma fonte nova permitida sem documentação; limites canônicos permanecem. |
+| I3 — reutilização confundida com direitos | Distinguir decisão e comprovação documental. | FR-019/SC-010 distinguem reutilização explicitamente autorizada pelo usuário e comprovação independente de direitos. A allowlist inclui agora os arquivos Diggy exatos, documentados em evaluation.md; outros assets seguem sujeitos a documentação. |
 | D1 — cenários duplicados | Consolidar matriz mantendo rastreabilidade. | quickstart recebeu roteiro A–G que associa vários SC a cenários únicos. T065 concluída documentalmente. |
 
 Clarify: nenhuma nova pergunta necessária; decisões de produto claras. Questões de representação foram resolvidas no plano, não tratadas como dúvidas de preferência. Checklist documental 30/30 permanece; limites de mídia não equivalem a novas autorizações, certificação de direitos ou conformidade.

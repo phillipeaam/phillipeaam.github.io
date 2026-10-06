@@ -2,6 +2,8 @@
 
 This guide is for implementation and review after the catalog is built. It does not claim that the checks below have already run.
 
+**Precedência vigente — 2026-10-05:** os cenários adicionais em “Extensão priorities 2–5” complementam e, onde conflitam, substituem o roteiro anterior. Nenhuma superfície deve apresentar Stop/Play; registro histórico não é resultado runtime.
+
 ## Prerequisites and local run
 
 - Node.js and npm versions supported by the project.
@@ -22,7 +24,7 @@ Expected: Astro diagnostics and production build complete successfully; the diff
 
 ## Functional discovery scenarios
 
-1. Open `/projects/` with no criteria. Confirm each published project has a recognizable text entry and the status shows the current data-derived total (currently 19).
+1. Open `/projects/` with no criteria. Confirm each published project has a recognizable text entry and the status shows the current data-derived total (currently 20).
 2. Search for a full name and a partial name. Confirm only matching records remain and the count matches the displayed entries.
 3. Search a contribution/product term and a verified technology. Confirm the public detail corpus can match and no deferred/internal record appears.
 4. Repeat a query with different letter case, surrounding spaces, and without Portuguese accents. Confirm equivalent matching.
@@ -47,7 +49,7 @@ Expected: Astro diagnostics and production build complete successfully; the diff
 
 ## Validation record
 
-The feature does not include a participant study or before/after usability comparison. Record results for SC-001–SC-019 in `specs/006-projects-catalog/evaluation.md`, including the scenarios run, actual viewport widths, accessibility checks, build diagnostics, and any unmet criterion or validation not performed. Do not present manual checks as participant research.
+The feature does not include a participant study or before/after usability comparison. Record results for SC-001–SC-031 in `specs/006-projects-catalog/evaluation.md`, including scenarios actually run, actual viewport widths, accessibility checks, build diagnostics, and any unmet criterion or validation not performed. Do not present manual checks as participant research.
 
 ## Related artifacts
 
@@ -72,12 +74,27 @@ Este roteiro substitui exigências históricas de três grupos separados, contro
 
 | Cenário | Procedimento e resultado esperado | Critérios |
 | --- | --- | --- |
-| A — Conteúdo e fontes | Revisar 19 registros; confrontar afirmações com matriz canônica. Selected contributions só com autoria sustentada; highlights 0–3 conforme conteúdo; sem duplicação ou impacto inventado. Fatos semanticamente distintos, períodos qualificados. | SC-020–SC-022 |
+| A — Conteúdo e fontes | Revisar 20 registros; confrontar afirmações com matriz canônica. Selected contributions só com autoria sustentada; highlights 0–3 conforme conteúdo; sem duplicação ou impacto inventado. Fatos semanticamente distintos, períodos qualificados. | SC-020–SC-022 |
 | B — Estados ausentes | Avaliar profissional/independente/estudo, contribuição limitada/ausente, sem mídia/ícone/período/resultado/CTA. Omitir campos/grupos sem quota artificial; todos os nomes reconhecíveis. | SC-001, SC-009, SC-016–SC-017, SC-020–SC-022 |
 | C — Busca e facetas | Nomes, produto, termos exclusivos dos títulos/body dos highlights; caixa/acentos; OR intrafaceta e AND entre facetas/query. Contagens corretas, clear, vazio; notas privadas/withdrawn não encontram registro. Um menu aberto, escolhas preservadas. | SC-002–SC-004, SC-012–SC-015, SC-023 |
 | D — Links e expansão | Quatro cases, ações existentes, hashes diretos/filtrados, múltiplos details independentes; esconder projeto esconde seus detalhes. Não criar destinos. | SC-005, SC-017, SC-023–SC-024 |
 | E — Reflow e baseline | 320/390/820/1280px: detalhes sob as duas colunas, More details junto à descrição com JS; fallback nativo sem JS. Sem overlap/corte/overflow; cabeçalho/24px/margens, mídia300px/flexível e largura textual aprovados preservados. | SC-007–SC-008, SC-011, SC-016, SC-019, SC-024 |
-| F — Acesso e mídia | Teclado, toque, leitor de tela, foco/estado, sem JS. Allowlist exata histórica e classificação documental correta; rede lenta/falha/proximidade/reduced motion inicial/dinâmico. Nenhum controle de animação em qualquer superfície. Não declarar direitos/conformidade integral não demonstrados. | SC-005–SC-006, SC-010, SC-018, SC-024 |
+| F — Acesso e mídia | Teclado, toque, leitor de tela, foco/estado, sem JS. Allowlist exata vigente, inclusive arquivos Diggy documentados em evaluation.md, e classificação correta da decisão de reutilização frente a direitos de terceiros; rede lenta/falha/proximidade/reduced motion inicial/dinâmico. Nenhum controle de animação em qualquer superfície. Não declarar direitos/conformidade integral não demonstrados. | SC-005–SC-006, SC-010, SC-018, SC-024 |
 | G — Entrega | Diff/check/build conforme constituição; registrar apenas resultados reais e lacunas em evaluation.md. Revisão humana de narrativa e composição antes de considerar aprovada. | Constituição VI/VIII/IX |
 
 Pré-condição editorial: plan/data-model/contrato alinhados e matriz por projeto preparada. Registrar viewports realmente usados e checks não executados. Estudos com participantes continuam fora desta implementação. Evidência antiga não comprova os requisitos novos; sem execução nesta rodada.
+
+## Extensão priorities 2–5 — validação planejada, não executada
+
+Este conjunto cobre US2, US4, US6, US7 e SC-025–SC-031. Usar registros do `evaluation.md` com projeto/rota, query/seleção, viewport, rede/movimento, estado de fontes/scripts, tecnologia assistiva, observação concreta e tipo de evidência. Não marcar como sucesso com base em inspeção de código quando o cenário pede runtime.
+
+| Cenário | Procedimento e resultado esperado | Critérios |
+|---|---|---|
+| H — Tag Unity única | Confirmar que Technology apresenta exatamente uma opção `Unity`, nunca uma opção `Unity 6` ou outras versões; pesquisar/filtrar `Unity` inclui Pathless. Quando Unity 6 estiver publicado como fato detalhado, ele continua visível sem criar outra tag. Conferir que só metadados confirmados recebem Unity e que OR/AND permanecem. | SC-025 |
+| I — Títulos Home | Na seção More Projects, conferir todos os cartões simples em estado padrão, sem hover/foco. Repetir com imagem presente, placeholder, erro e ausência, viewport estreito e zoom; verificar nome/link e ausência de anúncio duplicado. Confirmar Featured/Selected work sem duplicação. | SC-026 |
+| J — Mídia sob rede/movimento | Com DevTools/network observável, testar mídia distante e aproximação; fallback fica até readiness; falha/bloqueio/load/decode preservam fallback sem salto. Testar reduced motion no início e alterado durante request: sem pedido/revelação animada tardia. Repetir fallback sem JS e comportamento sem observer, conforme implementação especificada. Nenhum Stop/Play em qualquer rota. Registrar rede, timing e resultado real. | SC-027, SC-031 |
+| K — Acesso e semântica | Em Home e `/projects/`, navegar por teclado, verificar foco, labels, disclosure/filtros, Escape quando aplicável, item ocultado, contagem, leitor de tela, zoom/320px, JS desligado e uma região principal por rota. Nome/estado devem corresponder à interação real; não alegar auditoria WCAG completa sem abrangência comprovada. | SC-028 |
+| L — Datas e escopo | Confrontar Ello 2.0, Read With Ello e Wallace’s Quest entre registro central, catálogo, cases existentes e Experience. Separar intervalos de projetos/fases dos de emprego, versões/tecnologias e escopo individual/equipe. Atualizar só a fonte apropriada quando houver evidência; listar diferenças sem decisão como pendência. Não criar case/Experience inexistente. | SC-029, SC-030 |
+| M — Navegação/restauração | Com DevTools/runtime, simular fonte lenta e falha, conteúdo antes/depois da inicialização, retorno a posição salva e mídia bloqueada/decode falho. Confirmar ausência de tela vazia persistente ou flash na posição errada. Inspeção de fonte é evidência complementar, não resultado deste cenário. | SC-031 |
+
+Ao fechar a rodada, registrar SC-025–SC-031 separadamente de SC-001–SC-024, viewports e estados realmente executados, itens pendentes e correções; executar também `git diff --check`, `npm run check` e `npm run build`. A revisão humana continua obrigatória para mudanças visuais/editoriais. Nenhum teste ou browser foi executado ao atualizar este roteiro.

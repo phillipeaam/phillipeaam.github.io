@@ -1,12 +1,13 @@
 ---
 import ExternalLink from './ExternalLink.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
-import { hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
+import { getTechnologyFacetTags, hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
 
 const { project, homePath = '/' } = Astro.props as { project: ProjectRecord; homePath?: string };
 const approvedMedia = project.media?.filter((media) => media.catalogReuseApproved) ?? [];
 const approvedIdentityImage = project.catalogIconReuseApproved ? project.projectsIndexTitleIcon : undefined;
 const technologies = project.technologies ?? [];
+const technologyFacetTags = getTechnologyFacetTags(technologies);
 const recordId = project.anchorId ?? project.id;
 const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
 const role = project.specs?.find(({ label }) => label === 'Role')?.value;
@@ -21,7 +22,7 @@ const publicMetadata = project.specs?.filter(({ label }) => !['Role', 'Context',
 const hasFacts = Boolean(role || context || productType || period);
 const hasDetails = Boolean(narrative || project.additionalContext || hasFacts || publicMetadata.length || technologies.length || detailMedia.length || caseHref || project.actions?.length);
 ---
-<li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={technologies.join('|')}>
+<li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={technologyFacetTags.join('|')}>
   <article class:list={['archive-record__entry', primaryMedia && 'archive-record__entry--media']} aria-labelledby={titleId}>
     {primaryMedia && <div class="archive-record__primary-media"><ArchiveMedia media={primaryMedia} projectName={project.name} /></div>}
     <div class="archive-record__entry-content">

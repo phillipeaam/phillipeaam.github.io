@@ -4,7 +4,7 @@
 
 ## 1. Client-side search in a static Astro archive
 
-**Decision**: Keep project data and all catalog entries in Astro-generated HTML, then use a small native client script to enhance query, facets, result summary, clear action, and empty state. Do not add an API, server rendering adapter, external search service, framework hydration, or dependency for 19 local records.
+**Decision**: Keep project data and all catalog entries in Astro-generated HTML, then use a small native client script to enhance query, facets, result summary, clear action, and empty state. Do not add an API, server rendering adapter, external search service, framework hydration, or dependency for the current 20 local records.
 
 **Rationale**: Astro components render HTML at build time and processed client scripts can provide browser-side behavior. The repository already uses Astro and TypeScript, and the catalogue is small and static. Rendering the content first satisfies the no-JavaScript requirement and avoids making discoverability depend on script execution. Inputs should be hidden or disabled until initialization succeeds; a `<noscript>` note may explain that filtering requires JavaScript, while every project remains visible.
 
@@ -118,7 +118,7 @@ O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no basel
 **Rationale:** evita regressão editorial em consumidores existentes e torna atuação/mecanismos claros sem concatenar três parágrafos repetitivos. Fontes: docs/projects-catalog-hiring-review.md e páginas canônicas de Notion relacionadas na spec. Pesquisa já consultada; não foi coletada evidência nova de contratação.
 **Alternatives considered:** modificar globalmente product/contribution (risco para Home/cases); concatenar campos (mantém repetição); manter três blocos obrigatórios (não atende pedido); exigir três highlights/métricas (fabricaria conteúdo em registros limitados).
 
-**Decision:** reutilizar fontes históricas da allowlist conforme autorização do usuário, sem chamar isso de prova de direitos; manter a ausência de Stop/Play em todas as páginas e preservar fallback/reduced motion.
+**Decision:** reutilizar fontes da allowlist atual conforme autorização explícita do usuário para esses arquivos, sem chamar isso de prova independente de direitos; a lista agora inclui os arquivos Diggy registrados em evaluation.md por solicitação de 2026-10-06. Manter a ausência de Stop/Play em todas as páginas e preservar fallback/reduced motion.
 **Rationale:** alinha documentos às decisões vigentes sem inventar autorização de terceiros ou declarar conformidade integral. Constituição IV atual exige acesso, fallback e redução de movimento; não contém uma exigência textual específica de botão Stop/Play. Isso não equivale a uma auditoria de conformidade da animação contínua.
 **Alternatives considered:** recolocar controle sem pedido (reverte decisão); esconder fontes históricas automaticamente (reverte reaproveitamento); certificar direitos/acessibilidade (evidência insuficiente). Novas fontes continuam condicionadas à documentação.
 
@@ -129,3 +129,21 @@ Por decisão explícita do usuário, remover o botão Stop/Play e qualquer contr
 **Decision:** um roteiro único de validação referencia vários critérios equivalentes, preservando IDs SC-001–SC-024.
 **Rationale:** reduz duplicação de execução sem perder rastreabilidade. Comparação com participantes permanece pesquisa futura; não é gate nem promessa de aumento de contratação.
 **Alternatives considered:** repetir cenários por ID; excluir IDs históricos sem registro. Nenhum desconhecido técnico ou pergunta de produto permanece para este desenho.
+
+## Revisão vigente — prioridades 2–5 — 2026-10-05
+
+**Registro histórico, substituído pela decisão abaixo:** tratar Unity como família e resolver versões descendentes por taxonomia.
+
+**Unity — decisão vigente:** a faceta oferece uma única tag canônica `Unity`, sem opções distintas por versão. Registros com Unity/Unity Engine confirmada são normalizados para essa tag no filtro; `Unity 6` pode permanecer como fato separado nos detalhes, se confirmado e publicado. Busca/filtro por Unity encontra Pathless. Não criar taxonomia por versão nem classificar por busca parcial em prosa ou título.
+
+**Racional e fonte local:** `src/data/projects.ts` registra Pathless com Unity 6; `src/pages/projects/index.astro` fazia correspondência exata; antes desta decisão, `docs/project-records.md` registrava Unity e Unity 6 separadamente. A regra foi atualizada para refletir a tag única. A normalização do filtro remove a necessidade de manter uma opção para cada versão, sem apagar nem reescrever o fato de origem; a tag segue metadados canônicos e permanece centralizada.
+
+**Identidade na Home — decisão:** mostrar nome em estado padrão nos cartões simples em More Projects. Reutilizar o nome acessível existente, evitando duplicação para leitores de tela. Cartões destacados já identificados não recebem conteúdo redundante. Fallback, erro ou ausência de imagem conservam nome e link.
+
+**Mídia, acessibilidade e navegação — decisão:** preservar a política de mídia e ausência global de controles Stop/Play. Executar cenários com rede lenta/bloqueada, proximidade, load/decode/falha, fallback, reduced motion ativo e alterado durante carga, teclado/leitor de tela, foco em item filtrado, JavaScript ausente, falha/demora de fontes e retorno à posição. Código inspecionado não prova pedidos de rede, estabilidade visual ou comportamento runtime; separar execução real de pendência. Validar um landmark principal por rota efetivamente avaliada.
+
+**Períodos e escopo — decisão:** o registro central é fonte canônica do projeto; Experience descreve vínculo profissional e cases descrevem recortes editoriais publicados. Diferenças não são inconsistências por definição: Ello 2.0 (Sep–Nov 2025) difere do vínculo profissional Ello (Oct 2022–Dec 2025); Read With Ello tem período de projeto próprio; Wallace inclui fases antigas e revisita em 2026. Corrigir apenas a entidade com fonte que sustente a alteração. Divergência inconclusiva fica registrada como pendência.
+
+**Alternativas consideradas:** manter opções de filtro para família mais todas as versões (cresce a taxonomia e exige manutenção por versão); apagar a versão Unity 6 do dado confirmado (perde precisão); duplicar tags específicas por ficha (risco de drift); corrigir período para coincidir com vínculo de emprego (mistura entidades); tratar leitura estática como auditoria de runtime/acessibilidade (evidência insuficiente); esconder cartões sem imagem (perde identidade e link).
+
+**Referências:** requisitos e fontes por projeto em [spec.md](spec.md); taxonomia/períodos em `docs/project-records.md`, `src/data/projects.ts`, `src/pages/projects/index.astro` e documentos de Experience/cases vinculados nos registros; W3C/WAI consultados nas seções 3–4. Nenhum browser, leitor de tela ou teste de rede foi executado nesta etapa.

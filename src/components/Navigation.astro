@@ -54,9 +54,13 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
   const homeScrollKey = 'portfolio-home-scroll-y';
   const restoreHomeKey = 'portfolio-restore-home-scroll';
   const isHomePage = window.location.pathname === import.meta.env.BASE_URL;
+  const safeStorage = {
+    set: (key: string, value: string) => { try { sessionStorage.setItem(key, value); } catch { /* Storage unavailable; keep navigation usable. */ } },
+    remove: (key: string) => { try { sessionStorage.removeItem(key); } catch { /* Storage unavailable; keep navigation usable. */ } },
+  };
   document.querySelectorAll<HTMLAnchorElement>('[data-home-identity]').forEach((link) => {
     link.addEventListener('click', (event) => {
-      sessionStorage.removeItem(restoreHomeKey);
+      safeStorage.remove(restoreHomeKey);
       if (!isHomePage) return;
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
@@ -106,14 +110,14 @@ const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]
 
   if (!isHomePage) {
     document.querySelectorAll<HTMLAnchorElement>('.nav-link--return').forEach((link) => {
-      link.addEventListener('click', () => sessionStorage.setItem(restoreHomeKey, 'true'));
+      link.addEventListener('click', () => safeStorage.set(restoreHomeKey, 'true'));
     });
   } else {
     let scrollSaveFrame = 0;
     let leavingHome = false;
     const saveHomeScroll = () => {
       if (leavingHome || document.documentElement.dataset.restoringHomeScroll === 'true') return;
-      sessionStorage.setItem(homeScrollKey, String(window.scrollY));
+      safeStorage.set(homeScrollKey, String(window.scrollY));
     };
     document.addEventListener('click', (event) => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

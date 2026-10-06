@@ -1,21 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
-import { projectInventoryGroups } from '../../data/projects';
+import { getTechnologyFacetTags, projectInventoryGroups } from '../../data/projects';
 
 const homePath = import.meta.env.BASE_URL;
 // Preserve the archive's existing editorial group order while presenting one list.
 const orderedProjects = projectInventoryGroups.flatMap((group) => group.projects);
 const contexts = [...new Set(orderedProjects.flatMap(({ workContext }) => workContext ? [workContext] : []))];
-const technologies = [...new Set(orderedProjects.flatMap(({ technologies: values }) => values ?? []))].sort((a, b) => a.localeCompare(b));
+const technologies = [...new Set(orderedProjects.flatMap(({ technologies: values }) => getTechnologyFacetTags(values)))].sort((a, b) => a.localeCompare(b));
 const contextLabel = (context: string) => context === 'professional' ? 'Professional' : context === 'independent' ? 'Independent' : 'Study';
 ---
 <BaseLayout title="Projects — Phillipe Augusto" description="Explore Phillipe Augusto’s projects across professional, independent, and study contexts." contextualNavigation={true}>
-  <main class="archive-content content-width" data-project-catalog data-total={orderedProjects.length}>
+  <section class="archive-content content-width" data-project-catalog data-total={orderedProjects.length} aria-labelledby="projects-heading">
     <header class="section-heading section-heading--major archive-intro">
       <div>
         <p class="eyebrow">BREADTH, AT A GLANCE</p>
-        <h1>All Projects</h1>
+        <h1 id="projects-heading">All Projects</h1>
       </div>
       <p><span class="section-support-line">Professional products, independent games, and technical</span>{' '}<span class="section-support-line">work beyond the selected case studies.</span></p>
     </header>
@@ -34,7 +34,7 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
             <label class="sr-only" for="context-options-search">Search Context options</label>
             <input class="catalog-facet__search" id="context-options-search" type="search" autocomplete="off" placeholder="Search options…" data-option-search="context" />
             <div class="catalog-facet__options" role="group" aria-label="Context options">
-              {contexts.map((context) => <label><input type="checkbox" name="context" value={context} /> {contextLabel(context)}</label>)}
+              {contexts.map((context) => <label><input type="checkbox" name="context" value={context} aria-label={`${contextLabel(context)} context`} /> {contextLabel(context)}</label>)}
             </div>
             <p class="catalog-facet__empty" data-options-empty role="status" aria-live="polite" hidden>No Context options match.</p>
           </div>
@@ -48,7 +48,7 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
             <label class="sr-only" for="technology-options-search">Search Technology options</label>
             <input class="catalog-facet__search" id="technology-options-search" type="search" autocomplete="off" placeholder="Search options…" data-option-search="technology" />
             <div class="catalog-facet__options catalog-facet__options--technology" role="group" aria-label="Technology options">
-              {technologies.map((technology, index) => <label><input type="checkbox" name="technology" value={technology} id={`technology-${index}`} /> {technology}</label>)}
+              {technologies.map((technology, index) => <label><input type="checkbox" name="technology" value={technology} id={`technology-${index}`} aria-label={`${technology} technology`} /> {technology}</label>)}
             </div>
             <p class="catalog-facet__empty" data-options-empty role="status" aria-live="polite" hidden>No Technology options match.</p>
           </div>
@@ -62,7 +62,7 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
     <ol class="archive-record-list" data-catalog-list>
       {orderedProjects.map((project) => <ProjectRecord project={project} homePath={homePath} />)}
     </ol>
-  </main>
+  </section>
 </BaseLayout>
 
 <script>
@@ -94,6 +94,14 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
     facets.forEach((facet) => {
       if (facet.hasAttribute('open') && !facet.contains(target)) facet.removeAttribute('open');
     });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const openFacet = facets.find((facet) => facet.hasAttribute('open'));
+    if (!openFacet) return;
+    const summary = openFacet.querySelector<HTMLElement>('summary');
+    openFacet.removeAttribute('open');
+    summary?.focus();
   });
   const refreshFacetOptions = () => {
     facets.forEach((facet) => {

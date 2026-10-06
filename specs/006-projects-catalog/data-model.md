@@ -17,7 +17,7 @@ One public record rendered in the archive. Its underlying editorial source remai
 | `context` | Existing descriptive context text, where present | Searchable public detail only; never use arbitrary prose as a Context facet value. |
 | `contribution` | Verified individual contribution | Optional; omitted when not supported. |
 | `period` | Verified time period | Optional; render only if present and confirmed. |
-| `technologies[]` | Verified technology/tool values for the Technology facet and detail chips | Zero or more; derive only from explicit `Stack`, `Engine`, or `Tools` metadata in the project record. Do not infer from title, platform labels, arbitrary context, or broad product prose. Render in expanded details, not as chips in the compact entry. |
+| `technologies[]` | Verified technology/tool facts displayed in expanded details | Zero or more; derive only from explicit `Stack`, `Engine`, or `Tools` metadata in the project record. Preserve a confirmed specific value such as `Unity 6` here when it is part of the source fact. Do not infer from title, platform labels, arbitrary context, or broad product prose. |
 | `productType` | Product nature (for example, game or software/product) | Distinct from context and technology; not automatically a facet in this feature. |
 | `editorialGroup` | Optional existing display group/order | Must not imply unsupported technology or employment context. |
 | `searchText` | Normalized public searchable corpus derived from name, summary, contribution, period, context, technologies, and other displayed public metadata/details | Derived, not separately authored; exclude deferred/internal data. Normalize case, trim, and diacritics consistently. |
@@ -50,6 +50,7 @@ Matching is substring-based against the normalized public searchable corpus. A p
 |---|---|---|
 | `contexts[]` | Selected context values in the Context disclosure filter | Empty means unrestricted; multiple selections use OR. Options can be searched within the open control; selection uses native checkbox state. |
 | `technologies[]` | Selected technology values in the Technology disclosure filter | Empty means unrestricted; multiple selections use OR. Options can be searched within the open control; selection uses native checkbox state. |
+| Canonical Technology tag | Stable public filter value derived from verified technology metadata | For Unity, expose only `Unity`; confirmed versioned Engine/Stack values such as `Unity 6` match this one tag. Do not enumerate versions as filter values or maintain a descendant-version registry. Preserve the original confirmed version in detail facts where shown. |
 | `facetQuery` | Temporary text used to find an option within one facet menu | Separate per facet; filters visible option labels only and does not itself narrow project results. |
 | `openFacet` | Currently expanded facet selector | Either `context`, `technology`, or none; at most one facet selector is open. Opening the other selector closes this one but preserves its selections and option-search text. |
 
@@ -66,7 +67,7 @@ Visible labels precede their controls: “Search for” labels the main query fi
 | `hasResults` | Whether `matchingCount` is greater than zero |
 | `activeCriteria[]` | Removable representations of active query/facet selections |
 
-The accessible status announces a concise summary such as “Showing 4 of 19 projects” or a useful zero-results message. Count records, not media or individual matching tokens.
+The accessible status announces a concise summary such as “Showing 4 of 20 projects” or a useful zero-results message. Count records, not media or individual matching tokens.
 
 ## Expanded details state
 
@@ -93,9 +94,9 @@ Each project has independent open/closed state. Multiple entries may be open sim
 This projection supersedes prior wording about all media belonging to expanded details; independent disclosure/filter states are unchanged.
 
 ### Decisão posterior de reutilização (2026-10-05)
-O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
+O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. Em 2026-10-06, solicitou também a inclusão no catálogo do pôster e gameplay GIF fornecidos para Diggy; seus caminhos de origem e derivados estão registrados em evaluation.md. A decisão de reutilização vale para esses arquivos exatos e não é prova independente de direitos de terceiros. Outras fontes continuam sujeitas à documentação. Ver spec.md, FR-019 e a seção de mídia de Diggy em evaluation.md.
 
-## Catalog-only editorial projection — current
+## Catalog-only editorial projection — historical, superseded by centralization
 
 `catalogEditorialById` maps existing project IDs to `CatalogEditorialContent` in src/data/projects.ts; only /projects/ consumes it. Underlying Home/case data remain unchanged. Relationships with IDs, technologies, actions and media reuse source values; don't invent alternate destinations.
 
@@ -113,8 +114,25 @@ O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no basel
 | `contributionNarrative.outcome` | Optional verified result; no mandatory metric and no invented impact. |
 | `additionalContext` | Optional product context only when needed to understand contribution; not a repeated summary or mandatory Product section. |
 
-Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. Historical allowlist reuse is distinct from documentary rights verification; no source additions. No surface renders Stop/Play; reduced motion and fallback remain.
+Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. The original four-source allowlist was extended by the user's explicit Diggy media request recorded in evaluation.md; exact-file reuse remains distinct from independent third-party rights verification. No other source additions. No surface renders Stop/Play; reduced motion and fallback remain.
 
 Missing map entries use verified existing summary/facts without synthesizing Selected contributions from legacy engineering prose. Revised records must use explicit catalog values rather than fall back to mixed Type/Context data. Public corpus derives only from rendered public values, including highlight titles/bodies/outcome/additionalContext; exclude source URLs to private records and withdrawn text.
 
 Traceability lives in evaluation.md as a per-project editorial matrix: source reference, supported claim, scope/era qualifiers and omissions. It is internal, not included in public text or search. Editorial states: legacy → drafted against evidence → reviewed against source → human reviewed. Do not infer human approval from build/check success.
+
+## Cross-surface discovery and evidence — current extension 2026-10-05
+
+These relationships describe the current feature extension; they do not imply that the runtime implementation or validation is complete.
+
+| Entity / relation | Meaning | Constraints |
+|---|---|---|
+| `TechnologyFact` | Confirmed technology/engine value attached to a project | Preserve exact value/version such as `Unity 6` in detailed facts when displayed; source from canonical project metadata. |
+| `TechnologyFacetTag` | Canonical label used by the Technology filter | For verified Unity Engine/Stack facts, use the single tag `Unity`. The filter must never emit per-version options; this does not need a registry of Unity releases. Do not infer from title, platform label, context, or arbitrary prose. |
+| `ProjectPeriod` | Documented period for a project or phase | May differ from employment period; retain project/phase scope and historical qualifiers. |
+| `EmploymentPeriod` | Documented employment interval for an organization/role in Experience | Must not overwrite or be used as a proxy for ProjectPeriod. |
+| `ContributionScope` | Evidence-supported individual role and work scope, distinguished from team/product facts | Catalog, central project record, and a published case should agree where claims overlap; unresolved differences are reported as evidence conflicts, not silently normalized. |
+| `SurfaceProjection` | Public rendering of central project data in Home, catalog, Experience, or an existing case | Preserve each surface's purpose; no new case or Experience relation is implied by a catalog record. |
+
+## Validation observation record
+
+`evaluation.md` records each scenario, route/project, viewport, network condition, motion preference, script/font state, interaction/assistive technology, observed request/visual/accessibility outcome, and evidence type (`source inspection` or `executed runtime`). A criterion is not marked passed on source inspection alone when its spec requires runtime. Unexecuted or blocked scenarios remain pending with reason.

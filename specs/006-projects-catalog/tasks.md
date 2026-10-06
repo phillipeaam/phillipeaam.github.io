@@ -258,14 +258,14 @@ T001 (registro de validação)
 - [X] T041 [P] [US1] Reutilize o estilo compartilhado `.section-heading--major` em `src/styles/global.css` para o cabeçalho do catálogo e remova overrides que recriem a composição editorial já definida.
 - [X] T042 [P] [US2] Posicione rótulos visíveis “Search for”, “Context” e “Technology” acima do campo e seletores correspondentes em `src/pages/projects/index.astro`, preservando busca principal, busca de opções e multisseleção.
 - [X] T043 [US2] Atualize a interação dos menus de faceta em `src/pages/projects/index.astro` para permitir no máximo um menu aberto por vez; abrir o outro fecha o atual e preserva valores selecionados e consulta local de opções.
-- [ ] T044 [US4] Verifique nomes acessíveis, estado de expansão, foco por teclado e aprimoramento progressivo dos rótulos e menus em `src/pages/projects/index.astro` e `src/styles/global.css`; controles de filtro continuam indisponíveis sem o script inicializado.
+- [X] T044 [US4] Verifique nomes acessíveis, estado de expansão, foco por teclado e aprimoramento progressivo dos rótulos e menus em `src/pages/projects/index.astro` e `src/styles/global.css`; controles de filtro continuam indisponíveis sem o script inicializado. Evidência consolidada de Chromium AX, teclado/Escape e JavaScript desativado em `specs/006-projects-catalog/evaluation.md`; leitor de tela real continua pendente em T090.
 - [X] T045 [US1] Valide a hierarquia e os textos do cabeçalho contra a Home em viewports representativos, conforme cenário 12 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
 - [X] T046 [US2] Valide a posição dos rótulos e a exclusividade/preservação de estado das facetas em viewports representativos, conforme cenário 13 de `specs/006-projects-catalog/quickstart.md`, e registre o resultado em `specs/006-projects-catalog/evaluation.md`.
 - [X] T047 Execute `npm run check`, `npm run build` e `git diff --check` após T045–T046 e registre os resultados reais em `specs/006-projects-catalog/evaluation.md`.
 
 ## Complemento ativo — 2026-10-05
 
-T001–T047 permanecem como histórico com seus estados originais. T003/T015/T031/T033 descrevem apresentação substituída; não executar suas instruções de localização de mídia/metadados novamente. T040–T047 permanecem pendentes no registro, mas suas entregas aparentemente existentes serão auditadas por T048/T060/T062, sem presumir conclusão ou alterar marcadores sem prova. Para este complemento executar T048–T063. Avaliações anteriores não validam novos cenários. Nenhum teste é executado durante geração destas tarefas.
+T001–T047 permanecem como histórico, exceto T044 atualizado com evidência de execução atual. T003/T015/T031/T033 descrevem apresentação substituída; não executar suas instruções de localização de mídia/metadados novamente. T040–T047 foram auditadas em T048/T060/T062, sem presumir conclusão por implementação preexistente. Para este complemento executar T048–T063. Avaliações anteriores não validam novos cenários. Nenhum merge/push/commit nesta rodada.
 
 ### Fase 12 — Setup
 
@@ -282,14 +282,14 @@ T001–T047 permanecem como histórico com seus estados originais. T003/T015/T03
 
 - [X] T051 [US1] Reorganize a entrada recolhida em `src/components/ProjectRecord.astro` com mídia principal aprovada, ícone decorativo existente antes do título, descrição curta e controle Project details com indicador + recolhido; retirar teaser de contribuição/contexto/período sem perder esses dados. FR-001–FR-003, FR-026–FR-027, FR-030.
 - [X] T052 [US1] Ajuste `src/styles/global.css` para desktop em duas colunas e celular empilhado, variante textual sem coluna vazia, ícone 52×52/borda/raio10px/gap14px e divisores consistentes; preservar cabeçalho/24px/margens e não redesenhar Home/cases. FR-017–FR-018, FR-021–FR-022, FR-027, FR-031; SC-001, SC-007–SC-008, SC-011, SC-016, SC-019.
-- [ ] T053 [US1] Execute cenários 15/17/20 de `specs/006-projects-catalog/quickstart.md` para entrada recolhida, nomes longos, ausência de mídia/ícone e geometria do cabeçalho; registre medidas/evidências em `specs/006-projects-catalog/evaluation.md`, sem declarar testes de mídia executados se nenhuma fonte for elegível.
+- [X] T053 [US1] Execute cenários 15/17/20 de `specs/006-projects-catalog/quickstart.md` para entrada recolhida, nomes longos, ausência de mídia/ícone e geometria do cabeçalho; registre medidas/evidências em `specs/006-projects-catalog/evaluation.md`, sem declarar testes de mídia executados se nenhuma fonte for elegível. Viewports e estados de mídia estão registrados na Fase 30.
 
 ### Fase 15 — US2 (P1): preservar descoberta
 
 **Independent Test**: termos movidos aos detalhes continuam pesquisáveis e matriz OR/AND, contagem e restauração continuam correta.
 
 - [X] T054 [US2] Audite e ajuste somente se necessário o corpus público/filtragem de `src/pages/projects/index.astro` após mudança dos registros: nome, descrição, contribuição, contexto, período e tecnologia pesquisáveis, caixa/espaços/acentos, OR intrafaceta/AND entre facetas e busca, contador match/total, limpeza, vazio e dados derivados. FR-004–FR-010, FR-023–FR-025; SC-002–SC-004, SC-012–SC-015.
-- [ ] T055 [US2] Execute cenários 1–9/13 de `specs/006-projects-catalog/quickstart.md`, incluindo termos presentes apenas nos detalhes recolhidos e menus independentes com um aberto por vez; registre matriz, contagens e regressões em `specs/006-projects-catalog/evaluation.md`.
+- [X] T055 [US2] Execute cenários 1–9/13 de `specs/006-projects-catalog/quickstart.md`, incluindo termos presentes apenas nos detalhes recolhidos e menus independentes com um aberto por vez; registre matriz, contagens e regressões em `specs/006-projects-catalog/evaluation.md`. Consultas, OR/AND, vazio, limpeza e exclusividade foram exercitados na Fase 30.
 
 ### Fase 16 — US4 (P1): mídia acessível e resiliência
 
@@ -304,7 +304,7 @@ T001–T047 permanecem como histórico com seus estados originais. T003/T015/T03
 **Independent Test**: detalhes mostram fatos/destinos disponíveis, sem duplicar mídia principal/resumo; múltiplos registros permanecem expandidos e hashes revelam item filtrado.
 
 - [X] T059 [US3] Organize dados adicionais em `src/components/ProjectRecord.astro`: contexto/workContext, tipo, período, contribuição, engenharia, tecnologias, specs sem duplicatas, descrição adicional somente quando mais completa, mídia complementar e quatro cases/ações válidas. “Omit missing fields and empty groups.” Preservar expansão independente/IDs, omitir CTAs ausentes e não repetir mídia principal/resumo. FR-002, FR-011–FR-012, FR-020, FR-026, FR-030; SC-009–SC-010, SC-017.
-- [ ] T060 [US3] Execute cenários 10–14/16 de `specs/006-projects-catalog/quickstart.md` para metadados nos detalhes, expansão simultânea, filtros ocultando item e hashes diretos/filtrados, cases/ações e projetos sem CTA/detalhes; ajuste regressões necessárias em `src/components/ProjectRecord.astro`/`src/pages/projects/index.astro` e registre em `specs/006-projects-catalog/evaluation.md`.
+- [X] T060 [US3] Execute cenários 10–14/16 de `specs/006-projects-catalog/quickstart.md` para metadados nos detalhes, expansão simultânea, filtros ocultando item e hashes diretos/filtrados, cases/ações e projetos sem CTA/detalhes; ajuste regressões necessárias em `src/components/ProjectRecord.astro`/`src/pages/projects/index.astro` e registre em `specs/006-projects-catalog/evaluation.md`. Expansão, hash filtrado, links das rotas de case e estado sem JavaScript foram verificados na Fase 30.
 
 ### Fase 18 — validação e revisão
 
@@ -372,11 +372,11 @@ T048 → T049 → T050 → T051 → T052 → T053 (MVP US1). Depois T054 → T05
 
 **Independent Test:** quatro cases, links externos e hashes continuam corretos; várias entradas abrem/recolhem independentemente e filtros não deixam conteúdo órfão.
 
-- [ ] T076 [US3] Execute cenários de quatro cases/ações válidas, IDs antigos, hash de item filtrado e expansão simultânea em `src/pages/projects/index.astro` / `src/components/ProjectRecord.astro`; preserve detalhe em segunda linha e botão junto à descrição, com fallback nativo sem scripts. Registre em `specs/006-projects-catalog/evaluation.md`; não criar CTAs novos para destinos ausentes. FR-011–FR-012, FR-026, FR-036; SC-009, SC-017, SC-023–SC-024.
+- [X] T076 [US3] Execute cenários de quatro cases/ações válidas, IDs antigos, hash de item filtrado e expansão simultânea em `src/pages/projects/index.astro` / `src/components/ProjectRecord.astro`; preserve detalhe em segunda linha e botão junto à descrição, com fallback nativo sem scripts. Registre em `specs/006-projects-catalog/evaluation.md`; não criar CTAs novos para destinos ausentes. FR-011–FR-012, FR-026, FR-036; SC-009, SC-017, SC-023–SC-024. Evidência runtime/rotas consta na Fase 30; navegação assistiva dedicada permanece pendente.
 
 ### Fase 24 — Validação e revisão humana
 
-- [ ] T077 Execute validação prevista em `specs/006-projects-catalog/quickstart.md` em 320px, 390px, 820px e 1280px, incluindo itens expandidos, texto longo e estados ausentes; execute diff/check/build conforme Constituição VIII e registre somente resultados reais em `specs/006-projects-catalog/evaluation.md`. Consolide SC-001–SC-024, distinguindo histórico, novo, não executado e falha; não afirmar conformidade de mídia se conflitos documentais persistirem.
+- [X] T077 Execute validação prevista em `specs/006-projects-catalog/quickstart.md` em 320px, 390px, 820px e 1280px, incluindo itens expandidos, texto longo e estados ausentes; execute diff/check/build conforme Constituição VIII e registre somente resultados reais em `specs/006-projects-catalog/evaluation.md`. Consolide SC-001–SC-024, distinguindo histórico, novo, não executado e falha; não afirmar conformidade de mídia se conflitos documentais persistirem. Viewports/checks estão registrados; zoom e revisão visual humana permanecem fora desta conclusão.
 - [ ] T078 Apresente as entradas e a matriz editorial para revisão humana e registre somente respostas reais em `specs/006-projects-catalog/evaluation.md`. Atualize estado das tarefas/documentos com evidências efetivas, sem tratar checks como aprovação de publicação/merge/push nem prometer ganho de contratação. Constituição IX, SC-021.
 
 ### Dependências, execução e MVP
@@ -405,3 +405,75 @@ Sem marcadores [P]: várias tarefas compartilham `src/data/projects.ts`, `Projec
 | SC-024 | T071, T075–T077 |
 
 **Resumo:** 15 tarefas novas (T064–T078), 11 concluídas e 4 pendentes: preparação/fundação 4; US5 5; US1 1; US2 1; US4 1; US3 1; validação/revisão 2. Planejamento alinhado por solicitação explícita; implementação editorial concluída; validação complementar e revisão humana permanecem pendentes. Limites factuais de mídia são registrados, não certificados como resolvidos.
+
+## Complemento vigente — prioridades 2–5 — 2026-10-05
+
+Esta adição estende a feature 006 conforme US6/US7 e FR-038–FR-044. T001–T078 preservam seus status e seu histórico; eles não comprovam os critérios novos. As tarefas abaixo estão pendentes e não afirmam implementação ou validação. Não adicionar suíte de testes automatizados: os critérios pedem cenários funcionais/acessibilidade/runtime, com resultados registrados em evaluation.md.
+
+### Fase 25 — US2 (P1): tag canônica Unity única
+
+**Goal:** encontrar todos os projetos com Unity usando uma única opção de filtro, sem manter opções por versão.
+
+**Independent Test:** Technology mostra uma opção `Unity`, sem `Unity 6` nem outras versões como opções; pesquisar/selecionar Unity inclui Pathless. Se Unity 6 for exibido nos detalhes, mantém-se como fato. OR/AND e contador seguem iguais.
+
+- [X] T079 [US2] Padronize na taxonomia central de `src/data/projects.ts` a tag do filtro como `Unity` para metadados confirmados de Unity, sem lista/registro de versões descendentes; preserve a versão exata nas fontes de fato já existentes e documente a regra em `docs/project-records.md`. Não classifique por título ou prosa. FR-038, SC-025.
+- [X] T080 [US2] Gere opções e aplique busca/filtro Technology em `src/pages/projects/index.astro` usando a tag canônica única `Unity`; confirme que `Unity 6` não aparece como opção separada e que Pathless é incluído. Preserve versão factual em detalhes quando publicada, OR/AND, ordem e registros sem tecnologia verificada. FR-004–FR-010, FR-038, SC-025.
+
+### Fase 26 — US6 (P2): nomes visíveis nos cartões da Home
+
+**Goal:** reconhecer os projetos de More Projects sem depender de interação ou leitura de imagem.
+
+**Independent Test:** conferir cada SupportingProject simples em repouso, com imagem presente/ausente/com falha; nome/link permanecem claros e leitor de tela não anuncia conteúdo duplicado. Featured continua com seu título existente.
+
+- [X] T081 [US6] Ajuste a variante simples dos cartões em `src/components/SupportingProject.astro` e os estilos necessários em `src/styles/global.css` para exibir nome permanentemente, refluindo em tela estreita/zoom, preservando a imagem/fallback/link e evitando texto acessível duplicado; não altere FeaturedProject. FR-039, SC-026.
+
+### Fase 27 — US4 (P1): validar mídia, acessibilidade e restauração
+
+**Goal:** identificar e corrigir falhas observáveis de acesso/carregamento no catálogo e consumidores globais citados pela spec.
+
+**Independent Test:** executar cenários de rede/proximidade/decode/reduced motion/falha, teclado/leitor e retorno de navegação. Registrar condições e resultados reais; não exibir Stop/Play e não contar inspeção estática como sucesso.
+
+- [X] T082 [US4] Examine e corrija somente divergências reproduzidas em `src/components/ProjectMediaPreview.astro` e `src/layouts/BaseLayout.astro` para fallback, proximidade, rede/load/decode/falha e mudança de `prefers-reduced-motion` durante carregamento; preserve configuração por registro e não adicione controles de animação. FR-040–FR-042, SC-027, SC-031. Cenários de rede, decode inválido, observer e movimento reduzido constam na Fase 30; nenhum controle de animação apareceu.
+- [X] T083 [US4] Revise landmarks e semântica real dos controles em `src/pages/projects/index.astro`, `src/layouts/BaseLayout.astro` e componentes de filtro/disclosure pertinentes; corrija landmark `<main>` aninhado, foco/teclado/Escape, labels/estados ou associação perdida por filtro apenas onde a validação confirmar falha. FR-043, SC-028. Um `<main>` por rota, árvore AX de Chromium, teclado e Escape registrados na Fase 30; leitor de tela real permanece pendente em T090.
+- [X] T084 [US4] Valide demora/falha de fontes, liberação do conteúdo e restauração de posição na navegação por `src/layouts/BaseLayout.astro`, `src/components/Navigation.astro` e `src/pages/projects/index.astro`; ajuste transições que mostrem posição errada, tela vazia persistente ou deslocamento perceptível. FR-042, SC-031. Falha de fonte reproduzida e corrigida; retornos repetidos sem flash/deriva registrados na Fase 30.
+
+### Fase 28 — US7 (P2): períodos e escopo entre superfícies
+
+**Goal:** distinguir duração do projeto/fase, vínculo profissional e autoria individual/equipe sem normalização silenciosa.
+
+**Independent Test:** comparar Ello 2.0, Read With Ello e Wallace’s Quest entre dados centrais, catálogo, cases existentes e Experience; cada divergência tem fonte, correção adequada ou pendência explícita.
+
+- [X] T085 [US7] Crie em `specs/006-projects-catalog/evaluation.md` uma matriz de comparação para períodos, fases, tecnologias e limites de autoria dos registros Ello 2.0, Read With Ello e Wallace’s Quest; referencie fontes canônicas e diferencie fato do projeto de período de emprego. FR-044, SC-029–SC-030.
+- [X] T086 [US7] Corrija em `src/data/projects.ts`, `src/data/experience.ts` e nas páginas de case `src/pages/work/[slug].astro` apenas dados contraditos por fonte canônica; preserve fases de Wallace, separe emprego Ello de projetos e escopo individual do trabalho coletivo. Registre conflitos sem resolução em `specs/006-projects-catalog/evaluation.md`; não crie case/relação ausente. FR-044, SC-029–SC-030.
+
+### Fase 29 — validação transversal e entrega
+
+- [X] T087 Execute os cenários H–M de `specs/006-projects-catalog/quickstart.md` em Home, catálogo, Experience e cases aplicáveis; registre viewport, rede, movimento, script/fontes e tecnologia assistiva efetivamente usados, distinguindo inspeção de runtime, pendências e falhas em `specs/006-projects-catalog/evaluation.md`. Consolide SC-025–SC-031 sem presumir resultado. Resultados H–M e limitações (leitor real/zoom/revisão humana) constam na Fase 30.
+- [X] T088 Execute `git diff --check`, `npm run check` e `npm run build`; registre comandos, resultados e validações não executadas em `specs/006-projects-catalog/evaluation.md` e apresente mudanças Home/catalog/cross-surface para revisão humana antes de aprovação. Constituição VI, VIII e IX.
+
+### Ordem e cobertura do complemento
+
+Ordem sugerida: T079 → T080; T081 pode ocorrer após T079 sem conflito de arquivo; T082 → T083 → T084 por compartilharem comportamento/registro de avaliação; T085 → T086 → T087 → T088. US2 e US6 têm critérios independentes; US4 depende da matriz executada; US7 precisa de T085 antes de qualquer alteração factual.
+
+| Requisito | Tarefas |
+|---|---|
+| FR-038 / SC-025 | T079–T080 |
+| FR-039 / SC-026 | T081 |
+| FR-040–FR-041 / SC-027 | T082, T087 |
+| FR-042 / SC-031 | T082, T084, T087 |
+| FR-043 / SC-028 | T083, T087 |
+| FR-044 / SC-029–SC-030 | T085–T087 |
+
+**Resumo atualizado em 2026-10-05:** evidências runtime recentes fecharam T044, T053, T055, T060, T076, T077, T082–T084, T087, T089 e T091. Permanecem cinco tarefas: T058 e T090 (leitor de tela real; T090 também zoom/aparelho físico), T075 (inclui leitor real), T063 e T078 (revisão humana). Os resultados e limites de cada modalidade estão em evaluation.md. Nenhuma revisão/aprovação humana é presumida.
+
+## Phase 30: Convergence
+
+- [X] T089 Execute and record the media runtime evidence for slow/blocked GIF requests, fallback through load/decode, near-viewport request timing, and initial/dynamic reduced motion; confirm no animation control appears. Complement T058/T082/T087 and close FR-040–FR-041, SC-027. All requested browser-emulated scenarios and no-control checks are recorded in the Fase 30 table.
+- [ ] T090 Verify accessible names/state for facet checkboxes and disclosures with a screen reader, then test keyboard, touch, no-JavaScript progressive enhancement, and representative narrow/zoomed layouts. Record each modality actually used and leave unsupported claims pending. Complement T044/T075/T077/T083 and close FR-015–FR-017, FR-043, SC-028.
+- [X] T091 Run slow-font and font-failure navigation scenarios with a saved Home position; observe content reveal and repeated return behavior for blanking, initial-position flash, and drift. Record timing/viewport and distinguish runtime evidence from source inspection. Complement T084/T087 and close FR-042, SC-031. Slow fonts repeated three times; after fail-open correction, rejected font readiness repeated three times at y=2712 with no flash or drift (Fase 30).
+
+## Phase 31: Convergence
+
+- [ ] T092 Complete the remaining accessibility validation for `src/components/ProjectRecord.astro` and the catalog filters: use a real screen reader to verify names, expanded/collapsed state, and reading order; test browser zoom and physical touch at representative narrow layouts. Record device, browser, assistive technology, and outcomes in `specs/006-projects-catalog/evaluation.md`; mark unsupported modalities as pending. Then reconcile T058, T075, and T090 without treating AX-tree or emulated-touch checks as equivalent. FR-015–FR-017, FR-043; SC-005–SC-007, SC-028; Constitution IV, VI.
+- [ ] T093 Present the current catalog composition and project-entry editorial matrix for human review, then record the actual feedback and decision in `specs/006-projects-catalog/evaluation.md`. Resolve the outstanding visual and editorial review represented by T063 and T078; do not infer publication, merge, or push approval from implementation or automated checks. SC-021; Constitution IX. Adiada por solicitação do usuário em 2026-10-06.
+- [X] T094 Reconcile the newly displayed Diggy poster, GIF, and first-frame fallback with the exact-media policy in `specs/006-projects-catalog/spec.md` FR-019 and SC-010: document the user-provided source files and the derived WebP assets, record the explicit catalog-reuse decision for these exact paths, and align the feature's media inventory/evaluation. Do not describe user approval to display as independent proof of third-party rights; if the exact assets cannot be documented, keep them out of the approved-media set. FR-019, FR-028–FR-030; SC-010, SC-016, SC-018; Constitution I, IV. Completed: paths, derivatives, and scope of reuse recorded in spec, plan, model, contract, research, quickstart, and evaluation.

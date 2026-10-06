@@ -370,6 +370,14 @@ export type ProjectRecord = {
   kind?: ProjectKind;
 };
 
+/** Canonical technology-filter tags derived only from confirmed technology metadata. */
+export function getTechnologyFacetTags(technologies: readonly string[] = []): string[] {
+  const tags = technologies.map((technology) =>
+    /^unity(?:\s+\d+(?:\.\d+)*)?$/i.test(technology.trim()) ? 'Unity' : technology.trim(),
+  ).filter(Boolean);
+  return [...new Set(tags)];
+}
+
 /** A case study is publishable only with a stable slug and at least two meaningful stories. */
 export function hasPublishableCaseStudy(
   project: Pick<ProjectRecord, 'caseStudy'> | null | undefined,
@@ -577,10 +585,6 @@ export const projectRecords: ProjectRecord[] = [
     "value": "Unity Software Engineer"
   },
   {
-    "label": "Period",
-    "value": "Oct 2022–Aug 2025"
-  },
-  {
     "label": "Stack",
     "value": "Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook"
   }
@@ -614,7 +618,7 @@ export const projectRecords: ProjectRecord[] = [
       "slug": "read-with-ello",
       "scopeLabel": "Product / Team Context",
       "ownershipLabel": "My Contribution",
-      "glanceFields": ["Context", "Role", "Period", "Stack"],
+      "glanceFields": ["Context", "Role", "Stack"],
       "caseBoundary": "The backend, speech systems, content library and full release process were team or product work beyond my individual claim.",
       "selectedStories": "These selected stories highlight three different areas of my work on Read With Ello: player-facing progression, content and lifecycle systems, and shared Unity client tooling. They represent a focused sample of my contributions rather than an exhaustive account of the work I did on the product.",
       "stories": elloStories,
@@ -636,7 +640,6 @@ export const projectRecords: ProjectRecord[] = [
     "evidenceLabel": "Read With Ello · reading product",
     "kind": "ello"
   ,
-  "period": "Oct 2022–Aug 2025",
   "workContext": "professional",
   "technologies": [
   "Unity",
@@ -954,17 +957,12 @@ export const projectRecords: ProjectRecord[] = [
     "summary": "A Flutter reading-and-math product for children, connecting learning activities with daily quests, progression, rewards, and learning-agent interactions.",
     "type": "Reading and math learning platform",
     "context": "Ello",
-    "period": "Sep–Nov 2025",
     "contribution": "I contributed to quest progression and rewards across configuration-driven models, completion services, and Flutter screens. I connected home activities to learning-agent requests across Python services and client routing, and implemented the parent-gate flow.",
     "engineeringFocus": "Typed quest and activity models, provider/service boundaries, and GraphQL/Protocol Buffers contracts coordinate configured flows with client state. Guarded initialization and shared in-flight requests prevent duplicate work; completion validates interaction IDs, suppresses repeated rewards, and keeps local progress resilient to noncritical sync and analytics failures.",
     "specs": [
   {
     "label": "Role",
     "value": "Software Engineer"
-  },
-  {
-    "label": "Period",
-    "value": "Sep–Nov 2025"
   },
   {
     "label": "Stack",
@@ -1311,6 +1309,80 @@ export const projectRecords: ProjectRecord[] = [
     "evidenceLabel": "DEVELOPER TOOLING — REPODNA",
     "kind": "neutral",
     "portfolioIncluded": false
+  },
+  {
+    "id": "diggy-the-dog",
+    "name": "Diggy, the dog",
+    "archiveCategory": "independent-game",
+    "summary": "A collaborative Unity 2D game built around dog movement, randomized obstacles, and distance-based progression.",
+    "type": "2D obstacle game",
+    "context": "Collaborative game project",
+    "period": "Apr 2021 · updated Oct 2026",
+    "contribution": "I contributed to parts of the prototype and gameplay integration, including movement, obstacle spawning, distance presentation, and parts of the phase start/end flow. In 2026, I updated project settings and adapted selected scripts for Unity 6.6.",
+    "engineeringFocus": "The obstacle spawner samples randomized positions within configured bounds and rejects candidate points inside existing colliders. A later update adapts selected project configuration and scripts to Unity 6.6; the available analysis does not include a build or runtime validation.",
+    "workContext": "independent",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Cinemachine",
+      "DOTween",
+      "TextMesh Pro",
+      "Unity 2D Physics",
+      "Unity Tilemap"
+    ],
+    "technicalHighlights": [
+      {
+        "title": "Randomized obstacle placement",
+        "body": "The spawner chooses candidate positions from configured bounds and rejects points contained by existing colliders. This describes the static implementation; playtesting and full collider-overlap behavior were not verified."
+      },
+      {
+        "title": "Distance and phase flow",
+        "body": "Repository history records distance presentation and contributions to phase start/end integration, without a measured gameplay outcome."
+      },
+      {
+        "title": "Unity 6.6 project update",
+        "body": "A 2026 commit updates project configuration and adapts selected scripts. The available analysis did not compile or run this revision."
+      }
+    ],
+    "tags": [
+      "Gameplay systems",
+      "Obstacle spawning",
+      "Collaborative project"
+    ],
+    "specs": [
+      {
+        "label": "Role",
+        "value": "Gameplay systems contributor"
+      },
+      {
+        "label": "Engine",
+        "value": "Unity / C#"
+      },
+      {
+        "label": "Period",
+        "value": "Apr 2021 · updated Oct 2026"
+      }
+    ],
+    "archiveOrder": 6,
+    "archivePresentation": "standard",
+    "media": [
+      {
+        "type": "gif",
+        "src": "/projects/diggy/diggy-gameplay-preview.gif",
+        "posterSrc": "/projects/diggy/diggy-first-frame.webp",
+        "alt": "Diggy gameplay showing the dog in a top-down level with obstacles and collectibles.",
+        "previewAlt": "Diggy gameplay showing the dog moving through a top-down level with obstacles and collectibles.",
+        "autoplayPreview": true,
+        "posterWidth": 540,
+        "posterHeight": 960,
+        "posterFit": "contain",
+        "catalogReuseApproved": true
+      }
+    ],
+    "projectsIndexTitleIcon": "/projects/diggy/diggy-poster.webp",
+    "catalogIconReuseApproved": true,
+    "kind": "neutral",
+    "portfolioIncluded": true
   }
 ];
 

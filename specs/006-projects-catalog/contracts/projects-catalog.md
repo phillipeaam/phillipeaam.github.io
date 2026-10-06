@@ -12,9 +12,9 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Facts have distinct meanings: individual role, organization/team/circumstance, product nature, documented period; no stack in Type or Role repeated in Context. Omit absent facts and empty groups.
 - Keep public product behavior distinguishable from attributable individual work; preserve team, historical era and release boundaries. No automatic concatenation of source paragraphs or copying full cases.
 - Revised public detail text is searchable, including highlight headings/bodies; internal sources/drafts/withdrawn claims are excluded. Preserve existing facet semantics, counts, order, hashes, four cases, external destinations and independent expansion.
-- Preserve exact historical media allowlist reused by user authorization; never label it proof of third-party rights. New sources require documentation. No Stop/Play or equivalent animation control on any site surface, as requested; fallback, configured loading and reduced motion remain. This contract does not certify complete autoplay accessibility or unresolved republication rights.
+- Preserve the exact media allowlist recorded in evaluation.md, including the user-requested Diggy poster/GIF and their static fallback. User authorization to display these exact supplied files is not independent proof of third-party rights. Other new sources require their own documentation. No Stop/Play or equivalent animation control on any site surface, as requested; fallback, configured loading and reduced motion remain. This contract does not certify complete autoplay accessibility or unresolved republication rights.
 - Header typography, support line-height 24px, spacing, media width 300px, flexible entry height, text width and dividers remain approved baseline. No new text-width caps, clipping, hover-only content or horizontal page scrolling.
-- No new public endpoints, analytics, third-party integration or content changes to Home/cases.
+- No new public endpoints, analytics or third-party integration. Home/cases are not redesigned and receive no unrelated copy edits; narrowly scoped title presentation in More Projects and evidence-backed factual corrections required by FR-044 are allowed.
 
 ## Initial page state
 
@@ -31,6 +31,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - Search is visibly labeled “Search for” above the field and searches the normalized public text corpus, including project name, product summary, contribution and displayed public metadata/details.
 - Search ignores case, surrounding whitespace and Portuguese diacritic differences.
 - “Context” and “Technology” are visible labels above separate disclosures with searchable, multi-select checkbox options generated from verified public data only. Technologies remain searchable/project-filterable and appear among the expanded detail groups.
+- The Technology disclosure exposes one canonical `Unity` option for confirmed Unity engine/stack values, including a specific fact such as Unity 6. It never exposes a separate option for each Unity version. The exact confirmed version may remain in project details.
 - At most one facet disclosure is open at a time. Opening one closes the other without clearing its selections or internal option-search text; activating the open disclosure closes it.
 - The open facet panel filters its own visible options by its internal query; that query does not change the project result set until checkbox values are selected.
 - When no option matches the internal facet query, show a local no-options message while preserving the selected-value state and project count.
@@ -83,3 +84,14 @@ Header typography, approved spacing and 24px supporting-copy line height remain 
 
 ### Decisão posterior de reutilização (2026-10-05)
 O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. A omissão temporária e lista vazia descritas anteriormente são histórico anterior à resposta. A implementação usa allowlist exata registrada em evaluation.md, mantendo configurações do inventário. Outras fontes continuam sujeitas à documentação; não presumir autorização de novos assets. Ver spec.md, Confirmação de reaproveitamento.
+
+## Revisão vigente — prioridades 2–5 — 2026-10-05
+
+Esta extensão integra a feature 006 e prevalece quando requisitos abaixo entrarem em conflito com contrato histórico.
+
+- **Regra antiga, substituída pela decisão registrada abaixo:** manter a seleção de Unity como resolução de família/versão. A faceta vigente expõe uma única tag canônica `Unity`, sem opções por versão; fatos versionados podem permanecer nos detalhes.
+- Cada cartão simples da Home More Projects mantém o nome visível no estado padrão, na presença ou ausência de imagem. Aproveitar o nome acessível atual e evitar um anúncio repetido. Cards Featured/Selected work que já mostram título permanecem sem nova ficha.
+- Nenhuma superfície exibe botão Stop/Play ou equivalente. Validar a animação e o fallback com rede observada, aproximação à faixa existente, carregamento e decode lentos, falha, preferência reduced motion inicial/dinâmica, ausência de JavaScript e caminho sem observer. Resultado não executado permanece pendente; ausência de botão não é prova isolada de conformidade integral.
+- Validar teclado, foco visível, rótulo/semântica real dos filtros e disclosures, Escape quando aplicável, perda de foco ao filtrar, leitores de tela, zoom/reflow e landmark principal único por rota avaliada. Validar demora/falha de fontes e restauração de posição após retorno, sem flash ou deslocamento observável.
+- Comparar período do projeto/fase e período de emprego como conceitos diferentes; comparar escopo individual/equipe entre registro central, catálogo, cases publicados e Experience. Mudança de conteúdo exige fonte canônica apropriada. Diferença inconclusiva fica como pendência; não criar case, CTA ou relação de Experience ausente.
+- A validação cobre Home e `/projects/` além de Experience/cases somente para comparação factual e regressão necessária. Não redesenhar as áreas não pedidas. Registrar as condições executadas em `evaluation.md` e encaminhar mudanças visuais/editoriais para revisão humana.
