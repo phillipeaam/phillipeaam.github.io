@@ -58,7 +58,7 @@ const {
     const fallback = area.querySelector<HTMLImageElement>('[data-project-media-fallback]');
     const animation = area.querySelector<HTMLImageElement>('[data-project-media-animation]');
     const previewSrc = area.dataset.previewSrc;
-    const link = area.closest('a');
+    const link = area.querySelector<HTMLAnchorElement>('.project-media-preview__link') ?? area.closest('a');
     let pointerActive = false;
     let focusActive = false;
     let ready = false;
@@ -115,6 +115,11 @@ const {
       requested = autoplayRequested || interactionRequested;
       if (reducedMotion.matches || !requested || !previewSrc) {
         showFallback();
+        if (animation && (reducedMotion.matches || !requested)) {
+          animation.removeAttribute('src');
+          ready = false;
+          failed = false;
+        }
         return;
       }
       if (ready) showAnimation();

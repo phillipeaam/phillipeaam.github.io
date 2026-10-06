@@ -66,7 +66,7 @@ src/
 │   ├── projects.ts          # canonical records, selectors, visibility, ordering
 │   └── experience.ts        # selected-work project IDs and intentional labels
 ├── components/
-│   ├── ProjectMediaPreview.astro # static fallback and explicit animation control
+│   ├── ProjectMediaPreview.astro # static fallback and configured activation; no animation control
 │   ├── FeaturedProject.astro
 │   ├── SupportingProject.astro
 │   ├── ProjectRecord.astro

@@ -40,4 +40,4 @@
 - Review the requirements themselves; do not use this checklist as an implementation test plan.
 - Items are marked after reviewer evaluation of requirements clarity and completeness; this is not an implementation completion checklist.
 - The built-in `requirements.md` checklist has a separate lifecycle maintained by `$speckit-specify` and `$speckit-clarify`.
-- The clarification about per-project static image selection and explicit Play activation was not answered; those behaviors are documented as working assumptions in `spec.md`.
+- **Historical note, superseded 2026-10-05:** the earlier clarification about explicit Play activation is resolved: no animation play/pause control is to be added anywhere. Preserve per-record configured activation, static fallback, and reduced-motion behavior as stated in `spec.md`.

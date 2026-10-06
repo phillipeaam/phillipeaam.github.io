@@ -2,6 +2,18 @@
 
 This guide describes the portfolio's shared project ficha as it exists in the current feature work. A project is authored once in `src/data/projects.ts`; public pages read the fields they need from that record. The record is not a class template that is copied per page: it is the canonical content object for one project.
 
+## Catalog integration — 2026-10-05
+
+The merge into feature 006 preserves the canonical `projectRecords` model and migrates the reviewed catalog copy into each record. There is no separate `catalogEditorialById`, facts map, narrative map, or per-page media-source allowlist. Home, archive, cases and Experience resolve the same records; shared summary, context, type, period and contribution now use the reviewed values. Case-specific stories, hero presentation and documented boundaries remain in `caseStudy`.
+
+- `workContext` stores the previously verified professional/independent/study facet.
+- `technologies` stores verified technology facts and is not inferred from product tags. For the portfolio's Technology filter, use one canonical `Unity` tag for confirmed Unity engine/stack facts, regardless of version; do not expose Unity versions as separate filter options or maintain a version registry. Preserve a confirmed exact version such as Unity 6 in project details only when that fact is intentionally displayed. This rule supersedes the earlier note that Unity and Unity 6 were separate pending taxonomy work.
+- `technicalHighlights` and optional `contributionOutcome` extend the shared contribution text for the catalog's Selected contributions section. No unsupported outcome was added.
+- `projectsIndexTitleIcon` remains the canonical poster path. `catalogIconReuseApproved` records the user's reuse approval for the four exact historical icons.
+- `media[].catalogReuseApproved` records reuse approval on each of the four existing catalog media items. It is not a legal rights/provenance audit; future media do not inherit approval. `posterSrc` accommodates the existing GIF fallback contract.
+
+The archive reads those fields directly, preserves the compact two-column entry and full-width expanded details, and omits media without the scoped reuse approval. Publication and case CTAs still require `portfolioIncluded` and a publishable `caseStudy`. Excluded projects remain excluded. The merge does not implement other recommendations from the hiring review.
+
 ## How the information flows
 
 ```mermaid
@@ -19,7 +31,7 @@ flowchart LR
 
 The project record owns shared facts and an optional `caseStudy` area. That area groups its route, case-specific presentation, narrative, diagrams, evidence, and reflection inside the same project record. Home, archive, experience, and case-study pages resolve their content from this canonical record.
 
-Employment history in `src/data/experience.ts` stores project IDs, not copied project destinations. A short `label` can preserve wording chosen for the experience section. If the record is absent or excluded, an existing reference may remain as plain text, with no project link or project-specific block.
+Employment history in `src/data/experience.ts` stores project IDs, not copied project destinations. A short `label` preserves the wording chosen for the Experience section; when no label is set, use the canonical project name. For an included record with an `archiveCategory`, every Selected work reference links to its All Projects entry at `/projects/#${anchorId ?? id}`, whether or not it has a case study. Do not redirect Selected work to a case-study route. If the record is absent, excluded, or has no archive placement, keep the available label/name as plain text without a project link.
 
 ## Project record fields
 
@@ -114,11 +126,12 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 ## Visibility and route rules
 
 1. A missing record or `portfolioIncluded !== true` means no project-specific Home/archive block, action, project link, or generated case-study page.
-2. An experience reference may keep its existing text label when its project is missing or hidden, but it has no project link and creates no project block.
-3. An included project appears only on the surfaces selected by `homePlacement` and/or `archiveCategory`.
-4. A case-study link requires `caseStudy.slug` and at least two stories with non-empty titles and framings in the same included project record; the other case sections may be omitted when they have no supported content.
-5. External actions remain available when declared, even when a case study is absent, provided the project itself is included.
-6. Keep `id`, `caseStudy.slug`, and existing `anchorId` stable to preserve references and public URLs.
+2. An Experience Selected work reference to an included project with an `archiveCategory` links to `/projects/#${anchorId ?? id}`. Preserve its explicit `label`; otherwise show the canonical project name. This archive destination applies whether or not the project has a case study.
+3. If an experience reference points to a missing or excluded project, or an included project without an `archiveCategory`, retain its available label/name as plain text without a project link.
+4. An included project appears only on the surfaces selected by `homePlacement` and/or `archiveCategory`.
+5. A case-study link requires `caseStudy.slug` and at least two stories with non-empty titles and framings in the same included project record; the other case sections may be omitted when they have no supported content.
+6. External actions remain available when declared, even when a case study is absent, provided the project itself is included.
+7. Keep `id`, `caseStudy.slug`, and existing `anchorId` stable to preserve references and public URLs.
 
 ## Adding or updating a record
 
@@ -138,7 +151,7 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 | Home featured work | `src/components/FeaturedProject.astro` | Project name, summary, contribution, media, case-study/action links |
 | Home supporting work | `src/components/SupportingProject.astro` | Project name, optional detail, media, actions, archive destination |
 | All Projects page | `src/components/ProjectRecord.astro`, `src/components/RichProjectRecord.astro` | Summary, metadata, contribution, media, actions, and optional title icon |
-| Experience | `src/components/ExperienceEntry.astro` and `resolveExperienceWork` | Project name and valid destination; plain-text fallback when unavailable |
+| Experience Selected work | `src/components/ExperienceEntry.astro`, `resolveExperienceWork`, and `resolveProjectArchiveHref` | Explicit reference label (otherwise canonical project name); included archive projects link to `/projects/#${anchorId ?? id}`, with plain-text fallback when missing, excluded, or not placed in the archive |
 | Case study | `src/pages/work/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |
 
 ## Current branch repair

@@ -16,7 +16,7 @@ const archiveHref = simple && isPortfolioIncluded(project) && project.archiveCat
     : <MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} posterSrc={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
-      <h3 class="sr-only">{project.name}</h3>
+      <h3>{project.name}</h3>
     </> : <>
     {showMeta && (number || project.period || project.type) && <p class="supporting-card-meta">{(number || project.period) && <span>{number}{project.period && ` / ${project.period}`}</span>}{project.type && <span>{project.type}</span>}</p>}
     <h3>{project.name}</h3>

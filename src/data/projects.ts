@@ -301,6 +301,9 @@ export type ProjectMedia = {
   posterWidth?: number;
   posterHeight?: number;
   posterFit?: 'cover' | 'contain';
+  posterSrc?: string;
+  /** Reuse of the exact historical catalog asset approved by the user, not a rights audit. */
+  catalogReuseApproved?: boolean;
 };
 
 export type ProjectAction = { href: string; label: string };
@@ -340,6 +343,12 @@ export type ProjectRecord = {
   period?: string;
   contribution?: string;
   engineeringFocus?: string;
+  /** Verified public facets and selected contribution highlights shared by consumers. */
+  workContext?: 'professional' | 'independent' | 'study';
+  technologies?: string[];
+  technicalHighlights?: { title: string; body: string }[];
+  contributionOutcome?: string;
+  additionalContext?: string;
   tags?: string[];
   specs?: { label: string; value: string }[];
   media?: ProjectMedia[];
@@ -355,10 +364,19 @@ export type ProjectRecord = {
   archivePresentation?: 'rich' | 'standard' | 'compact';
   anchorId?: string;
   projectsIndexTitleIcon?: string;
+  catalogIconReuseApproved?: boolean;
   mediaCaption?: string;
   evidenceLabel?: string;
   kind?: ProjectKind;
 };
+
+/** Canonical technology-filter tags derived only from confirmed technology metadata. */
+export function getTechnologyFacetTags(technologies: readonly string[] = []): string[] {
+  const tags = technologies.map((technology) =>
+    /^unity(?:\s+\d+(?:\.\d+)*)?$/i.test(technology.trim()) ? 'Unity' : technology.trim(),
+  ).filter(Boolean);
+  return [...new Set(tags)];
+}
 
 /** A case study is publishable only with a stable slug and at least two meaningful stories. */
 export function hasPublishableCaseStudy(
@@ -387,31 +405,31 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Ilhas do Alfabeto",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity literacy game built around interactive minigames.",
-    "type": "Professional · Commercial Unity Game",
-    "context": "Commercial game · team project",
+    "type": "Literacy game",
+    "context": "Instituto Alfa e Beto",
     "contribution": "I designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.",
     "tags": [
       "Minigames",
       "Shared systems"
     ],
     "specs": [
-      {
-        "label": "Role",
-        "value": "Senior Unity Game Developer"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity / C#"
-      },
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      },
-      {
-        "label": "Focus",
-        "value": "Minigames and shared systems"
-      }
-    ],
+  {
+    "label": "Role",
+    "value": "Senior Unity Game Developer"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity / C#"
+  },
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  },
+  {
+    "label": "Focus",
+    "value": "Minigames and shared systems"
+  }
+],
     "caseStudy": {
       "slug": "ilhas-do-alfabeto",
       "scopeLabel": "Product / Team Context",
@@ -433,15 +451,22 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "ilhas-do-alfabeto",
     "evidenceLabel": "Ilhas do Alfabeto · gameplay",
     "kind": "ilhas"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity",
+  "C#"
+],
+  "technicalHighlights": []
+},
   {
     "id": "wallaces-quest",
     "name": "Wallace’s Quest",
     "archiveCategory": "independent-game",
-    "summary": "Wallace’s Quest is a tactical turn-based RPG built around grid-based combat, positioning and deliberate action choices. Each encounter alternates between player and enemy turns across a shared battlefield, where movement, attacks and unit state shape the match and its clear victory or defeat conditions.",
-    "type": "Tactical turn-based RPG",
-    "context": "Independent · Tactical turn-based RPG",
-    "contribution": "I implemented the encounter’s turn and action flow, coordinating player and enemy progression through grid movement, attacks, damage resolution, and action completion. I connected battle-state changes to victory/defeat evaluation and wired combat feedback so each resolved action advances the encounter, hands control to the next turn, and makes its outcome clear.",
+    "summary": "A tactical turn-based RPG prototype built around grid movement, positioning, and combat choices. The public prototype represents the historical combat implementation.",
+    "type": "Tactical turn-based RPG prototype",
+    "context": "Independent project",
+    "contribution": "I implemented the historical encounter’s turn and action flow, connecting grid movement, attacks, damage resolution, and combat feedback. In 2021, I separated grid search into a module and demo; the 2026 migration did not fully reconnect these systems.",
     "engineeringFocus": "Turn ownership sequences player and enemy units, while action completion separates each movement or attack routine from advancement of the encounter. Combat state feeds stage victory/defeat conditions; coroutines and event handoffs coordinate behavior and feedback across these transitions, keeping the loop readable as state changes from active turn to resolved match.",
     "tags": [
       "Grid combat",
@@ -449,23 +474,23 @@ export const projectRecords: ProjectRecord[] = [
       "Tactical RPG"
     ],
     "specs": [
-      {
-        "label": "Role",
-        "value": "Game Engineer"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity / C#"
-      },
-      {
-        "label": "Period",
-        "value": "Aug 2020"
-      },
-      {
-        "label": "Stack",
-        "value": "Unity · C# · Tilemap · ScriptableObjects · uGUI"
-      },
-    ],
+  {
+    "label": "Role",
+    "value": "Independent Unity Developer / Gameplay Programmer"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity / C#"
+  },
+  {
+    "label": "Period",
+    "value": "2020–2021 · revisited 2026"
+  },
+  {
+    "label": "Stack",
+    "value": "Unity · C# · Tilemap · ScriptableObjects · uGUI"
+  }
+],
     "media": [
       {
         "type": "image",
@@ -477,7 +502,9 @@ export const projectRecords: ProjectRecord[] = [
         "posterWidth": 1254,
         "posterHeight": 1254,
         "posterFit": "contain"
-      }
+      ,
+  "catalogReuseApproved": true
+}
     ],
     "actions": [
       {
@@ -514,15 +541,37 @@ export const projectRecords: ProjectRecord[] = [
     "projectsIndexTitleIcon": "/projects/wallace-quest/wallace-quest-poster.webp",
     "evidenceLabel": "Wallace’s Quest · tactical combat",
     "kind": "wallace"
+  ,
+  "period": "2020–2021 · revisited 2026",
+  "workContext": "independent",
+  "technologies": [
+  "Unity",
+  "C#",
+  "Tilemap",
+  "ScriptableObjects",
+  "uGUI"
+],
+  "technicalHighlights": [
+  {
+    "title": "Turn ownership and action completion",
+    "body": "Movement and attack routines signal completion separately from turn advancement; battle-state changes feed victory and defeat evaluation in the historical combat implementation."
   },
+  {
+    "title": "Grid-search module boundary",
+    "body": "The extracted module separates walkability, node adjacency, and route search. Cost-plus-Manhattan scoring does not establish optimal A*: already-open nodes are not updated when a cheaper path is found."
+  }
+]
+,
+  "catalogIconReuseApproved": true
+},
   {
     "id": "read-with-ello",
     "name": "Read With Ello",
     "archiveCategory": "professional-game",
-    "summary": "A Unity mobile reading product for children where book discovery, interactive reading, and daily progression work together to make practice feel guided and rewarding. The experience combines a content-heavy library with service-backed quests, rewards, and coaching flows.",
-    "type": "Professional · Ello",
-    "context": "Professional · Ello",
-    "contribution": "I worked on three connected product areas: the Book Library and its loading/navigation behavior; Unity-side GraphQL integration for service-backed features; and the quest/progression surfaces that connect objectives, reading activities, completion feedback, and rewards. I also supported selected shared UI and lifecycle work within the wider team codebase.",
+    "summary": "A Unity mobile reading product for children, combining book discovery, interactive reading, quests, and rewards.",
+    "type": "Mobile reading product",
+    "context": "Ello",
+    "contribution": "My work spanned the reading experience, Book Library, quest progression, rewards and Prize Store, alongside Unity-side GraphQL integration. These selected contributions also include onboarding, shared UI, and lifecycle work within the wider team codebase.",
     "engineeringFocus": "The recurring engineering problem was keeping a content-heavy mobile experience understandable and resilient: reusable uGUI for player-facing states, Addressables-backed content boundaries, asynchronous client responses, and transitions between library, reading, quest, and reward screens. The implementation focus was the Unity client; backend, speech, and platform ownership remain outside the claim.",
     "tags": [
       "Progression",
@@ -531,19 +580,15 @@ export const projectRecords: ProjectRecord[] = [
       "Addressables"
     ],
     "specs": [
-      {
-        "label": "Role",
-        "value": "Unity Software Engineer"
-      },
-      {
-        "label": "Period",
-        "value": "Oct 2022–Aug 2025"
-      },
-      {
-        "label": "Stack",
-        "value": "Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook"
-      },
-    ],
+  {
+    "label": "Role",
+    "value": "Unity Software Engineer"
+  },
+  {
+    "label": "Stack",
+    "value": "Unity · C# · uGUI · Addressables · GraphQL · Firebase · GrowthBook"
+  }
+],
     "media": [
       {
         "type": "image",
@@ -555,7 +600,9 @@ export const projectRecords: ProjectRecord[] = [
         "posterWidth": 1680,
         "posterHeight": 945,
         "posterFit": "contain"
-      }
+      ,
+  "catalogReuseApproved": true
+}
     ],
     "actions": [
       {
@@ -571,7 +618,7 @@ export const projectRecords: ProjectRecord[] = [
       "slug": "read-with-ello",
       "scopeLabel": "Product / Team Context",
       "ownershipLabel": "My Contribution",
-      "glanceFields": ["Context", "Role", "Period", "Stack"],
+      "glanceFields": ["Context", "Role", "Stack"],
       "caseBoundary": "The backend, speech systems, content library and full release process were team or product work beyond my individual claim.",
       "selectedStories": "These selected stories highlight three different areas of my work on Read With Ello: player-facing progression, content and lifecycle systems, and shared Unity client tooling. They represent a focused sample of my contributions rather than an exhaustive account of the work I did on the product.",
       "stories": elloStories,
@@ -592,38 +639,61 @@ export const projectRecords: ProjectRecord[] = [
     "projectsIndexTitleIcon": "/projects/ello-read/read-with-ello-poster.webp",
     "evidenceLabel": "Read With Ello · reading product",
     "kind": "ello"
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity",
+  "C#",
+  "uGUI",
+  "Addressables",
+  "GraphQL",
+  "Firebase",
+  "GrowthBook"
+],
+  "technicalHighlights": [
+  {
+    "title": "Content-heavy mobile flows",
+    "body": "Reusable uGUI and Addressables-backed content boundaries support transitions between library, reading, quest, and reward screens."
   },
+  {
+    "title": "Service-backed client features",
+    "body": "Asynchronous client responses connect progression surfaces to services. The scope is the Unity client, without a claim of backend, speech-system, or release-process ownership."
+  }
+]
+,
+  "catalogIconReuseApproved": true
+},
   {
     "id": "craque-da-fluencia",
     "name": "Craque da Fluência",
     "archiveCategory": "professional-game",
     "summary": "A Unity reading-assessment product that processes spoken reading and presents results.",
-    "type": "Professional · Unity Assessment Product",
-    "context": "Professional assessment product",
-    "contribution": "I contributed to the assessment runtime, a structured word model, recognition-integration migration, defensive result handling, and retest and reevaluation flows.",
+    "type": "Reading-fluency product",
+    "context": "Instituto Alfa e Beto",
+    "contribution": "I worked on the word model, assessment state, and speech-recognition integration.",
     "tags": [
       "Assessment",
       "Speech integration",
       "Unity"
     ],
     "specs": [
-      {
-        "label": "Role",
-        "value": "Senior Unity Game Developer"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity / C#"
-      },
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      },
-      {
-        "label": "Focus",
-        "value": "Assessment state and integration"
-      }
-    ],
+  {
+    "label": "Role",
+    "value": "Senior Unity Game Developer"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity / C#"
+  },
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  },
+  {
+    "label": "Focus",
+    "value": "Assessment state and integration"
+  }
+],
     "caseStudy": {
       "slug": "craque-da-fluencia",
       "scopeLabel": "Product / Team Context",
@@ -645,31 +715,38 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "craque-da-fluencia",
     "evidenceLabel": "Craque da Fluência · assessment flow",
     "kind": "craque"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity",
+  "C#"
+],
+  "technicalHighlights": []
+},
   {
     "id": "pathless",
     "name": "Pathless",
     "archiveCategory": "independent-game",
-    "summary": "Built by a three-person team for Brackeys Game Jam 2026.2, Pathless is a Unity 6 rescue-and-exploration game made in a one-week window. Players use proximity radio signals to locate survivors, meet assistance needs, and manage an escalating earthquake-driven calamity before extracting and reviewing the rescue outcome.",
-    "type": "Brackeys Game Jam 2026.2 · Unity 6 · C# · WebGL",
-    "context": "Independent · Brackeys Game Jam 2026.2 · three-person team",
-    "period": "Aug 23–30, 2026",
-    "contribution": "Implemented the proximity radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. Integrated the mission loop from menu and helicopter arrival through radio discovery, earthquake and ground-collapse pressure, extraction, restart, and results reporting. Also connected the player-facing systems into the assembled Unity scene and input flow.",
+    "summary": "A rescue-and-exploration game made by a three-person team for Brackeys Game Jam 2026.2. Players use proximity radio signals to find and assist survivors before extracting under an escalating calamity.",
+    "type": "Rescue-and-exploration game",
+    "context": "Brackeys Game Jam 2026.2 · three-person team",
+    "period": "Aug–Sep 2026 · one-week jam, followed by post-jam work",
+    "contribution": "I implemented the proximity radio scanner and HUD, survivor interaction and assistance flows, and rescue accounting. I integrated these systems into mission progression, extraction, restart, and results reporting, with some work continuing after the jam deadline.",
     "engineeringFocus": "Data-driven signal definitions map distance to discrete radio strength, while ScriptableObjects configure survivor assistance and calamity sequences. Events and delegates connect mission state to rescue/results; Unity Awaitable sequences arrival, with UI Toolkit and the Input System carrying presentation and control. Keeping signal strength separate from direction gives the scanner a clear, proximity-based role in the rescue loop.",
     "specs": [
-      {
-        "label": "Role",
-        "value": "Unity Gameplay Programmer"
-      },
-      {
-        "label": "Period",
-        "value": "Aug 23–30, 2026"
-      },
-      {
-        "label": "Stack",
-        "value": "Unity 6 · C# · URP · Input System · UI Toolkit · Cinemachine"
-      },
-    ],
+  {
+    "label": "Role",
+    "value": "Unity Gameplay Programmer"
+  },
+  {
+    "label": "Period",
+    "value": "Aug–Sep 2026 · one-week jam, followed by post-jam work"
+  },
+  {
+    "label": "Stack",
+    "value": "Unity 6 · C# · URP · Input System · UI Toolkit · Cinemachine"
+  }
+],
     "media": [
       {
         "type": "image",
@@ -677,7 +754,9 @@ export const projectRecords: ProjectRecord[] = [
         "previewSrc": "/projects/pathless/pathless-gameplay-preview.gif",
         "autoplayPreview": true,
         "alt": "Pathless gameplay showing a helicopter above a rescue-game landscape."
-      }
+      ,
+  "catalogReuseApproved": true
+}
     ],
     "actions": [
       {
@@ -694,26 +773,48 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "pathless",
     "projectsIndexTitleIcon": "/projects/pathless/pathless-poster.webp",
     "kind": "pathless"
+  ,
+  "workContext": "independent",
+  "technologies": [
+  "Unity 6",
+  "C#",
+  "URP",
+  "Input System",
+  "UI Toolkit",
+  "Cinemachine"
+],
+  "technicalHighlights": [
+  {
+    "title": "Proximity radio guidance",
+    "body": "Distance maps to discrete signal strengths through data-driven definitions. The scanner communicates proximity rather than direction or triangulation."
   },
+  {
+    "title": "Mission and rescue integration",
+    "body": "Events and delegates connect mission state to rescue accounting and results; Unity Awaitable sequences arrival. The calamity baseline and scene assembly include collaborator or shared work."
+  }
+]
+,
+  "catalogIconReuseApproved": true
+},
   {
     "id": "flui",
     "name": "Flui — A Cidade das Palavras",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.",
-    "type": "Commercial Unity game",
-    "context": "Instituto Alfa e Beto · professional product work",
+    "type": "Literacy game",
+    "context": "Instituto Alfa e Beto",
     "period": "2017–2021",
     "contribution": "Worked across gameplay systems and minigame implementation, supporting the game’s ongoing production and maintenance.",
     "specs": [
-      {
-        "label": "Engine",
-        "value": "Unity"
-      },
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      }
-    ],
+  {
+    "label": "Engine",
+    "value": "Unity"
+  },
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  }
+],
     "actions": [
       {
         "href": "https://loja.alfaebeto.org.br/produto/flui-a-cidade-das-palavras.html",
@@ -732,26 +833,32 @@ export const projectRecords: ProjectRecord[] = [
     "archivePresentation": "standard",
     "anchorId": "work-flui",
     "kind": "neutral"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity"
+],
+  "technicalHighlights": []
+},
   {
     "id": "tabuada-na-fazenda",
     "name": "Tabuada na Fazenda",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity math game set around an interactive farm and themed learning activities.",
-    "type": "Commercial Unity game",
-    "context": "Instituto Alfa e Beto · professional product work",
+    "type": "Math game",
+    "context": "Instituto Alfa e Beto",
     "period": "2020–2022",
     "contribution": "Contributed to minigames, tutorials, farm interactions, and progression systems as the product evolved.",
     "specs": [
-      {
-        "label": "Engine",
-        "value": "Unity"
-      },
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      }
-    ],
+  {
+    "label": "Engine",
+    "value": "Unity"
+  },
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  }
+],
     "actions": [
       {
         "href": "https://loja.alfaebeto.org.br/produto/tabuada-na-fazenda.html",
@@ -766,29 +873,35 @@ export const projectRecords: ProjectRecord[] = [
     "archivePresentation": "standard",
     "anchorId": "work-tabuada",
     "kind": "neutral"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity"
+],
+  "technicalHighlights": []
+},
   {
     "id": "sweets-and-shadows",
     "name": "Sweets and Shadows",
     "archiveCategory": "independent-game",
     "summary": "A 72-hour action game made with a teammate for Mini Jam 144.",
-    "type": "Unity game jam collaboration",
-    "context": "Development and design · witch-boss encounter",
+    "type": "Action game",
+    "context": "Mini Jam 144 · two-person team · 72 hours",
     "period": "2023-10",
     "specs": [
-      {
-        "label": "Jam",
-        "value": "Mini Jam 144 · 72 hours"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity"
-      },
-      {
-        "label": "Team",
-        "value": "2 people"
-      }
-    ],
+  {
+    "label": "Jam",
+    "value": "Mini Jam 144 · 72 hours"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity"
+  },
+  {
+    "label": "Team",
+    "value": "2 people"
+  }
+],
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/sweets-and-shadows",
@@ -799,21 +912,26 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 3,
     "archivePresentation": "standard",
     "anchorId": "sweets-and-shadows"
-  },
+  ,
+  "workContext": "independent",
+  "technologies": [
+  "Unity"
+]
+},
   {
     "id": "craque-da-leitura",
     "name": "Craque da Leitura",
     "archiveCategory": "professional-game",
     "summary": "An interactive reading product with book content, catalog, and guided reading flows.",
     "type": "Interactive reading product",
-    "context": "Instituto Alfa e Beto · professional product work",
+    "context": "Instituto Alfa e Beto",
     "period": "2017–2022",
     "specs": [
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      }
-    ],
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  }
+],
     "actions": [
       {
         "href": "https://loja.alfaebeto.org.br/produto/craque-da-leitura.html",
@@ -828,31 +946,29 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 4,
     "archivePresentation": "compact",
     "anchorId": "work-craque-leitura"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "learn-with-ello",
     "name": "Ello 2.0: Learn Reading & Math",
     "archiveCategory": "professional-game",
-    "summary": "A professional learning platform for children combining reading and math activities, daily quest/progression flows, rewards, and adaptive experiences across a Flutter client, backend services, and learning-agent interactions. The product connects content delivery, account flows, and activity state into a guided learning journey.",
-    "type": "Professional learning platform · Flutter / Dart / Python",
-    "context": "Professional · Ello",
-    "period": "Sep–Nov 2025",
-    "contribution": "Contributed to quest progression and rewards across typed, configuration-driven models, providers, completion services, client view models/screens, and tests. Connected home-screen activities to learning-agent requests across Python services and Flutter routing/interaction contracts, and implemented the parent-gate flow. Also contributed to shared account/settings and intro-media lifecycle work.",
+    "summary": "A Flutter reading-and-math product for children, connecting learning activities with daily quests, progression, rewards, and learning-agent interactions.",
+    "type": "Reading and math learning platform",
+    "context": "Ello",
+    "contribution": "I contributed to quest progression and rewards across configuration-driven models, completion services, and Flutter screens. I connected home activities to learning-agent requests across Python services and client routing, and implemented the parent-gate flow.",
     "engineeringFocus": "Typed quest and activity models, provider/service boundaries, and GraphQL/Protocol Buffers contracts coordinate configured flows with client state. Guarded initialization and shared in-flight requests prevent duplicate work; completion validates interaction IDs, suppresses repeated rewards, and keeps local progress resilient to noncritical sync and analytics failures.",
     "specs": [
-      {
-        "label": "Role",
-        "value": "Software Engineer"
-      },
-      {
-        "label": "Period",
-        "value": "Sep–Nov 2025"
-      },
-      {
-        "label": "Stack",
-        "value": "Flutter · Dart · Python · GraphQL · Protocol Buffers · GrowthBook · Provider"
-      },
-    ],
+  {
+    "label": "Role",
+    "value": "Software Engineer"
+  },
+  {
+    "label": "Stack",
+    "value": "Flutter · Dart · Python · GraphQL · Protocol Buffers · GrowthBook · Provider"
+  }
+],
     "media": [
       {
         "type": "image",
@@ -864,7 +980,9 @@ export const projectRecords: ProjectRecord[] = [
         "posterWidth": 480,
         "posterHeight": 480,
         "posterFit": "contain"
-      }
+      ,
+  "catalogReuseApproved": true
+}
     ],
     "actions": [
       {
@@ -885,21 +1003,44 @@ export const projectRecords: ProjectRecord[] = [
     "archivePresentation": "rich",
     "anchorId": "work-ello-2",
     "projectsIndexTitleIcon": "/projects/ello-learn/ello-learn-poster.webp"
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Flutter",
+  "Dart",
+  "Python",
+  "GraphQL",
+  "Protocol Buffers",
+  "GrowthBook",
+  "Provider"
+],
+  "technicalHighlights": [
+  {
+    "title": "Progression reliability",
+    "body": "Completion validates interaction IDs and suppresses repeated rewards, keeping local progress resilient to noncritical sync and analytics failures."
   },
+  {
+    "title": "Request coordination",
+    "body": "Guarded initialization and shared in-flight requests prevent duplicate work across configured flows. This is bounded feature integration, not ownership of the whole backend or ML/speech platform."
+  }
+]
+,
+  "catalogIconReuseApproved": true
+},
   {
     "id": "avaliacao-diagnostica",
     "name": "Avaliação Diagnóstica",
     "archiveCategory": "professional-product",
     "summary": "A school assessment platform with Portuguese and math workflows, offline use, synchronization, and reporting.",
     "type": "Digital school-assessment platform",
-    "context": "Instituto Alfa e Beto · professional product",
+    "context": "Instituto Alfa e Beto",
     "period": "Undated",
     "specs": [
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      }
-    ],
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  }
+],
     "actions": [
       {
         "href": "https://alfaebeto.org.br/conheca-a-alfa-e-beto-avaliacao/",
@@ -914,37 +1055,45 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 1,
     "archivePresentation": "compact",
     "anchorId": "work-avaliacao-diagnostica"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "avaliacao-lingua-portuguesa",
     "name": "Avaliação da Língua Portuguesa",
     "archiveCategory": "professional-game",
     "summary": "Interactive Portuguese-language assessment activities for literacy learning.",
-    "type": "Unity interactive assessment",
-    "context": "Instituto Alfa e Beto · professional Unity product work",
+    "type": "Interactive language assessment",
+    "context": "Instituto Alfa e Beto",
     "period": "Undated",
     "specs": [
-      {
-        "label": "Engine",
-        "value": "Unity"
-      },
-      {
-        "label": "Company",
-        "value": "Instituto Alfa e Beto"
-      }
-    ],
+  {
+    "label": "Engine",
+    "value": "Unity"
+  },
+  {
+    "label": "Company",
+    "value": "Instituto Alfa e Beto"
+  }
+],
     "portfolioIncluded": true,
     "archiveOrder": 8,
     "archivePresentation": "compact",
     "anchorId": "work-avaliacao-lingua-portuguesa"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": [
+  "Unity"
+]
+},
   {
     "id": "iab-digital-zero-a-quatro",
     "name": "IAB Digital: Zero a Quatro na Palma da Mão",
     "archiveCategory": "professional-product",
     "summary": "A digital learning platform connecting classroom activities and school workflows.",
     "type": "Early-childhood education platform",
-    "context": "Cedro Technologies · professional product context",
+    "context": "Cedro Technologies",
     "period": "Undated",
     "specs": [
     ],
@@ -952,14 +1101,17 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 3,
     "archivePresentation": "compact",
     "anchorId": "work-iab-digital"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "iab-testes",
     "name": "IAB Testes",
     "archiveCategory": "professional-product",
     "summary": "A tablet-based digital assessment product for school literacy workflows.",
     "type": "Tablet assessment platform",
-    "context": "Cedro Technologies · professional product context",
+    "context": "Cedro Technologies",
     "period": "Undated",
     "specs": [
     ],
@@ -967,7 +1119,10 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 2,
     "archivePresentation": "compact",
     "anchorId": "work-iab-testes"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "mypush",
     "name": "MyPush",
@@ -980,7 +1135,10 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 4,
     "archivePresentation": "compact",
     "anchorId": "work-mypush"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "morada-verde-inventory-flow",
     "name": "MVIF — Morada Verde Inventory Flow",
@@ -993,14 +1151,17 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 5,
     "archivePresentation": "compact",
     "anchorId": "work-morada-verde"
-  },
+  ,
+  "workContext": "professional",
+  "technologies": []
+},
   {
     "id": "radwasteland-echoes",
     "name": "RadWasteland — Echoes",
     "archiveCategory": "independent-game",
     "summary": "A Ludum Dare 55 game about summoning creatures in a post-apocalyptic wasteland.",
-    "type": "Solo Unity strategy / RPG jam game",
-    "context": "Independent · browser game",
+    "type": "Strategy / RPG game",
+    "context": "Ludum Dare 55 · solo jam",
     "period": "2024-04",
     "tags": [
       "Unity",
@@ -1008,15 +1169,15 @@ export const projectRecords: ProjectRecord[] = [
       "Ludum Dare"
     ],
     "specs": [
-      {
-        "label": "Jam",
-        "value": "Ludum Dare 55 · solo jam"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity"
-      }
-    ],
+  {
+    "label": "Jam",
+    "value": "Ludum Dare 55 · solo jam"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity"
+  }
+],
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/radwasteland-echoes",
@@ -1029,14 +1190,19 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "radwasteland-echoes",
     "evidenceLabel": "STRATEGY GAMEPLAY — RADWASTELAND",
     "kind": "neutral"
-  },
+  ,
+  "workContext": "independent",
+  "technologies": [
+  "Unity"
+]
+},
   {
     "id": "angry-world",
     "name": "Angry World",
     "archiveCategory": "independent-game",
     "summary": "A short space action game about protecting planets and collecting crystals.",
-    "type": "Ludum Dare 38 game",
-    "context": "Independent · released for browser",
+    "type": "Space action game",
+    "context": "Ludum Dare 38",
     "period": "2017-04",
     "tags": [
       "Unity",
@@ -1044,15 +1210,15 @@ export const projectRecords: ProjectRecord[] = [
       "Ludum Dare"
     ],
     "specs": [
-      {
-        "label": "Jam",
-        "value": "Ludum Dare 38 · solo jam"
-      },
-      {
-        "label": "Engine",
-        "value": "Unity"
-      }
-    ],
+  {
+    "label": "Jam",
+    "value": "Ludum Dare 38 · solo jam"
+  },
+  {
+    "label": "Engine",
+    "value": "Unity"
+  }
+],
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/angry-world",
@@ -1065,13 +1231,18 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "angry-world",
     "evidenceLabel": "SPACE GAMEPLAY — ANGRY WORLD",
     "kind": "neutral"
-  },
+  ,
+  "workContext": "independent",
+  "technologies": [
+  "Unity"
+]
+},
   {
     "id": "survive-and-escape",
     "name": "Survive & Escape",
     "archiveCategory": "study-archive",
     "summary": "A small Windows puzzle game built from scratch while learning C++ and raylib.",
-    "type": "Independent C++ game",
+    "type": "Windows puzzle game",
     "context": "Independent game-development study",
     "period": "Undated",
     "tags": [
@@ -1080,15 +1251,15 @@ export const projectRecords: ProjectRecord[] = [
       "Windows"
     ],
     "specs": [
-      {
-        "label": "Tools",
-        "value": "C++ / raylib"
-      },
-      {
-        "label": "Platform",
-        "value": "Windows"
-      }
-    ],
+  {
+    "label": "Tools",
+    "value": "C++ / raylib"
+  },
+  {
+    "label": "Platform",
+    "value": "Windows"
+  }
+],
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/survive-and-escape",
@@ -1101,7 +1272,13 @@ export const projectRecords: ProjectRecord[] = [
     "anchorId": "survive-and-escape",
     "evidenceLabel": "PUZZLE GAMEPLAY — SURVIVE & ESCAPE",
     "kind": "neutral"
-  },
+  ,
+  "workContext": "study",
+  "technologies": [
+  "C++",
+  "raylib"
+]
+},
   {
     "id": "heroes-secrets",
     "name": "Heroes’ Secrets",
@@ -1132,6 +1309,86 @@ export const projectRecords: ProjectRecord[] = [
     "evidenceLabel": "DEVELOPER TOOLING — REPODNA",
     "kind": "neutral",
     "portfolioIncluded": false
+  },
+  {
+    "id": "diggy-the-dog",
+    "name": "Diggy, the dog",
+    "archiveCategory": "independent-game",
+    "summary": "A 2D chase game where a dog pursues a mole underground while avoiding obstacles.",
+    "type": "2D chase game",
+    "context": "Ludum Dare 48 · team project",
+    "period": "23–26 Apr 2021",
+    "contribution": "Alongside our regular work, we set aside two evenings to make a game together for Ludum Dare 48. Discussing the theme, ‘Deeper and deeper,’ one teammate suggested a mole because it digs deep; another added a dog chasing it. Together, we shaped the premise: a dog digging beneath its garden to catch the intruding mole. I built on a teammate's player movement, taking on the chase rules and player feedback.",
+    "engineeringFocus": "The chase logic connects mole behavior and outcome triggers to the team's existing player movement. The obstacle spawner samples positions within configured bounds and rejects points inside existing colliders; the distance display gives the player feedback on the remaining course.",
+    "workContext": "independent",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Cinemachine",
+      "DOTween",
+      "TextMesh Pro",
+      "Unity 2D Physics",
+      "Unity Tilemap"
+    ],
+    "technicalHighlights": [
+      {
+        "title": "Chase and outcome triggers",
+        "body": "Implemented the mole behavior and start/end triggers, and extended the existing player controller with stopping behavior. These connect movement to the race rules: start the mole, win on player contact, or lose at the end trigger."
+      },
+      {
+        "title": "Randomized obstacle generation",
+        "body": "Created a spawner that samples random positions within configured bounds to produce different obstacle layouts. It rejects candidate points inside existing collider bounds before applying prefab scale and rotation; this tests placement points rather than the full obstacle footprint."
+      },
+      {
+        "title": "Distance feedback",
+        "body": "Added a TextMesh Pro counter that updates the distance to the end of the course during play, making the remaining distance visible alongside the chase."
+      }
+    ],
+    "tags": [
+      "Gameplay systems",
+      "Obstacle spawning",
+      "Collaborative project"
+    ],
+    "specs": [
+      {
+        "label": "Role",
+        "value": "Game Engineer"
+      },
+      {
+        "label": "Engine",
+        "value": "Unity / C#"
+      },
+      {
+        "label": "Period",
+        "value": "23–26 Apr 2021"
+      }
+    ],
+    "archiveOrder": 6,
+    "archivePresentation": "standard",
+    "media": [
+      {
+        "type": "gif",
+        "src": "/projects/diggy/diggy-gameplay-preview.gif",
+        "posterSrc": "/projects/diggy/diggy-first-frame.webp",
+        "alt": "Diggy gameplay showing the dog in a top-down level with obstacles and collectibles.",
+        "previewAlt": "Diggy gameplay showing the dog moving through a top-down level with obstacles and collectibles.",
+        "autoplayPreview": true,
+        "posterWidth": 540,
+        "posterHeight": 960,
+        "posterFit": "contain",
+        "catalogReuseApproved": true
+      }
+    ],
+    "actions": [
+      {
+        "href": "https://phillipeaam.itch.io/diggy-the-dog",
+        "label": "Play on itch.io"
+      }
+    ],
+    "projectsIndexTitleIcon": "/projects/diggy/diggy-poster.webp",
+    "catalogIconReuseApproved": true,
+    "kind": "neutral",
+    "portfolioIncluded": true
   }
 ];
 
@@ -1159,6 +1416,13 @@ export function resolveExperienceWork(projectId: string, baseUrl = '/') {
     ? project.homePlacement === 'supporting' ? basePath + '#' + anchor : basePath + 'projects/#' + anchor
     : undefined;
   return { name: project.name, href, caseStudy: false, included: true };
+}
+
+export function resolveProjectArchiveHref(projectId: string, baseUrl = '/') {
+  const project = getProjectRecord(projectId);
+  if (!project || !isPortfolioIncluded(project) || !project.archiveCategory) return undefined;
+  const basePath = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+  return `${basePath}projects/#${project.anchorId ?? project.id}`;
 }
 
 const archiveGroupDefinitions = [

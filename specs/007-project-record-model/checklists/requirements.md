@@ -32,4 +32,4 @@
 ## Notes
 
 - Reviewed against the current `develop` baseline and the feature work carried forward onto it.
-- The clarification question received no answer before planning resumed; static-image selection and explicit animation activation are recorded as working assumptions in `spec.md`.
+- **Historical note, superseded 2026-10-05:** the unanswered clarification about explicit Play activation has been resolved. No animation play/pause control is to be added anywhere; keep the configured preview behavior and static fallback in `spec.md`.

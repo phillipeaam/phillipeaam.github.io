@@ -44,8 +44,9 @@ Review current records and temporarily check these states in the data:
 | --- | --- |
 | `portfolioIncluded: true` and Home placement set | Included on the selected Home surface/order |
 | `portfolioIncluded: true` and archive category set | Included in the selected archive group/order |
+| Included record with `archiveCategory` referenced by Experience Selected work | Explicit experience label (or canonical project name) links to `/projects/#${anchorId ?? id}`, whether or not a case study exists |
 | Inclusion missing or false | No Home/archive project block, project action, case CTA, or generated case route |
-| Existing experience reference to excluded/missing project | Name remains plain text; it has no project link or project-specific block |
+| Experience reference to excluded/missing project, or included project without `archiveCategory` | Available label/name remains plain text; it has no archive link or project-specific block |
 | Included record has a `caseStudy` slug and at least two stories, each with a non-empty title and framing | CTA and generated case route use that slug and its nested sections |
 | `caseStudy` area omitted, missing a slug, has fewer than two stories, or any story lacks a non-empty title or framing | No case-study CTA, next-case link, or generated route |
 | Case area has a slug and at least two valid stories but omits other editorial sections | Case page is generated; omitted sections have no empty labels or blocks |
