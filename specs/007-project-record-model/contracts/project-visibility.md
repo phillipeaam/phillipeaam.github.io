@@ -16,6 +16,13 @@ This contract defines which portfolio surfaces may consume a project record and 
 - The archive requires `archiveCategory` and uses `archiveOrder` within that group.
 - Existing `anchorId` values override the record ID when they preserve a public archive hash.
 
+## Experience Selected work destinations
+
+- Experience references store the stable project ID and may specify a short `label` for wording chosen for that surface.
+- When the referenced record is included and has an `archiveCategory`, Selected work links to its All Projects entry at `/projects/#${anchorId ?? id}`. This applies whether or not a case study is available; Selected work must not redirect to the case-study route.
+- Render the explicit experience `label` when present; otherwise render the canonical project name.
+- When the record is missing, excluded, or has no `archiveCategory`, preserve the available label/name as plain text without a project link.
+
 ## Case-study actions and routes
 
 A case-study destination is available only when all conditions are true:

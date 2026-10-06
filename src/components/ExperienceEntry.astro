@@ -1,13 +1,13 @@
 ---
 import Icon from './Icon.astro';
 import type { Experience } from '../data/experience';
-import { resolveExperienceWork } from '../data/projects';
+import { resolveExperienceWork, resolveProjectArchiveHref } from '../data/projects';
 const { item } = Astro.props as { item: Experience };
 const homePath = import.meta.env.BASE_URL;
 const selectedWork = item.selectedWork.map((reference) => {
   const project = resolveExperienceWork(reference.projectId, homePath);
-  const href = project.caseStudy ? project.href : undefined;
-  return { href, label: project.included ? project.name : reference.label ?? project.name };
+  const href = resolveProjectArchiveHref(reference.projectId, homePath);
+  return { href, label: reference.label ?? project.name };
 }).filter((reference) => reference.label);
 ---
 <article class="experience-entry">

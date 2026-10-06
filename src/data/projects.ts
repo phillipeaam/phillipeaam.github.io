@@ -1412,6 +1412,13 @@ export function resolveExperienceWork(projectId: string, baseUrl = '/') {
   return { name: project.name, href, caseStudy: false, included: true };
 }
 
+export function resolveProjectArchiveHref(projectId: string, baseUrl = '/') {
+  const project = getProjectRecord(projectId);
+  if (!project || !isPortfolioIncluded(project) || !project.archiveCategory) return undefined;
+  const basePath = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+  return `${basePath}projects/#${project.anchorId ?? project.id}`;
+}
+
 const archiveGroupDefinitions = [
   { id: 'professional-game' as const, eyebrow: '01 / UNITY & GAMES', title: 'Professional games & Unity products', intro: 'Commercial game development and interactive Unity products built in professional teams.' },
   { id: 'professional-product' as const, eyebrow: '02 / SOFTWARE', title: 'Software & interactive products', intro: 'Professional assessment, learning and operational software beyond the game portfolio.' },

@@ -42,9 +42,10 @@ As the portfolio owner, I want to include or temporarily exclude a project throu
 **Acceptance Scenarios**:
 
 1. **Given** a project record is explicitly excluded or has no record, **When** any portfolio surface or direct case-study route is rendered, **Then** no project-specific block, link, action, or case-study page is presented; an existing experience name may remain only as unlinked text.
-2. **Given** a project is included but its `caseStudy` area has no slug or fewer than two stories with non-empty titles and framings, **When** portfolio actions and routes are generated, **Then** no case-study CTA or page is available while other valid project actions remain available.
-3. **Given** a project is included with a valid case-study relationship, **When** its Home or archive content is rendered, **Then** the case-study CTA points to that declared destination.
-4. **Given** a project is included for the archive, Home, or both, **When** its record specifies placement and ordering, **Then** each surface follows those choices without changing existing public anchors or URLs.
+2. **Given** an included project with an `archiveCategory` is referenced by Experience Selected work, **When** the employment entry is rendered, **Then** its explicit experience label (or canonical project name when no label exists) links to `/projects/#${anchorId ?? id}`, regardless of case-study availability.
+3. **Given** a project is included but its `caseStudy` area has no slug or fewer than two stories with non-empty titles and framings, **When** portfolio actions and routes are generated, **Then** no case-study CTA or page is available while other valid project actions remain available.
+4. **Given** a project is included with a valid case-study relationship, **When** its Home or archive content is rendered, **Then** the case-study CTA points to that declared destination.
+5. **Given** a project is included for the archive, Home, or both, **When** its record specifies placement and ordering, **Then** each surface follows those choices without changing existing public anchors or URLs.
 
 ---
 
@@ -84,6 +85,8 @@ As the portfolio owner, I want a concise authoring guide that explains the share
 ### Edge Cases
 
 - A project is excluded while still referenced by an experience entry: keep only the experience name as plain text; suppress the link and any project-specific block.
+- An included project with an archive placement is referenced in Experience Selected work: preserve the optional experience label and link to the stable All Projects anchor, independently of case-study availability.
+- An included project without an archive placement is referenced in Experience Selected work: retain the available label/name as plain text and do not link to an unrelated destination.
 - A project record is missing, or its public-inclusion value is missing: treat it as excluded from public project presentation.
 - The optional `caseStudy` area is absent, has no slug, contains fewer than two stories, or any story lacks a non-empty title or framing: omit the case-study CTA and do not generate a route.
 - A case study exists but the project is excluded: do not expose the case page through direct navigation or generated routes.
@@ -102,6 +105,7 @@ As the portfolio owner, I want a concise authoring guide that explains the share
 - **FR-004**: Optional attributes MUST be omittable or have a documented default; their absence MUST NOT invalidate an existing record or create empty labels, media frames, links, or controls.
 - **FR-005**: Public portfolio inclusion MUST be an explicit per-record choice; missing or false inclusion MUST be treated as excluded.
 - **FR-006**: A missing or excluded project record MUST suppress its project-specific presentation, links, actions, and case-study route on all portfolio surfaces. Existing experience-section name references MAY remain only as plain text without links or project-specific blocks.
+- **FR-006a**: An Experience Selected work reference to an included project with an `archiveCategory` MUST link to `/projects/#${anchorId ?? id}` and MUST display its explicit experience `label` when present, otherwise the canonical project name. This destination MUST NOT depend on case-study availability. Missing, excluded, or archive-unplaced records MUST remain unlinked text.
 - **FR-007**: Home placement, archive category, and ordering MUST remain independently configurable so inclusion does not imply placement on every surface.
 - **FR-008**: A case-study CTA and route MUST be presented only when an included project record contains a `caseStudy` area with a destination slug and at least two stories, each with a non-empty title and framing; all other case-study editorial areas MAY be omitted when they have no supported content.
 - **FR-009**: Other valid project actions MUST remain independent of case-study availability and MUST be displayed only when their destinations are declared.
