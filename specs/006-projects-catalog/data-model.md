@@ -67,7 +67,7 @@ Visible labels precede their controls: “Search for” labels the main query fi
 | `hasResults` | Whether `matchingCount` is greater than zero |
 | `activeCriteria[]` | Removable representations of active query/facet selections |
 
-The accessible status announces a concise summary such as “Showing 4 of 20 projects” or a useful zero-results message. Count records, not media or individual matching tokens.
+The accessible status announces a concise summary such as “Showing 4 of 21 projects” or a useful zero-results message. Count records, not media or individual matching tokens.
 
 ## Expanded details state
 
@@ -94,7 +94,7 @@ Each project has independent open/closed state. Multiple entries may be open sim
 This projection supersedes prior wording about all media belonging to expanded details; independent disclosure/filter states are unchanged.
 
 ### Decisão posterior de reutilização (2026-10-05)
-O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. Em 2026-10-06, solicitou também a inclusão no catálogo do pôster e gameplay GIF fornecidos para Diggy; seus caminhos de origem e derivados estão registrados em evaluation.md. A decisão de reutilização vale para esses arquivos exatos e não é prova independente de direitos de terceiros. Outras fontes continuam sujeitas à documentação. Ver spec.md, FR-019 e a seção de mídia de Diggy em evaluation.md.
+O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no baseline 6679f07: Ello Learn, Read With Ello, Pathless e Wallace’s Quest. Em 2026-10-06, solicitou também a inclusão no catálogo do pôster e gameplay GIF fornecidos para Diggy. Em 2026-10-07, pediu completar a entrada Pandora e indicou as mídias já existentes na pasta do projeto; isso autoriza no catálogo somente os arquivos exatos listados em `evaluation.md`. Essas decisões não comprovam direitos de terceiros. Outras fontes continuam sujeitas à documentação. Ver spec.md, FR-019 e as seções de mídia em evaluation.md.
 
 ## Catalog-only editorial projection — historical, superseded by centralization
 
@@ -114,7 +114,7 @@ O usuário confirmou reutilização dos pôsteres/GIFs já apresentados no basel
 | `contributionNarrative.outcome` | Optional verified result; no mandatory metric and no invented impact. |
 | `additionalContext` | Optional product context only when needed to understand contribution; not a repeated summary or mandatory Product section. |
 
-Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. The original four-source allowlist was extended by the user's explicit Diggy media request recorded in evaluation.md; exact-file reuse remains distinct from independent third-party rights verification. No other source additions. No surface renders Stop/Play; reduced motion and fallback remain.
+Existing `technologies`, metadata, IDs, caseStudySlug and actions remain projected under their existing constraints. No new schema for media. The original four-source allowlist was extended by the user's Diggy and Pandora requests recorded in evaluation.md; exact-file reuse remains distinct from independent third-party rights verification. No other source additions. No surface renders Stop/Play; reduced motion and fallback remain.
 
 Missing map entries use verified existing summary/facts without synthesizing Selected contributions from legacy engineering prose. Revised records must use explicit catalog values rather than fall back to mixed Type/Context data. Public corpus derives only from rendered public values, including highlight titles/bodies/outcome/additionalContext; exclude source URLs to private records and withdrawn text.
 

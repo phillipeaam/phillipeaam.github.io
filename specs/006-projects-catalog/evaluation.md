@@ -282,7 +282,7 @@ Executado com Chrome isolado via Playwright/CDP em `http://localhost:4321/`; nã
 
 #### O que ainda aguarda validação humana/dispositivo
 
-Leitor de tela falante real; revisão visual/editorial dos registros e do layout; zoom de browser e aparelho touch físico. Não declaro auditoria WCAG completa, aprovação editorial, estudo com participantes ou ganho de contratação. Essas limitações permanecem nas tarefas de revisão/acessibilidade correspondentes. Nenhum commit, merge ou push foi feito.
+**Registro histórico da avaliação anterior:** leitor de tela falante real; revisão visual/editorial; zoom de browser e aparelho touch físico estavam não executados naquela rodada. As decisões posteriores de 2026-10-07 aprovaram a revisão humana e retiraram zoom manual e aparelho físico do escopo. Leitor de tela real permanece sem validação. Não declaro auditoria WCAG completa, estudo com participantes ou ganho de contratação. Nenhum commit, merge ou push foi feito.
 
 ### Diggy — decisão de reutilização e arquivos exatos — 2026-10-06
 
@@ -301,7 +301,62 @@ A lista de quatro projetos registrada em 2026-10-05 descreve a decisão vigente 
 ### Validação parcial de acessibilidade e revisão adiada — 2026-10-06
 
 - Inspeção atual da árvore de acessibilidade do Chromium em `/projects/#diggy-the-dog`: o campo de busca aparece nomeado “Search for”; os botões das facetas aparecem como “Context All” e “Technology All”; a imagem de Diggy tem descrição acessível; “More details” aparece recolhido. Essa inspeção não equivale a operar um leitor de tela real.
-- A Fase 30 já registra teclado, funcionamento sem JavaScript, 320/390/820/1280 CSS px e toque emulado. Permanecem sem execução: leitor de tela falante real, zoom do navegador e toque em aparelho físico. T092 continua pendente; não declaro SC-028 completo.
+- **Registro histórico da Fase 30, anterior à decisão de escopo de 2026-10-07:** teclado, funcionamento sem JavaScript, 320/390/820/1280 CSS px e toque emulado estavam registrados. Naquela data, leitor de tela real, zoom e toque físico não haviam sido executados. A decisão posterior removeu zoom e aparelho físico do escopo; T092 permanece pendente para validação com leitor de tela real.
 - A revisão visual/editorial humana T093 foi adiada por solicitação do usuário em 2026-10-06. Nenhuma aprovação editorial ou visual é inferida.
 - A árvore atual do Chromium mostra `Showing 20 of 20 projects`, incluindo Diggy; FR-001, FR-008, SC-001, escala do plano e instruções correntes de quickstart foram atualizados do inventário anterior de 19 para 20. As matrizes de resultados antigas permanecem registros datados, não resultados atuais.
 - Após as atualizações documentais: `npm run check` passou com 0 erros, 0 warnings e 1 hint preexistente de CommonJS em `make_contact_sheets.js`; `npm run build` gerou as 7 páginas estáticas; `git diff --check` passou. Git exibiu somente avisos de normalização LF/CRLF.
+
+### Reconciliação de validação — 2026-10-07
+
+Ambiente: site local `http://localhost:4321/`, Codex in-app Chromium browser. Viewports configurados pelo controle de viewport do browser; não equivalem a dispositivos físicos.
+
+| Rota/cenário | Método e resultado observado | Limite |
+| --- | --- | --- |
+| `/projects/`, 1440×900 | Árvore/DOM renderizados e interações no browser. Catálogo inicia com 21 entradas; busca `Pandora` reduz a 1/21; consulta sem correspondência mostra estado vazio e 0/21; limpar restaura 21/21. Facetas Independent + Study resultam em 8/21; com Unity, 7/21. Abrir Technology fecha Context sem apagar suas escolhas. Pandora expandido some e fecha ao filtrar por Diggy. | Busca/facetas observadas em combinações representativas, não todas as opções/termos possíveis. JavaScript desativado não foi controlado nesta sessão. |
+| `/projects/#pandora`, 1440×900 | Inspeção do DOM renderizado e expansão de More details. Título Pandora, resumo, Role Game Engineer, Context Global Game Jam 2016 · team project, Type 2D flight and memory game e Period 29–31 Jan 2016 aparecem. Selected contributions preserva o contexto pessoal e dos estudos recentes em Unity, convite a Phillipe e irmão, time de cinco, tema Ritual e motivação pessoal; os três destaques especificam integração de áudio, criação da cena final e recorte/reposicionamento da arte do círculo ritual. Os chips visíveis são Unity e C#; `Flight`, `Memory ritual` e `Global Game Jam` ficam no campo livre `tags` do registro e não são apresentados como tecnologias/facetas. | Comparei as afirmações com “Pandora — Project Source of Truth”, buscado no Notion em 2026-10-07, que incorpora o relatório de auditoria. Relato pessoal permanece identificado como experiência pessoal; nenhum impacto profissional mensurado é atribuído. |
+| Destaque Ending scene | A frase foi reduzida a “Created the game’s ending scene.” O relatório comprova criação da cena final, mas não atribui a Phillipe a implementação do fluxo de vitória; a formulação anterior que dizia que a cena fechava o fluxo após vitória foi removida. | O flow geral do jogo permanece descrição do produto, não claim de autoria individual. |
+| `/projects/#pandora`, 390×844 | Pandora expandido, mídia acima do conteúdo, descrição e destaques com quebra natural; `scrollWidth=375`, `clientWidth=375`, sem elementos transbordando. | Teste por viewport do browser, não toque físico ou zoom. |
+| `/projects/#pandora`, 320×720 | Pandora expandido; largura do registro 257px, detalhes 257px; `scrollWidth=305`, `clientWidth=305`, sem elementos fora da viewport. | Não representa browser zoom. |
+| Mídia/CTA de Pandora | Inspeção DOM e estado de carregamento: pôster `pandora-poster.webp` carregado (1260×1000); animação `pandora-gameplay-preview.gif` (576×324) carregada; fallback `pandora-first-frame.webp` (576×324) carregado. Link “View on itch.io” aponta para `https://phillipeaam.itch.io/pandora`. | O relatório registra direitos de mídia como desconhecidos; renderização confirma somente carregamento. `catalogReuseApproved` registra a autorização de uso no catálogo, não uma verificação independente de licenças. Preferência de movimento e rede lenta/bloqueada não foram repetidas para Pandora nesta rodada. |
+
+#### Correção de conteúdo aplicada
+
+Em `src/data/projects.ts`, removi do parágrafo Selected contributions a enumeração que repetia os mesmos três destaques. O parágrafo conserva integralmente o contexto pessoal informado pelo usuário e a diferença entre motivação pessoal e impacto profissional; a linha do ending scene não atribui autoria do fluxo de vitória. O nome de Marllon não aparece na ficha.
+
+#### Estado da reconciliação e limitações
+
+Busca/facetas, divulgação de Pandora, links e layout recolhido/expandido tiveram verificações atuais representativas. O estado dessas tarefas foi atualizado pelas emulações DevTools abaixo. A árvore de acessibilidade do navegador e teclado são os métodos assistivos mantidos nesta feature. Testes de fala com leitor real, zoom manual e touchscreen/aparelho físico foram retirados do escopo pelo usuário; a revisão visual/editorial foi aprovada em 2026-10-07.
+
+O inventário atual observado é 21, incluindo Pandora; os registros de 19 e 20 entradas acima são históricos e não foram reescritos como resultados atuais.
+
+### Verificações complementares com Chrome DevTools Protocol — 2026-10-07
+
+Método: servidor local em `http://127.0.0.1:4321/`, Chrome temporário com perfil isolado e CDP em loopback. Os viewports são CSS px configurados pelo DevTools; toque e movimento reduzido abaixo são emulados.
+
+| Rota / condição | Resultado observado | Limite e reconciliação |
+| --- | --- | --- |
+| `/projects/?nojs=cdp#pandora`, 1440×900 CSS px, JavaScript desativado antes da navegação | 21 registros renderizados; Pandora começou recolhido; `summary` nativo ficou visível. Clique de mouse enviado pelo CDP abriu `<details>` e adicionou o atributo `open`. | Confirma conteúdo e disclosure nativos sem scripts. Busca/facetas dependem de JavaScript e não foram consideradas funcionais sem ele. T058/T075 seguem abertas pelas demais modalidades e verificações. |
+| `/projects/?reduceInitial=cdp#pandora`, 1440×900 CSS px, preferência `reduce` emulada antes da navegação | `matchMedia` confirmou `reduce`; seis elementos animados ficaram sem `src`; seis fallbacks ficaram visíveis; `performance` mostrou zero requisições GIF. Alternar a preferência durante a sessão removeu `src` e restaurou os fallbacks. | Evidência de tratamento inicial e de mudança da media query no navegador, não de preferência do sistema operacional nem de rede lenta/bloqueada. Contribui para T058, que permanece aberta. |
+| `/projects/?touch=cdp#pandora`, 390×844 CSS px, toque emulado | Tocar em “More details” expandiu Pandora (`aria-expanded=false` → `true`, `<details open>`); `scrollWidth` e viewport ficaram em 390px. | Toque físico em aparelho foi retirado do escopo pelo usuário em 2026-10-07; esta emulação é a evidência de toque aplicável. T090/T092 foram reconciliadas com a árvore AX, teclado e demais evidências já registradas; não foi feito teste de fala. |
+
+Assim, T058 e T075 receberam evidência adicional para movimento reduzido, JavaScript desligado e disclosure nativo. O usuário retirou validação em touchscreen/aparelho físico, zoom manual e teste de fala com leitor de tela real do escopo; toque emulado e árvore de acessibilidade do navegador permanecem como métodos utilizados. T058/T075/T090/T092/T095 foram reconciliadas com os resultados observados e o escopo aprovado; essa conclusão não declara saída de fala testada nem auditoria WCAG completa. T063/T078/T093/T096 foram concluídas após aprovação explícita da revisão humana.
+
+### Decisão de escopo — sem teste em aparelho físico — 2026-10-07
+
+Por decisão explícita do usuário, não será exigida validação em mídia/aparelho físico ou touchscreen físico. Interações de toque podem ser verificadas pelo Chrome DevTools em modo emulado; a evidência aplicável já consta na tabela acima. Essa decisão remove o requisito físico das tarefas T090, T092 e T095 e não implica suporte ou aprovação de hardware específico. Leitor de tela continua no escopo; zoom manual foi removido por decisão posterior do usuário, registrada a seguir.
+
+### Decisão de revisão humana — 2026-10-07
+
+O usuário aprovou explicitamente a revisão humana da composição atual do catálogo e do conteúdo das entradas/matriz editorial. Essa decisão conclui T063, T078, T093 e T096. Ela não representa autorização para publicar, fazer merge ou push, nem certifica direitos de terceiros sobre mídias.
+
+### Decisão de escopo — zoom manual — 2026-10-07
+
+O usuário removeu os testes manuais de zoom/ampliação do escopo porque a configuração disponível não permitiu executá-los. Critérios de zoom foram removidos das tarefas abertas e dos critérios ativos de aceitação relacionados; permanecem as verificações de viewport estreito e reflow já registradas. Nenhuma conclusão sobre comportamento em zoom foi inferida.
+
+### Tentativa de validação com leitor de tela — 2026-10-07
+
+Tentativa anterior à decisão de escopo: confirmei que `Narrator.exe` está presente no Windows, mas não consegui iniciar/controlar uma janela nativa nesta sessão. Nenhum anúncio de leitor foi observado. Em seguida, o usuário retirou esse teste de fala do escopo; portanto, a limitação não é mais um bloqueio nem uma tarefa pendente. A inspeção da árvore AX do Chromium e a navegação por teclado continuam sendo a evidência registrada; não se declara saída de fala testada. Não houve mudança de código.
+
+### Decisão de escopo — sem validação de fala por leitor de tela — 2026-10-07
+
+Por decisão explícita do usuário, não é necessário testar a saída falada com leitor de tela real. Os requisitos ativos de validação foram atualizados para usar árvore de acessibilidade do navegador, teclado, foco, toque emulado e aprimoramento progressivo conforme aplicável. T058, T075, T090, T092 e T095 foram reconciliadas com as evidências já registradas e concluídas para esse escopo. Essa decisão não remove os nomes/estados acessíveis esperados do produto e não equivale a uma auditoria WCAG completa.

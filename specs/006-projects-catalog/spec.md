@@ -3,7 +3,7 @@
 **Feature Branch**: `[006-projects-catalog]`
 **Created**: 2026-10-04
 **Status**: Draft
-**Updated**: 2026-10-06 — inclusão documentada das mídias do Diggy na allowlist da feature 006.
+**Updated**: 2026-10-07 — reconciliação do inventário corrente (21 entradas), validação de Pandora e autorização de uso dos arquivos de mídia existentes no catálogo.
 **Input**: Redesenhar `/projects/` como catálogo compacto pesquisável, com cabeçalho no padrão da Home, busca/facetas rotuladas, no máximo um menu de filtro aberto por vez, contador e detalhes expansíveis junto a cada projeto. Todos os projetos devem ser reconhecíveis sem depender de miniaturas, hover ou rolagem horizontal. Complementos da avaliação 2026-10-05: descoberta Unity/Unity 6, nomes permanentes nos cartões More Projects da Home, validação de mídia/acessibilidade e alinhamento de períodos/escopo com cases e Experience.
 
 ## Clarifications
@@ -25,7 +25,7 @@
 
 ### User Story 1 - Reconhecer e percorrer o catálogo (Priority: P1)
 
-Como visitante, quero ver os projetos disponíveis em uma lista compacta, reconhecível e organizada, para escolher o que vale aprofundar sem ler 20 fichas longas em sequência.
+Como visitante, quero ver os projetos disponíveis em uma lista compacta, reconhecível e organizada, para escolher o que vale aprofundar sem ler 21 fichas longas em sequência.
 
 **Why this priority**: A descoberta do conjunto é o problema principal. O catálogo deve continuar útil mesmo que a pessoa não use busca, filtros, imagens ou comportamento interativo opcional.
 
@@ -45,13 +45,13 @@ Como visitante, quero ver os projetos disponíveis em uma lista compacta, reconh
 
 Como recrutador ou profissional da indústria, quero pesquisar palavras presentes nas fichas e combinar contexto profissional com tecnologia, para localizar projetos relevantes ao meu interesse.
 
-**Why this priority**: Os 20 projetos cobrem produtos, jogos e estudos diversos. Busca e facetas permitem chegar a um subconjunto sem esconder o conjunto completo quando os controles não são usados.
+**Why this priority**: Os 21 projetos cobrem produtos, jogos e estudos diversos. Busca e facetas permitem chegar a um subconjunto sem esconder o conjunto completo quando os controles não são usados.
 
 **Independent Test**: Aplicar uma matriz de consultas, valores de contexto e tecnologias; comparar os nomes e o contador resultantes com os dados públicos de origem.
 
 **Acceptance Scenarios**:
 
-1. **Given** nenhuma busca ou faceta está selecionada, **When** a página é aberta, **Then** o resumo informa que os 20 projetos atuais estão disponíveis.
+1. **Given** nenhuma busca ou faceta está selecionada, **When** a página é aberta, **Then** o resumo informa que os 21 projetos atuais estão disponíveis.
 2. **Given** uma consulta corresponde ao nome, resumo, contribuição ou metadados públicos de projetos, **When** a pessoa pesquisa, **Then** somente as entradas correspondentes permanecem na lista e o contador atualiza.
 3. **Given** mais de um valor está selecionado dentro de Context ou Technology, **When** os resultados são calculados, **Then** basta corresponder a um dos valores daquela faceta.
 4. **Given** há busca e valores em ambas as facetas, **When** os resultados são calculados, **Then** cada projeto corresponde à busca, a pelo menos um Context selecionado e a pelo menos uma Technology selecionada.
@@ -177,14 +177,14 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 
 ### Functional Requirements
 
-- **FR-001**: A página MUST apresentar uma entrada identificável para cada projeto publicado no arquivo, atualmente 20, sem exigir seleção por miniatura ou rolagem horizontal.
+- **FR-001**: A página MUST apresentar uma entrada identificável para cada projeto publicado no arquivo, atualmente 21, sem exigir seleção por miniatura ou rolagem horizontal.
 - **FR-002**: Cada entrada recolhida MUST apresentar nome, resumo conciso do produto, pôster como ícone antes do título quando aprovado e mídia principal quando aprovada. Contexto, contribuição, período, tipo de produto, tecnologias e ações MUST aparecer somente nos detalhes expandidos quando disponíveis e verificados; não repetir o resumo ou a mídia principal desnecessariamente.
 - **FR-003**: O arquivo MAY preservar agrupamentos editoriais úteis, mas MUST manter contexto profissional, tipo de produto e tecnologias como dimensões distintas e não induzir classificação incorreta.
 - **FR-004**: A pessoa MUST poder pesquisar por nome, descrição do produto, contribuição e metadados públicos apresentados no arquivo, incluindo tecnologias e contexto.
 - **FR-005**: A busca MUST ignorar caixa, espaços no início/fim e diferença entre letras acentuadas e não acentuadas; MUST atualizar quais entradas correspondem à consulta.
 - **FR-006**: A pessoa MUST poder filtrar por Context e Technology em menus de seleção separados, com busca e seleção de múltiplos valores. Valores disponíveis MUST vir dos dados verificados dos projetos; etiquetas não podem ser inferidas apenas por semelhança de nome.
 - **FR-007**: Sem seleção em uma faceta, essa faceta não restringe resultados. Múltiplos valores na mesma faceta MUST usar OR; busca e facetas distintas MUST combinar por AND.
-- **FR-008**: A página MUST exibir número de projetos correspondentes e total não filtrado, por exemplo “Showing 4 of 20 projects”; a contagem MUST corresponder a todas as entradas do resultado, não somente às que cabem no viewport.
+- **FR-008**: A página MUST exibir número de projetos correspondentes e total não filtrado, por exemplo “Showing 4 of 21 projects”; a contagem MUST corresponder a todas as entradas do resultado, não somente às que cabem no viewport.
 - **FR-009**: A pessoa MUST poder remover valores selecionados e limpar todos os filtros e a consulta em uma ação identificável.
 - **FR-010**: Um conjunto sem correspondências MUST exibir estado vazio compreensível e ação para limpar critérios sem ocultar a consulta e os filtros atuais.
 - **FR-011**: Cada entrada com detalhes adicionais MUST permitir expansão e recolhimento independentes no próprio contexto do item; várias entradas podem permanecer expandidas simultaneamente e seu estado aberto/fechado deve ser comunicado. Busca/filtragem não pode apresentar detalhes pertencentes a uma entrada que deixou de corresponder.
@@ -195,7 +195,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **FR-016**: O conteúdo essencial e links MUST permanecer legíveis e utilizáveis quando comportamentos interativos opcionais não estão disponíveis; controles sem comportamento funcional MUST não ser apresentados como ativos.
 - **FR-017**: Em larguras móveis, entradas, controles e detalhes com mídia MUST adaptar-se sem sobreposição, perda de conteúdo essencial ou rolagem horizontal da página; a mídia principal aprovada fica acima da identidade e descrição da entrada no celular; os detalhes aparecem junto à mesma entrada abaixo do resumo.
 - **FR-018**: A feature MUST preservar a identidade visual editorial aprovada e limitar mudanças a `/projects/` e aos consumidores compartilhados diretamente necessários para descoberta na Home, carregamento/acessibilidade de mídia e consistência factual com cases e Experience. Não autoriza redesenho geral nem mudança automática da ordem de projetos destacados.
-- **FR-019**: A entrada recolhida MUST conservar a allowlist exata de fontes autorizadas pelo usuário para reutilização em Ello Learn, Read With Ello, Pathless, Wallace’s Quest e Diggy, conforme os caminhos registrados em `evaluation.md`. Para Diggy, o usuário forneceu `public/projects/diggy-poster.png` e `public/projects/diggy-gameplay-preview.gif` e solicitou sua inclusão no catálogo; o pôster WebP e o fallback do primeiro quadro são derivados desses arquivos. A decisão de reutilização MUST não ser descrita como comprovação independente de direitos de terceiros. Mídia nova ou diferente da allowlist MUST permanecer oculta sem documentação de origem e autorização; mídia complementar elegível pertence aos detalhes.
+- **FR-019**: A entrada recolhida MUST conservar a allowlist exata de fontes autorizadas pelo usuário para reutilização em Ello Learn, Read With Ello, Pathless, Wallace’s Quest, Diggy e Pandora, conforme os caminhos registrados em `evaluation.md`. Para Diggy, o usuário forneceu `public/projects/diggy-poster.png` e `public/projects/diggy-gameplay-preview.gif` e solicitou sua inclusão no catálogo; o pôster WebP e o fallback do primeiro quadro são derivados desses arquivos. Em 2026-10-07, o pedido para preencher a entrada Pandora com referência às mídias existentes na pasta do jogo autorizou o uso no catálogo dos arquivos exatos ali registrados. A decisão de reutilização MUST não ser descrita como comprovação independente de direitos de terceiros. Mídia nova ou diferente da allowlist MUST permanecer oculta sem documentação de origem e autorização; mídia complementar elegível pertence aos detalhes.
 - **FR-020**: Detalhes expandidos MUST apresentar, em ordem, fatos compactos disponíveis (Role, Context, Type e Period), a seção Selected contributions quando sustentada por evidência, tecnologias e demais metadados úteis, mídia complementar aprovada quando existente e ações válidas. Product, Contribution e Engineering focus MUST deixar de ser três blocos obrigatórios separados; informação relevante MUST ser reorganizada sem perda de limites de autoria. Grupos sem conteúdo MUST ser omitidos.
 - **FR-021**: Entradas do catálogo MUST usar divisores consistentes em espessura, cor, espaçamento e continuidade, sem variação visual involuntária entre projetos.
 - **FR-022**: O cabeçalho de `/projects/` MUST reutilizar o padrão aprovado da seção “More Projects” na Home, com eyebrow “BREADTH, AT A GLANCE”, título “All Projects” e o mesmo texto de apoio. MUST omitir o rótulo “PROJECT ARCHIVE” e a apresentação anterior.
@@ -220,7 +220,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **FR-040**: A validação de mídia MUST cobrir carregamento distante e aproximação à faixa configurada, fallback até a mídia estar pronta, falha de rede/resposta/preparação, mudança de movimento reduzido durante carga, hover/foco quando configurados, fallback sem JavaScript e o caminho existente quando a detecção de proximidade está indisponível. Os resultados MUST distinguir inspeção de fonte de cenários realmente executados e MUST registrar pedidos de rede, condições e viewports efetivamente observados.
 - **FR-041**: Preferência `prefers-reduced-motion` MUST manter o fallback e impedir solicitação ou revelação animada conforme o comportamento atual documentado, inclusive após mudança durante a carga. Nenhuma superfície MUST renderizar botão Stop/Play ou controle equivalente; a ausência desses controles MUST NOT ser declarada, por si só, como conformidade WCAG completa para animação contínua.
 - **FR-042**: A validação de navegação MUST incluir demora/falha de fontes, liberação de conteúdo e restauração de posição após retorno, evitando tela vazia persistente, exibição inicial na posição errada ou deslocamento perceptível antes de chegar à posição restaurada. Resultados precisam vir de cenários realmente executados, não de inspeção de fonte apenas.
-- **FR-043**: Filtros, disclosures e navegação MUST ser avaliados com teclado, leitor de tela, foco visível, Escape/recolhimento, alteração da contagem e item ocultado por filtro. Rótulos e semântica MUST corresponder à interação real; um menu de opções MUST NOT ser apresentado como um controle de combinação pesquisável se não oferecer esse comportamento. Cada rota avaliada MUST apresentar um único landmark principal.
+- **FR-043**: Filtros, disclosures e navegação MUST ter nomes/estados acessíveis inspecionáveis na árvore de acessibilidade do navegador, além de interação por teclado, foco visível, Escape/recolhimento, alteração da contagem e item ocultado por filtro. Rótulos e semântica MUST corresponder à interação real; um menu de opções MUST NOT ser apresentado como um controle de combinação pesquisável se não oferecer esse comportamento. Cada rota avaliada MUST apresentar um único landmark principal. Teste de fala com leitor de tela real foi removido do escopo por decisão do usuário em 2026-10-07; esta spec não declara validação auditiva nem auditoria WCAG completa.
 - **FR-044**: Períodos, tecnologias, contribuição e limites de autoria compartilhados MUST ser compatíveis entre registro central, catálogo, case quando existente e Experience. A revisão MUST distinguir período do projeto/fase de período de emprego, preservar fases de manutenção/revisita quando comprovadas e manter escopo individual separado do trabalho de equipe. Divergências sem solução documental MUST ser registradas como pendentes, sem normalização ou expansão de autoria.
 
 ### Key Entities *(include if feature involves data)*
@@ -242,7 +242,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 
 ### Measurable Outcomes
 
-- **SC-001**: No estado inicial, 100% dos projetos publicados (20 no conjunto atual) possuem entrada nomeada e reconhecível, independentemente de poster, hover, comportamento interativo opcional ou largura de tela.
+- **SC-001**: No estado inicial, 100% dos projetos publicados (21 no conjunto atual) possuem entrada nomeada e reconhecível, independentemente de poster, hover, comportamento interativo opcional ou largura de tela.
 - **SC-002**: Em 100% dos casos de uma matriz definida de busca (nomes completos/parciais, termos da contribuição, tecnologia, caixa e acentos), o conjunto de correspondências e o contador refletem exatamente os dados pesquisáveis.
 - **SC-003**: Em 100% dos casos amostrados de facetas, correspondências seguem OR dentro de Context ou Technology e AND entre facetas e busca; limpar critérios restaura o total original.
 - **SC-004**: O resumo de resultados sempre reporta a quantidade correspondente e o total não filtrado; estado vazio e restauração são alcançáveis por teclado e toque.
@@ -270,14 +270,14 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **SC-025**: A faceta Technology oferece exatamente uma opção `Unity` e nenhuma opção separada por versão. Todo projeto com tecnologia/engine Unity confirmada, incluindo Pathless, corresponde a essa tag; versões específicas só aparecem como fatos detalhados quando confirmadas e publicadas. Nenhum projeto ou versão é classificado por inferência de título ou prosa.
 - **SC-026**: 100% dos cartões de projeto na área More Projects da Home exibem seus nomes sem hover ou foco; nome, link e layout permanecem utilizáveis com imagem, placeholder, falha/ausência de mídia, viewport estreito e ampliação.
 - **SC-027**: A matriz de mídia registra para cada cenário executado viewport, preferência de movimento, condição de rede, momento dos pedidos e resultado observado. Com movimento reduzido ativo desde o início, zero preview GIF é solicitado; se a preferência mudar durante uma solicitação, o fallback permanece e a animação não é revelada. Nenhuma página apresenta controle Stop/Play. Casos não executados ficam explicitamente pendentes.
-- **SC-028**: A matriz de acesso cobre teclado, foco, leitor de tela, estados dos filtros/disclosures, perda de foco por filtro, Escape quando aplicável, ausência de JavaScript e zoom/320px; cada rota inspecionada expõe um único landmark principal, e resultados são marcados como aprovados somente após execução.
+- **SC-028**: A matriz de acesso cobre teclado, foco, leitor de tela, estados dos filtros/disclosures, perda de foco por filtro, Escape quando aplicável, ausência de JavaScript e viewport de 320px; cada rota inspecionada expõe um único landmark principal, e resultados são marcados como aprovados somente após execução. Teste manual de zoom foi removido do escopo por decisão do usuário em 2026-10-07.
 - **SC-029**: 100% das diferenças de período ou escopo encontradas entre o registro central, catálogo, case existente e Experience são classificadas como coerentes com fontes, corrigidas pela especificação de origem/período adequado ou mantidas como pendência explícita. Nenhuma divergência é apagada por normalização silenciosa.
 - **SC-030**: Os registros Ello 2.0, Read With Ello e Wallace’s Quest são comparados com o contexto de Experience e seus cases existentes; o vínculo de emprego da Ello é distinguido dos períodos de projeto, tecnologias/escopos seguem fontes e fases de Wallace são preservadas quando documentadas.
 - **SC-031**: A validação de navegação e carregamento cobre fonte lenta/falha, retorno a posição salva, conteúdo antes/depois da inicialização, media bloqueada e decode com falha; não há tela vazia persistente ou flash de posição incorreta nos cenários realmente executados. Inspeção de código sem runtime não conta como aprovação.
 
 ## Assumptions
 
-- O arquivo atual contém 20 registros publicados; o total exibido deve acompanhar o catálogo real após inclusões ou remoções futuras, em vez de permanecer fixo em 20.
+- O arquivo atual contém 21 registros publicados; o total exibido deve acompanhar o catálogo real após inclusões ou remoções futuras, em vez de permanecer fixo em 21.
 - Context e Technology são as duas facetas iniciais. A taxonomia Context deriva de classificação confirmada (por exemplo, profissional, independente, estudo); “game/software/product” descreve tipo e não é misturado à faceta Context.
 - Os agrupamentos editoriais existentes podem ser ajustados para não classificar incorretamente um produto por sua tecnologia, desde que a ordem geral e as entradas permaneçam reconhecíveis.
 - A lista inicial usa uma ordem editorial estável existente; busca e facetas filtram essa ordem sem ordenar por relevância, popularidade ou métricas de visitante.
@@ -391,6 +391,10 @@ Este complemento pertence à feature 006 e atualiza os requisitos vigentes acima
 - A ordem de Featured/Selected work e o restante do design da Home permanecem fora do escopo. Não há decisão de criar estudo de caso para Ello 2.0.
 
 Nenhuma ambiguidade crítica restante requer pergunta antes do planejamento: as regras de descoberta e escopo estão definidas; divergências factuais são tratadas como pendências rastreáveis, não como fatos a uniformizar.
+
+### Reutilização dirigida das mídias de Pandora — 2026-10-07
+
+O usuário solicitou completar a entrada de Pandora e indicou que as mídias do jogo já estavam em `public/projects/pandora/`. Para esse escopo, a instrução autoriza exibir no catálogo os arquivos exatos já registrados: `pandora-poster.webp`, `pandora-gameplay-preview.gif` e o fallback derivado `pandora-first-frame.webp`. Essa autorização editorial de uso no portfólio não resolve a questão separada do relatório sobre direitos/licenças de terceiros; não a descrever como verificação independente. Os caminhos, dimensões observadas e limite estão em `evaluation.md`.
 
 ### Decisão posterior — tag Unity única — 2026-10-05
 
