@@ -443,7 +443,7 @@ export const projectRecords: ProjectRecord[] = [
       "nextProjectId": "wallaces-quest",
       "metaDescription": "Commercial Unity game development: Desafio dos Sons Iguais, shared minigame systems, and production work by Phillipe Augusto."
     },
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "homePlacement": "featured",
     "homeOrder": 1,
     "archiveOrder": 6,
@@ -707,7 +707,7 @@ export const projectRecords: ProjectRecord[] = [
       "nextProjectId": "ilhas-do-alfabeto",
       "metaDescription": "Craque da Fluência case study: Unity assessment state, structured word models, and speech-recognition integration work."
     },
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "homePlacement": "featured",
     "homeOrder": 4,
     "archiveOrder": 7,
@@ -825,7 +825,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "LinkedIn details"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "homePlacement": "supporting",
     "homeOrder": 2,
     "evidenceLabel": "GAMEPLAY / PRODUCT MEDIA — FLUI",
@@ -865,7 +865,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "Official product"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "homePlacement": "supporting",
     "homeOrder": 3,
     "evidenceLabel": "GAMEPLAY MEDIA — TABUADA",
@@ -908,7 +908,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "Play on itch.io"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 3,
     "archivePresentation": "standard",
     "anchorId": "sweets-and-shadows"
@@ -942,7 +942,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "LinkedIn details"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 4,
     "archivePresentation": "compact",
     "anchorId": "work-craque-leitura"
@@ -1051,7 +1051,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "LinkedIn details"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 1,
     "archivePresentation": "compact",
     "anchorId": "work-avaliacao-diagnostica"
@@ -1077,7 +1077,7 @@ export const projectRecords: ProjectRecord[] = [
     "value": "Instituto Alfa e Beto"
   }
 ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 8,
     "archivePresentation": "compact",
     "anchorId": "work-avaliacao-lingua-portuguesa"
@@ -1097,7 +1097,7 @@ export const projectRecords: ProjectRecord[] = [
     "period": "Undated",
     "specs": [
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 3,
     "archivePresentation": "compact",
     "anchorId": "work-iab-digital"
@@ -1115,7 +1115,7 @@ export const projectRecords: ProjectRecord[] = [
     "period": "Undated",
     "specs": [
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 2,
     "archivePresentation": "compact",
     "anchorId": "work-iab-testes"
@@ -1131,7 +1131,7 @@ export const projectRecords: ProjectRecord[] = [
     "type": "B2B mobile product",
     "context": "Earlier professional software experience",
     "period": "Undated",
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 4,
     "archivePresentation": "compact",
     "anchorId": "work-mypush"
@@ -1147,7 +1147,7 @@ export const projectRecords: ProjectRecord[] = [
     "type": "Client operational software",
     "context": "Earlier client software product",
     "period": "Undated",
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 5,
     "archivePresentation": "compact",
     "anchorId": "work-morada-verde"
@@ -1184,7 +1184,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "View project page"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 2,
     "archivePresentation": "standard",
     "anchorId": "radwasteland-echoes",
@@ -1225,7 +1225,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "Play on itch.io"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 5,
     "archivePresentation": "standard",
     "anchorId": "angry-world",
@@ -1266,7 +1266,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "View game on itch.io"
       }
     ],
-    "portfolioIncluded": true,
+    "portfolioIncluded": false,
     "archiveOrder": 1,
     "archivePresentation": "compact",
     "anchorId": "survive-and-escape",
