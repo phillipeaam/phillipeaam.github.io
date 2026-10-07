@@ -6,13 +6,16 @@ import Icon from '../components/Icon.astro';
 import SupportingProject from '../components/SupportingProject.astro';
 import ExternalLink from '../components/ExternalLink.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { homeSection } from '../data/homeSections';
 import { homeFeaturedProjects, homeSupportingProjects } from '../data/projects';
 import { experience } from '../data/experience';
 const homePath = import.meta.env.BASE_URL;
 const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 ---
 <BaseLayout title="Phillipe Augusto — Game Engineer" description="Game Engineer building gameplay systems, architecture, and tools across commercial games, live interactive products, and independent projects.">
-  <section class="home-hero content-width nav-anchor-target" id="top" data-nav-section="home" aria-labelledby="hero-title">
+  <section class="home-hero content-width nav-anchor-target" id="home" data-nav-section="home" aria-labelledby="hero-title">
+    {homeSection('home').legacyIds.map((id) => <span class="nav-anchor-alias" id={id} aria-hidden="true"></span>)}
     <h1 id="hero-title">Game Engineer</h1>
     <p class="hero-statement">I build gameplay systems, architecture, and tools that turn game ideas into responsive, polished, memorable player experiences.</p>
     <p class="hero-experience">10+ years in software engineering, including 8+ years with Unity &amp; C# across commercial games, live interactive products, and independent projects.</p>
@@ -25,16 +28,13 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
     </nav>
   </section>
 
-  <section class="section-block content-width" data-nav-section="work" aria-labelledby="featured-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="work"><div><p class="eyebrow">WORK, IN DEPTH</p><h2 id="featured-title">Case studies</h2></div><p><span class="section-support-line">The problems, decisions, and gameplay systems</span> <span class="section-support-line">behind selected projects.</span></p></header>
+  <section class="section-block content-width" data-nav-section="featured" aria-labelledby="featured-title">
+    <SectionHeading anchorId="featured" aliases={homeSection('featured').legacyIds} eyebrow="WORK, IN DEPTH" title="Featured" titleId="featured-title" supportLead="The problems, decisions, and gameplay systems behind" supportContinuation="selected projects." />
     <div class="featured-list">{homeFeaturedProjects.map((project, index) => <FeaturedProject project={project} reverse={index % 2 === 1} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="projects">
-      <span class="nav-anchor-alias" id="other-work" aria-hidden="true"></span>
-      <div><p class="eyebrow">BREADTH, AT A GLANCE</p><h2 id="projects-title">Projects</h2></div><p><span class="section-support-line">Professional products, independent games, and technical</span>{' '}<span class="section-support-line">work beyond the selected case studies.</span></p>
-    </header>
+    <SectionHeading anchorId="projects" aliases={homeSection('projects').legacyIds} eyebrow="BREADTH, AT A GLANCE" title="Projects" titleId="projects-title" supportLead="Professional products, independent games, and technical" supportContinuation="work beyond the selected case studies." />
     <div class="more-projects__utility-row">
       <p class="more-projects__guidance">
         <span class="more-projects__guidance--hover">Hover to preview where available <span aria-hidden="true">·</span> Click a project to view details</span>
@@ -50,10 +50,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   <TestimonialsSection />
 
   <section class="section-block content-width human-section" data-nav-section="about" aria-labelledby="about-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="about">
-      <span class="nav-anchor-alias" id="about-phillipe" aria-hidden="true"></span>
-      <div><p class="eyebrow">BEHIND THE WORK</p><h2 id="about-title">About Phillipe</h2></div><p>How I investigate behavior and make engineering decisions.</p>
-    </header>
+    <SectionHeading anchorId="about" aliases={homeSection('about').legacyIds} eyebrow="BEHIND THE WORK" title="About Phillipe" titleId="about-title" supportLead="How I investigate behavior and make" supportContinuation="engineering decisions." />
     <div class="human-profile">
       <figure class="profile-portrait"><img src="/images/identity/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Game Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
       <div class="profile-content">
@@ -73,7 +70,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
-    <header class="section-heading section-heading--major nav-anchor-target" id="experience"><div><p class="eyebrow">CAREER, IN PRACTICE</p><h2 id="experience-title">Experience</h2></div><p><span class="section-support-line">Unity product engineering, commercial game development,</span> <span class="section-support-line">and earlier mobile software work.</span></p></header>
+    <SectionHeading anchorId="experience" eyebrow="CAREER, IN PRACTICE" title="Experience" titleId="experience-title" supportLead="Unity engineering for commercial game products," supportContinuation="alongside earlier mobile app development." />
     <div class="experience-list">{experience.map((item) => <ExperienceEntry item={item} />)}</div>
     <div class="section-footer experience-provenance"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
   </section>

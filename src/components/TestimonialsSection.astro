@@ -2,16 +2,12 @@
 import ExternalLink from './ExternalLink.astro';
 import Icon from './Icon.astro';
 import { recommendationsUrl, testimonials } from '../data/testimonials';
+import SectionHeading from './SectionHeading.astro';
+import { homeSection } from '../data/homeSections';
 ---
 
-<section class="section-block content-width recommendations-section" data-nav-section="recommendations" aria-labelledby="recommendations-title">
-  <header class="section-heading section-heading--major nav-anchor-target" id="recommendations">
-    <div>
-      <p class="eyebrow">COLLABORATION</p>
-      <h2 id="recommendations-title">Teammates</h2>
-    </div>
-    <p>On solving problems, sharing knowledge, and delivering together.</p>
-  </header>
+<section class="section-block content-width recommendations-section" data-nav-section="teammates" aria-labelledby="recommendations-title">
+  <SectionHeading anchorId="teammates" aliases={homeSection('teammates').legacyIds} eyebrow="COLLABORATION" title="Teammates" titleId="recommendations-title" supportLead="On solving problems, sharing knowledge," supportContinuation="and delivering together." />
 
   <div class="testimonial-carousel" data-testimonial-carousel>
     <div class="testimonial-track" data-testimonial-track role="region" aria-roledescription="carousel" aria-label="LinkedIn recommendations" tabindex="0">

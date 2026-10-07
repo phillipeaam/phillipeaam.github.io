@@ -2,12 +2,13 @@
 import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { homeFragmentIds } from '../data/homeSections';
 
 const { title = 'Phillipe Augusto — Game Engineer', description = 'Game Engineer building gameplay systems, architecture, and tools across commercial games, live interactive products, and independent projects.', contextualNavigation = false, caseNavigation = false } = Astro.props;
 const basePath = import.meta.env.BASE_URL;
 ---
 <!doctype html>
-<html lang="en" data-home-path={basePath}>
+<html lang="en" data-home-path={basePath} data-home-fragments={JSON.stringify(homeFragmentIds)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,8 +30,13 @@ const basePath = import.meta.env.BASE_URL;
           : new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
         ready.then(() => document.fonts?.ready ?? Promise.resolve()).catch(() => {}).then(() => requestAnimationFrame(revealPage));
         setTimeout(revealPage, 4000);
+        let explicitHomeTarget = false;
         try {
-          if (location.pathname === root.dataset.homePath && sessionStorage.getItem('portfolio-restore-home-scroll') === 'true') {
+          explicitHomeTarget = location.pathname === root.dataset.homePath && JSON.parse(root.dataset.homeFragments ?? '[]').includes(decodeURIComponent(location.hash.slice(1)));
+        } catch { /* Unknown/malformed fragments keep native browser behavior. */ }
+        try {
+          if (explicitHomeTarget) sessionStorage.removeItem('portfolio-restore-home-scroll');
+          if (!explicitHomeTarget && location.pathname === root.dataset.homePath && sessionStorage.getItem('portfolio-restore-home-scroll') === 'true') {
             root.dataset.restoringHomeScroll = 'true';
             // Fail open if loading is interrupted; never leave the page hidden.
             setTimeout(() => { delete root.dataset.restoringHomeScroll; }, 4000);
@@ -62,8 +68,13 @@ const basePath = import.meta.env.BASE_URL;
 
         let shouldRestoreHome = false;
         let savedScroll = Number.NaN;
+        let explicitHomeTarget = false;
         try {
-          shouldRestoreHome = window.location.pathname === homePath && sessionStorage.getItem(restoreHomeKey) === 'true';
+          explicitHomeTarget = window.location.pathname === homePath && JSON.parse(root.dataset.homeFragments ?? '[]').includes(decodeURIComponent(window.location.hash.slice(1)));
+        } catch { /* Unknown/malformed fragments keep native browser behavior. */ }
+        try {
+          if (explicitHomeTarget) sessionStorage.removeItem(restoreHomeKey);
+          shouldRestoreHome = !explicitHomeTarget && window.location.pathname === homePath && sessionStorage.getItem(restoreHomeKey) === 'true';
           if (shouldRestoreHome) savedScroll = Number(sessionStorage.getItem(homeScrollKey));
         } catch { /* Storage unavailable: keep normal page rendering. */ }
 
@@ -85,6 +96,21 @@ const basePath = import.meta.env.BASE_URL;
             });
           });
           return;
+        }
+
+        if (explicitHomeTarget) {
+          const ready = document.readyState !== 'loading'
+            ? Promise.resolve()
+            : new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+          Promise.all([ready, Promise.resolve(document.fonts?.ready).catch(() => undefined)]).then(() => {
+            requestAnimationFrame(() => {
+              const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+              if (target) {
+                const offset = Number.parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+                restoreScroll(window.scrollY + target.getBoundingClientRect().top - offset);
+              }
+            });
+          });
         }
 
         if (window.location.pathname === `${homePath}projects/` && window.location.hash) {

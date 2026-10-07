@@ -1,13 +1,6 @@
 ---
-const homeItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'work', label: 'Case studies' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'recommendations', label: 'Teammates' },
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
-];
+import { homeSections } from '../data/homeSections';
+const homeItems = homeSections;
 const homePath = import.meta.env.BASE_URL;
 const isHome = Astro.url.pathname === homePath;
 const { contextual = false } = Astro.props;
@@ -21,9 +14,7 @@ const caseItems = [
 ];
 const { caseNavigation = false } = Astro.props;
 const items = caseNavigation ? caseItems : contextual ? contextualItems : homeItems;
-const itemHref = (id: string) => id === 'home'
-  ? (isHome ? '#top' : `${homePath}#top`)
-  : (isHome ? `#${id}` : `${homePath}#${id}`);
+const itemHref = (id: string) => isHome ? `#${id}` : `${homePath}#${id}`;
 const hrefFor = (item: typeof homeItems[number] | typeof contextualItems[number]) => 'href' in item ? item.href : itemHref(item.id);
 ---
 <header class="site-header">
