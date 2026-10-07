@@ -35,7 +35,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
     <SectionHeading anchorId="projects" aliases={homeSection('projects').legacyIds} eyebrow="BREADTH, AT A GLANCE" title="Projects" titleId="projects-title" supportLead="Professional products, independent games, and technical" supportContinuation="work beyond the selected case studies." />
-    <div class="more-projects__utility-row">
+    <div class="section-utility-row">
       <p class="more-projects__guidance">
         <span class="more-projects__guidance--hover">Hover to preview where available <span aria-hidden="true">·</span> Click a project to view details</span>
         <span class="more-projects__guidance--touch">Tap a project to view details</span>
@@ -71,8 +71,8 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 
   <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
     <SectionHeading anchorId="experience" eyebrow="CAREER, IN PRACTICE" title="Experience" titleId="experience-title" supportLead="Unity engineering for commercial game products," supportContinuation="alongside earlier mobile app development." />
+    <div class="section-utility-row section-utility-row--end"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
     <div class="experience-list">{experience.map((item) => <ExperienceEntry item={item} />)}</div>
-    <div class="section-footer experience-provenance"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
   </section>
 
 </BaseLayout>
