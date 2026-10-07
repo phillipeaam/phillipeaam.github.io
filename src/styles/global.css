@@ -14,7 +14,7 @@
   --section-divider: linear-gradient(90deg, rgba(154,167,255,.46), rgba(140,219,173,.3) 52%, rgba(122,217,216,.26));
   --content-section-space-before: 32px;
   --content-section-space-after: 24px;
-  --section-content-top-gap: 24px;
+  --section-content-top-gap: 26px;
   --section-utility-row-space: 12px;
   --section-heading-content-gap: 0px;
   --font-display: 'Manrope', 'Avenir Next', sans-serif;
