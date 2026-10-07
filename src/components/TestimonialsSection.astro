@@ -1,9 +1,9 @@
 ---
 import ExternalLink from './ExternalLink.astro';
-import Icon from './Icon.astro';
 import { recommendationsUrl, testimonials } from '../data/testimonials';
 import SectionHeading from './SectionHeading.astro';
 import { homeSection } from '../data/homeSections';
+const homePath = import.meta.env.BASE_URL;
 ---
 
 <section class="section-block content-width recommendations-section" data-nav-section="teammates" aria-labelledby="recommendations-title">
@@ -23,18 +23,15 @@ import { homeSection } from '../data/homeSections';
     <div class="testimonial-track" data-testimonial-track role="region" aria-roledescription="carousel" aria-label="LinkedIn recommendations" tabindex="0">
       {testimonials.map((item, index) => (
         <figure class="recommendation-card" data-testimonial-slide role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${testimonials.length}`}>
-          <div class="testimonial-person">
+          <ExternalLink class="testimonial-person testimonial-person-link" href={item.profileUrl} ariaLabel={`View ${item.name}’s profile on LinkedIn (opens in a new tab)`}>
             {item.avatarSrc ? <img class="testimonial-avatar testimonial-avatar-image" src={item.avatarSrc} alt={item.avatarAlt ?? `${item.name} profile image`} data-fallback={item.initials} /> : <span class="testimonial-avatar" aria-hidden="true">{item.initials}</span>}
             <div class="testimonial-identity">
-              <span class="recommendation-name">{item.name}</span>
+              <span class="recommendation-name-row"><span class="recommendation-name">{item.name}</span><img class="testimonial-linkedin-icon" src={`${homePath}icons/social/linkedin.svg`} alt="" width="14" height="14" /></span>
               <span class="testimonial-relationship">{item.relationship}</span>
               {item.role && <span class="testimonial-role">{item.role}</span>}
             </div>
-          </div>
+          </ExternalLink>
           <blockquote lang={item.quoteLanguage}>{item.quote}</blockquote>
-          <figcaption>
-            <ExternalLink href={item.profileUrl} ariaLabel={`View ${item.name}’s profile on LinkedIn (opens in a new tab)`}>View profile on LinkedIn <Icon name="external" size={14} /></ExternalLink>
-          </figcaption>
         </figure>
       ))}
     </div>
