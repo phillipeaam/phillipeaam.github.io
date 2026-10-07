@@ -597,11 +597,11 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 .experience-highlights li::before { content: ''; position: absolute; left: 0; top: .73em; width: 6px; height: 1px; background: var(--accent); }
 .experience-selected-work { min-width: 0; }
 .experience-work-list { display: grid; grid-template-columns: repeat(2, minmax(0, 150px)); gap: 0 24px; width: fit-content; max-width: 100%; margin: 0; padding: 0 0 0 1em; list-style: disc outside; }
-.experience-work-list li { min-width: 0; }
+.experience-work-list li { min-width: 0; color: var(--text); font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
 .experience-work-list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .experience-work-list li::marker { color: var(--accent); font-size: .78em; }
 .experience-selected-work > .experience-subheading { display: block; margin-bottom: 8px; }
-.experience-work-list a { display: inline; color: var(--accent); font-size: 13px; line-height: 1.4; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.experience-work-list a { display: inline; color: var(--accent); font: inherit; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
 .experience-work-list a:hover, .experience-work-list a:focus-visible { text-decoration-color: currentColor; }
 .section-footer { display: flex; justify-content: flex-end; margin-top: var(--section-footer-gap); }
 .section-footer-action { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.4; text-decoration: none; transition: color var(--motion-nav) var(--ease); }
