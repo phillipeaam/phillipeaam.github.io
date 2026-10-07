@@ -10,6 +10,16 @@ import { homeSection } from '../data/homeSections';
   <SectionHeading anchorId="teammates" aliases={homeSection('teammates').legacyIds} eyebrow="COLLABORATION" title="Teammates" titleId="recommendations-title" supportLead="On solving problems, sharing knowledge," supportContinuation="and delivering together." />
 
   <div class="testimonial-carousel" data-testimonial-carousel>
+    <div class="testimonial-toolbar">
+      <div class="testimonial-controls" aria-label="Recommendation carousel controls">
+        <button class="testimonial-arrow" type="button" data-testimonial-previous aria-label="Previous recommendations" disabled><span aria-hidden="true">←</span></button>
+        <div class="testimonial-pages" data-testimonial-pages aria-label="Recommendation pages"></div>
+        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Next recommendations"><span aria-hidden="true">→</span></button>
+        <span class="testimonial-page-status" data-testimonial-status aria-live="polite"></span>
+      </div>
+      <ExternalLink class="section-footer-action testimonial-all-link" href={recommendationsUrl} ariaLabel="See all recommendations on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all recommendations on LinkedIn</span></ExternalLink>
+    </div>
+
     <div class="testimonial-track" data-testimonial-track role="region" aria-roledescription="carousel" aria-label="LinkedIn recommendations" tabindex="0">
       {testimonials.map((item, index) => (
         <figure class="recommendation-card" data-testimonial-slide role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${testimonials.length}`}>
@@ -27,16 +37,6 @@ import { homeSection } from '../data/homeSections';
           </figcaption>
         </figure>
       ))}
-    </div>
-
-    <div class="testimonial-footer">
-      <div class="testimonial-controls" aria-label="Recommendation carousel controls">
-        <button class="testimonial-arrow" type="button" data-testimonial-previous aria-label="Previous recommendations" disabled><span aria-hidden="true">←</span></button>
-        <div class="testimonial-pages" data-testimonial-pages aria-label="Recommendation pages"></div>
-        <button class="testimonial-arrow" type="button" data-testimonial-next aria-label="Next recommendations"><span aria-hidden="true">→</span></button>
-        <span class="testimonial-page-status" data-testimonial-status aria-live="polite"></span>
-      </div>
-      <ExternalLink class="section-footer-action testimonial-all-link" href={recommendationsUrl} ariaLabel="See all recommendations on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all recommendations on LinkedIn</span></ExternalLink>
     </div>
   </div>
 </section>
