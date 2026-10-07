@@ -73,7 +73,7 @@ A maintainer adding or modifying a section has one documented visual and editori
 
 ### Edge Cases
 
-- Long unbroken text, enlarged text, and browser zoom must not produce clipped content or horizontal page scrolling.
+- Long unbroken text must not produce clipped content or horizontal page scrolling at the representative viewport widths recorded in validation.md. Manual browser-zoom/enlarged-text testing is out of scope by user decision (2026-10-07).
 - Intermediate widths must retain a readable layout without overlapping title and support text.
 - A section reached through a legacy name must still correspond to its current menu item.
 - Existing `#other-work` and `#about-phillipe` links remain compatible alongside the explicitly renamed fragments.

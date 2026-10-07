@@ -4,7 +4,7 @@
 
 ## 1. Client-side search in a static Astro archive
 
-**Decision**: Keep project data and all catalog entries in Astro-generated HTML, then use a small native client script to enhance query, facets, result summary, clear action, and empty state. Do not add an API, server rendering adapter, external search service, framework hydration, or dependency for the current 20 local records.
+**Decision**: Keep project data and all catalog entries in Astro-generated HTML, then use a small native client script to enhance query, facets, result summary, clear action, and empty state. Do not add an API, server rendering adapter, external search service, framework hydration, or dependency for the current 21 local records.
 
 **Rationale**: Astro components render HTML at build time and processed client scripts can provide browser-side behavior. The repository already uses Astro and TypeScript, and the catalogue is small and static. Rendering the content first satisfies the no-JavaScript requirement and avoids making discoverability depend on script execution. Inputs should be hidden or disabled until initialization succeeds; a `<noscript>` note may explain that filtering requires JavaScript, while every project remains visible.
 
@@ -147,3 +147,7 @@ Por decisão explícita do usuário, remover o botão Stop/Play e qualquer contr
 **Alternativas consideradas:** manter opções de filtro para família mais todas as versões (cresce a taxonomia e exige manutenção por versão); apagar a versão Unity 6 do dado confirmado (perde precisão); duplicar tags específicas por ficha (risco de drift); corrigir período para coincidir com vínculo de emprego (mistura entidades); tratar leitura estática como auditoria de runtime/acessibilidade (evidência insuficiente); esconder cartões sem imagem (perde identidade e link).
 
 **Referências:** requisitos e fontes por projeto em [spec.md](spec.md); taxonomia/períodos em `docs/project-records.md`, `src/data/projects.ts`, `src/pages/projects/index.astro` e documentos de Experience/cases vinculados nos registros; W3C/WAI consultados nas seções 3–4. Nenhum browser, leitor de tela ou teste de rede foi executado nesta etapa.
+
+### Allowlist complementar de mídia — 2026-10-07
+
+O pedido do usuário para preencher Pandora e a indicação de que as mídias já estavam em `public/projects/pandora/` autorizam o uso dos arquivos exatos registrados em `evaluation.md` nesta ficha. O relatório mantém os direitos de terceiros como desconhecidos; a autorização de catálogo não os verifica. A renderização e as limitações observadas constam na avaliação atual.

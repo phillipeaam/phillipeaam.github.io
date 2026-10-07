@@ -23,7 +23,7 @@
 - [x] T005 [US1] Implement the shared desktop lead-right/continuation-left support pattern, natural/long-token wrapping, shared padding and <=820px stacking in src/styles/global.css; retain right-positioned support geometry (FR-003–006).
 - [x] T006 [US1] Migrate five Home headings in src/pages/index.astro and src/components/TestimonialsSection.astro to SectionHeading; preserve meaning/claims and title IDs, provide shared lead/continuation copy, and retain surrounding content layout (FR-001–002, FR-007, FR-013, FR-016).
 - [x] T007 [US1] Migrate catalog h1 introduction in src/pages/projects/index.astro to SectionHeading with preserved meaning/title ID and shared lead/continuation copy (FR-001, FR-007, FR-016).
-- [ ] T008 [US1] Revalidate Home and catalog heading geometry after implementing the confirmed first-line-right/continuation-left pattern; record coordinates, rendered line widths, and remaining gaps in specs/008-section-heading-standard/validation.md. (FR-015–016, SC-001, SC-007; full viewport/stress/zoom validation remains explicitly pending.)
+- [X] T008 [US1] Revalidate Home and catalog heading geometry after implementing the confirmed first-line-right/continuation-left pattern; record coordinates, rendered line widths, and remaining gaps in specs/008-section-heading-standard/validation.md. (FR-015–016, SC-001, SC-007.) Revalidado em 2026-10-07 nos viewports registrados, incluindo fixtures curtas/longas e sem overflow; teste manual de zoom foi removido do escopo por decisão do usuário.
 
 ## Phase 4: US2 — Canonical navigation (P1)
 
@@ -34,7 +34,7 @@
 - [x] T010 [US2] Apply canonical anchors and matching data-nav-section in src/pages/index.astro and src/components/TestimonialsSection.astro; update affected #work CSS selectors in src/styles/global.css; preserve unrelated /work/ routes and record IDs (FR-008, FR-013).
 - [x] T011 [US2] Audit and update affected cross-page Home section links in src/pages/experience.astro, src/pages/work/[slug].astro and other source consumers discovered by T001; record changed/no-change files in specs/008-section-heading-standard/validation.md (FR-008–009, FR-013).
 - [x] T012 [US2] Give explicit recognized Home fragments precedence over saved return intent in both early-loading and restoration guards of src/layouts/BaseLayout.astro; clear stale intent, preserve no-hash Back/identity behavior and avoid extra history entries (FR-011–012).
-- [ ] T013 [US2] Validate seven canonical destinations, desktop/mobile menus, available cross-page links, direct/reload arrivals, keyboard/focus, Escape, reduced motion, active states, malformed/unknown hashes, history and repeated restoration/identity journeys; record actual evidence in specs/008-section-heading-standard/validation.md (FR-010–012, FR-015, SC-003–005).
+- [X] T013 [US2] Validate seven canonical destinations, desktop/mobile menus, available cross-page links, direct/reload arrivals, keyboard/focus, Escape, reduced motion, active states, malformed/unknown hashes, history and repeated restoration/identity journeys; record actual evidence in specs/008-section-heading-standard/validation.md (FR-010–012, FR-015, SC-003–005). Browser validation at 1440×900/390×844 CSS px recorded 2026-10-07.
 
 ## Phase 5: US3 — Legacy compatibility (P2)
 
@@ -43,7 +43,7 @@
 
 - [x] T014 [US3] Render all five aria-hidden alias anchors at canonical origins through src/components/SectionHeading.astro, src/pages/index.astro and src/components/TestimonialsSection.astro; apply shared sticky offset to aliases in src/styles/global.css without duplicate IDs/headings/observer sections (FR-009, FR-011).
 - [x] T015 [US3] Confirm src/components/Navigation.astro and src/layouts/BaseLayout.astro resolve legacy arrivals to canonical active identity/explicit-hash precedence while retaining legacy URLs; adjust only if needed (FR-009–012).
-- [ ] T016 [US3] Execute six legacy open/reload checks, canonical menu follow-up, stale restore intent and canonical/legacy native arrivals without optional scripting; record sticky clearance and results in specs/008-section-heading-standard/validation.md (FR-011, FR-015, SC-003–005).
+- [X] T016 [US3] Execute six legacy open/reload checks, canonical menu follow-up, stale restore intent and canonical/legacy native arrivals without optional scripting; record sticky clearance and results in specs/008-section-heading-standard/validation.md (FR-011, FR-015, SC-003–005). All six aliases and seven canonicals were opened/reloaded with JS enabled and arrived without JS at 1440×900 CSS px; stale restore and canonical menu follow-up also passed on 2026-10-07.
 
 ## Phase 6: US4 — Permanent standard (P2)
 
@@ -82,5 +82,11 @@ Deliver visual MVP first, then canonical naming and legacy compatibility togethe
 
 Assessment: 2026-10-06. Reviewed 15 functional requirements, 6 success criteria, 14 acceptance scenarios, plan decisions and all9 constitutional principles against current source and validation evidence. No unrequested code or missing implementation identified; runtime acceptance coverage remains partial. Two HIGH partial findings; no code contradiction established. Human merge/push approval remains pending and is not inferred from code validation.
 
-- [ ] T023 Complete actual200% zoom/enlarged-text, reduced-motion and JavaScript-disabled canonical/legacy navigation checks using a browser supporting those controls; record results in specs/008-section-heading-standard/validation.md and resolve any failures per FR-005, FR-011, FR-015, SC-002–003 and Constitution IV/VI/VIII (partial; F1 HIGH; completes remaining T008/T016 coverage).
-- [ ] T024 Complete stable desktop/mobile menu active-state checks, all available cross-page journeys, unknown/malformed fragments, browser Back/Forward, both identity controls from another page, stale restoration intent and exact saved-position equivalence across five repeated returns; record departure coordinates after locator scroll-to-click and actual results in specs/008-section-heading-standard/validation.md, fixing failures per FR-010–012, FR-015, SC-004–005 and Constitution VIII (partial; F2 HIGH; completes remaining T013/T016 coverage).
+- [X] T023 Complete reduced-motion and JavaScript-disabled canonical/legacy navigation checks using a browser supporting those controls; record results in specs/008-section-heading-standard/validation.md and resolve any failures per FR-005, FR-011, FR-015, SC-002–003 and Constitution IV/VI/VIII. Manual browser zoom/enlarged-text checks were removed from scope by the user on 2026-10-07; representative narrow viewport checks remain recorded under T008.
+- [X] T024 Complete stable desktop/mobile menu active-state checks, all available cross-page journeys, unknown/malformed fragments, browser Back/Forward, both identity controls from another page, stale restoration intent and exact saved-position equivalence across five repeated returns; record departure coordinates after locator scroll-to-click and actual results in specs/008-section-heading-standard/validation.md, fixing failures per FR-010–012, FR-015, SC-004–005 and Constitution VIII (partial; F2 HIGH; completes remaining T013/T016 coverage). Evidence recorded: Back/Forward, unknown/malformed fragments, desktop/mobile menu/active state and keyboard, seven cross-page links, contextual Contact/Back, avatar/wordmark identity, stale intent and five exact return cycles.
+
+DevTools reconciliation — 2026-10-07: validation.md records isolated Chrome CDP results for initial/dynamic reduced motion and native arrivals without JavaScript, plus keyboard/menu, direct/reload, history, stale-intent and cross-page checks. T008, T013, T016, T023 and T024 are complete for the agreed scope.
+
+## Reconciliation after browser validation — 2026-10-07
+
+Current results are recorded in `validation.md`. T008, T013, T016, T023 and T024 are complete for the agreed scope. The user removed manual zoom testing from the scope because it could not be performed in this browser setup. No implementation defect was found and no new convergence task was needed.

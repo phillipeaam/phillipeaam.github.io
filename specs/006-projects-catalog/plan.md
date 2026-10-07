@@ -22,17 +22,17 @@ Redesenhar `/projects/` como catálogo compacto e consultável que mantém todos
 
 **Storage**: N/A. O inventário permanece em dados estáticos TypeScript em `src/data/projects.ts` e no HTML pré-renderizado.
 
-**Testing**: `npm run check`, `npm run build`, inspeção manual da interação nos navegadores e matriz manual de teclado, leitor de tela, redução de movimento, ausência de JavaScript e viewports. O repositório não possui runner de testes automatizados.
+**Testing**: `npm run check`, `npm run build`, inspeção manual da interação nos navegadores e matriz manual de teclado, árvore de acessibilidade do navegador, redução de movimento, ausência de JavaScript e viewports. Teste de fala com leitor de tela real foi removido do escopo por decisão do usuário (2026-10-07). O repositório não possui runner de testes automatizados.
 
 **Target Platform**: Navegadores modernos em desktop, tablet e celular; saída estática do Astro.
 
 **Project Type**: Site de portfólio Astro, predominantemente estático.
 
-**Performance Goals**: Filtragem local dos 20 registros atuais sem requisições de rede. A spec não estabelece um SLO numérico; esta feature não introduz um limite de performance ou benchmark novo.
+**Performance Goals**: Filtragem local dos 21 registros atuais sem requisições de rede. A spec não estabelece um SLO numérico; esta feature não introduz um limite de performance ou benchmark novo.
 
 **Constraints**: Conteúdo e links centrais úteis sem JavaScript; somente fatos, tags, tecnologias e mídias confirmados; preservar identificadores e links de case; múltiplos detalhes podem ficar abertos; controles indisponíveis não aparentam funcionar; filtros Context e Technology usam menus com busca e seleção múltipla independente, mas no máximo um menu pode ficar aberto por vez; rótulos visíveis ficam acima de cada controle; cabeçalho segue exatamente a hierarquia editorial aprovada na Home; respeitar movimento reduzido, fallback estático, acionamento de mídia configurado, apresentação inline de mídia autorizada e design editorial existente. Não adicionar controles de animação.
 
-**Scale/Scope**: 20 projetos publicados atualmente. Inventário e total devem derivar dos dados reais, com preparação para inclusões futuras sem framework genérico. Mudanças abrangem `/projects/`, os cartões Home More Projects, a taxonomia central de tecnologias e correções estritamente necessárias de semântica/validação compartilhada; reconciliar período e escopo com Experience e cases onde existam. Não redesenhar Selected work, conteúdo não relacionado da Home, cases ou páginas inteiras.
+**Scale/Scope**: 21 projetos publicados atualmente. Inventário e total devem derivar dos dados reais, com preparação para inclusões futuras sem framework genérico. Mudanças abrangem `/projects/`, os cartões Home More Projects, a taxonomia central de tecnologias e correções estritamente necessárias de semântica/validação compartilhada; reconciliar período e escopo com Experience e cases onde existam. Não redesenhar Selected work, conteúdo não relacionado da Home, cases ou páginas inteiras.
 
 ## Constitution Check
 
@@ -209,3 +209,7 @@ Tag canônica Unity e rastreabilidade no registro central → filtro Unity únic
 | VIII/IX — Entrega | `git diff --check`, `npm run check`, `npm run build`, runtime apropriado e revisão humana antes de aprovação. Nenhum resultado foi obtido nesta etapa documental. |
 
 Sem desconhecido de produto que exija nova rodada de clarify antes da atualização do plano. A execução de `setup-plan.sh` não concluiu por uma restrição de escrita do ambiente ao usar o caminho absoluto `/c/Users/...`; os artefatos existentes foram atualizados diretamente, sem mudar `.specify/feature.json`.
+
+### Allowlist complementar de mídia — 2026-10-07
+
+O pedido do usuário para preencher Pandora e a indicação de que as mídias já estavam em `public/projects/pandora/` autorizam o uso dos três arquivos específicos registrados em `evaluation.md` (pôster, gameplay GIF e fallback derivado) nesta ficha. Isso amplia o conjunto exato em FR-019; não comprova licenças de terceiros. A renderização e as limitações observadas estão registradas na avaliação.

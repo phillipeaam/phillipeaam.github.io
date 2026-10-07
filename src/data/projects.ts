@@ -1318,7 +1318,7 @@ export const projectRecords: ProjectRecord[] = [
     "type": "2D flight and memory game",
     "context": "Global Game Jam 2016 · team project",
     "period": "29–31 Jan 2016",
-    "contribution": "This was my first game jam, and I had only recently begun learning Unity after studying Unreal. A teammate invited my brother and me to join; our five-person team turned the theme “Ritual” into Pandora. I contributed audio integration, the ending scene, and edits to the ritual-circle image. For me, seeing the project come together became one of the experiences that most encouraged me to keep studying and pursue game development.",
+    "contribution": "This was my first game jam, and I had only recently begun learning Unity after studying Unreal. A teammate invited my brother and me to join; our five-person team turned the theme “Ritual” into Pandora. For me, seeing the project come together became one of the experiences that most encouraged me to keep studying and pursue game development.",
     "workContext": "independent",
     "technologies": [
       "Unity",
@@ -1331,7 +1331,7 @@ export const projectRecords: ProjectRecord[] = [
       },
       {
         "title": "Ending scene",
-        "body": "Created the ending scene used after victory, closing Pandora’s main game flow."
+        "body": "Created the game’s ending scene."
       },
       {
         "title": "Ritual-circle image",

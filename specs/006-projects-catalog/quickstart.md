@@ -4,6 +4,8 @@ This guide is for implementation and review after the catalog is built. It does 
 
 **Precedência vigente — 2026-10-05:** os cenários adicionais em “Extensão priorities 2–5” complementam e, onde conflitam, substituem o roteiro anterior. Nenhuma superfície deve apresentar Stop/Play; registro histórico não é resultado runtime.
 
+**Método de interação vigente — 2026-10-07:** teste de toque pode ser feito por emulação do navegador em viewport estreito. Touchscreen e aparelho físico estão fora do escopo e não são gate de aceitação.
+
 ## Prerequisites and local run
 
 - Node.js and npm versions supported by the project.
@@ -24,7 +26,7 @@ Expected: Astro diagnostics and production build complete successfully; the diff
 
 ## Functional discovery scenarios
 
-1. Open `/projects/` with no criteria. Confirm each published project has a recognizable text entry and the status shows the current data-derived total (currently 20).
+1. Open `/projects/` with no criteria. Confirm each published project has a recognizable text entry and the status shows the current data-derived total (currently 21).
 2. Search for a full name and a partial name. Confirm only matching records remain and the count matches the displayed entries.
 3. Search a contribution/product term and a verified technology. Confirm the public detail corpus can match and no deferred/internal record appears.
 4. Repeat a query with different letter case, surrounding spaces, and without Portuguese accents. Confirm equivalent matching.
@@ -42,7 +44,7 @@ Expected: Astro diagnostics and production build complete successfully; the diff
 ## Accessibility and resilience scenarios
 
 - With keyboard only, tab through the search, each facet trigger, its internal search field and checkboxes, clear actions, project links and disclosures; use Space to select a checkbox, verify visible focus and ensure focus is not unexpectedly moved during filtering.
-- With a screen reader, verify labels, selected facet state, disclosure state, result-count updates, and zero-result feedback. Confirm the result list is not announced as one large live region.
+- Inspect the browser accessibility tree for labels, selected facet state, disclosure state, result-count updates, and zero-result feedback; combine with keyboard interaction. Spoken screen-reader validation was removed from scope by user decision (2026-10-07), so do not claim auditory validation or full WCAG conformance.
 - Enable reduced motion and verify comprehension and operation do not rely on animation; no GIF request should be made while reduced motion is active. Confirm the static alternative accurately represents the approved media. Do not add or expect an animation pause/play control.
 - Disable JavaScript and reload. Confirm all records, core text, deep-link targets, native disclosures and core links remain available, and unavailable filters are not presented as working.
 - Test narrow widths including 320 CSS px, a representative phone width, tablet, and desktop. Confirm all entries remain discoverable without page-level horizontal scrolling, overlap, or loss of essential text.
@@ -74,12 +76,12 @@ Este roteiro substitui exigências históricas de três grupos separados, contro
 
 | Cenário | Procedimento e resultado esperado | Critérios |
 | --- | --- | --- |
-| A — Conteúdo e fontes | Revisar 20 registros; confrontar afirmações com matriz canônica. Selected contributions só com autoria sustentada; highlights 0–3 conforme conteúdo; sem duplicação ou impacto inventado. Fatos semanticamente distintos, períodos qualificados. | SC-020–SC-022 |
+| A — Conteúdo e fontes | Revisar 21 registros; confrontar afirmações com matriz canônica. Selected contributions só com autoria sustentada; highlights 0–3 conforme conteúdo; sem duplicação ou impacto inventado. Fatos semanticamente distintos, períodos qualificados. | SC-020–SC-022 |
 | B — Estados ausentes | Avaliar profissional/independente/estudo, contribuição limitada/ausente, sem mídia/ícone/período/resultado/CTA. Omitir campos/grupos sem quota artificial; todos os nomes reconhecíveis. | SC-001, SC-009, SC-016–SC-017, SC-020–SC-022 |
 | C — Busca e facetas | Nomes, produto, termos exclusivos dos títulos/body dos highlights; caixa/acentos; OR intrafaceta e AND entre facetas/query. Contagens corretas, clear, vazio; notas privadas/withdrawn não encontram registro. Um menu aberto, escolhas preservadas. | SC-002–SC-004, SC-012–SC-015, SC-023 |
 | D — Links e expansão | Quatro cases, ações existentes, hashes diretos/filtrados, múltiplos details independentes; esconder projeto esconde seus detalhes. Não criar destinos. | SC-005, SC-017, SC-023–SC-024 |
 | E — Reflow e baseline | 320/390/820/1280px: detalhes sob as duas colunas, More details junto à descrição com JS; fallback nativo sem JS. Sem overlap/corte/overflow; cabeçalho/24px/margens, mídia300px/flexível e largura textual aprovados preservados. | SC-007–SC-008, SC-011, SC-016, SC-019, SC-024 |
-| F — Acesso e mídia | Teclado, toque, leitor de tela, foco/estado, sem JS. Allowlist exata vigente, inclusive arquivos Diggy documentados em evaluation.md, e classificação correta da decisão de reutilização frente a direitos de terceiros; rede lenta/falha/proximidade/reduced motion inicial/dinâmico. Nenhum controle de animação em qualquer superfície. Não declarar direitos/conformidade integral não demonstrados. | SC-005–SC-006, SC-010, SC-018, SC-024 |
+| F — Acesso e mídia | Teclado, toque emulado, árvore de acessibilidade do navegador, foco/estado e sem JS. Allowlist exata vigente, inclusive arquivos Diggy documentados em evaluation.md, e classificação correta da decisão de reutilização frente a direitos de terceiros; rede lenta/falha/proximidade/reduced motion inicial/dinâmico. Nenhum controle de animação em qualquer superfície. Teste de fala com leitor de tela real e aparelho físico foram removidos do escopo; não declarar validação auditiva ou conformidade integral. | SC-005–SC-006, SC-010, SC-018, SC-024 |
 | G — Entrega | Diff/check/build conforme constituição; registrar apenas resultados reais e lacunas em evaluation.md. Revisão humana de narrativa e composição antes de considerar aprovada. | Constituição VI/VIII/IX |
 
 Pré-condição editorial: plan/data-model/contrato alinhados e matriz por projeto preparada. Registrar viewports realmente usados e checks não executados. Estudos com participantes continuam fora desta implementação. Evidência antiga não comprova os requisitos novos; sem execução nesta rodada.
@@ -91,9 +93,9 @@ Este conjunto cobre US2, US4, US6, US7 e SC-025–SC-031. Usar registros do `eva
 | Cenário | Procedimento e resultado esperado | Critérios |
 |---|---|---|
 | H — Tag Unity única | Confirmar que Technology apresenta exatamente uma opção `Unity`, nunca uma opção `Unity 6` ou outras versões; pesquisar/filtrar `Unity` inclui Pathless. Quando Unity 6 estiver publicado como fato detalhado, ele continua visível sem criar outra tag. Conferir que só metadados confirmados recebem Unity e que OR/AND permanecem. | SC-025 |
-| I — Títulos Home | Na seção More Projects, conferir todos os cartões simples em estado padrão, sem hover/foco. Repetir com imagem presente, placeholder, erro e ausência, viewport estreito e zoom; verificar nome/link e ausência de anúncio duplicado. Confirmar Featured/Selected work sem duplicação. | SC-026 |
+| I — Títulos Home | Na seção More Projects, conferir todos os cartões simples em estado padrão, sem hover/foco. Repetir com imagem presente, placeholder, erro e ausência em viewport estreito; verificar nome/link e ausência de anúncio duplicado. Confirmar Featured/Selected work sem duplicação. Testes manuais de zoom e aparelho físico estão fora do escopo por decisão do usuário (2026-10-07). | SC-026 |
 | J — Mídia sob rede/movimento | Com DevTools/network observável, testar mídia distante e aproximação; fallback fica até readiness; falha/bloqueio/load/decode preservam fallback sem salto. Testar reduced motion no início e alterado durante request: sem pedido/revelação animada tardia. Repetir fallback sem JS e comportamento sem observer, conforme implementação especificada. Nenhum Stop/Play em qualquer rota. Registrar rede, timing e resultado real. | SC-027, SC-031 |
-| K — Acesso e semântica | Em Home e `/projects/`, navegar por teclado, verificar foco, labels, disclosure/filtros, Escape quando aplicável, item ocultado, contagem, leitor de tela, zoom/320px, JS desligado e uma região principal por rota. Nome/estado devem corresponder à interação real; não alegar auditoria WCAG completa sem abrangência comprovada. | SC-028 |
+| K — Acesso e semântica | Em Home e `/projects/`, navegar por teclado, verificar foco, árvore AX, labels, disclosure/filtros, Escape quando aplicável, item ocultado, contagem, viewport de 320px e JS desligado; toque pode ser emulado no browser. Testes de fala com leitor real, em aparelho/touchscreen físico e zoom manual estão fora do escopo por decisão do usuário (2026-10-07). Nome/estado devem corresponder à interação; não alegar auditoria WCAG completa sem abrangência comprovada. | SC-028 |
 | L — Datas e escopo | Confrontar Ello 2.0, Read With Ello e Wallace’s Quest entre registro central, catálogo, cases existentes e Experience. Separar intervalos de projetos/fases dos de emprego, versões/tecnologias e escopo individual/equipe. Atualizar só a fonte apropriada quando houver evidência; listar diferenças sem decisão como pendência. Não criar case/Experience inexistente. | SC-029, SC-030 |
 | M — Navegação/restauração | Com DevTools/runtime, simular fonte lenta e falha, conteúdo antes/depois da inicialização, retorno a posição salva e mídia bloqueada/decode falho. Confirmar ausência de tela vazia persistente ou flash na posição errada. Inspeção de fonte é evidência complementar, não resultado deste cenário. | SC-031 |
 
