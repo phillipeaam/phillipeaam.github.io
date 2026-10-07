@@ -1311,6 +1311,81 @@ export const projectRecords: ProjectRecord[] = [
     "portfolioIncluded": false
   },
   {
+    "id": "pandora",
+    "name": "Pandora",
+    "archiveCategory": "independent-game",
+    "summary": "A team-made 2D flight-and-memory game for Global Game Jam 2016, where players gather mana and recall symbol sequences to challenge a Titan.",
+    "type": "2D flight and memory game",
+    "context": "Global Game Jam 2016 · team project",
+    "period": "29–31 Jan 2016",
+    "contribution": "This was my first game jam, and I had only recently begun learning Unity after studying Unreal. A teammate invited my brother and me to join; our five-person team turned the theme “Ritual” into Pandora. I contributed audio integration, the ending scene, and edits to the ritual-circle image. For me, seeing the project come together became one of the experiences that most encouraged me to keep studying and pursue game development.",
+    "workContext": "independent",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "technicalHighlights": [
+      {
+        "title": "Audio integration",
+        "body": "Selected and integrated MP3 and MIDI assets into the project."
+      },
+      {
+        "title": "Ending scene",
+        "body": "Created the ending scene used after victory, closing Pandora’s main game flow."
+      },
+      {
+        "title": "Ritual-circle image",
+        "body": "Cropped and repositioned the ritual-circle image."
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Flight",
+      "Memory ritual",
+      "Global Game Jam"
+    ],
+    "specs": [
+      {
+        "label": "Role",
+        "value": "Game Engineer"
+      },
+      {
+        "label": "Engine",
+        "value": "Unity / C#"
+      },
+      {
+        "label": "Period",
+        "value": "29–31 Jan 2016"
+      }
+    ],
+    "archiveOrder": 1,
+    "archivePresentation": "standard",
+    "media": [
+      {
+        "type": "gif",
+        "src": "/projects/pandora/pandora-gameplay-preview.gif",
+        "posterSrc": "/projects/pandora/pandora-first-frame.webp",
+        "alt": "Pandora gameplay showing a witch on a broom facing a demon against a layered blue sky.",
+        "previewAlt": "Animated gameplay of Pandora’s witch flying toward a demon through a blue sky.",
+        "autoplayPreview": true,
+        "posterWidth": 568,
+        "posterHeight": 320,
+        "posterFit": "contain",
+        "catalogReuseApproved": true
+      }
+    ],
+    "actions": [
+      {
+        "href": "https://phillipeaam.itch.io/pandora",
+        "label": "View on itch.io"
+      }
+    ],
+    "projectsIndexTitleIcon": "/projects/pandora/pandora-poster.webp",
+    "catalogIconReuseApproved": true,
+    "kind": "neutral",
+    "portfolioIncluded": true
+  },
+  {
     "id": "diggy-the-dog",
     "name": "Diggy, the dog",
     "archiveCategory": "independent-game",
