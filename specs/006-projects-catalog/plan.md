@@ -213,3 +213,15 @@ Sem desconhecido de produto que exija nova rodada de clarify antes da atualizaç
 ### Allowlist complementar de mídia — 2026-10-07
 
 O pedido do usuário para preencher Pandora e a indicação de que as mídias já estavam em `public/projects/pandora/` autorizam o uso dos três arquivos específicos registrados em `evaluation.md` (pôster, gameplay GIF e fallback derivado) nesta ficha. Isso amplia o conjunto exato em FR-019; não comprova licenças de terceiros. A renderização e as limitações observadas estão registradas na avaliação.
+
+
+## Extensão vigente — ícones compactos de identidade — 2026-10-08
+
+Esta extensão usa o padrão permanente em `docs/project-icon-standard.md` e não altera decisões históricas do layout.
+
+- Manter `ProjectRecord.projectsIndexTitleIcon` como fonte canônica única. Catálogo e Home Featured reutilizam a referência do mesmo registro; não criar mapa paralelo nem inferir o ícone do poster/fallback.
+- Derivar WebP quadrado 104 × 104 px para exibição 52 × 52 CSS px. Conferir nitidez, legibilidade, crop e centralização óptica no tamanho real; preservar a arte fonte.
+- Preservar design de marcas/produtos de empresa, limitando a derivação a crop, escala e codificação. Simplificação fiel pode ser usada em arte pessoal independente quando melhora a leitura a 52px.
+- Usar nome `<project-slug>-icon.webp`, aprovação específica no registro e omitir ícone ausente/não aprovado sem espaço vazio.
+- QA: conferir arquivo/formato/dimensões e path; observar `/projects/` e `/#featured` em desktop/mobile; registrar dimensões CSS e estado de carga; inspecionar crop, identidade e overflow em `evaluation.md` com rota, viewport e método.
+- Fonte original nunca é sobrescrita. Mudanças no padrão atualizam spec, modelo, contrato, guia de registro, pesquisa e quickstart.

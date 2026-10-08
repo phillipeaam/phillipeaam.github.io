@@ -9,7 +9,7 @@ The merge into feature 006 preserves the canonical `projectRecords` model and mi
 - `workContext` stores the previously verified professional/independent/study facet.
 - `technologies` stores verified technology facts and is not inferred from product tags. For the portfolio's Technology filter, use one canonical `Unity` tag for confirmed Unity engine/stack facts, regardless of version; do not expose Unity versions as separate filter options or maintain a version registry. Preserve a confirmed exact version such as Unity 6 in project details only when that fact is intentionally displayed. This rule supersedes the earlier note that Unity and Unity 6 were separate pending taxonomy work.
 - `technicalHighlights` and optional `contributionOutcome` extend the shared contribution text for the catalog's Selected contributions section. No unsupported outcome was added.
-- `projectsIndexTitleIcon` remains the canonical poster path. `catalogIconReuseApproved` records the user's reuse approval for the four exact historical icons.
+- `projectsIndexTitleIcon` is the canonical compact identity-icon path shared by the catalog and Featured when applicable; it is not the primary poster path. `catalogIconReuseApproved` records reuse approval for that exact icon on that record, not independent rights verification. See [Compact Project Identity Icon Standard](project-icon-standard.md).
 - `media[].catalogReuseApproved` records reuse approval on each of the four existing catalog media items. It is not a legal rights/provenance audit; future media do not inherit approval. `posterSrc` accommodates the existing GIF fallback contract.
 
 The archive reads those fields directly, preserves the compact two-column entry and full-width expanded details, and omits media without the scoped reuse approval. Publication and case CTAs still require `portfolioIncluded` and a publishable `caseStudy`. Excluded projects remain excluded. The merge does not implement other recommendations from the hiring review.
@@ -54,10 +54,14 @@ Employment history in `src/data/experience.ts` stores project IDs, not copied pr
 | `actions` | Declared non-case-study destinations and labels | No action links |
 | `archivePresentation` | Existing `rich`, `standard`, or `compact` archive treatment | `compact` |
 | `anchorId` | Existing public archive anchor when it differs from `id` | Use the stable project identity |
-| `projectsIndexTitleIcon` | Small icon shown beside the project title on the All Projects page | No icon |
+| `projectsIndexTitleIcon` | Canonical compact identity icon shown beside a project title in the catalog and reused in Featured when applicable | No icon |
 | `mediaCaption`, `evidenceLabel`, `kind` | Optional media/presentation context | Omit or use the shared neutral treatment |
 
 The initial adoption sets `portfolioIncluded` explicitly for every current record, even though the shared rule treats any missing value as hidden. This protects the current public portfolio membership while making new records unpublished until deliberately included.
+
+## Compact identity icon
+
+Follow [project-icon-standard.md](project-icon-standard.md) for asset creation, naming, approval, optical centering, accessibility, and visual QA. Use a 104 × 104 WebP derivative displayed at 52 × 52 CSS px. Preserve original poster/source art and use the same canonical path in catalog and Featured. Omit an absent or unapproved icon without reserving space.
 
 ## Example ficha
 

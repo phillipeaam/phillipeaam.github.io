@@ -539,7 +539,7 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 4,
     "archivePresentation": "rich",
     "anchorId": "wallaces-quest",
-    "projectsIndexTitleIcon": "/projects/wallace-quest/wallace-quest-poster.webp",
+    "projectsIndexTitleIcon": "/projects/wallace-quest/wallace-quest-icon.webp",
     "evidenceLabel": "Wallace’s Quest · tactical combat",
     "kind": "wallace"
   ,
@@ -637,7 +637,7 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 2,
     "archivePresentation": "rich",
     "anchorId": "read-with-ello",
-    "projectsIndexTitleIcon": "/projects/ello-read/read-with-ello-poster.webp",
+    "projectsIndexTitleIcon": "/projects/ello-read/read-with-ello-icon.webp",
     "evidenceLabel": "Read With Ello · reading product",
     "kind": "ello"
   ,
@@ -773,7 +773,7 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 1,
     "archivePresentation": "rich",
     "anchorId": "pathless",
-    "projectsIndexTitleIcon": "/projects/pathless/pathless-poster.webp",
+    "projectsIndexTitleIcon": "/projects/pathless/pathless-icon.webp",
     "kind": "pathless"
   ,
   "workContext": "independent",
@@ -1004,7 +1004,7 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 1,
     "archivePresentation": "rich",
     "anchorId": "work-ello-2",
-    "projectsIndexTitleIcon": "/projects/ello-learn/ello-learn-poster.webp"
+    "projectsIndexTitleIcon": "/projects/ello-learn/ello-learn-icon.webp"
   ,
   "workContext": "professional",
   "technologies": [
@@ -1382,7 +1382,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "View on itch.io"
       }
     ],
-    "projectsIndexTitleIcon": "/projects/pandora/pandora-poster.webp",
+    "projectsIndexTitleIcon": "/projects/pandora/pandora-icon.webp",
     "catalogIconReuseApproved": true,
     "kind": "neutral",
     "portfolioIncluded": true
@@ -1462,7 +1462,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "Play on itch.io"
       }
     ],
-    "projectsIndexTitleIcon": "/projects/diggy/diggy-poster.webp",
+    "projectsIndexTitleIcon": "/projects/diggy/diggy-icon.webp",
     "catalogIconReuseApproved": true,
     "kind": "neutral",
     "portfolioIncluded": true

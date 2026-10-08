@@ -99,3 +99,12 @@ Esta extensão integra a feature 006 e prevalece quando requisitos abaixo entrar
 ### Allowlist complementar de mídia — 2026-10-07
 
 O pedido do usuário para completar Pandora e a indicação de que os arquivos estavam em `public/projects/pandora/` autorizam o uso no catálogo apenas dos paths específicos listados em `evaluation.md`. Essa autorização editorial não prova direitos/licenças de terceiros; preservar a ressalva do relatório-fonte.
+
+
+## Compact project identity icon
+
+- `projectsIndexTitleIcon` is the canonical icon path; when a project appears in Featured, reuse this same path.
+- The asset is a square 104 × 104 optimized WebP displayed in the existing 52 × 52 CSS slot. Existing border, 10px radius, and 14px title gap remain.
+- The icon is a derivative; never overwrite its source poster/cover. Preserve supplied corporate/product designs. Center the recognizable subject optically at display size.
+- The icon is decorative when the adjacent visible project name conveys the same identity. Missing or unapproved icons are omitted without blank space.
+- Reuse approval is scoped to the exact icon on that project record and is not a legal rights audit.

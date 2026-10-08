@@ -151,3 +151,12 @@ Por decisão explícita do usuário, remover o botão Stop/Play e qualquer contr
 ### Allowlist complementar de mídia — 2026-10-07
 
 O pedido do usuário para preencher Pandora e a indicação de que as mídias já estavam em `public/projects/pandora/` autorizam o uso dos arquivos exatos registrados em `evaluation.md` nesta ficha. O relatório mantém os direitos de terceiros como desconhecidos; a autorização de catálogo não os verifica. A renderização e as limitações observadas constam na avaliação atual.
+
+
+## Compact identity icon — decision 2026-10-08
+
+**Decision:** use one canonical `projectsIndexTitleIcon` derivative at All Projects and Featured when applicable: square 104 × 104 WebP rendered at 52 × 52 CSS px. Preserve the slot treatment (border, 10px radius, 14px title gap). Use optical centering at display size and retain source artwork unchanged. Company/product identity art is cropped/resized/encoded without creative redesign; simplified derivatives are reserved for approved personal game artwork when needed for 52px recognition. Missing approval means omit without blank space.
+
+**Rationale:** the identity slot is 52px square, so a 104px source provides 2× density while keeping the asset compact; a dedicated derivative separates identity from poster/gameplay media. One canonical path avoids catalog/Featured drift. Visual review of Read With Ello showed why centering must be judged optically at display size. Exact paths and approval scope remain in project records; this decision does not certify third-party rights.
+
+**Alternatives considered:** use full poster (too large/wrong role); reuse gameplay fallback (confuses identity and media); duplicate icon fields for Home and catalog (risks visual drift); omit all small icons (loses the reviewed identity treatment).

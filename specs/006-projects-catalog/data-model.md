@@ -136,3 +136,8 @@ These relationships describe the current feature extension; they do not imply th
 ## Validation observation record
 
 `evaluation.md` records each scenario, route/project, viewport, network condition, motion preference, script/font state, interaction/assistive technology, observed request/visual/accessibility outcome, and evidence type (`source inspection` or `executed runtime`). A criterion is not marked passed on source inspection alone when its spec requires runtime. Unexecuted or blocked scenarios remain pending with reason.
+
+
+## Compact identity icon — active extension 2026-10-08
+
+`ProjectRecord.projectsIndexTitleIcon` holds the single canonical public path used beside the project title in the catalog and reused by Featured when applicable. It is a 104 × 104 square optimized WebP derivative displayed at 52 × 52 CSS px. The source poster/cover remains unchanged. `catalogIconReuseApproved` is a record-scoped approval for this exact icon only and is not independent rights verification. An absent/unapproved icon is omitted without reserved space; the title remains the accessible name and a redundant icon is decorative. See `docs/project-icon-standard.md` for naming, source treatment, optical centering, and QA.

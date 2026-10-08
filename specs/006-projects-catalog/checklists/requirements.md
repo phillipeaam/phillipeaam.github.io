@@ -70,3 +70,12 @@
 - [x] Nenhum marcador NEEDS CLARIFICATION foi introduzido; pressupostos e critérios estão definidos e a spec continua Draft.
 
 **Resultado desta revalidação:** os itens acima avaliam a qualidade documental do complemento. Nenhum teste visual, de browser, performance ou acessibilidade foi executado; estes resultados permanecem pendentes para implementação e avaliação.
+
+
+### Padrão de ícones compactos — 2026-10-08
+
+- [x] O registro central tem um campo canônico para a identidade compartilhada por catálogo e Featured; não há mapa duplicado.
+- [x] O contrato define derivado WebP quadrado 104 × 104 para slot 52 × 52, preservação da fonte, crop opticamente centrado e omissão sem espaço vazio.
+- [x] Uso aprovado é escopado ao ícone do registro e não é descrito como auditoria independente de direitos.
+- [x] O roteiro exige checagem no tamanho renderizado, nas duas superfícies e em larguras desktop/mobile, com rota, viewport e método registrados.
+- [x] Arte de produto/empresa é preservada; simplificação fica limitada à arte pessoal de jogo aprovada.

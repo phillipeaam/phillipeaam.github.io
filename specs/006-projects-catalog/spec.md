@@ -222,6 +222,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **FR-042**: A validação de navegação MUST incluir demora/falha de fontes, liberação de conteúdo e restauração de posição após retorno, evitando tela vazia persistente, exibição inicial na posição errada ou deslocamento perceptível antes de chegar à posição restaurada. Resultados precisam vir de cenários realmente executados, não de inspeção de fonte apenas.
 - **FR-043**: Filtros, disclosures e navegação MUST ter nomes/estados acessíveis inspecionáveis na árvore de acessibilidade do navegador, além de interação por teclado, foco visível, Escape/recolhimento, alteração da contagem e item ocultado por filtro. Rótulos e semântica MUST corresponder à interação real; um menu de opções MUST NOT ser apresentado como um controle de combinação pesquisável se não oferecer esse comportamento. Cada rota avaliada MUST apresentar um único landmark principal. Teste de fala com leitor de tela real foi removido do escopo por decisão do usuário em 2026-10-07; esta spec não declara validação auditiva nem auditoria WCAG completa.
 - **FR-044**: Períodos, tecnologias, contribuição e limites de autoria compartilhados MUST ser compatíveis entre registro central, catálogo, case quando existente e Experience. A revisão MUST distinguir período do projeto/fase de período de emprego, preservar fases de manutenção/revisita quando comprovadas e manter escopo individual separado do trabalho de equipe. Divergências sem solução documental MUST ser registradas como pendentes, sem normalização ou expansão de autoria.
+- **FR-045**: Quando um registro usar ícone de identidade aprovado, `projectsIndexTitleIcon` MUST ser a referência canônica reutilizada no catálogo e na Featured aplicável; o ícone MUST ser derivado sem sobrescrever a arte original, quadrado, WebP otimizado de 104 × 104 px e apresentado no slot de 52 × 52 CSS px com assunto reconhecível e opticamente centralizado. Arte de produto/empresa MUST preservar identidade e design fornecidos, salvo direção explicitamente aprovada. Ícone ausente ou sem aprovação MUST ser omitido sem espaço reservado; o título continua sendo a identidade acessível. `catalogIconReuseApproved` MUST se aplicar somente ao ícone exato do registro e não representar verificação independente de direitos. O procedimento permanente está em `docs/project-icon-standard.md`.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -237,6 +238,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **Technical highlight**: Título específico e explicação de problema/mecanismo, com consequência apenas quando documentada; não equivale a atribuição automática de decisões ao autor.
 - **Compact project facts**: Role, Context, Type e Period com significados distintos e campos ausentes omitidos; tecnologias mantêm dimensão própria.
 - **Claim evidence**: Fonte canônica e limite de autoria/época que sustentam uma afirmação; rastreabilidade editorial interna não expõe documentação privada no catálogo.
+- **Compact identity icon**: Derivative quadrado e otimizado associado ao registro central, compartilhado entre catálogo e Featured quando aplicável; decorativo quando redundante ao título e sujeito ao padrão de `docs/project-icon-standard.md`.
 
 ## Success Criteria *(mandatory)*
 
@@ -274,6 +276,7 @@ Como visitante ou avaliador, quero interpretar períodos e contribuições de um
 - **SC-029**: 100% das diferenças de período ou escopo encontradas entre o registro central, catálogo, case existente e Experience são classificadas como coerentes com fontes, corrigidas pela especificação de origem/período adequado ou mantidas como pendência explícita. Nenhuma divergência é apagada por normalização silenciosa.
 - **SC-030**: Os registros Ello 2.0, Read With Ello e Wallace’s Quest são comparados com o contexto de Experience e seus cases existentes; o vínculo de emprego da Ello é distinguido dos períodos de projeto, tecnologias/escopos seguem fontes e fases de Wallace são preservadas quando documentadas.
 - **SC-031**: A validação de navegação e carregamento cobre fonte lenta/falha, retorno a posição salva, conteúdo antes/depois da inicialização, media bloqueada e decode com falha; não há tela vazia persistente ou flash de posição incorreta nos cenários realmente executados. Inspeção de código sem runtime não conta como aprovação.
+- **SC-032**: Para 100% dos registros que optarem por ícone de identidade aprovado, a referência canônica aponta para asset WebP quadrado de 104 × 104 px, reutilizado no catálogo e Featured quando aplicável, e renderiza a 52 × 52 CSS px sem corte ou deslocamento óptico perceptível nos viewports verificados. A inspeção confirma que a fonte original permanece intacta, arte corporativa preserva sua identidade, ícone ausente não reserva espaço e o título permanece acessível sem anúncio redundante. Resultados registram rota, viewport e método.
 
 ## Assumptions
 
@@ -399,3 +402,8 @@ O usuário solicitou completar a entrada de Pandora e indicou que as mídias do 
 ### Decisão posterior — tag Unity única — 2026-10-05
 
 O usuário escolheu padronizar a faceta para exibir somente `Unity`, sem opções por versão. Isso substitui a proposta anterior de mapear uma família para versões descendentes na lista de opções. Registros com versão Unity confirmada recebem a tag canônica Unity; fatos específicos como Unity 6 permanecem separados e opcionais nos detalhes, quando publicados. Não renomear o registro-fonte nem inferir tags por texto livre.
+
+
+## Extensão — ícones compactos de identidade — 2026-10-08
+
+A identidade visual pequena usa o contrato permanente em `docs/project-icon-standard.md`: derivação quadrada 104 × 104 WebP para slot 52 × 52 CSS px, crop opticamente centrado e asset canônico compartilhado por catálogo e Featured. Preserve pôsteres originais e designs de produtos corporativos; não exija ícone de toda entrada. Sem aprovação, omita sem coluna vazia. A extensão documenta os seis ícones revisados e não comprova direitos de terceiros.

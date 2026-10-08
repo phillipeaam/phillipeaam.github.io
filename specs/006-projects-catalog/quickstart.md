@@ -100,3 +100,8 @@ Este conjunto cobre US2, US4, US6, US7 e SC-025–SC-031. Usar registros do `eva
 | M — Navegação/restauração | Com DevTools/runtime, simular fonte lenta e falha, conteúdo antes/depois da inicialização, retorno a posição salva e mídia bloqueada/decode falho. Confirmar ausência de tela vazia persistente ou flash na posição errada. Inspeção de fonte é evidência complementar, não resultado deste cenário. | SC-031 |
 
 Ao fechar a rodada, registrar SC-025–SC-031 separadamente de SC-001–SC-024, viewports e estados realmente executados, itens pendentes e correções; executar também `git diff --check`, `npm run check` e `npm run build`. A revisão humana continua obrigatória para mudanças visuais/editoriais. Nenhum teste ou browser foi executado ao atualizar este roteiro.
+
+
+## N — Compact identity icons (FR-045 / SC-032)
+
+For each record with `projectsIndexTitleIcon`, confirm the path resolves to a square 104 × 104 WebP derivative and record-specific reuse approval is present. Confirm the original poster/cover remains unchanged. In the browser, inspect `/projects/` and `/#featured` where applicable at desktop (1440 × 900 CSS px) and mobile (390 × 844 CSS px). Confirm rendering at 52 × 52 CSS px, reuse of the same canonical asset, loading without layout shift, recognizable/unclipped subject, and optical centering; compare product/company artwork with its approved identity. Confirm absent/unapproved icons leave no blank slot and the visible title remains. Record actual route, viewport, method, natural/rendered dimensions and observations in `evaluation.md`; source inspection alone does not prove visual centering.

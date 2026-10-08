@@ -360,3 +360,14 @@ Tentativa anterior à decisão de escopo: confirmei que `Narrator.exe` está pre
 ### Decisão de escopo — sem validação de fala por leitor de tela — 2026-10-07
 
 Por decisão explícita do usuário, não é necessário testar a saída falada com leitor de tela real. Os requisitos ativos de validação foram atualizados para usar árvore de acessibilidade do navegador, teclado, foco, toque emulado e aprimoramento progressivo conforme aplicável. T058, T075, T090, T092 e T095 foram reconciliadas com as evidências já registradas e concluídas para esse escopo. Essa decisão não remove os nomes/estados acessíveis esperados do produto e não equivale a uma auditoria WCAG completa.
+
+
+### Ícones compactos de identidade — verificação registrada em 2026-10-08
+
+| Rota / viewport | Método e resultado observado | Limite |
+| --- | --- | --- |
+| `/projects/`, 1440 × 900 CSS px | Inspeção do browser local/DevTools: Wallace Quest, Pathless, Pandora, Diggy, Read With Ello e Ello 2.0 carregaram os ícones; dimensões naturais 104 × 104 e renderizadas 52 × 52 CSS px. | A aprovação visual do crop é específica aos assets revisados; não valida automaticamente futuros ícones. |
+| Featured, source inspection | A inspeção de `FeaturedProject.astro` confirma que o componente consome `projectsIndexTitleIcon` do registro central. | Nesta rodada não foi registrada inspeção visual/runtime da Home Featured. |
+| `/projects/`, 390 × 844 CSS px | Inspeção em viewport mobile no browser local: os seis ícones carregaram no slot 52 × 52 sem overflow observado. | Viewport do browser, não aparelho físico; não generaliza para outras larguras. |
+
+O crop de Read With Ello foi ajustado após feedback de enquadramento e conferido visualmente em 52 × 52 CSS px. Essa avaliação observada motiva a regra de centralização óptica. Dimensões/fidelidade de futuros assets devem ser verificadas individualmente conforme o cenário N do quickstart. A autorização registrada é de reutilização no portfólio e não certifica direitos de terceiros.
