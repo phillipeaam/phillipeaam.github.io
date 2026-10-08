@@ -5,7 +5,7 @@
 
 ## Summary
 
-Introduce one SectionHeading component for six headings; use a desktop column independent of text length and natural mobile wrapping. Centralize seven canonical Home destinations and retain six native legacy aliases. Preserve existing return/history behavior with explicit section fragments taking precedence over saved restoration. Publish a permanent standard during implementation.
+Use one SectionHeading component for six headings; stack each title and full-width support paragraph at every viewport width. Centralize seven canonical Home destinations and retain six native legacy aliases. Preserve existing return/history behavior with explicit section fragments taking precedence over saved restoration. Publish a permanent standard during implementation.
 
 ## Technical Context
 
@@ -28,7 +28,7 @@ Introduce one SectionHeading component for six headings; use a desktop column in
 | III Visual preservation | Bounded correction justified by reported alignment issue; retain typography/dividers |
 | IV Accessibility | h1/h2, aria-labelledby, native aliases, focus and reduced-motion checks |
 | V Enhancement | HTML links/aliases work without optional scripts |
-| VI Responsive | Recorded checks at desktop/tablet/mobile, boundaries, zoom |
+| VI Responsive | Recorded checks at desktop/tablet/mobile boundaries and text wrapping |
 | VII Scope | Only named headings/navigation; no new packages |
 | VIII Validation | Diagnostics/build/diff and runtime evidence tasks required |
 | IX Review | Human review required before merge/push approval |
@@ -63,7 +63,7 @@ See research.md. Local source and delegated read-only navigation inspection reso
 ## Phase 1: Design
 
 - SectionHeading props: eyebrow, title, support plain text, titleId, titleLevel (h1/h2), optional anchorId/aliases and placementClass. Retain existing accessible title IDs; catalog uses h1, Home h2.
-- Above 820px use a flexible title column and a support column capped at 45ch with --s-8 gap; size the paragraph to its content, anchor the block at the right edge, and align text left. Keep the upper line visually longer than the following line without authored breaks or `text-wrap: balance`. At/below 820px stack with --s-3 separation. Internal bottom padding: 23px desktop, 20px stacked. Existing surrounding content margins may differ for distinct content layouts but cannot change the column origin or internal heading contract.
+- At all viewport widths, render the title group first and one full-width support paragraph immediately below it, with a shared 4px gap between them. Keep the title at its natural height; support text aligns left and wraps within the available width. Keep responsive outer padding and existing divider spacing.
 - Remove section-support-line markup/rules for scoped headings. Keep support copy plain text, preserving its meaning and claims.
 - homeSections.ts owns canonical IDs, labels, aliases. Canonical IDs match menu data-section and Home data-nav-section. Generate #home instead of special #top. The selected in-depth work section uses canonical #featured, with #case-studies and #work aliases; update spacing selectors accordingly without renaming /work/ routes or work-* project IDs.
 - Render aria-hidden alias spans at the same positioned origin as their target with shared scroll margin. Retain legacy hashes in the URL; no history rewrite. Canonical menu links use canonical hashes.

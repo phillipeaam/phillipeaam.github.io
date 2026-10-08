@@ -8,9 +8,9 @@ Use existing Node/npm dependencies. From repository root run `npm run dev`; use 
 
 ## US1: Headings
 
-Inspect all six headings at widths 1440, 1280, 1100, 1024, 960, 900, 860, 821, 820, 768, 390px; record height too. Above 960px use Range.getClientRects() to confirm the support lead ends at the column's right edge, the continuation starts at the support block's left edge, and the lead is wider. At/below 960px confirm lead and continuation flow as one left-aligned paragraph; at/below 820px confirm the paragraph stacks below the title. Check shared internal spacing, semantics, one accessible name, and preserved copy meaning/claims, intro/cards/contact.
+Inspect all six headings at widths 1440, 1280, 1100, 1024, 960, 900, 860, 821, 820, 768, 390px; record height too. At every width, confirm 4px between eyebrow and title, then 4px between the title group and full-width support paragraph; the support is left-aligned and naturally wrapped. Check shared internal spacing, semantics, one accessible name, and preserved copy meaning/claims, intro/cards/contact.
 
-Temporarily substitute short phrase, long paragraph, and long unbroken token in development only; verify no clipping/overlap/horizontal overflow at the representative widths in this quickstart. Manual browser-zoom/enlarged-text testing is out of scope by user decision (2026-10-07). Restore approved copy before commit. Check semantic h1/h2 and aria-labelledby. Any new/edited support copy must be measured across desktop widths; wording can change to meet the descending-line rule, but meaning and claims remain intact.
+Temporarily substitute short phrase, long paragraph, and long unbroken token in development only; verify no clipping/overlap/horizontal overflow at the representative widths in this quickstart. Manual browser-zoom/enlarged-text testing is out of scope by user decision (2026-10-07). Restore approved copy before commit. Check semantic h1/h2 and aria-labelledby. Any new or edited support copy must wrap naturally across the representative widths while preserving its meaning and claims.
 
 ## US2: Canonical navigation
 

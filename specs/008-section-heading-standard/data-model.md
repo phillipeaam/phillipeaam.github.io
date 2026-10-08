@@ -20,9 +20,9 @@ Constraints: "Canonical IDs MUST be unique." "Legacy IDs MUST be unique and MUST
 
 ## Heading
 
-Fields: eyebrow, title, supportLead, supportContinuation, titleId, titleLevel, optional anchorId/aliases, placementClass.
+Fields: eyebrow, title, support, titleId, titleLevel, optional anchorId/aliases, placementClass.
 
-Constraints: "Above 960px, supportLead MUST align its right edge with the support column; supportContinuation MUST begin at the support block's left edge and align left." "The lead MUST be wider than the continuation at the supported desktop layouts." "At/below 960px, lead and continuation MUST flow together as natural inline text; at/below 820px support MUST stack below the title." "The paragraph MUST expose one accessible name for the complete text; visual spans MUST not be announced twice." "Balanced wrapping MUST NOT be used." "Title IDs MUST remain unique and preserve existing accessible relationships." "Home titles MUST use h2; All Projects MUST use h1." "Placement classes MUST NOT override support-column alignment."
+Constraints: "At every viewport width, the eyebrow and title MUST have a shared 4px gap, and the title group and full-width support paragraph MUST have a shared 4px gap." "The title group MUST retain its natural height." "Support text MUST align left and wrap within the available width." "The paragraph MUST expose one accessible name for the complete text." "Balanced wrapping MUST NOT be used." "Title IDs MUST remain unique and preserve existing accessible relationships." "Home titles MUST use h2; All Projects MUST use h1." "Placement classes MUST NOT override support alignment."
 
 ## State transitions
 

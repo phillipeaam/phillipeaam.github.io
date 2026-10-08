@@ -3,23 +3,18 @@
 interface Props {
   eyebrow: string;
   title: string;
-  supportLead: string;
-  supportContinuation: string;
+  support: string;
   titleId: string;
   titleLevel?: 'h1' | 'h2';
   anchorId?: string;
   aliases?: readonly string[];
   placementClass?: string;
 }
-const { eyebrow, title, supportLead, supportContinuation, titleId, titleLevel = 'h2', anchorId, aliases = [], placementClass } = Astro.props;
+const { eyebrow, title, support, titleId, titleLevel = 'h2', anchorId, aliases = [], placementClass } = Astro.props;
 const Title = titleLevel;
 ---
 <header class:list={['section-heading', 'section-heading--major', anchorId && 'nav-anchor-target', placementClass]} id={anchorId}>
   {aliases.map((id) => <span class="nav-anchor-alias" id={id} aria-hidden="true"></span>)}
   <div><p class="eyebrow">{eyebrow}</p><Title id={titleId}>{title}</Title></div>
-  <p aria-label={`${supportLead} ${supportContinuation}`}>
-    <span class="section-heading__support-lead" aria-hidden="true">{supportLead}</span>
-    {' '}
-    <span class="section-heading__support-continuation" aria-hidden="true">{supportContinuation}</span>
-  </p>
+  <p>{support}</p>
 </header>

@@ -2,10 +2,10 @@
 
 Date: 2026-10-06. Source inspection and delegated read-only navigation review; no runtime validation.
 
-## Stable column
+## Shared heading layout
 
-**Decision**: Equal desktop columns above 820px, stacked below; natural text wrapping.
-**Rationale**: Current fit-content grid, width:max-content, justify-self:end, and manually grouped spans produce content-dependent origins. Equal columns keep layout independent of text length. Following the user corrections on 2026-10-07, the support block aligns to the right content edge while its text aligns left on desktop; mobile remains left-aligned. Desktop uses sequential natural wrapping (`text-wrap: wrap`) and copy is revised to ensure every upper line is longer than the following line across checked widths.
+**Decision**: At every viewport width, stack the title group and full-width support paragraph, with a shared 4px gap between them.
+**Rationale**: Keeping the title above its support copy creates one consistent reading order. Full-width, left-aligned support uses available space and wraps naturally.
 **Alternatives considered**: Adding spans to Teammates/About leaves the underlying problem; per-section offsets violate shared patterns.
 
 ## Shared structure

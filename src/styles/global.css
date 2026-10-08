@@ -19,6 +19,8 @@
   --section-content-top-gap: 26px;
   --section-utility-row-space: 12px;
   --section-heading-content-gap: 0px;
+  --section-heading-title-support-gap: 4px;
+  --section-heading-eyebrow-title-gap: 4px;
   --font-display: 'Manrope', 'Avenir Next', sans-serif;
   --font-body: 'Inter', 'Avenir Next', sans-serif;
   --content: 1200px;
@@ -699,11 +701,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; letter-spacing:
 }
 
 /* Stage 11A.3: shared support-project media cards and section-entry rhythm. */
-.section-heading--major { display: grid; grid-template-columns: minmax(0,1fr) fit-content(45ch); align-items: end; column-gap: var(--s-8); position: relative; margin-bottom: var(--section-heading-content-gap); padding-bottom: 23px; }
-.section-heading--major > p { width: 100%; min-width: 0; max-width: 45ch; justify-self: end; margin: 0; color: var(--secondary); line-height: 24px; text-align: left; overflow-wrap: anywhere; }
-.section-heading__support-lead { width: max-content; max-width: 100%; display: block; margin-left: auto; text-align: right; }
-.section-heading__support-continuation { display: block; text-align: left; }
-.section-heading--major > div { overflow-wrap: anywhere; }
+.section-heading--major { display: block; position: relative; margin-bottom: var(--section-heading-content-gap); padding-bottom: 23px; }
+.section-heading--major > p { width: 100%; min-width: 0; max-width: none; margin: var(--section-heading-title-support-gap) 0 0; color: var(--secondary); line-height: 24px; text-align: left; overflow-wrap: anywhere; }
+.section-heading--major > div { width: max-content; min-width: 0; max-width: 100%; text-align: left; overflow-wrap: anywhere; }
+.section-heading--major > div > .eyebrow { margin-bottom: var(--section-heading-eyebrow-title-gap); }
 .section-heading--major::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--section-divider); }
 .section-heading > div { min-width: 0; }
 main:has(.experience-preview) + .contact-section { margin-top: var(--s-8); }
@@ -768,14 +769,9 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
   .human-section > .section-heading,
   .recommendations-section > .section-heading { padding-bottom: 20px; }
   .more-projects > .section-heading { padding-bottom: 20px; }
-  .section-heading--major { display: block; padding-bottom: 20px; }
-  .section-heading--major > p { width: auto; max-width: 44ch; justify-self: start; margin-top: var(--s-3); text-align: left; }
+  .section-heading--major { padding-bottom: 20px; }
 }
 
-@media (max-width: 960px) {
-  .section-heading__support-lead,
-  .section-heading__support-continuation { width: auto; display: inline; margin: 0; text-align: left; }
-}
 
 @media (max-width: 480px) {
   .experience-work-list { grid-template-columns: minmax(0,1fr); width: min(100%, 360px); }

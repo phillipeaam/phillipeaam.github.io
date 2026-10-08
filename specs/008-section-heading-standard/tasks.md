@@ -3,7 +3,7 @@
 **Input**: `specs/008-section-heading-standard/` design documents.
 **Prerequisites**: spec.md, plan.md, research.md, data-model.md, contracts/, quickstart.md.
 **Tests**: Browser acceptance checks explicitly required by FR-015 and constitution; no new automated test framework.
-**Organization**: User-story increments; all tasks remain pending implementation.
+**Organization**: User-story increments; checkbox state records implementation and validation status.
 
 ## Phase 1: Setup
 
@@ -13,17 +13,17 @@
 ## Phase 2: Foundational
 
 - [x] T003 Define seven destinations/labels/six legacy aliases in src/data/homeSections.ts using data-model.md: "Canonical IDs MUST be unique." "Legacy IDs MUST be unique and MUST NOT collide with canonical IDs." "Each legacy ID MUST resolve to exactly one canonical destination." "Aliases MUST NOT create separate observer sections." (FR-008).
-- [x] T004 [P] Add src/components/SectionHeading.astro with documented props and preserve data-model.md constraints: "Support MUST use shared lead/continuation parts above 960px and natural inline flow at/below 960px." "Title IDs MUST remain unique and preserve existing accessible relationships." "Home titles MUST use h2; All Projects MUST use h1." "Placement classes MUST NOT override support-column alignment." (FR-002, FR-007).
+- [x] T004 [P] Add src/components/SectionHeading.astro with documented props and preserve data-model.md constraints: "Support MUST be one continuous, full-width paragraph below the title, left-aligned at every viewport width." "Title IDs MUST remain unique and preserve existing accessible relationships." "Home titles MUST use h2; All Projects MUST use h1." "Placement classes MUST NOT override support-column alignment." (FR-002, FR-007).
 
 ## Phase 3: US1 — Consistent headings (P1)
 
 **Goal**: Six headings obey one visual contract.
-**Independent validation**: Six support right edges differ by <=1px at equal desktop widths; stacked layouts wrap without overflow.
+**Independent validation**: Six headings use the same order, 4px gaps, and full-width left-aligned support; wrapping has no overflow.
 
-- [x] T005 [US1] Implement the shared desktop lead-right/continuation-left support pattern, natural/long-token wrapping, shared padding and <=820px stacking in src/styles/global.css; retain right-positioned support geometry (FR-003–006).
-- [x] T006 [US1] Migrate five Home headings in src/pages/index.astro and src/components/TestimonialsSection.astro to SectionHeading; preserve meaning/claims and title IDs, provide shared lead/continuation copy, and retain surrounding content layout (FR-001–002, FR-007, FR-013, FR-016).
-- [x] T007 [US1] Migrate catalog h1 introduction in src/pages/projects/index.astro to SectionHeading with preserved meaning/title ID and shared lead/continuation copy (FR-001, FR-007, FR-016).
-- [X] T008 [US1] Revalidate Home and catalog heading geometry after implementing the confirmed first-line-right/continuation-left pattern; record coordinates, rendered line widths, and remaining gaps in specs/008-section-heading-standard/validation.md. (FR-015–016, SC-001, SC-007.) Revalidado em 2026-10-07 nos viewports registrados, incluindo fixtures curtas/longas e sem overflow; teste manual de zoom foi removido do escopo por decisão do usuário.
+- [x] T005 [US1] Implement the shared stacked title and full-width, left-aligned support layout with shared 4px gaps between eyebrow/title and title/support, natural wrapping, and shared padding in src/styles/global.css (FR-003–006).
+- [x] T006 [US1] Migrate five Home headings in src/pages/index.astro and src/components/TestimonialsSection.astro to SectionHeading; preserve meaning/claims and title IDs, provide one continuous support string, and retain surrounding content layout (FR-001–002, FR-007, FR-013, FR-016).
+- [x] T007 [US1] Migrate catalog h1 introduction in src/pages/projects/index.astro to SectionHeading with preserved meaning/title ID and one continuous support string (FR-001, FR-007, FR-016).
+- [x] T008 [US1] Revalidate Home and catalog heading geometry for the stacked title and full-width support paragraph with shared 4px gaps between eyebrow/title and title/support. Record coordinates, wrapping, and remaining gaps in specs/008-section-heading-standard/validation.md at representative desktop, tablet, and mobile viewports. (FR-015–016, SC-001, SC-007.) Manual zoom remains out of scope by user decision.
 
 ## Phase 4: US2 — Canonical navigation (P1)
 
@@ -50,7 +50,7 @@
 **Goal**: Future changes have a documented contract.
 **Independent validation**: Reference covers all six consumers, seven destinations, six aliases, and future-change procedure.
 
-- [x] T017 [US4] Write docs/section-heading-standard.md covering semantic/editorial roles, equal columns, spacing/placement distinction, responsive rules, copy baseline, naming table, compatibility, acceptance criteria and rationale/revalidation/human-review procedure (FR-014, SC-006).
+- [x] T017 [US4] Write docs/section-heading-standard.md covering semantic/editorial roles, shared layout, spacing/placement distinction, responsive rules, copy baseline, naming table, compatibility, acceptance criteria and rationale/revalidation/human-review procedure (FR-014, SC-006).
 - [x] T018 [US4] Link permanent reference from src/components/SectionHeading.astro and src/data/homeSections.ts; update affected current guidance in docs/ while preserving historical spec/evidence records; record documentation audit in specs/008-section-heading-standard/validation.md (FR-008, FR-014).
 - [x] T019 [US4] Cross-check permanent docs against all six actual consumers and canonical/legacy mappings, including a proposed short/long-text section, and record requirements coverage in specs/008-section-heading-standard/validation.md (FR-014–015, SC-006).
 
@@ -82,11 +82,15 @@ Deliver visual MVP first, then canonical naming and legacy compatibility togethe
 
 Assessment: 2026-10-06. Reviewed 15 functional requirements, 6 success criteria, 14 acceptance scenarios, plan decisions and all9 constitutional principles against current source and validation evidence. No unrequested code or missing implementation identified; runtime acceptance coverage remains partial. Two HIGH partial findings; no code contradiction established. Human merge/push approval remains pending and is not inferred from code validation.
 
-- [X] T023 Complete reduced-motion and JavaScript-disabled canonical/legacy navigation checks using a browser supporting those controls; record results in specs/008-section-heading-standard/validation.md and resolve any failures per FR-005, FR-011, FR-015, SC-002–003 and Constitution IV/VI/VIII. Manual browser zoom/enlarged-text checks were removed from scope by the user on 2026-10-07; representative narrow viewport checks remain recorded under T008.
+- [X] T023 Complete reduced-motion and JavaScript-disabled canonical/legacy navigation checks using a browser supporting those controls; record results in specs/008-section-heading-standard/validation.md and resolve any failures per FR-005, FR-011, FR-015, SC-002–003 and Constitution IV/VI/VIII. Manual browser-zoom/enlarged-text checks are out of scope by user decision. Earlier responsive checks are historical; T008 remains open to revalidate the current visual layout.
 - [X] T024 Complete stable desktop/mobile menu active-state checks, all available cross-page journeys, unknown/malformed fragments, browser Back/Forward, both identity controls from another page, stale restoration intent and exact saved-position equivalence across five repeated returns; record departure coordinates after locator scroll-to-click and actual results in specs/008-section-heading-standard/validation.md, fixing failures per FR-010–012, FR-015, SC-004–005 and Constitution VIII (partial; F2 HIGH; completes remaining T013/T016 coverage). Evidence recorded: Back/Forward, unknown/malformed fragments, desktop/mobile menu/active state and keyboard, seven cross-page links, contextual Contact/Back, avatar/wordmark identity, stale intent and five exact return cycles.
 
 DevTools reconciliation — 2026-10-07: validation.md records isolated Chrome CDP results for initial/dynamic reduced motion and native arrivals without JavaScript, plus keyboard/menu, direct/reload, history, stale-intent and cross-page checks. T008, T013, T016, T023 and T024 are complete for the agreed scope.
 
 ## Reconciliation after browser validation — 2026-10-07
 
-Current results are recorded in `validation.md`. T008, T013, T016, T023 and T024 are complete for the agreed scope. The user removed manual zoom testing from the scope because it could not be performed in this browser setup. No implementation defect was found and no new convergence task was needed.
+Navigation and prior layout results are recorded in validation.md. T008 remains open because the current stacked heading design has not been visually revalidated. Manual zoom testing is out of scope by user decision; no result is claimed for this design revision.
+
+## Current reconciliation — 2026-10-08
+
+T008 is complete for the current stacked heading layout. Chrome DevTools measurements and screenshot inspection are recorded in validation.md for all five Home headings and All Projects at 1440, 1024, 768, and 390 CSS px. No horizontal overflow was observed at these viewports. No manual zoom or physical-device result is claimed.

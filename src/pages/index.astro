@@ -29,12 +29,12 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width" data-nav-section="featured" aria-labelledby="featured-title">
-    <SectionHeading anchorId="featured" aliases={homeSection('featured').legacyIds} eyebrow="WORK, IN DEPTH" title="Featured" titleId="featured-title" supportLead="The problems, decisions, and gameplay systems behind" supportContinuation="selected projects." />
+    <SectionHeading anchorId="featured" aliases={homeSection('featured').legacyIds} eyebrow="WORK, IN DEPTH" title="Featured" titleId="featured-title" support="A closer look at the problems, decisions, and gameplay systems behind each case." />
     <div class="featured-grid">{homeFeaturedProjects.map((project) => <FeaturedProject project={project} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">
-    <SectionHeading anchorId="projects" aliases={homeSection('projects').legacyIds} eyebrow="BREADTH, AT A GLANCE" title="Projects" titleId="projects-title" supportLead="Professional products, independent games, and technical" supportContinuation="work beyond the selected case studies." />
+    <SectionHeading anchorId="projects" aliases={homeSection('projects').legacyIds} eyebrow="BREADTH, AT A GLANCE" title="Projects" titleId="projects-title" support="A cross-section of my work across commercial products and independent games." />
     <div class="section-utility-row">
       <p class="more-projects__guidance">
         <span class="more-projects__guidance--hover">Hover to preview where available <span aria-hidden="true">·</span> Click a project to view details</span>
@@ -50,7 +50,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   <TestimonialsSection />
 
   <section class="section-block content-width human-section" data-nav-section="about" aria-labelledby="about-title">
-    <SectionHeading anchorId="about" aliases={homeSection('about').legacyIds} eyebrow="BEHIND THE WORK" title="About Phillipe" titleId="about-title" supportLead="How I investigate behavior and make" supportContinuation="engineering decisions." />
+    <SectionHeading anchorId="about" aliases={homeSection('about').legacyIds} eyebrow="BEHIND THE WORK" title="About Phillipe" titleId="about-title" support="How I investigate behavior, reason through engineering problems, and make decisions." />
     <div class="human-profile">
       <figure class="profile-portrait"><img src="/images/identity/phillipe-augusto-profile.jpg" alt="Phillipe Augusto, Game Engineer" width="640" height="640" loading="lazy" decoding="async" /></figure>
       <div class="profile-content">
@@ -70,7 +70,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
   </section>
 
   <section class="section-block content-width experience-preview" data-nav-section="experience" aria-labelledby="experience-title">
-    <SectionHeading anchorId="experience" eyebrow="CAREER, IN PRACTICE" title="Experience" titleId="experience-title" supportLead="Unity engineering for commercial game products," supportContinuation="alongside earlier mobile app development." />
+    <SectionHeading anchorId="experience" eyebrow="CAREER, IN PRACTICE" title="Experience" titleId="experience-title" support="From mobile app development to engineering commercial software and games." />
     <div class="section-utility-row section-utility-row--end"><ExternalLink class="section-footer-action" href="https://www.linkedin.com/in/phillipe-augusto/details/experience/" ariaLabel="See all experience on LinkedIn (opens in a new tab)" icon><span class="section-footer-action__label">See all experience on LinkedIn</span></ExternalLink></div>
     <div class="experience-list">{experience.map((item) => <ExperienceEntry item={item} />)}</div>
   </section>

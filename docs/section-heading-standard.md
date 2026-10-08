@@ -6,23 +6,22 @@ Canonical reference for shared section headings. Feature: `specs/008-section-hea
 
 Use `src/components/SectionHeading.astro` for Featured, Projects, Teammates, About, Experience, and the All Projects catalog introduction, and for new equivalent headings.
 
-- Eyebrow: brief framing.
+- Eyebrow: brief framing, with a shared 4px gap before the title.
 - Title: identifies the destination; Home section headings use h2, catalog page title uses h1.
-- Support: adds context in plain text, without repeating the title. The shared component accepts a lead and continuation so the desktop line alignment is explicit and consistent.
+- Support: adds context in one continuous plain-text paragraph without repeating the title. It spans the available width and aligns left.
 - Preserve unique title IDs and existing aria-labelledby relationships.
 - Optional anchorId and aliases provide native navigation without duplicating headings. placementClass is for surrounding content spacing, not custom support alignment.
 
 ## Visual contract
 
-Above 960px use a flexible title column and a content-sized support column capped at 45ch, with the existing --s-8 gap. The first support line's right edge aligns with the support column's right edge. The continuation begins at the support block's left edge, and its text aligns left. Keep the lead line longer than the continuation. This is one shared component pattern, not section-specific CSS.
+At all viewport widths, keep a shared 4px gap between eyebrow and title, then a shared 4px gap between the title group and the full-width support paragraph. The title keeps its natural height; support text aligns left and wraps within the available content width. The divider and existing outer heading padding remain unchanged.
 
-At 960px and below, lead and continuation flow together as a single naturally wrapping paragraph, aligned left. At 820px and below, support stacks below the title at the content left edge, with --s-3 separation and a maximum 44ch measure. Long tokens wrap safely. Line-height is 24px. Both columns can shrink without overflow.
+On narrow screens the same order and alignment apply: title first, then the full-width support paragraph 4px below it with natural wrapping. Long tokens wrap safely. Line-height is 24px.
 
-At 820px and below, stack support below the title, aligned to the content left edge with --s-3 separation and maximum 44ch readable measure. Natural wrapping replaces authored line groups. Internal bottom padding is 23px desktop and 20px stacked.
+The stacked title and support arrangement is used at every width. Keep the support 4px below the title; preserve internal bottom padding of 23px desktop and 20px stacked.
 
-The Case studies image supplied on 2026-10-07 showed a remaining right-side gap after the visible text. This led to the confirmed rule above: align the first line to the right edge and keep its continuation left-aligned at the block origin.
 
-Outer margins may reflect distinct card/list/catalog layouts. Featured retains its 44px desktop margin; other consumers retain their established surrounding spacing. These placement differences must not change the support block's right edge or internal heading structure.
+Outer margins may reflect distinct card/list/catalog layouts. Featured retains its 44px desktop margin; other consumers retain their established surrounding spacing. These placement differences must not change the shared heading structure or its internal spacing.
 
 ## Navigation contract
 
@@ -46,8 +45,8 @@ Contextual Contact links intentionally reach their current page's contact area. 
 
 ## Validation and future changes
 
-Acceptance guide: `specs/008-section-heading-standard/quickstart.md`. Record actual results in the feature validation.md, including viewport dimensions and any failed/unperformed cases. Compare all six support right edges at equal desktop widths (difference <=1 CSS pixel); inspect tablet/mobile, short/long/unbroken text, enlarged text, keyboard, reduced motion, canonical/legacy links, reload/history, stale restoration intent, and no-script navigation.
+Acceptance guide: `specs/008-section-heading-standard/quickstart.md`. Record actual results in the feature validation.md, including viewport dimensions and any failed/unperformed cases. At equal viewport widths, confirm all six support paragraphs share the content left edge and span the available width; inspect desktop/tablet/mobile, short/long/unbroken text, keyboard, reduced motion, canonical/legacy links, reload/history, stale restoration intent, and no-script navigation. Manual browser zoom is out of scope by user decision.
 
 Any future change must update this reference, explain its reason and affected consumers, rerun applicable acceptance checks, and receive human review before being treated as approved for merge/push. Adding equivalent sections must reuse the component and naming contract; a genuine exception requires documented rationale and review.
 
-Desktop support uses a content-sized column anchored at the right edge. In the shared component, `supportLead` is right-aligned and `supportContinuation` is left-aligned at the same block origin; keep the lead longer than the continuation. At 960px and below the text returns to natural inline wrapping. Do not create per-section CSS or use `text-wrap: balance`. New support text must use SectionHeading and be reviewed at desktop and mobile sizes before it is added.
+Use one continuous, full-width support paragraph directly below the title at every width. Align its text left and add a 4px gap between title and support. Do not create per-section CSS or use balanced wrapping.

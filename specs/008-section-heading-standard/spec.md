@@ -3,13 +3,13 @@
 **Feature Branch**: `codex/home-section-heading-standard`
 **Created**: 2026-10-06
 **Status**: Draft
-**Input**: User requests consistent visual and editorial section headings, a support block positioned on the right with left-aligned text in a stable desktop column, natural mobile wrapping, canonical section fragments matching current navigation labels, compatibility with old fragments, and a permanent documented standard.
+**Input**: User requests consistent visual and editorial section headings, a full-width, left-aligned support paragraph below each title at all viewport widths, canonical section fragments matching current navigation labels, compatibility with old fragments, and a permanent documented standard.
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Read consistently aligned section headings (Priority: P1)
 
-A visitor scanning the portfolio sees the same heading composition in Featured, Projects, Teammates, About, Experience, and the All Projects catalog introduction. On desktop, support blocks share the same right boundary; the first line reaches that boundary and any continuation starts at the block's left edge.
+A visitor scanning the portfolio sees the same heading composition in Featured, Projects, Teammates, About, Experience, and the All Projects catalog introduction. At every width, the content-sized title group comes first and a full-width, left-aligned support paragraph sits 4px below it.
 
 **Why this priority**: Different ending positions currently make equivalent sections look inconsistent and interrupt scanning.
 
@@ -17,8 +17,8 @@ A visitor scanning the portfolio sees the same heading composition in Featured, 
 
 **Acceptance Scenarios**:
 
-1. **Given** the six headings at a desktop width, **When** a visitor compares them, **Then** each has the title on the left and the content-sized support block anchored at the right edge, with lines internally aligned left and sequential natural wrapping.
-2. **Given** support text that spans multiple lines on desktop, **When** the heading is rendered, **Then** the lead line ends at the block's right edge, the continuation begins at the block's left edge and aligns left, and the lead is wider than the continuation.
+1. **Given** the six headings at any viewport width, **When** a visitor compares them, **Then** each shows its title group followed immediately by a full-width, left-aligned support paragraph.
+2. **Given** support text that spans multiple lines, **When** the heading is rendered, **Then** it remains one continuous paragraph, wraps naturally within the available width, and aligns left.
 3. **Given** a narrow viewport, **When** the visitor reads a heading, **Then** support text appears below the title, aligns with the left content edge, and wraps naturally without horizontal overflow.
 4. **Given** the catalog introduction, **When** it is compared with Home at the same viewport width, **Then** its support-text alignment follows the same pattern while retaining its page-title role.
 
@@ -87,10 +87,10 @@ A maintainer adding or modifying a section has one documented visual and editori
 
 - **FR-001**: The standard MUST apply to the five scoped Home headings and the All Projects catalog introduction.
 - **FR-002**: Every scoped heading MUST follow one shared structure comprising an eyebrow, a semantic title, and support text. The title identifies the section; the eyebrow provides brief framing; support text adds useful context without repeating the title's meaning. Claims and intent MUST be preserved; support wording MAY be edited to satisfy the line-width rule.
-- **FR-003**: At equivalent desktop widths and content containers, the support block MUST align to the right content edge in a consistent column beside the title. The first line MUST align right; any continuation MUST begin at the block's left edge and align left.
-- **FR-004**: Column proportions, heading spacing, and responsive transitions MUST follow a shared documented contract rather than section-specific alignment adjustments.
+- **FR-003**: At every viewport width, use a shared 4px gap between eyebrow and title, and a shared 4px gap between the title group and the full-width support paragraph. The title group MUST retain its natural height. Support text MUST align left and wrap within the available width.
+- **FR-004**: Heading order, spacing, and responsive behavior MUST follow one shared documented contract rather than section-specific alignment adjustments.
 - **FR-005**: At mobile widths, support text MUST appear below the title at the left content edge, wrap naturally, and remain readable without clipping, overlap, or horizontal overflow.
-- **FR-006**: Desktop lead/continuation alignment MUST use the shared support structure, not section-specific CSS or manual `<br>` elements. At widths at or below 960px, both text parts MUST flow together naturally.
+- **FR-006**: Support MUST remain one continuous paragraph with natural wrapping and left-aligned text at every width; do not add line-specific spans, section-specific CSS, or manual line breaks.
 - **FR-007**: Headings MUST retain their semantic hierarchy and accessible relationships; the catalog introduction remains a page title and Home section titles remain section headings.
 - **FR-008**: Navigation destinations MUST use the canonical mapping below. All affected internal links, section identifiers, active-section behavior, and documentation MUST agree with it.
 
@@ -109,9 +109,9 @@ A maintainer adding or modifying a section has one documented visual and editori
 - **FR-011**: Canonical and legacy destinations MUST work on direct opening and reload and MUST remain visible below the sticky header. Core links MUST remain usable without optional scripting.
 - **FR-012**: The existing return-to-Home, saved-position restoration, same-page navigation, and browser-history behaviors MUST remain intact except for the specified fragment renaming. Explicit section destinations MUST take precedence over saved-position restoration.
 - **FR-013**: The feature MUST preserve introduction, cards, contact content, the meaning and claims of current heading support copy, and unrelated routes and project-record fragments. Support wording MAY be edited to satisfy FR-016. Contact's canonical link participates in navigation consistency; its visual layout is outside the heading standard.
-- **FR-014**: A permanent reference MUST document heading roles, column alignment, spacing, responsive behavior, canonical names, legacy compatibility, and acceptance criteria. Future changes to the contract MUST update that reference, state their rationale, and receive human review.
+- **FR-014**: A permanent reference MUST document heading roles, heading order, spacing, responsive behavior, canonical names, legacy compatibility, and acceptance criteria. Future changes to the contract MUST update that reference, state their rationale, and receive human review.
 - **FR-015**: Delivery MUST record actual visual and navigation checks at representative desktop, tablet, and mobile widths, including short and long text, keyboard navigation, direct links, and legacy links. Untested cases MUST be explicitly identified; writing this specification does not establish implementation validation.
-- **FR-016**: All six support paragraphs MUST use the shared lead/continuation structure. Above 960px, the lead line MUST align right and end at the support block's right edge; continuation text MUST start at the block's left edge and align left. The lead line MUST be wider than the continuation in supported desktop layouts. At or below 960px, both parts MUST flow together naturally. The paragraph MUST expose the complete support sentence as one accessible name.
+- **FR-016**: All six support paragraphs MUST use one continuous text value, full available width, natural wrapping, and left-aligned text. Each MUST follow its title group with a shared 4px gap; eyebrow and title MUST also have a shared 4px gap. The paragraph MUST expose the complete support sentence as one accessible name.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -123,22 +123,22 @@ A maintainer adding or modifying a section has one documented visual and editori
 
 ### Measurable Outcomes
 
-- **SC-001**: All six scoped headings show support-block right-edge positions within 1 CSS pixel of one another at equal desktop viewport widths, including short and long text variants.
-- **SC-002**: At representative desktop, tablet, and mobile widths, all six headings exhibit zero overlaps, clipped support text, or heading-induced horizontal page overflow, including enlarged-text checks.
+- **SC-001**: At equal viewport widths, all six title groups begin at the same content origin and all six support paragraphs begin 4px below their title group and span the available content width.
+- **SC-002**: At representative desktop, tablet, and mobile widths, all six headings exhibit zero overlaps, clipped support text, or heading-induced horizontal page overflow.
 - **SC-003**: All seven canonical menu destinations reach their correct section and expose the expected fragment; all five listed legacy fragments remain usable on direct opening and reload.
 - **SC-004**: Every available scoped desktop, mobile, and cross-page navigation link agrees with the destination mapping; active-state checks yield zero mismatches for recognized sections.
 - **SC-005**: Return-to-Home, saved-position restoration, and Back/Forward journeys retain their previously documented behavior, with zero observed regressions in the recorded acceptance checks.
 - **SC-006**: One permanent reference covers every heading and navigation requirement, with no undocumented section-specific alignment exceptions. Validation records distinguish performed checks from pending checks.
-- **SC-007**: At each checked desktop width, the first line of each wrapped support paragraph ends at the support block's right edge, while its continuation begins at the support block's left edge; the lead line is wider than the continuation and the block is anchored to the column's right edge.
+- **SC-007**: At each checked viewport width, every support paragraph remains continuous, left-aligned, and naturally wrapped within the available content width.
 
 ## Assumptions
 
 - The current branch and commit `4864fab` provide the approved wording baseline. The user later chose Featured as the one-word label for the selected in-depth work section; `#featured` is canonical and `#case-studies` plus `#work` remain aliases.
 - The request to preserve existing anchor destinations means preserving the reached sections and legacy-link compatibility; the explicit canonical-fragment mapping takes precedence over retaining old fragment names as primary URLs.
 - Compatibility includes existing Home aliases identified in the current source, not arbitrary historical URLs.
-- Shared column behavior is evaluated at the same viewport width and equivalent content containers; its precise dimensions and breakpoint are planning decisions.
+- The shared stacked layout is evaluated at the same viewport width and equivalent content containers. The gap between eyebrow/title and title/support is 4px at every viewport width.
 - Specs `002-hash-navigation`, `004-animated-project-header-scroll`, and `005-home-wordmark-navigation` provide existing navigation constraints; this feature changes canonical section naming without replacing those journey contracts.
 - The project constitution governs shared patterns, accessibility, responsive verification, evidence, and human review. No implementation or visual verification is claimed by this specification.
 
 ## Editorial clarification — 2026-10-07
-For desktop support text spanning two lines, the content-sized block anchors to the right edge; the lead line aligns right and its continuation starts at the block's left edge. Keep the lead longer than its continuation. Apply this shared component rule to every support paragraph. At tablet/mobile widths, both parts flow as natural left-aligned text.
+At every viewport width, place one full-width support paragraph 4px below the title group. Keep its text left-aligned and naturally wrapped.

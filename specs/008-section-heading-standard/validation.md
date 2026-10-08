@@ -129,3 +129,20 @@ Method: separate temporary Chrome profile controlled through Chrome DevTools Pro
 | `/projects/` and `/work/wallaces-quest/`, 1440×900 | Contextual Contact links reached the local Contact anchor; Back returned to fragment-free Home with saved scroll position. Avatar on catalog and wordmark on case returned to Home at scrollY=0. | Available context/back/identity journeys exercised; saved position preserved in observed returns. |
 
 Navigation tasks T013, T016 and T024 are reconciled as complete from the recorded scenarios. This includes menus/active state, Back/Forward, malformed and unknown fragments, seven cross-page navigation links, contextual Back/Contact links, avatar and wordmark identity controls, stale restoration intent, and five exact saved-position cycles measured after locator scroll-to-click. T008 and T023 are complete for the agreed scope: the user removed manual browser-zoom/enlarged-text checks on 2026-10-07 because the available browser setup could not perform them. The attempted CDP keyboard shortcut did not change browser zoom and was not counted as a test. No concrete application defect was found in this browser validation.
+
+## T008 visual revalidation — 2026-10-08
+
+**Environment and method:** Local site at `http://localhost:4321/`, inspected in Chrome 154 (`headless=new`) using Chrome DevTools Protocol outside the workspace sandbox. CSS viewport emulation used at 1440×1000, 1024×900, 768×900, and 390×844. DevTools `Runtime.evaluate` measured bounding boxes, computed text alignment, support line count, gaps, and document horizontal dimensions. `Page.captureScreenshot` captured the 1440px Home and catalog views; both screenshots were visually inspected. This is browser emulation, not a physical-device test.
+
+**Routes and coverage:** Home `/` (Featured, Projects, Teammates, About, Experience) and `/projects/` (All Projects), at all four viewport widths: 24 heading instances observed.
+
+| CSS viewport | Home support origin / width | All Projects support origin / width | Eyebrow→title gap | Title group→support gap | Wrapping / overflow |
+| --- | --- | --- | --- | --- | --- |
+| 1440×1000 | x=112.5, width=1200 | x=112.5, width=1200 | 4px | 4px | All single-line; no horizontal overflow |
+| 1024×900 | x=32, width=945 | x=32, width=945 | 4px | 4px | All single-line; no horizontal overflow |
+| 768×900 | x=24, width=705 | x=24, width=705 | 4px | 4px | All single-line; no horizontal overflow |
+| 390×844 | x=24, width=327 | x=24, width=327 | 4px | 4px | Home support wraps to 2–3 lines; All Projects wraps to 2 lines; no horizontal overflow |
+
+At each viewport, every support paragraph was left-aligned and began at the same x-coordinate as its title group; its measured width matched the available heading width. `documentElement.scrollWidth` equaled `clientWidth` for every route/viewport pair. Screenshots at 1440px visually confirmed the stacked order and spacing on Home and All Projects.
+
+**Result:** T008 passes for the requested current-layout geometry and representative desktop/tablet/mobile viewports. The prior measurements for the superseded right-column design remain historical and are not used for this result. No stress fixture with artificially long or unbroken content, manual browser zoom, physical-device check, or assistive-technology test was performed; none is claimed by this T008 result.
