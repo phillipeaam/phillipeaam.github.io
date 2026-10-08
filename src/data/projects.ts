@@ -358,8 +358,8 @@ export type ProjectRecord = {
   /** Missing and false values both mean the project is not publicly included. */
   portfolioIncluded?: boolean;
   homePlacement?: 'featured' | 'supporting';
+  featuredPromo?: string;
   homeOrder?: number;
-  homeArchiveLink?: boolean;
   archiveOrder?: number;
   archivePresentation?: 'rich' | 'standard' | 'compact';
   anchorId?: string;
@@ -443,9 +443,10 @@ export const projectRecords: ProjectRecord[] = [
       "nextProjectId": "wallaces-quest",
       "metaDescription": "Commercial Unity game development: Desafio dos Sons Iguais, shared minigame systems, and production work by Phillipe Augusto."
     },
-    "portfolioIncluded": false,
+    "portfolioIncluded": true,
     "homePlacement": "featured",
     "homeOrder": 1,
+    "featuredPromo": "Selected Unity work on gameplay sequencing, shared minigame systems, and production support.",
     "archiveOrder": 6,
     "archivePresentation": "standard",
     "anchorId": "ilhas-do-alfabeto",
@@ -534,7 +535,7 @@ export const projectRecords: ProjectRecord[] = [
     "portfolioIncluded": true,
     "homePlacement": "featured",
     "homeOrder": 2,
-    "homeArchiveLink": true,
+    "featuredPromo": "A tactical Unity case study on encounter flow, turn ownership, and grid-search boundaries.",
     "archiveOrder": 4,
     "archivePresentation": "rich",
     "anchorId": "wallaces-quest",
@@ -632,7 +633,7 @@ export const projectRecords: ProjectRecord[] = [
     "portfolioIncluded": true,
     "homePlacement": "featured",
     "homeOrder": 3,
-    "homeArchiveLink": true,
+    "featuredPromo": "Selected Unity client contributions across reading progression, content lifecycles, and shared tooling.",
     "archiveOrder": 2,
     "archivePresentation": "rich",
     "anchorId": "read-with-ello",
@@ -707,9 +708,10 @@ export const projectRecords: ProjectRecord[] = [
       "nextProjectId": "ilhas-do-alfabeto",
       "metaDescription": "Craque da Fluência case study: Unity assessment state, structured word models, and speech-recognition integration work."
     },
-    "portfolioIncluded": false,
+    "portfolioIncluded": true,
     "homePlacement": "featured",
     "homeOrder": 4,
+    "featuredPromo": "Unity assessment work spanning word models, speech-recognition sessions, and retest state.",
     "archiveOrder": 7,
     "archivePresentation": "standard",
     "anchorId": "craque-da-fluencia",
@@ -825,7 +827,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "LinkedIn details"
       }
     ],
-    "portfolioIncluded": false,
+    "portfolioIncluded": true,
     "homePlacement": "supporting",
     "homeOrder": 2,
     "evidenceLabel": "GAMEPLAY / PRODUCT MEDIA — FLUI",
@@ -865,7 +867,7 @@ export const projectRecords: ProjectRecord[] = [
         "label": "Official product"
       }
     ],
-    "portfolioIncluded": false,
+    "portfolioIncluded": true,
     "homePlacement": "supporting",
     "homeOrder": 3,
     "evidenceLabel": "GAMEPLAY MEDIA — TABUADA",

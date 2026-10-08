@@ -15,7 +15,6 @@ One record represents one project and uses a stable unique `id` as its cross-sur
 | `archiveCategory` | No | One archive group; omission means no archive placement. |
 | `homePlacement` | No | `featured` or `supporting`; omission means no Home placement. |
 | `homeOrder`, `archiveOrder` | No | Numeric ordering within that selected surface/group. |
-| `homeArchiveLink` | No | Whether a Home card also offers the archive destination. |
 | `caseStudy` | No | Optional nested editorial area. To publish it, it must contain a stable route `slug` and at least two `stories`, each with non-empty `title` and `framing`; all other editorial areas are optional when there is no supported content. Omission or failure to meet these requirements means no case-study CTA or generated route. |
 | `type`, `context`, `period` | No | Optional classification and context fields. |
 | `contribution`, `engineeringFocus` | No | Optional, evidence-backed contribution and engineering focus. |

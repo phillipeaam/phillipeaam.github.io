@@ -30,7 +30,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
 
   <section class="section-block content-width" data-nav-section="featured" aria-labelledby="featured-title">
     <SectionHeading anchorId="featured" aliases={homeSection('featured').legacyIds} eyebrow="WORK, IN DEPTH" title="Featured" titleId="featured-title" supportLead="The problems, decisions, and gameplay systems behind" supportContinuation="selected projects." />
-    <div class="featured-list">{homeFeaturedProjects.map((project, index) => <FeaturedProject project={project} reverse={index % 2 === 1} />)}</div>
+    <div class="featured-grid">{homeFeaturedProjects.map((project) => <FeaturedProject project={project} />)}</div>
   </section>
 
   <section class="section-block content-width more-projects" data-nav-section="projects" aria-labelledby="projects-title">

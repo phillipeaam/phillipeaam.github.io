@@ -46,7 +46,6 @@ Employment history in `src/data/experience.ts` stores project IDs, not copied pr
 | `archiveCategory` | Archive section | No archive placement |
 | `homePlacement` | `featured` or `supporting` Home section | No Home placement |
 | `homeOrder`, `archiveOrder` | Order within the relevant surface/group | Existing fallback ordering applies |
-| `homeArchiveLink` | Whether a Home item also links to its archive record | No archive CTA |
 | `caseStudy` | Optional case-study area; publishing it requires a slug and at least two stories with non-empty titles and framings | No case-study CTA or generated route unless these requirements are met |
 | `type`, `context`, `period` | Classification and context | Omit the unavailable detail |
 | `contribution`, `engineeringFocus` | What the author contributed and technical focus | Omit the section |
