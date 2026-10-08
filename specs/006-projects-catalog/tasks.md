@@ -491,3 +491,9 @@ Current results and Pandora's source comparison are recorded in `evaluation.md`.
 ## Phase 33: Compact project identity icons — 2026-10-08
 
 - [X] T097 Document the reusable small identity-icon standard for catalog and Featured in `docs/project-icon-standard.md`; reconcile spec FR-045/SC-032, plan, data model, contract, research, quickstart and checklist without rewriting historical decisions. Record the previously observed six-icon desktop/mobile browser validation in `evaluation.md`, including route, viewport, method and limits. Preserve source artwork and the staged icon assets; do not commit or change public content.
+
+
+## Phase 34: Catalog identity link hit area — 2026-10-08
+
+- [X] T098 In `src/components/ProjectRecord.astro`, replace the title-only `archive-record__title-link` with one `archive-record__identity-link` anchor around the project title and optional approved identity icon. Preserve the stable record hash and accessible title; keep media, summary, details, and their links outside the anchor. Update whole-link hover/focus styles and reconcile spec, plan, model, contract, quickstart, and project-record guide.
+- [ ] T099 Validate FR-046 / SC-033 in the browser at desktop/mobile widths using pointer, keyboard focus, and touch/emulation where available. Record route, viewport, input method, hash and accessibility/focus observations in `specs/006-projects-catalog/evaluation.md`; do not mark complete based on source inspection alone.

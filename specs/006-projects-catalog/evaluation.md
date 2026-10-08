@@ -371,3 +371,8 @@ Por decisão explícita do usuário, não é necessário testar a saída falada 
 | `/projects/`, 390 × 844 CSS px | Inspeção em viewport mobile no browser local: os seis ícones carregaram no slot 52 × 52 sem overflow observado. | Viewport do browser, não aparelho físico; não generaliza para outras larguras. |
 
 O crop de Read With Ello foi ajustado após feedback de enquadramento e conferido visualmente em 52 × 52 CSS px. Essa avaliação observada motiva a regra de centralização óptica. Dimensões/fidelidade de futuros assets devem ser verificadas individualmente conforme o cenário N do quickstart. A autorização registrada é de reutilização no portfólio e não certifica direitos de terceiros.
+
+
+### Project identity link hit area — implementation record — 2026-10-08
+
+Implementation now uses one `archive-record__identity-link` around icon and title in `ProjectRecord.astro`, retaining the existing self-fragment target. Browser validation of pointer, keyboard focus, touch and accessible name under FR-046 / SC-033 has not been performed for this change; T099 remains open.

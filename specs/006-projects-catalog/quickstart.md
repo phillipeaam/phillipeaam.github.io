@@ -105,3 +105,8 @@ Ao fechar a rodada, registrar SC-025–SC-031 separadamente de SC-001–SC-024, 
 ## N — Compact identity icons (FR-045 / SC-032)
 
 For each record with `projectsIndexTitleIcon`, confirm the path resolves to a square 104 × 104 WebP derivative and record-specific reuse approval is present. Confirm the original poster/cover remains unchanged. In the browser, inspect `/projects/` and `/#featured` where applicable at desktop (1440 × 900 CSS px) and mobile (390 × 844 CSS px). Confirm rendering at 52 × 52 CSS px, reuse of the same canonical asset, loading without layout shift, recognizable/unclipped subject, and optical centering; compare product/company artwork with its approved identity. Confirm absent/unapproved icons leave no blank slot and the visible title remains. Record actual route, viewport, method, natural/rendered dimensions and observations in `evaluation.md`; source inspection alone does not prove visual centering.
+
+
+## O — Project identity link (FR-046 / SC-033)
+
+On `/projects/`, inspect catalog entries with and without media at desktop and mobile widths where available. Click the approved icon and different points in the title area; each must set the same record hash. Tab to the identity link and confirm the visible focus encloses the clickable identity. Verify the accessible link name comes from the project title, the decorative icon is not announced twice, and the summary/media/details actions remain separate. Repeat with emulated touch if available. Record route, CSS viewport, input method, resulting URL and focus/accessibility observations in `evaluation.md`.

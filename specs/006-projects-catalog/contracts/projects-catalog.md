@@ -20,6 +20,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 
 - The page contains one recognizable text entry for every published project in editorial order.
 - Each entry exposes its stable existing project ID as a link target.
+- In catalog entries rendered by `ProjectRecord.astro`, the identity link wraps the complete project title and optional approved icon (`archive-record__identity-link`). Clicking either part navigates to the same stable project hash. Do not limit the link to the title glyphs, wrap the entire entry, or nest links. Preserve visible keyboard focus.
 - The total is derived from the complete public inventory.
 - Search and facet controls become interactive only after their behavior is initialized. If initialization is unavailable, all entries and their core links remain usable and controls do not appear functional.
 - Compact entry information includes project name, concise product summary, approved identity icon and primary media; context, contribution, period, product type and actions belong to details. Technology chips are not shown in the compact entry. Missing facts are omitted.
@@ -108,3 +109,8 @@ O pedido do usuário para completar Pandora e a indicação de que os arquivos e
 - The icon is a derivative; never overwrite its source poster/cover. Preserve supplied corporate/product designs. Center the recognizable subject optically at display size.
 - The icon is decorative when the adjacent visible project name conveys the same identity. Missing or unapproved icons are omitted without blank space.
 - Reuse approval is scoped to the exact icon on that project record and is not a legal rights audit.
+
+
+## Project identity link — 2026-10-08
+
+`ProjectRecord.astro` renders the identity image (when approved) and title inside one `<a class="archive-record__identity-link">` targeting the existing `#${recordId}`. The complete visual identity is the hit area; media, summary, details toggle, and detail actions remain independent. The icon is decorative and the title names the link. Hover and keyboard focus apply to the whole identity link; the existing stable record id and URL behavior do not change.

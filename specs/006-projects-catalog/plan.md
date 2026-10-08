@@ -225,3 +225,8 @@ Esta extensão usa o padrão permanente em `docs/project-icon-standard.md` e nã
 - Usar nome `<project-slug>-icon.webp`, aprovação específica no registro e omitir ícone ausente/não aprovado sem espaço vazio.
 - QA: conferir arquivo/formato/dimensões e path; observar `/projects/` e `/#featured` em desktop/mobile; registrar dimensões CSS e estado de carga; inspecionar crop, identidade e overflow em `evaluation.md` com rota, viewport e método.
 - Fonte original nunca é sobrescrita. Mudanças no padrão atualizam spec, modelo, contrato, guia de registro, pesquisa e quickstart.
+
+
+## Extensão vigente — link da identidade — 2026-10-08
+
+Atualizar `ProjectRecord.astro` para usar um único `<a class="archive-record__identity-link">` envolvendo o ícone opcional e o título da entrada com mídia. Preservar o destino `#${recordId}` e o id estável; hover/foco indicam a interação sobre a composição toda. Não envolver mídia, resumo, controle More details nem ações e não criar links aninhados. Manter o nome acessível no título, ícone com `alt=""` e foco visível. Validar SC-033 com ponteiro, teclado e touch nos viewports alvo; registrar no evaluation.md somente após observação runtime.

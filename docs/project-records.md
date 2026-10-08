@@ -154,9 +154,13 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 | Home featured work | `src/components/FeaturedProject.astro` | Project name, summary, contribution, media, case-study/action links |
 | Home supporting work | `src/components/SupportingProject.astro` | Project name, optional detail, media, actions, archive destination |
 | All Projects page | `src/components/ProjectRecord.astro`, `src/components/RichProjectRecord.astro` | Summary, metadata, contribution, media, actions, and optional title icon |
+| Catalog media-entry identity | `ProjectRecord.astro` / `.archive-record__identity-link` | One link wraps the optional decorative icon and project title and targets the stable record hash; media, summary, details and actions remain separate |
 | Experience Selected work | `src/components/ExperienceEntry.astro`, `resolveExperienceWork`, and `resolveProjectArchiveHref` | Explicit reference label (otherwise canonical project name); included archive projects link to `/projects/#${anchorId ?? id}`, with plain-text fallback when missing, excluded, or not placed in the archive |
 | Case study | `src/pages/work/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |
 
 ## Current branch repair
 
 When the feature work was reapplied on top of the current `develop`, several poster and narrative image paths still ended in `.png`, while the current assets had been converted to `.webp`. Project and nested case-study media references in `src/data/projects.ts` now use the available `.webp` assets. The spec's media requirements include checking referenced files so future asset format changes do not leave broken images behind.
+
+
+For catalog entries rendered by `ProjectRecord.astro`, the compact identity is one `.archive-record__identity-link` around the optional icon and heading, targeting the same stable project fragment. Keep the entire identity composition clickable, keep the icon decorative when the title repeats its meaning, and do not wrap the media, description, disclosures, or detail links. Preserve keyboard focus visibility. Runtime acceptance is SC-033 in feature 006.
