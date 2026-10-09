@@ -380,3 +380,111 @@ O crop de Read With Ello foi ajustado após feedback de enquadramento e conferid
 ### Project identity link hit area — implementation record — 2026-10-08
 
 Implementation now uses one `archive-record__identity-link` around icon and title in `ProjectRecord.astro`, retaining the existing self-fragment target. Browser validation of pointer, keyboard focus, touch and accessible name under FR-046 / SC-033 has not been performed for this change; T099 remains open.
+
+### Compact CTA row — implementation and browser check — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| `/projects/?icon-review=1#pandora`, 764 × 485 CSS px | Local Chrome DevTools Protocol; measured rendered rectangles after the catalog loaded | `More details` and the itch.io action were visible on the same utility row; the action appeared to the right and retained `https://phillipeaam.itch.io/pandora`. No page overflow. |
+| `/projects/?icon-review=1#pandora`, 390 × 844 CSS px | Local Chrome DevTools Protocol with emulated 390 px viewport; measured rendered rectangles | Both controls remained legible on one row for Pandora; no page overflow. This was viewport emulation, not physical-device testing. |
+
+The same rendered DOM retained all declared actions for Read With Ello, Wallace’s Quest, and other records with multiple destinations. This check does not claim keyboard or physical-touch validation.
+### Pandora details and utility row — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| `/projects/?icon-review=1#pandora`, 764 × 485 CSS px | Local Chrome DevTools Protocol; opened Pandora details and measured rendered boxes | More details used the CTA-like 14 px medium-weight accent style. The itch.io CTA followed it 14 px later on the left-grouped row. Expanded order was Selected contributions, Technology, facts. Role/Context rendered in the left half; Type/Period in the right half. No page overflow. |
+| `/projects/?icon-review=1#pandora`, 390 × 844 CSS px | Local Chrome DevTools Protocol with emulated 390 px viewport; measured rendered boxes | More details and the itch.io CTA remained close together. Contribution, Technology, and facts stacked in order; Role, Context, Type, and Period stacked in one column. No page overflow. This was viewport emulation, not physical-device testing. |
+
+This check records one representative text-only entry and does not claim physical-touch or keyboard validation.
+
+## Phase 36 — More details disclosure appearance — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| /projects/?icon-review=1#pandora, 764 × 485 CSS px | Local Chrome DevTools Protocol; inspected computed styles, forced keyboard-focus pseudo-state, moved pointer over the visible disclosure and activated it; restored the entry to its initially expanded state | More details renders as a neutral outlined control (secondary text, elevated background, neutral border), visually separate from accent-colored links. The label and +/− pseudo-element have text-decoration: none at rest, hover, focus and after click; hover changes text/background, and focus shows a 2px outline. No interaction-state underlining was observed. The original expanded state was restored after inspection. |
+
+
+## Phase 37 — Text-only facts before contributions — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| /projects/?icon-review=1#pandora, 764 × 485 CSS px | Local Chrome DevTools Protocol; opened Pandora details and inspected the rendered DOM order and element rectangles | Facts (Role/Context/Type/Period) appeared first at y=291, Selected contributions followed at y=355, and Technology followed at y=578. The detail entry remained expanded after inspection. |
+
+
+## Phase 38 — Quiet More details disclosure — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| /projects/?icon-review=1#pandora, 764 × 485 CSS px | Local Chrome DevTools Protocol; inspected rendered rectangles/computed styles, moved pointer over control, and forced keyboard-focus pseudo-state | More details is a borderless text control at 99 × 40 px; the itch.io link is 120 × 40 px with 14 px separation. In rest it has neutral text, transparent background and no border. Hover brightens the label and accents +/−; keyboard focus shows a 2 px outline. Neither label nor indicator is underlined in rest, hover or focus. |
+
+
+## Phase 39 — Persistent More details accent — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| `/projects/?icon-review=1#pandora`, 764 × 485 CSS px | Local Chrome DevTools Protocol; sampled computed label/pseudo-element colors at rest and after moving the pointer over the button | The label and +/− indicator both remain `rgb(140, 219, 173)` at rest and hover; text and indicator remain without underline. The disclosure stays 40px tall. |
+
+## Phase 40 — More details hover highlight — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| /projects/?icon-review=1#pandora, 764 × 485 CSS px | Local Chrome DevTools Protocol; moved pointer outside the control, sampled computed styles, then moved over it and sampled again | Rest has transparent background; hover adds a subtle mint-tinted background. Label and +/− stay the same mint color, the control remains 40px tall, and the label remains without underline. |
+
+## Phase 41 — Shared project CTA ordering — 2026-10-08
+
+| Route and viewport | Method | Observation |
+| --- | --- | --- |
+| /projects/, viewport not applicable | Local Astro server response inspected as rendered HTML; examined every record CTA nav with multiple links | Read With Ello renders Watch Promo → App Store → View case study; Ello 2.0 renders Watch promo → App Store → Google Play; Flui renders Official product → LinkedIn details; Wallace's Quest renders Play on itch.io → View case study. The existing hrefs remain unchanged. This confirms HTML order, not visual spacing or viewport behavior. |
+
+## Phase 42 - External link integrity procedure - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Documentation only; no external URLs checked | Read/write review of the portfolio-record guide and feature 006 specification, contract, quickstart, and task/evaluation records | Documented the recurring link-check protocol, including route inventory, duplicate destinations, redirects, destination identity and content/context alignment, automated blocks, remediation, and evidence recording. This change did not run an external URL audit, so it makes no claim about current link availability. |
+
+### Semantic context check added
+
+The recurring link review now also requires confirming that current destination content supports the link label and the specific surrounding portfolio claim/context. A successful HTTP response alone is insufficient. This is a process update only; no destination content was inspected in this documentation change.
+
+## Phase 43 - Canonical itch.io action label - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Seven project action entries in `src/data/projects.ts` | Source inspection after replacing three label variants with the shared constant | All seven entries reference `ITCH_IO_ACTION_LABEL` (`View on itch.io`); the seven project-specific hrefs were preserved. This is source-level evidence only: no browser rendering or live itch.io destination/content audit was performed in this change. |
+
+## Phase 44 - More details underline highlight - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Catalog disclosure markup/styles and current requirement documents | Source/document inspection after editing | Wrapped the disclosure label separately from its pseudo-element and changed hover, active, and focus-visible styling to underline only the label. Background remains transparent and the accent color remains unchanged. Browser-rendered states were not inspected in this change; visual/runtime confirmation remains pending. |
+
+## Phase 45 - More details indicator placement - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Catalog disclosure pseudo-element and current pattern documents | Source/document inspection | Moved the +/− pseudo-element from `::before` to `::after`, placing it to the right of the separate label span. No browser-render validation was performed in this change. |
+
+## Phase 46 - Case-study CTA arrow decoration - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Standard/rich case-study CTA markup and styles | Source/document inspection | Split label and decorative arrow into separate spans; underline styling now targets only the label, while the arrow remains `aria-hidden`. No rendered browser-state inspection was performed. |
+
+## Phase 47 - More details CTA spacing - 2026-10-08
+
+| Scope | Method | Observation |
+| --- | --- | --- |
+| Catalog disclosure and CTA spacing rules | Source inspection | More details now has zero horizontal padding, uses the shared 7px CTA icon gap, and gives the +/− glyph intrinsic width rather than a 1em slot. Browser-computed geometry was not inspected. |
+
+## Phase 48 — Post-restructure utility-row browser validation — 2026-10-09
+
+| Route and CSS viewport | Method | Observation |
+| --- | --- | --- |
+| `/projects/#wallaces-quest`, 390 × 900 CSS px | Isolated local Chrome 154 headless via DevTools Protocol; emulated viewport; inspected rendered element rectangles and document dimensions | More details and `View on itch.io` share the first row at x=24 and y=433; the case-study CTA wraps to the next row at y=477. Utility row measures 327 × 84 px, with 14px column gap and 4px row gap. `scrollWidth` equals `clientWidth` (375px); no horizontal page overflow. |
+| `/projects/#wallaces-quest`, 444 × 900 CSS px | Same method; 444 CSS px selected to reproduce the width of the supplied screenshot, not asserted as its original CSS viewport | More details and itch.io share the first row (y=433); case study wraps to y=477. Utility row measures 381 × 84 px; 14px column gap and 4px row gap. `scrollWidth` equals `clientWidth` (429px); no horizontal page overflow. The itch.io href is `https://phillipeaam.itch.io/wallaces-quest`. |
+| `/projects/#wallaces-quest`, 768 × 900 CSS px | Same method; emulated viewport | More details and itch.io share the first row; case study wraps. Controls are 36px tall, utility row measures 381 × 76 px, and document `scrollWidth` equals `clientWidth` (753px). No horizontal page overflow. |
+| `/projects/#wallaces-quest`, 1280 × 900 CSS px | Same method; emulated viewport | All three controls fit on one row; controls are 36px tall and the utility row measures 876 × 36 px. `scrollWidth` equals `clientWidth` (1265px); no horizontal page overflow. |
+| `/projects/#wallaces-quest`, 390 × 844 CSS px | DevTools computed styles at rest; `CSS.forcePseudoState` for hover/focus-visible; programmatic button activation | Rest and hover keep mint text (`rgb(140, 219, 173)`) and transparent background. Hover underlines the label only; the SVG indicator remains un-underlined. Focus-visible shows a 2px outline. Activation sets `aria-expanded=true` and opens the associated details. Hover/focus were pseudo-state-forced and activation was programmatic; this does not claim physical pointer, keyboard navigation, or touch testing. |
+
+T113 is complete for these measured browser states and widths. Physical devices, real pointer/keyboard input, and other viewport sizes were not tested. The user-supplied screenshot motivated the 444px emulation; its original CSS viewport remains unknown.

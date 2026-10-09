@@ -497,3 +497,64 @@ Current results and Pandora's source comparison are recorded in `evaluation.md`.
 
 - [X] T098 In `src/components/ProjectRecord.astro`, replace the title-only `archive-record__title-link` with one `archive-record__identity-link` anchor around the project title and optional approved identity icon. Preserve the stable record hash and accessible title; keep media, summary, details, and their links outside the anchor. Update whole-link hover/focus styles and reconcile spec, plan, model, contract, quickstart, and project-record guide.
 - [ ] T099 Validate FR-046 / SC-033 in the browser at desktop/mobile widths using pointer, keyboard focus, and touch/emulation where available. Record route, viewport, input method, hash and accessibility/focus observations in `specs/006-projects-catalog/evaluation.md`; do not mark complete based on source inspection alone.
+
+## Phase 35: Text-only detail hierarchy and CTA utility row — 2026-10-08
+
+- [X] T100 Implement in `ProjectRecord.astro` a left-grouped compact utility row with More details followed by valid CTAs as sibling controls. For text-only disclosures, render facts, Selected contributions, then Technology; place Role/Context at left and Type/Period at right on wide screens, stacking facts on narrow screens. Browser validation after the latest markup revision is tracked separately in T113.
+
+## Phase 36: Neutral More details disclosure — 2026-10-08
+
+- [X] T101 (Neutral outline treatment superseded visually by T103.) Restyle `archive-record__details-toggle` as a neutral outlined disclosure control, visually distinct from links and CTAs; remove underlining from its label and +/− symbol in rest, hover, focus, and active states. Reconcile FR-047/SC-034, contract, plan, quickstart and evaluation. Verify rendered computed styles on Pandora and record route, viewport and method.
+
+
+## Phase 37: Text-only facts order — 2026-10-08
+
+- [X] T102 In ProjectRecord.astro, render Role/Context/Type/Period before Selected contributions for text-only project details, keeping Technology after contributions. Update FR-047/SC-034, contract, plan, quickstart and evaluation. Verify Pandora's rendered DOM and layout at the current desktop viewport; record the actual route, viewport and method.
+
+
+## Phase 38: Quiet More details disclosure — 2026-10-08
+
+- [X] T103 (Superseded by T104 accent decision.) Replace the permanent outlined More details button with a quiet borderless text disclosure. Preserve a 40px minimum hit-area height, neutral label color, +/− indicator, visible keyboard focus, and no underlining. Reconcile FR-047/SC-034, contract, plan, quickstart, and evaluation; validate the rendered Pandora row in the local browser at its actual viewport.
+
+
+## Phase 39: Persistent More details accent — historical state superseded by Phase 44 — 2026-10-08
+
+- [X] T104 Give the borderless More details control and its +/− indicator a persistent soft mint accent distinct from body copy and link blue; keep that color unchanged on hover/active, retain the 40px hit area and keyboard focus outline, and preserve no-underline behavior. Update FR-047/SC-034, contract, plan, quickstart, and evaluation; verify computed colors at rest and hover in the local browser.
+
+
+## Phase 40: More details hover highlight — historical state superseded by Phase 44 — 2026-10-08
+
+- [X] T105 Add a subtle background highlight for hover/active while preserving the persistent mint label and +/− colors, borderless resting state, 40px hit target, keyboard focus outline, and no-underlining behavior. Update FR-047/SC-034, contract, plan, quickstart, and evaluation; verify the rendered background difference and stable foreground colors in the local browser.
+
+
+## Phase 41: Shared project CTA ordering — 2026-10-08
+
+- [X] T106 Centralize project action sorting and apply it to catalog standard/rich records and supporting project cards: itch.io, Official, Promo, stores, other external actions, then Case study. Preserve source order within each group and all existing labels/destinations. Reconcile FR-048/SC-035, contract, plan, quickstart and project-record guide; inspect a rendered entry containing promo, store and case-study links.
+
+## Phase 42: External link integrity procedure
+
+- [X] T107 Document the required recurring external-link integrity review, including route coverage, redirect handling, destination-content/context alignment, blocked automation, remediation, and evaluation evidence, in the project-records guide and catalog specification, contract, and quickstart. This task documents the procedure; it does not claim the current external URLs were checked.
+
+## Phase 43: Canonical itch.io action label
+
+- [X] T108 Replace project-specific itch.io action-label variants with the shared `ITCH_IO_ACTION_LABEL` value (`View on itch.io`), preserve each project URL, and document the wording rule in the project-record guide and feature 006 spec, contract, and quickstart. Source inspection confirmed seven action entries use the constant; no live URL audit or browser-render validation is claimed here.
+
+## Phase 44: More details underline highlight
+
+- [X] T109 Change the catalog More details hover/active/focus highlight from a tinted background to an underline on the label only. Keep the mint-green foreground, transparent background, +/− symbol without underline, 36px minimum height above 700px and 40px at or below 700px, and visible keyboard focus. Update FR-047, scenario 11, the UI contract, and project-record guide. Source changes are recorded; no browser-render validation is claimed in this task.
+
+## Phase 45: More details indicator placement
+
+- [X] T110 Move the More details +/− pseudo-element after the label so it appears on the right. Preserve underline on the label only, the green symbol without underline, transparent background, and the existing disclosure behavior. Update FR-047, quickstart, contract, project-record guide, and evaluation. Source inspection only; no rendered browser validation is claimed.
+
+## Phase 46: Case-study CTA arrow decoration
+
+- [X] T111 Separate the `View case study` label from its decorative arrow in standard and rich catalog records; apply hover/focus underline only to the label and keep the arrow `aria-hidden` and un-underlined. Update quickstart, contract, and project-record guide. Source inspection only; browser-render validation is not claimed.
+
+## Phase 47: More details CTA spacing
+
+- [X] T112 Align the More details control's horizontal box model with adjacent catalog CTAs: remove the 6px side padding, share their label/icon gap through one CSS token, and remove the pseudo-element's artificial fixed width. Preserve the responsive 36px/40px minimum heights and underline/focus states; the utility row uses 4px vertical and 14px horizontal gaps. Update the project-record guide, UI contract, and quickstart. Source inspection only; no browser-computed geometry was inspected.
+
+## Phase 48: Post-restructure utility-row validation — 2026-10-09
+
+- [X] T113 Validate the latest More details and CTA sibling layout in an isolated local Chrome session at desktop and narrow CSS viewports. Record routes, viewport widths, browser method, row grouping/wrapping, measured gaps, itch.io destination, interaction states, and horizontal overflow in `evaluation.md`. The test used CSS viewport emulation and DevTools-forced hover/focus pseudo-states; it does not claim physical-device testing.

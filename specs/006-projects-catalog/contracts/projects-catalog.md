@@ -6,8 +6,8 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 
 ## Current editorial contract — 2026-10-05
 
-- Collapsed entry remains media | identity/title/product description/More details on desktop, stacked on mobile. JS toggle stays beside description; no-JS native disclosure remains usable at the beginning of full-width details below both columns.
-- Expanded order: compact verified facts; Selected contributions if supported; verified technologies/useful metadata; supplementary eligible media if any; existing actions. Necessary product context may accompany the contribution; no mandatory Product section.
+- Collapsed entry remains media | identity/title/product description/utility row on desktop, stacked on mobile. The JavaScript More details disclosure and available CTAs share the utility row; CTAs follow the control closely on its left-side group and follow the shared order: itch.io, Official, Promo, stores, then Case study. Unknown external actions follow recognized categories and precede Case study; preserve source order within a category. More details uses a quiet text-button style without border or background in any state, distinct from links through a persistent mint-green color and +/− indicator. Hover, active, and keyboard-focus states place the +/− symbol to the right of the label and underline only the label; never underline the symbol. Keep the mint foreground unchanged, the background transparent, a 36px minimum control height above 700px and 40px at or below 700px, and a visible keyboard focus outline. The utility row uses 4px between wrapped rows and 14px between controls. The no-JS native disclosure remains usable at the beginning of full-width details below both columns.
+- In text-only disclosures, expanded order is facts, Selected contributions, then Technology. On wide screens Role/Context form the left fact group and Type/Period the right; narrow screens stack Role, Context, Type and Period. Other metadata, product context, supplementary media and actions remain available in their appropriate detail groups.
 - Selected contributions contains one or two sentences of individual scope and zero to three specific technical highlights. Two or three are preferred when supported; absence of evidence never creates a quota or inferred authorship. Optional outcome requires evidence, not necessarily numbers.
 - Facts have distinct meanings: individual role, organization/team/circumstance, product nature, documented period; no stack in Type or Role repeated in Context. Omit absent facts and empty groups.
 - Keep public product behavior distinguishable from attributable individual work; preserve team, historical era and release boundaries. No automatic concatenation of source paragraphs or copying full cases.
@@ -23,7 +23,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 - In catalog entries rendered by `ProjectRecord.astro`, the identity link wraps the complete project title and optional approved icon (`archive-record__identity-link`). Clicking either part navigates to the same stable project hash. Do not limit the link to the title glyphs, wrap the entire entry, or nest links. Preserve visible keyboard focus.
 - The total is derived from the complete public inventory.
 - Search and facet controls become interactive only after their behavior is initialized. If initialization is unavailable, all entries and their core links remain usable and controls do not appear functional.
-- Compact entry information includes project name, concise product summary, approved identity icon and primary media; context, contribution, period, product type and actions belong to details. Technology chips are not shown in the compact entry. Missing facts are omitted.
+- Compact entry information includes project name, concise product summary, approved identity icon and primary media; context, contribution, period, product type and technologies belong to details. Valid case-study and external-action CTAs remain visible immediately after “More details”, grouped near it on the left of the compact utility row, in shared category order: itch.io, Official, Promo, stores, then Case study. More details is a quiet borderless text disclosure in mint green. At rest it has no underline; on hover, active, and keyboard focus only its label is underlined, never the +/− indicator. Its background stays transparent, and the control is at least 36px tall above 700px and 40px tall at or below 700px, with visible keyboard focus. Wrapped utility rows use 4px vertical and 14px horizontal gaps. Technology chips are not shown in the compact entry. Missing facts are omitted.
 - The page heading reuses the approved “More Projects” section-heading pattern and copy from Home: eyebrow “BREADTH, AT A GLANCE”, title “All Projects”, and its existing supporting sentence. The “PROJECT ARCHIVE” eyebrow and prior page intro are removed.
 - Every record boundary uses the same divider style and spacing.
 
@@ -45,7 +45,7 @@ This is the user-facing interaction contract for `/projects/`. It is independent
 ## More details and links
 
 - A project with additional details exposes an independently operable disclosure next to/within that project entry. Opening one item does not close another.
-- Expanded content uses consistent labels and hierarchy for available product/context, contribution, engineering focus, metadata, technology chips, approved media, and actions; empty sections are omitted.
+- Expanded content uses consistent labels and hierarchy for available product/context, contribution, engineering focus, metadata, technology chips, and approved media; empty sections are omitted. Case-study and external-action links remain in the collapsed utility row.
 - Verified primary media appears inline in the collapsed entry; only supplementary media appears in details. Unverified media is omitted; approved animated previews retain a static alternative and accessible motion controls rather than being reduced to an external link.
 - On desktop, primary media is left of identity/summary; on mobile it is above them. Details remain associated with their own entry; no duplication of primary media or unchanged summary.
 - Disclosure state is announced semantically. Controls work with keyboard and touch and show visible focus.
@@ -114,3 +114,15 @@ O pedido do usuário para completar Pandora e a indicação de que os arquivos e
 ## Project identity link — 2026-10-08
 
 `ProjectRecord.astro` renders the identity image (when approved) and title inside one `<a class="archive-record__identity-link">` targeting the existing `#${recordId}`. The complete visual identity is the hit area; media, summary, details toggle, and detail actions remain independent. The icon is decorative and the title names the link. Hover and keyboard focus apply to the whole identity link; the existing stable record id and URL behavior do not change.
+
+## External destination integrity
+
+Every published external CTA and project link is included in the recurring external-link integrity review defined in `docs/project-records.md`. A destination is considered verified only after redirects have been followed and the final page is confirmed to match its visible label and intended product or profile, with current page content that still supports the surrounding portfolio claim or context. A live but contextually mismatched page is not verified. Automated blocks require manual browser inspection or an explicit exception; they are not successful checks.
+
+## Canonical itch.io action label
+
+Project actions targeting itch.io project pages use the shared `ITCH_IO_ACTION_LABEL` constant from `src/data/projects.ts`, with the canonical text `View on itch.io`. This wording identifies the destination without promising a browser-playable build. Keep each href specific to its project and validate the live page content against the linked portfolio context.
+
+Case-study CTA underline applies only to the `View case study` label. Its decorative arrow is a separate `aria-hidden` element and must not receive an underline.
+
+The More details control uses the same zero horizontal padding and shared icon gap as adjacent catalog CTAs; the trailing +/− symbol has no artificial fixed-width slot. Its minimum height is 36px above 700px and 40px at or below 700px. The utility row uses 4px vertical and 14px horizontal gaps.

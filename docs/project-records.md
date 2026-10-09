@@ -157,7 +157,7 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 | --- | --- | --- |
 | Home featured work | `src/components/FeaturedProject.astro` | Project name, summary, contribution, media, case-study/action links |
 | Home supporting work | `src/components/SupportingProject.astro` | Project name, optional detail, media, actions, archive destination |
-| All Projects page | `src/components/ProjectRecord.astro`, `src/components/RichProjectRecord.astro` | Summary, metadata, contribution, media, actions, and optional title icon |
+| All Projects page | `src/components/ProjectRecord.astro`, `src/components/RichProjectRecord.astro` | Summary, metadata, contribution, media, actions, and optional title icon; catalog CTAs follow More details in the same left-grouped utility row using the shared itch.io → Official → Promo → stores → other actions → Case study order |
 | Catalog media-entry identity | `ProjectRecord.astro` / `.archive-record__identity-link` | One link wraps the optional decorative icon and project title and targets the stable record hash; media, summary, details and actions remain separate |
 | Experience Selected work | `src/components/ExperienceEntry.astro`, `resolveExperienceWork`, and `resolveProjectArchiveHref` | Explicit reference label (otherwise canonical project name); included archive projects link to `/projects/#${anchorId ?? id}`, with plain-text fallback when missing, excluded, or not placed in the archive |
 | Case study | `src/pages/work/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |
@@ -168,3 +168,29 @@ When the feature work was reapplied on top of the current `develop`, several pos
 
 
 For catalog entries rendered by `ProjectRecord.astro`, the compact identity is one `.archive-record__identity-link` around the optional icon and heading, targeting the same stable project fragment. Keep the entire identity composition clickable, keep the icon decorative when the title repeats its meaning, and do not wrap the media, description, disclosures, or detail links. Preserve keyboard focus visibility. Runtime acceptance is SC-033 in feature 006.
+
+## External link integrity (required portfolio QA)
+
+Check the portfolio's public external links during every portfolio QA or release review, and whenever a link destination changes. Include links rendered on the home page, project catalog, published case studies, experience entries, teammate recommendations, and contact or social areas. Inventory the rendered links, deduplicate identical HTTP(S) destinations, and record the source route and visible link label for each destination.
+
+Open each destination and follow redirects to confirm that the final page loads, matches the intended product, organization, or profile, and still supports the specific claim or context expressed by the portfolio link and surrounding copy. Check the current page content, not only its URL, title, or HTTP status: a live page whose content has changed or no longer substantiates the portfolio context is a semantic mismatch and must be corrected, relabeled, or explicitly excepted. Prefer a normal GET request or browser navigation; a HEAD-only result is not sufficient. If an automated check receives a 403, 429, bot challenge, or other service restriction, record it as inconclusive and inspect the destination in a browser. Do not mark it passed or broken from that response alone.
+
+Treat confirmed 404/410 responses, DNS or TLS failures, redirect loops, and unrelated or removed destinations as failures. Correct the URL or remove the CTA when no valid destination exists. If a destination is intentionally gated or unavailable, record the reason as an explicit exception. Validate mailto: and tel: links for scheme and intended target separately; internal anchors are covered by navigation checks, not external availability checks.
+
+Record the review date, route, link label, unique destination, checking method, final URL and status (or manual browser outcome), and any exception in the relevant feature evaluation record. Do not report all links as verified unless every in-scope unique destination has a definitive result. This recurring check reduces the chance of presenting broken links; it cannot guarantee that third-party pages will remain available after review.
+
+## Canonical itch.io action label
+
+All project actions that point to an itch.io project page use the shared `ITCH_IO_ACTION_LABEL` value from `src/data/projects.ts`, currently `View on itch.io`. Use this neutral wording consistently whether a page has a browser-playable build, a downloadable build, or only project information; do not imply that the game can be played directly from the page unless that claim is verified. Keep the destination URL project-specific and confirm its current page content against the portfolio context under the external-link integrity procedure above.
+
+## More details interaction highlight
+
+The catalog `More details` disclosure has a transparent background in every state. On hover, active, and keyboard focus, its label and `+`/`−` icon remain mint green. Underline only the label; never underline the icon. Keep a 36px minimum control height above 700px and 40px at or below 700px, plus a visible focus outline. The label is wrapped separately in `.archive-record__details-label` so underline styling cannot affect the symbol.
+
+The `+`/`−` indicator follows the More details label on its right, matching the portfolio's other disclosure controls. Keep it separate from the label underline.
+
+## Case-study CTA arrow
+
+The catalog `View case study` action underlines only its text label on hover/focus. Keep the decorative SVG arrow separate from the underlined text label, hidden from assistive technology, and preserve the accessible link name.
+
+The More details control aligns with adjacent catalog CTAs: zero horizontal padding, a 36px minimum height above 700px and 40px at or below 700px, and the shared `--archive-action-icon-gap` between its label and trailing +/− symbol. The symbol uses its intrinsic glyph width, without an extra fixed-width slot. The utility row uses 4px between wrapped rows and 14px between controls.
