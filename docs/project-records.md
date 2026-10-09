@@ -14,6 +14,10 @@ The merge into feature 006 preserves the canonical `projectRecords` model and mi
 
 The archive reads those fields directly, preserves the compact two-column entry and full-width expanded details, and omits media without the scoped reuse approval. Publication and case CTAs still require `portfolioIncluded` and a publishable `caseStudy`. Excluded projects remain excluded. The merge does not implement other recommendations from the hiring review.
 
+## Shared interface icon standard
+
+Use the shared SVG icon component for interface arrows and disclosure plus/minus marks. Preserve arrows used as prose or diagram notation. See [Interface Icon Standard](interface-icon-standard.md) for SVG geometry, accessibility, sizing, and review criteria.
+
 ## How the information flows
 
 ```mermaid

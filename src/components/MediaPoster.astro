@@ -1,5 +1,6 @@
 ---
 import PreviewControl from './PreviewControl.astro';
+import Icon from './Icon.astro';
 const { label, alt = label, kind = 'neutral', caption, demoPreview = false, compact = false, posterLabel, src, previewSrc } = Astro.props;
 const kindClass = `proxy-${kind}`;
 const posterLabels: Record<string, string> = {
@@ -20,7 +21,7 @@ const posterLabels: Record<string, string> = {
       {kind === 'ello' && <div class="proxy-phone"><i></i><i></i><i></i></div>}
       {kind === 'craque' && <div class="proxy-assessment"><i></i><i></i><i></i><i></i><i></i></div>}
       {kind === 'pathless' && <div class="proxy-rescue"><i></i><i></i><i></i></div>}
-      {kind === 'neutral' && <div class="proxy-flow"><i></i><i></i><i></i></div>}
+      {kind === 'neutral' && <div class="proxy-flow"><i></i><Icon name="arrow-right" size={20} /><i></i><Icon name="arrow-right" size={20} /><i></i></div>}
     </div>
     <span class="poster-overline">{posterLabel ?? posterLabels[kind] ?? label}</span>
     {demoPreview && <div class="preview-message" aria-hidden="true"><span class="preview-indicator"></span><span>PREVIEW STATE · PLACEHOLDER ONLY</span></div>}

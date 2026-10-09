@@ -40,7 +40,7 @@ const resumeHref = `${homePath}resume/Phillipe_Augusto_Resume.pdf`;
         <span class="more-projects__guidance--hover">Hover to preview where available <span aria-hidden="true">·</span> Click a project to view details</span>
         <span class="more-projects__guidance--touch">Tap a project to view details</span>
       </p>
-      <a class="section-footer-action" href={`${homePath}projects/`}><span class="section-footer-action__label">See all projects</span><span class="section-footer-action__icon" aria-hidden="true">→</span></a>
+      <a class="section-footer-action" href={`${homePath}projects/`}><span class="section-footer-action__label">See all projects</span><Icon name="arrow-right" size={16} class="section-footer-action__icon" /></a>
     </div>
     <div class="supporting-grid">
       {homeSupportingProjects.map((project) => <SupportingProject project={project} simple />)}

@@ -1,10 +1,11 @@
 ---
+import Icon from './Icon.astro';
 const cells = [
   ['S', 'blocked', '', '', ''],
-  ['↑', '←', 'blocked', '', ''],
-  ['', '↑', '←', 'blocked', ''],
-  ['', '', '↑', '←', ''],
-  ['', '', '', '↑', 'T'],
+  ['up', 'left', 'blocked', '', ''],
+  ['', 'up', 'left', 'blocked', ''],
+  ['', '', 'up', 'left', ''],
+  ['', '', '', 'up', 'T'],
 ];
 ---
 <figure class="grid-search" aria-labelledby="grid-search-title">
@@ -13,7 +14,7 @@ const cells = [
     <div class="grid-search__map">
       <p class="grid-search__label">Illustrative five-by-five grid</p>
       <ol class="grid-search__cells" aria-label="Example grid: S is start, T is target, dark cells are obstacles and arrows point back to each route node's parent">
-        {cells.flatMap((row, rowIndex) => row.map((value, columnIndex) => <li class:list={['grid-search__cell', value === 'blocked' && 'grid-search__cell--blocked', (value === '↑' || value === '←') && 'grid-search__cell--route', (value === 'S' || value === 'T') && 'grid-search__cell--endpoint']} aria-label={`Row ${rowIndex + 1}, column ${columnIndex + 1}: ${value === 'S' ? 'start' : value === 'T' ? 'target' : value === 'blocked' ? 'blocked' : value === '↑' ? 'route node whose parent is above' : value === '←' ? 'route node whose parent is left' : 'walkable'}`}>{value === 'blocked' ? '' : value}</li>))}
+        {cells.flatMap((row, rowIndex) => row.map((value, columnIndex) => <li class:list={['grid-search__cell', value === 'blocked' && 'grid-search__cell--blocked', (value === 'up' || value === 'left') && 'grid-search__cell--route', (value === 'S' || value === 'T') && 'grid-search__cell--endpoint']} aria-label={`Row ${rowIndex + 1}, column ${columnIndex + 1}: ${value === 'S' ? 'start' : value === 'T' ? 'target' : value === 'blocked' ? 'blocked' : value === 'up' ? 'route node whose parent is above' : value === 'left' ? 'route node whose parent is left' : 'walkable'}`}>{value === 'blocked' ? '' : value === 'up' ? <Icon name='arrow-up' size={16} /> : value === 'left' ? <Icon name='arrow-left' size={16} /> : value}</li>))}
       </ol>
       <p class="grid-search__legend"><span>S · start</span><span>T · target</span><span>■ · blocked</span><span>arrows · parent links toward S</span></p>
     </div>

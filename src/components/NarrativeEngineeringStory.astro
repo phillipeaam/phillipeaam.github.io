@@ -1,6 +1,7 @@
 ---
 import type { Story } from '../data/projects';
 import NarrativeFlowDiagram from './NarrativeFlowDiagram.astro';
+import Icon from './Icon.astro';
 import WallaceGridSearchDiagram from './WallaceGridSearchDiagram.astro';
 
 const { story, index } = Astro.props as { story: Story; index: number };
@@ -36,7 +37,7 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
   </div>}
   {narrative.visual === 'grid-search' ? <WallaceGridSearchDiagram /> : narrative.diagram && <NarrativeFlowDiagram diagram={narrative.diagram} />}
   {narrative.technical && <details class="narrative-story__technical">
-    <summary>{narrative.technical.label}<span aria-hidden="true">+</span></summary>
+    <summary>{narrative.technical.label}<Icon name="plus" size={18} class="narrative-story__disclosure-icon narrative-story__disclosure-icon--closed" /><Icon name="minus" size={18} class="narrative-story__disclosure-icon narrative-story__disclosure-icon--open" /></summary>
     <div>
       {narrative.technical.points.map((point) => <p>{point}</p>)}
     </div>
@@ -66,10 +67,14 @@ if (!narrative) throw new Error('NarrativeEngineeringStory requires narrative co
   .narrative-story__media :global(.media-caption) { align-items: center; color: var(--muted); font-size: 12px; line-height: 1.5; }
   .narrative-story .narrative-story__media :global(.media-caption::before) { display: none; }
   .narrative-story__technical { max-width: 100%; margin-top: 22px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .narrative-story__technical summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 56px; color: var(--text); cursor: pointer; font-size: 14px; font-weight: 500; }
+  .narrative-story__technical summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 56px; color: var(--text); cursor: pointer; font-size: 14px; font-weight: 500; list-style: none; }
+  .narrative-story__technical summary::-webkit-details-marker { display: none; }
   .narrative-story__technical summary::marker { color: var(--project-accent); }
-  .narrative-story__technical summary span { color: var(--project-accent); font-size: 22px; font-weight: 400; transition: transform 160ms var(--ease); }
-  .narrative-story__technical[open] summary span { transform: rotate(45deg); }
+  .narrative-story__technical summary :global(.narrative-story__disclosure-icon) { flex: none; color: var(--project-accent); }
+  .narrative-story__technical summary :global(.narrative-story__disclosure-icon--open) { display: none; }
+  .narrative-story__technical[open] summary :global(.narrative-story__disclosure-icon--closed) { display: none; }
+  .narrative-story__technical[open] summary :global(.narrative-story__disclosure-icon--open) { display: block; }
+
   .narrative-story__technical > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 0 0 20px; }
   .narrative-story__technical p { max-width: 65ch; margin: 0; color: var(--secondary); font-size: 14px; line-height: 1.58; }
   @media (max-width: 1024px) {

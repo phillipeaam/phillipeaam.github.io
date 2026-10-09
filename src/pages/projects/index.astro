@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectRecord from '../../components/ProjectRecord.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import { getTechnologyFacetTags, projectInventoryGroups } from '../../data/projects';
+import Icon from '../../components/Icon.astro';
 
 const homePath = import.meta.env.BASE_URL;
 // Preserve the archive's existing editorial group order while presenting one list.
@@ -24,7 +25,7 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
       <div class="catalog-controls__facet">
         <span class="catalog-controls__label" id="context-facet-label">Context</span>
         <details class="catalog-facet" name="project-catalog-facets" data-facet="context">
-          <summary aria-labelledby="context-facet-label context-facet-selection"><span class="catalog-facet__selection" id="context-facet-selection" data-selection-label>All</span></summary>
+          <summary aria-labelledby="context-facet-label context-facet-selection"><span class="catalog-facet__selection" id="context-facet-selection" data-selection-label>All</span><Icon name="plus" size={16} class="catalog-facet__icon catalog-facet__icon--closed" /><Icon name="minus" size={16} class="catalog-facet__icon catalog-facet__icon--open" /></summary>
           <div class="catalog-facet__panel">
             <label class="sr-only" for="context-options-search">Search Context options</label>
             <input class="catalog-facet__search" id="context-options-search" type="search" autocomplete="off" placeholder="Search options…" data-option-search="context" />
@@ -38,7 +39,7 @@ const contextLabel = (context: string) => context === 'professional' ? 'Professi
       <div class="catalog-controls__facet">
         <span class="catalog-controls__label" id="technology-facet-label">Technology</span>
         <details class="catalog-facet" name="project-catalog-facets" data-facet="technology">
-          <summary aria-labelledby="technology-facet-label technology-facet-selection"><span class="catalog-facet__selection" id="technology-facet-selection" data-selection-label>All</span></summary>
+          <summary aria-labelledby="technology-facet-label technology-facet-selection"><span class="catalog-facet__selection" id="technology-facet-selection" data-selection-label>All</span><Icon name="plus" size={16} class="catalog-facet__icon catalog-facet__icon--closed" /><Icon name="minus" size={16} class="catalog-facet__icon catalog-facet__icon--open" /></summary>
           <div class="catalog-facet__panel">
             <label class="sr-only" for="technology-options-search">Search Technology options</label>
             <input class="catalog-facet__search" id="technology-options-search" type="search" autocomplete="off" placeholder="Search options…" data-option-search="technology" />

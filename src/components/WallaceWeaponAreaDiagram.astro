@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 const base = [
   [{ label: '×0.7', meaning: 'left affected cell, multiplier 0.7' }, { label: '×1', meaning: 'center affected cell, multiplier 1' }, { label: '×0.7', meaning: 'right affected cell, multiplier 0.7' }],
   [null, { label: 'O', meaning: 'pattern origin' }, null],
@@ -22,7 +23,7 @@ const east = [
       <small>Relative offsets: (−1, 1), (0, 1), (1, 1)</small>
     </section>
     <div class="weapon-model__transform" aria-label="Copy, transform for East, and translate">
-      <span aria-hidden="true">→</span>
+      <Icon name="arrow-right" size={28} class="weapon-model__arrow" />
       <strong>Copy · orient · place</strong>
       <p>For East, (x, y) becomes (y, −x). Then add the chosen grid origin.</p>
       <small>N · E · S · W are supported inputs</small>
@@ -54,9 +55,9 @@ const east = [
   .weapon-model__cell--affected { border-color: var(--project-accent); background: color-mix(in srgb, var(--project-accent) 19%, var(--bg)); }
   .weapon-model__stage small, .weapon-model__transform small { color: var(--muted); font-size: 11px; line-height: 1.45; }
   .weapon-model__transform { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; min-width: 0; padding: 12px 4px; }
-  .weapon-model__transform > span { color: var(--project-accent); font-size: 34px; line-height: 1; }
+  .weapon-model__transform :global(.weapon-model__arrow) { color: var(--project-accent); }
   .weapon-model__transform strong { margin: 12px 0 8px; font-size: 14px; font-weight: 600; }
   .weapon-model__transform p { margin-bottom: 10px; }
   .weapon-model__caption { margin: 20px 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.55; }
-  @media (max-width: 760px) { .weapon-model__heading { display: block; } .weapon-model__heading .eyebrow { margin-bottom: 7px; } .weapon-model__heading strong { display: block; text-align: left; } .weapon-model__stages { grid-template-columns: minmax(0, 1fr); gap: 10px; } .weapon-model__transform { padding: 4px 10px 8px; } .weapon-model__transform > span { transform: rotate(90deg); } .weapon-model__transform strong { margin-top: 0; } .weapon-model__grid { width: min(100%, 230px); } .weapon-model__cell { font-size: 14px; } }
+  @media (max-width: 760px) { .weapon-model__heading { display: block; } .weapon-model__heading .eyebrow { margin-bottom: 7px; } .weapon-model__heading strong { display: block; text-align: left; } .weapon-model__stages { grid-template-columns: minmax(0, 1fr); gap: 10px; } .weapon-model__transform { padding: 4px 10px 8px; }  .weapon-model__transform strong { margin-top: 0; } .weapon-model__grid { width: min(100%, 230px); } .weapon-model__cell { font-size: 14px; } }
 </style>
