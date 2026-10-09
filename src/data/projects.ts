@@ -1444,9 +1444,9 @@ export const projectRecords: ProjectRecord[] = [
     "archivePresentation": "standard",
     "media": [
       {
-        "type": "gif",
-        "src": "/projects/diggy/diggy-gameplay-preview.gif",
-        "posterSrc": "/projects/diggy/diggy-first-frame.webp",
+        "type": "image",
+        "src": "/projects/diggy/diggy-first-frame.webp",
+        "previewSrc": "/projects/diggy/diggy-gameplay-preview.webp",
         "alt": "Diggy gameplay showing the dog in a top-down level with obstacles and collectibles.",
         "previewAlt": "Diggy gameplay showing the dog moving through a top-down level with obstacles and collectibles.",
         "autoplayPreview": true,

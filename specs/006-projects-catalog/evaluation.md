@@ -284,17 +284,19 @@ Executado com Chrome isolado via Playwright/CDP em `http://localhost:4321/`; nã
 
 **Registro histórico da avaliação anterior:** leitor de tela falante real; revisão visual/editorial; zoom de browser e aparelho touch físico estavam não executados naquela rodada. As decisões posteriores de 2026-10-07 aprovaram a revisão humana e retiraram zoom manual e aparelho físico do escopo. Leitor de tela real permanece sem validação. Não declaro auditoria WCAG completa, estudo com participantes ou ganho de contratação. Nenhum commit, merge ou push foi feito.
 
-### Diggy — decisão de reutilização e arquivos exatos — 2026-10-06
+### Diggy — decisão de reutilização e arquivos — 2026-10-06; atualização em 2026-10-08
 
-Por solicitação explícita do usuário, a ficha de Diggy exibe estes arquivos no catálogo:
+Por solicitação explícita do usuário em 2026-10-06, a ficha de Diggy passou a exibir os arquivos listados abaixo. A tabela registra a configuração histórica com GIF:
 
-| Uso | Fonte fornecida pelo usuário | Arquivo no projeto |
+| Uso | Fonte fornecida pelo usuário | Arquivo no projeto em 2026-10-06 |
 | --- | --- | --- |
 | Ícone antes do título | `public/projects/diggy-poster.png` | `public/projects/diggy/diggy-poster.webp` |
 | Preview animado | `public/projects/diggy-gameplay-preview.gif` | `public/projects/diggy/diggy-gameplay-preview.gif` |
-| Fallback estático do GIF | Primeiro quadro de `public/projects/diggy-gameplay-preview.gif` | `public/projects/diggy/diggy-first-frame.webp` |
+| Fallback estático | Primeiro quadro do GIF | `public/projects/diggy/diggy-first-frame.webp` |
 
-A autorização registrada é para reutilizar esses arquivos exatos no portfólio, conforme a instrução do usuário de incluí-los na ficha. Ela não é apresentada como verificação independente de direitos de terceiros. Os WebP são derivados dos arquivos fornecidos; o GIF mantém carregamento por aproximação, primeiro quadro como fallback e a configuração existente de movimento reduzido. O registro central define `catalogReuseApproved` e `catalogIconReuseApproved` somente nesta ficha.
+Em 2026-10-08, o usuário forneceu `public/projects/diggy/diggy-gameplay-preview.webp` e pediu sua inclusão no lugar do GIF. O registro ativo agora usa esse WebP animado e o fallback `public/projects/diggy/diggy-first-frame.webp`, extraído do primeiro quadro e conferido em 540 × 960 px. A lista atual de arquivos é, portanto, o ícone WebP, o preview WebP animado e seu primeiro quadro estático.
+
+A autorização registrada é para reutilizar no portfólio os arquivos fornecidos e as derivações descritas acima, conforme as instruções explícitas do usuário. Ela não constitui verificação independente de direitos de terceiros. O registro central define `catalogReuseApproved` e `catalogIconReuseApproved` somente nesta ficha. O preview mantém carregamento por aproximação e usa o fallback sob movimento reduzido.
 
 A lista de quatro projetos registrada em 2026-10-05 descreve a decisão vigente naquela data; a solicitação posterior adicionou Diggy e está refletida em FR-019/SC-010 e na política atual do plano/modelo/contrato. Nenhuma outra mídia nova é aprovada por essa extensão.
 
