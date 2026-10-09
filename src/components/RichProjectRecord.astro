@@ -21,7 +21,7 @@ const metadata = metadataLabels.flatMap((label) => {
       <div class="archive-record__media">
         {leadMedia
           ? leadMedia.previewSrc && leadMedia.type === 'image'
-            ? <ProjectMediaPreview posterSrc={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} autoplayPreview={leadMedia.autoplayPreview} />
+            ? <ProjectMediaPreview src={leadMedia.src} previewSrc={leadMedia.previewSrc} alt={leadMedia.alt} previewAlt={leadMedia.previewAlt} posterWidth={leadMedia.posterWidth} posterHeight={leadMedia.posterHeight} posterFit={leadMedia.posterFit} autoplayPreview={leadMedia.autoplayPreview} />
             : <ArchiveMedia media={leadMedia} projectName={project.name} />
           : <MediaPoster label={project.evidenceLabel ?? project.name} kind={project.kind ?? 'neutral'} caption={project.mediaCaption} />}
         {supportingMedia.length > 0 && <div class="archive-record__supporting-media">

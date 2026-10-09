@@ -9,7 +9,7 @@ const { project, media, summary, statement, links } = Astro.props;
   {statement && <p class="case-hero__statement">{statement}</p>}
   {media
     ? <ProjectMediaPreview
-        posterSrc={media.src}
+        src={media.src}
         previewSrc={media.previewSrc}
         alt={media.alt}
         previewAlt={media.previewAlt}

@@ -399,7 +399,7 @@ Nenhuma ambiguidade crítica restante requer pergunta antes do planejamento: as 
 
 ### Reutilização dirigida das mídias de Pandora — 2026-10-07
 
-O usuário solicitou completar a entrada de Pandora e indicou que as mídias do jogo já estavam em `public/projects/pandora/`. Para esse escopo, a instrução autoriza exibir no catálogo os arquivos exatos já registrados: `pandora-poster.webp`, `pandora-gameplay-preview.gif` e o fallback derivado `pandora-first-frame.webp`. Essa autorização editorial de uso no portfólio não resolve a questão separada do relatório sobre direitos/licenças de terceiros; não a descrever como verificação independente. Os caminhos, dimensões observadas e limite estão em `evaluation.md`.
+O usuário solicitou completar a entrada de Pandora e indicou que as mídias do jogo já estavam em `public/projects/pandora/`. A avaliação registra a autorização editorial original para os assets então usados. Em 2026-10-09, o usuário pediu explicitamente substituir a referência da animação GIF pelo `pandora-gameplay-preview.webp` fornecido e gerar um fallback estático a partir dele. O catálogo usa hoje `pandora-first-frame.webp` em `src` e `pandora-gameplay-preview.webp` em `previewSrc`. Essa autorização editorial de uso no portfólio não resolve a questão separada do relatório sobre direitos/licenças de terceiros; não a descrever como verificação independente. Os caminhos e dimensões atuais estão em `evaluation.md`.
 
 ### Decisão posterior — tag Unity única — 2026-10-05
 

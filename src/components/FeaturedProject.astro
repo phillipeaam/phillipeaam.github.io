@@ -9,13 +9,13 @@ const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project
 const archiveHref = isPortfolioIncluded(project) && project.archiveCategory ? `${homePath}projects/#${project.anchorId ?? project.id}` : undefined;
 const projectHref = caseHref ?? archiveHref;
 const titleIcon = project.catalogIconReuseApproved ? project.projectsIndexTitleIcon : undefined;
-const posterSrc = leadMedia?.type === 'gif' ? leadMedia.posterSrc : leadMedia?.src;
-const previewSrc = leadMedia?.type === 'gif' ? leadMedia.src : leadMedia?.previewSrc;
+const src = leadMedia?.type === 'image' ? leadMedia.src : undefined;
+const previewSrc = leadMedia?.type === 'image' ? leadMedia.previewSrc : undefined;
 ---
 <article class="featured-grid-card" data-kind={project.kind}>
   <div class="featured-grid-card__media">
-    {posterSrc
-      ? <ProjectMediaPreview posterSrc={posterSrc} previewSrc={previewSrc} alt={leadMedia?.alt ?? `${project.name} gameplay`} previewAlt={leadMedia?.previewAlt ?? `${project.name} animated gameplay preview`} posterWidth={leadMedia?.posterWidth} posterHeight={leadMedia?.posterHeight} posterFit={leadMedia?.posterFit} autoplayPreview={leadMedia?.autoplayPreview} linkHref={projectHref} linkLabel={projectHref ? `View ${project.name} project` : undefined} linkClass="featured-grid-card__media-link" />
+    {src
+      ? <ProjectMediaPreview src={src} previewSrc={previewSrc} alt={leadMedia?.alt ?? `${project.name} gameplay`} previewAlt={leadMedia?.previewAlt ?? `${project.name} animated gameplay preview`} posterWidth={leadMedia?.posterWidth} posterHeight={leadMedia?.posterHeight} posterFit={leadMedia?.posterFit} autoplayPreview={leadMedia?.autoplayPreview} linkHref={projectHref} linkLabel={projectHref ? `View ${project.name} project` : undefined} linkClass="featured-grid-card__media-link" />
       : projectHref
         ? <a class="featured-grid-card__media-link" href={projectHref} aria-label={`View ${project.name} project`}><MediaPoster label={project.evidenceLabel ?? project.name} kind={project.kind ?? 'neutral'} /></a>
         : <MediaPoster label={project.evidenceLabel ?? project.name} kind={project.kind ?? 'neutral'} />}

@@ -16,7 +16,7 @@ const period = project.period === 'Undated' ? undefined : project.period;
 const narrative = project.contribution ? { summary: project.contribution, highlights: project.technicalHighlights ?? [], outcome: project.contributionOutcome } : undefined;
 const titleId = `archive-title-${project.id}`;
 const summaryId = `archive-summary-${project.id}`;
-const eligibleMedia = approvedMedia.filter((media) => media.src && media.alt && (media.type !== 'gif' || media.posterSrc));
+const eligibleMedia = approvedMedia.filter((media) => media.src && media.alt);
 const [primaryMedia, ...detailMedia] = eligibleMedia.filter((media, index, items) => items.findIndex((item) => item.src === media.src) === index);
 const publicMetadata = project.specs?.filter(({ label }) => !['Role', 'Context', 'Period', 'Type', 'Stack', 'Engine', 'Tools'].includes(label)) ?? [];
 const hasFacts = Boolean(role || context || productType || period);

@@ -9,11 +9,11 @@ const archiveHref = simple && isPortfolioIncluded(project) && project.archiveCat
 ---
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={`work-${project.id}`}>
   {archiveHref && (simple && primaryMedia
-    ? <ProjectMediaPreview posterSrc={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} linkHref={archiveHref} linkLabel={`View ${project.name} project details`} linkClass="supporting-card-media-link" />
-    : <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${project.name} project details`}><MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} posterSrc={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact /></a>)}
+    ? <ProjectMediaPreview src={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} linkHref={archiveHref} linkLabel={`View ${project.name} project details`} linkClass="supporting-card-media-link" />
+    : <a class="supporting-card-media-link" href={archiveHref} aria-label={`View ${project.name} project details`}><MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} src={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact /></a>)}
   {!archiveHref && (simple && primaryMedia
-    ? <ProjectMediaPreview posterSrc={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} />
-    : <MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} posterSrc={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact />)}
+    ? <ProjectMediaPreview src={primaryMedia.src} previewSrc={primaryMedia.previewSrc} alt={primaryMedia.alt ?? `${project.name} project poster`} previewAlt={primaryMedia.previewAlt} posterWidth={primaryMedia.posterWidth} posterHeight={primaryMedia.posterHeight} posterFit={primaryMedia.posterFit} autoplayPreview={primaryMedia.autoplayPreview} />
+    : <MediaPoster label={`${project.name} media placeholder`} posterLabel={project.evidenceLabel} src={primaryMedia?.src} previewSrc={primaryMedia?.previewSrc} kind={project.kind ?? 'neutral'} compact />)}
   <div class:list={['supporting-card-copy', simple && 'supporting-card-copy--simple']}>
     {simple ? <>
       <h3>{project.name}</h3>

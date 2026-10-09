@@ -290,7 +290,7 @@ export type ProjectCategory = 'professional-game' | 'professional-product' | 'in
 export type ProjectKind = 'ilhas' | 'wallace' | 'ello' | 'craque' | 'pathless' | 'neutral';
 
 export type ProjectMedia = {
-  type: 'image' | 'gif' | 'video' | 'youtube';
+  type: 'image' | 'video' | 'youtube';
   src: string;
   previewSrc?: string;
   alt?: string;
@@ -301,7 +301,6 @@ export type ProjectMedia = {
   posterWidth?: number;
   posterHeight?: number;
   posterFit?: 'cover' | 'contain';
-  posterSrc?: string;
   /** Reuse of the exact historical catalog asset approved by the user, not a rights audit. */
   catalogReuseApproved?: boolean;
 };
@@ -1364,14 +1363,14 @@ export const projectRecords: ProjectRecord[] = [
     "archivePresentation": "standard",
     "media": [
       {
-        "type": "gif",
-        "src": "/projects/pandora/pandora-gameplay-preview.gif",
-        "posterSrc": "/projects/pandora/pandora-first-frame.webp",
+        "type": "image",
+        "src": "/projects/pandora/pandora-first-frame.webp",
+        "previewSrc": "/projects/pandora/pandora-gameplay-preview.webp",
         "alt": "Pandora gameplay showing a witch on a broom facing a demon against a layered blue sky.",
         "previewAlt": "Animated gameplay of Pandora’s witch flying toward a demon through a blue sky.",
         "autoplayPreview": true,
-        "posterWidth": 568,
-        "posterHeight": 320,
+        "posterWidth": 960,
+        "posterHeight": 540,
         "posterFit": "contain",
         "catalogReuseApproved": true
       }

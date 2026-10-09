@@ -1,6 +1,6 @@
 ---
 const {
-  posterSrc,
+  src,
   previewSrc,
   alt = '',
   previewAlt,
@@ -18,9 +18,9 @@ const {
   <div class="media-poster project-media-preview__poster" data-project-media-preview data-autoplay-preview={autoplayPreview ? 'true' : undefined} data-poster-alt={alt} data-preview-alt={previewAlt ?? alt} data-preview-src={previewSrc}>
     {linkHref
       ? <a class:list={['project-media-preview__link', linkClass]} href={linkHref} aria-label={linkLabel}>
-          <img class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']} src={posterSrc} alt={alt} loading="lazy" decoding="async" width={posterWidth} height={posterHeight} data-project-media-fallback />
+          <img class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']} src={src} alt={alt} loading="lazy" decoding="async" width={posterWidth} height={posterHeight} data-project-media-fallback />
         </a>
-      : <img class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']} src={posterSrc} alt={alt} loading="lazy" decoding="async" width={posterWidth} height={posterHeight} data-project-media-fallback />}
+      : <img class:list={['media-poster-image', posterFit === 'contain' && 'media-poster-image--contain']} src={src} alt={alt} loading="lazy" decoding="async" width={posterWidth} height={posterHeight} data-project-media-fallback />}
     {previewSrc && <img
       class:list={['media-poster-image', 'project-media-preview__animation', posterFit === 'contain' && 'media-poster-image--contain']}
       alt=""
