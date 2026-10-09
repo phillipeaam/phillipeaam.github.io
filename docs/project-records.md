@@ -54,7 +54,7 @@ Employment history in `src/data/experience.ts` stores project IDs, not copied pr
 | `type`, `context`, `period` | Classification and context | Omit the unavailable detail |
 | `contribution`, `engineeringFocus` | What the author contributed and technical focus | Omit the section |
 | `tags`, `specs` | Short descriptors and labeled facts | Omit empty lists/rows |
-| `media` | Ordered project media entries | No media block |
+| `media` | Required ordered list of project media entries | Use `[]` when the project has no media; no media block is rendered |
 | `actions` | Declared non-case-study destinations and labels | No action links |
 | `archivePresentation` | Existing `rich`, `standard`, or `compact` archive treatment | `compact` |
 | `anchorId` | Existing public archive anchor when it differs from `id` | Use the stable project identity |
@@ -69,7 +69,7 @@ Follow [project-icon-standard.md](project-icon-standard.md) for asset creation, 
 
 ## Example ficha
 
-This shortened example is based on the current Read With Ello record. It shows shared facts, a separately declared animation, available actions, case-study capability, visibility, and where the project appears. Optional details not needed by a project can be omitted.
+This shortened example is based on the current Read With Ello record. It shows shared facts, a separately declared animation, available actions, case-study capability, visibility, and where the project appears. Optional details not needed by a project can be omitted. Every record must still include `media`; use an empty array when there are no project media assets.
 
 ```ts
 {
@@ -82,6 +82,8 @@ This shortened example is based on the current Read With Ello record. It shows s
   archiveCategory: 'professional-game',
   archiveOrder: 2,
   archivePresentation: 'rich',
+  // Keep the same ProjectMedia property names across every project record.
+  // `src` is the static image/fallback; optional `previewSrc` is its animation.
   media: [{
     type: 'image',
     src: '/projects/ello-read/read-with-ello-first-frame.webp',
@@ -124,7 +126,7 @@ For a case study to be published, `caseStudy.slug` and at least two `stories` ar
 
 ## Media entries and actions
 
-A `ProjectMedia` entry describes one source in the project's `media` list. For `type: 'image'`, `src` is the static image/fallback and optional `previewSrc` is its animation. Keep both paths in the same record; do not use a separate GIF type or a `posterSrc` field. Set `autoplayPreview: true` to load that animation when it enters the existing viewport margin. When the property is false or omitted, the animation loads on hover or keyboard focus of its project link. `alt` describes the static image, and `previewAlt` describes the animation when those are different. Dimensions and `posterFit` describe the image's intended presentation. Every referenced local asset must exist under `public/` in the current branch.
+A `ProjectMedia` entry describes one source in the project's required `media` list. Every `ProjectRecord` declares `media`, including records without assets (`media: []`). Keep these property names consistent: `type`, `src`, `previewSrc`, `alt`, `previewAlt`, `title`, `caption`, `autoplayPreview`, `posterWidth`, `posterHeight`, `posterFit`, and `catalogReuseApproved`. Populate applicable properties; omit optional, inapplicable properties. For `type: 'image'`, `src` is the static image/fallback and optional `previewSrc` is its animation. Keep both paths in the same record; do not use a separate GIF type or a `posterSrc` field. Set `autoplayPreview: true` to load that animation when it enters the existing viewport margin. When the property is false or omitted, the animation loads on hover or keyboard focus of its project link. `alt` describes the static image, and `previewAlt` describes the animation when those are different. `posterWidth`, `posterHeight`, and `posterFit` describe the image's intended presentation. `catalogReuseApproved` records explicit approval for reuse in the project catalog. Every referenced local asset must exist under `public/` in the current branch.
 
 The static source is the fallback for reduced motion, a failed animation, and the time before its configured preview behavior requests the animation. This feature preserves the established behavior from `develop`: some records load near the viewport, while others load on hover or keyboard focus. No separate Play control is presented.
 
@@ -146,10 +148,10 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 2. Set `portfolioIncluded` explicitly. Use `false` while work is incomplete, under maintenance, or not approved for public display.
 3. Set Home placement and archive category separately. Set each ordering field when the location in that surface matters.
 4. Add only evidence-backed optional facts and actions. Leave unavailable fields absent instead of using placeholder text.
-5. Point `media.src` and optional `previewSrc` at existing assets. Use the right static visual for that project and retain a meaningful fallback/alternative description.
+5. Always declare `media`. Use `media: []` when there are no project assets; otherwise keep each image's static `src` and optional animated `previewSrc` together, using the shared `ProjectMedia` property names above. Confirm every referenced local asset exists under `public/` and provide meaningful fallback/alternative descriptions.
 6. Add case-study presentation, stories, narrative, and evidence inside that record's `caseStudy` area. Add at least two stories with non-empty titles and framings, and keep its slug stable to publish/preserve the public route. Omit optional editorial sections when there is no supported content.
 7. Add or update experience references with the stable `projectId`; keep an experience `label` only when that surface intentionally uses different wording.
-8. When adding a model field, make it optional or document a safe default, update the relevant consumer, and ensure records that omit it continue to render without empty UI.
+8. When adding a model field, make it optional or document a safe default, update the relevant consumer, and ensure records that omit it continue to render without empty UI. `media` is required; an empty list is its safe no-media value.
 
 ## Current consumer map
 

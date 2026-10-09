@@ -25,4 +25,4 @@ This standard defines the small project identity image beside a title in the All
 
 ## Current reference set
 
-The first approved set uses this contract for Wallace Quest, Pathless, Pandora, Diggy, Read With Ello, and Ello 2.0. The Read With Ello crop was optically re-centered after review at 52px. These are examples, not a requirement that every record have an icon.
+The approved set uses this contract for Wallace Quest, Pathless, Pandora, Diggy, Read With Ello, Ello 2.0, and Ilhas do Alfabeto. The Read With Ello crop was optically re-centered after review at 52px. These are examples, not a requirement that every record have an icon.

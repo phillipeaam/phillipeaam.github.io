@@ -370,7 +370,8 @@ export type ProjectRecord = {
   additionalContext?: string;
   tags?: string[];
   specs?: { label: string; value: string }[];
-  media?: ProjectMedia[];
+  /** Every project record declares its ordered media list; use [] when it has no project media. */
+  media: ProjectMedia[];
   actions?: ProjectAction[];
   /** Optional detailed case-study content; publishable with a slug and at least two titled/framed stories. */
   caseStudy?: ProjectCaseStudy;
@@ -424,6 +425,20 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Ilhas do Alfabeto",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity literacy game built around interactive minigames.",
+    "media": [
+      {
+        "type": "image",
+        "src": "/projects/ilhas/ilhas-first-frame.webp",
+        "previewSrc": "/projects/ilhas/ilhas-gameplay-preview.webp",
+        "autoplayPreview": true,
+        "alt": "Floating islands from Ilhas do Alfabeto.",
+        "previewAlt": "Gameplay preview moving through floating islands and letter-based minigames in Ilhas do Alfabeto.",
+        "posterWidth": 960,
+        "posterHeight": 540,
+        "posterFit": "contain",
+        "catalogReuseApproved": true
+      }
+    ],
     "type": "Literacy game",
     "context": "Instituto Alfa e Beto",
     "contribution": "I designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.",
@@ -469,6 +484,8 @@ export const projectRecords: ProjectRecord[] = [
     "archiveOrder": 6,
     "archivePresentation": "standard",
     "anchorId": "ilhas-do-alfabeto",
+    "projectsIndexTitleIcon": "/projects/ilhas/ilhas-do-alfabeto-icon.webp",
+    "catalogIconReuseApproved": true,
     "evidenceLabel": "Ilhas do Alfabeto · gameplay",
     "kind": "ilhas"
   ,
@@ -688,6 +705,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Craque da Fluência",
     "archiveCategory": "professional-game",
     "summary": "A Unity reading-assessment product that processes spoken reading and presents results.",
+    "media": [],
     "type": "Reading-fluency product",
     "context": "Instituto Alfa e Beto",
     "contribution": "I worked on the word model, assessment state, and speech-recognition integration.",
@@ -822,6 +840,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Flui — A Cidade das Palavras",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.",
+    "media": [],
     "type": "Literacy game",
     "context": "Instituto Alfa e Beto",
     "period": "2017–2021",
@@ -866,6 +885,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Tabuada na Fazenda",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity math game set around an interactive farm and themed learning activities.",
+    "media": [],
     "type": "Math game",
     "context": "Instituto Alfa e Beto",
     "period": "2020–2022",
@@ -906,6 +926,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Sweets and Shadows",
     "archiveCategory": "independent-game",
     "summary": "A 72-hour action game made with a teammate for Mini Jam 144.",
+    "media": [],
     "type": "Action game",
     "context": "Mini Jam 144 · two-person team · 72 hours",
     "period": "2023-10",
@@ -944,6 +965,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Craque da Leitura",
     "archiveCategory": "professional-game",
     "summary": "An interactive reading product with book content, catalog, and guided reading flows.",
+    "media": [],
     "type": "Interactive reading product",
     "context": "Instituto Alfa e Beto",
     "period": "2017–2022",
@@ -1057,6 +1079,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Avaliação Diagnóstica",
     "archiveCategory": "professional-product",
     "summary": "A school assessment platform with Portuguese and math workflows, offline use, synchronization, and reporting.",
+    "media": [],
     "type": "Digital school-assessment platform",
     "context": "Instituto Alfa e Beto",
     "period": "Undated",
@@ -1089,6 +1112,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Avaliação da Língua Portuguesa",
     "archiveCategory": "professional-game",
     "summary": "Interactive Portuguese-language assessment activities for literacy learning.",
+    "media": [],
     "type": "Interactive language assessment",
     "context": "Instituto Alfa e Beto",
     "period": "Undated",
@@ -1117,6 +1141,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "IAB Digital: Zero a Quatro na Palma da Mão",
     "archiveCategory": "professional-product",
     "summary": "A digital learning platform connecting classroom activities and school workflows.",
+    "media": [],
     "type": "Early-childhood education platform",
     "context": "Cedro Technologies",
     "period": "Undated",
@@ -1135,6 +1160,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "IAB Testes",
     "archiveCategory": "professional-product",
     "summary": "A tablet-based digital assessment product for school literacy workflows.",
+    "media": [],
     "type": "Tablet assessment platform",
     "context": "Cedro Technologies",
     "period": "Undated",
@@ -1153,6 +1179,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "MyPush",
     "archiveCategory": "professional-product",
     "summary": "Professional mobile software work involving client applications and service integrations.",
+    "media": [],
     "type": "B2B mobile product",
     "context": "Earlier professional software experience",
     "period": "Undated",
@@ -1169,6 +1196,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "MVIF — Morada Verde Inventory Flow",
     "archiveCategory": "professional-product",
     "summary": "An inventory and business-workflow product from earlier professional software work.",
+    "media": [],
     "type": "Client operational software",
     "context": "Earlier client software product",
     "period": "Undated",
@@ -1185,6 +1213,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "RadWasteland — Echoes",
     "archiveCategory": "independent-game",
     "summary": "A Ludum Dare 55 game about summoning creatures in a post-apocalyptic wasteland.",
+    "media": [],
     "type": "Strategy / RPG game",
     "context": "Ludum Dare 55 · solo jam",
     "period": "2024-04",
@@ -1226,6 +1255,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Angry World",
     "archiveCategory": "independent-game",
     "summary": "A short space action game about protecting planets and collecting crystals.",
+    "media": [],
     "type": "Space action game",
     "context": "Ludum Dare 38",
     "period": "2017-04",
@@ -1267,6 +1297,7 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Survive & Escape",
     "archiveCategory": "study-archive",
     "summary": "A small Windows puzzle game built from scratch while learning C++ and raylib.",
+    "media": [],
     "type": "Windows puzzle game",
     "context": "Independent game-development study",
     "period": "Undated",
@@ -1308,6 +1339,7 @@ export const projectRecords: ProjectRecord[] = [
     "id": "heroes-secrets",
     "name": "Heroes’ Secrets",
     "summary": "An in-development autobattler exploring combat systems, abilities, equipment, and AI.",
+    "media": [],
     "type": "Independent team autobattler",
     "context": "Independent · current team project",
     "period": "Current / ongoing",
@@ -1324,6 +1356,7 @@ export const projectRecords: ProjectRecord[] = [
     "id": "repo-dna",
     "name": "RepoDNA",
     "summary": "Developer tooling for repository analysis and project context.",
+    "media": [],
     "type": "Developer tooling",
     "period": "Undated",
     "tags": [
