@@ -2,9 +2,10 @@
 import MediaPoster from './MediaPoster.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ExternalLink from './ExternalLink.astro';
-import { isPortfolioIncluded, type ProjectRecord } from '../data/projects';
+import { isPortfolioIncluded, sortProjectActions, type ProjectRecord } from '../data/projects';
 const { project, number, recent = false, simple = false, showMeta = true, showContext = true } = Astro.props as { project: ProjectRecord; number?: string | number; recent?: boolean; simple?: boolean; showMeta?: boolean; showContext?: boolean };
 const primaryMedia = project.media?.find((item) => item.type === 'image');
+const orderedActions = sortProjectActions(project.actions);
 const archiveHref = simple && isPortfolioIncluded(project) && project.archiveCategory ? `${import.meta.env.BASE_URL}projects/#${project.anchorId ?? project.id}` : undefined;
 ---
 <article class:list={['supporting-card', recent && 'supporting-card--recent']} id={`work-${project.id}`}>
@@ -23,8 +24,8 @@ const archiveHref = simple && isPortfolioIncluded(project) && project.archiveCat
     <p class="supporting-card-detail">{project.summary}</p>
     {project.contribution && <p class="supporting-card-contribution"><span>My contribution</span>{project.contribution}</p>}
     {showContext && project.context && <p class="supporting-card-context">{project.context}</p>}
-    {isPortfolioIncluded(project) && project.actions?.length && <div class="project-actions" aria-label={`${project.name} links`}>
-      {project.actions.slice(0, 2).map((action) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
+    {isPortfolioIncluded(project) && orderedActions.length && <div class="project-actions" aria-label={`${project.name} links`}>
+      {orderedActions.slice(0, 2).map((action) => <ExternalLink class="supporting-card-link" href={action.href} icon>{action.label}</ExternalLink>)}
     </div>}
     </>}
   </div>

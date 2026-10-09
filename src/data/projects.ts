@@ -307,6 +307,26 @@ export type ProjectMedia = {
 
 export type ProjectAction = { href: string; label: string };
 
+/** Neutral destination label: an itch.io page may not expose a playable build. */
+const ITCH_IO_ACTION_LABEL = 'View on itch.io';
+
+/** Stable action priority shared by project cards and archive records. */
+export function sortProjectActions(actions: readonly ProjectAction[] = []): ProjectAction[] {
+  const priority = (action: ProjectAction) => {
+    const label = action.label.toLowerCase();
+    const href = action.href.toLowerCase();
+    if (href.includes('itch.io') || label.includes('itch.io')) return 0;
+    if (label.includes('official')) return 1;
+    if (label.includes('promo')) return 2;
+    if (label.includes('app store') || label.includes('google play') || href.includes('apps.apple.com') || href.includes('play.google.com')) return 3;
+    return 4;
+  };
+
+  return actions.map((action, index) => ({ action, index }))
+    .sort((a, b) => priority(a.action) - priority(b.action) || a.index - b.index)
+    .map(({ action }) => action);
+}
+
 /** Optional editorial case-study area owned by one project record. */
 export type ProjectCaseStudy = {
   slug: string;
@@ -509,7 +529,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/wallaces-quest",
-        "label": "Play on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "caseStudy": {
@@ -762,7 +782,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/pathless",
-        "label": "Play on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "portfolioIncluded": true,
@@ -906,7 +926,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/sweets-and-shadows",
-        "label": "Play on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "portfolioIncluded": false,
@@ -986,6 +1006,10 @@ export const projectRecords: ProjectRecord[] = [
 }
     ],
     "actions": [
+      {
+        "href": "https://www.ello.com/",
+        "label": "Official product"
+      },
       {
         "href": "https://apps.apple.com/us/app/ello-2-0-learn-reading-math/id6739630070",
         "label": "App Store"
@@ -1223,7 +1247,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/angry-world",
-        "label": "Play on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "portfolioIncluded": false,
@@ -1264,7 +1288,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/survive-and-escape",
-        "label": "View game on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "portfolioIncluded": false,
@@ -1378,7 +1402,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/pandora",
-        "label": "View on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "projectsIndexTitleIcon": "/projects/pandora/pandora-icon.webp",
@@ -1458,7 +1482,7 @@ export const projectRecords: ProjectRecord[] = [
     "actions": [
       {
         "href": "https://phillipeaam.itch.io/diggy-the-dog",
-        "label": "Play on itch.io"
+        "label": ITCH_IO_ACTION_LABEL
       }
     ],
     "projectsIndexTitleIcon": "/projects/diggy/diggy-icon.webp",

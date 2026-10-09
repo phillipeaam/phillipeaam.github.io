@@ -3,10 +3,12 @@ import ExternalLink from './ExternalLink.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
 import MediaPoster from './MediaPoster.astro';
-import { hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
+import Icon from './Icon.astro';
+import { hasPublishableCaseStudy, isPortfolioIncluded, sortProjectActions, type ProjectRecord } from '../data/projects';
 
 const { project, homePath = '/' } = Astro.props as { project: ProjectRecord; homePath?: string };
 const titleId = `archive-title-${project.id}`;
+const orderedActions = sortProjectActions(project.actions);
 const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
 const [leadMedia, ...supportingMedia] = project.media ?? [];
 const metadataLabels = ['Role', 'Period', 'Stack', 'Context'] as const;
@@ -29,9 +31,9 @@ const metadata = metadataLabels.flatMap((label) => {
         </div>}
       </div>
       <p class="archive-record__overview">{project.summary}</p>
-      {(caseHref || (isPortfolioIncluded(project) && project.actions?.length)) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
-        {caseHref && <a href={caseHref} aria-label={`View ${project.name} case study`}>View case study <span aria-hidden="true">→</span></a>}
-        {isPortfolioIncluded(project) && project.actions?.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
+      {(caseHref || (isPortfolioIncluded(project) && orderedActions.length)) && <nav class="archive-record__actions" aria-label={`${project.name} links`}>
+        {isPortfolioIncluded(project) && orderedActions.map((action) => <ExternalLink href={action.href} ariaLabel={`${action.label} for ${project.name} (opens in a new tab)`} icon>{action.label}</ExternalLink>)}
+        {caseHref && <a class="archive-record__case-link" href={caseHref} aria-label={`View ${project.name} case study`}><span class="archive-record__case-link-label">View case study</span><Icon name="arrow-right" size={16} class="archive-record__case-link-arrow" /></a>}
       </nav>}
     </div>
     <div class="archive-record__details">
