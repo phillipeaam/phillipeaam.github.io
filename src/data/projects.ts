@@ -369,6 +369,7 @@ export type ProjectRecord = {
   contributionOutcome?: string;
   additionalContext?: string;
   tags?: string[];
+  /** Shared labeled facts for selected consumers. Catalog reads Role only; other labels are not automatically published. */
   specs?: { label: string; value: string }[];
   /** Every project record declares its ordered media list; use [] when it has no project media. */
   media: ProjectMedia[];
@@ -424,14 +425,14 @@ export const projectRecords: ProjectRecord[] = [
     "id": "ilhas-do-alfabeto",
     "name": "Ilhas do Alfabeto",
     "archiveCategory": "professional-game",
-    "summary": "A commercial Unity literacy game built around interactive minigames.",
+    "summary": "A commercial literacy game where children explore themed islands through letter recognition, sound matching, word building and reading, with a dedicated edition for partner schools.",
     "media": [
       {
         "type": "image",
         "src": "/projects/ilhas/ilhas-first-frame.webp",
         "previewSrc": "/projects/ilhas/ilhas-gameplay-preview.webp",
         "autoplayPreview": true,
-        "alt": "Floating islands from Ilhas do Alfabeto.",
+        "alt": "Themed floating islands in Ilhas do Alfabeto.",
         "previewAlt": "Gameplay preview moving through floating islands and letter-based minigames in Ilhas do Alfabeto.",
         "posterWidth": 960,
         "posterHeight": 540,
@@ -439,31 +440,31 @@ export const projectRecords: ProjectRecord[] = [
         "catalogReuseApproved": true
       }
     ],
-    "type": "Literacy game",
-    "context": "Instituto Alfa e Beto",
-    "contribution": "I designed and implemented substantial parts of Desafio dos Sons Iguais, while maintaining, improving, and supporting minigame systems across the wider product.",
+    "type": "Educational literacy game",
+    "context": "Instituto Alfa e Beto · multidisciplinary product team",
+    "contribution": "I developed Unity minigames, shared activity behavior and school-edition client data flows. My work also involved translating product needs into technical plans, guiding other developers and aligning client data contracts with the backend team.",
     "tags": [
       "Minigames",
       "Shared systems"
     ],
     "specs": [
-  {
-    "label": "Role",
-    "value": "Senior Unity Game Developer"
-  },
-  {
-    "label": "Engine",
-    "value": "Unity / C#"
-  },
-  {
-    "label": "Company",
-    "value": "Instituto Alfa e Beto"
-  },
-  {
-    "label": "Focus",
-    "value": "Minigames and shared systems"
-  }
-],
+      {
+        "label": "Role",
+        "value": "Senior Unity Game Developer"
+      },
+      {
+        "label": "Engine",
+        "value": "Unity / C#"
+      },
+      {
+        "label": "Company",
+        "value": "Instituto Alfa e Beto"
+      },
+      {
+        "label": "Focus",
+        "value": "Minigames and shared systems"
+      }
+    ],
     "caseStudy": {
       "slug": "ilhas-do-alfabeto",
       "scopeLabel": "Product / Team Context",
@@ -487,15 +488,56 @@ export const projectRecords: ProjectRecord[] = [
     "projectsIndexTitleIcon": "/projects/ilhas/ilhas-do-alfabeto-icon.webp",
     "catalogIconReuseApproved": true,
     "evidenceLabel": "Ilhas do Alfabeto · gameplay",
-    "kind": "ilhas"
-  ,
-  "workContext": "professional",
-  "technologies": [
-  "Unity",
-  "C#"
-],
-  "technicalHighlights": []
-},
+    "kind": "ilhas",
+    "workContext": "professional",
+    "technologies": [
+      "Unity",
+      "C#",
+      "uGUI",
+      "TextMeshPro",
+      "DOTween",
+      "ProCamera2D",
+      "LiteDB",
+      "Newtonsoft JSON",
+      "UnityWebRequest",
+      "KKSpeech",
+      "Unity Analytics",
+      "UnityTask"
+    ],
+    "technicalHighlights": [
+      {
+        "title": "Spoken guidance before player input",
+        "body": "Implemented controllers and DOTween camera transitions for the Sound-Matching Challenge. We structured the activity to explain the task before the player could answer; in the presentation flow I implemented, pronunciation preceded card input. I also extended the existing shared base to disable hints during speech and return audio duration for activity-specific timing."
+      },
+      {
+        "title": "School assessment and client data",
+        "body": "Implemented level and minigame sequencing, LiteDB-backed per-pupil evaluations and client payload preparation for the school edition. Completed pupils’ evaluations, progress and match data were grouped for synchronization, with maintenance changes separating earlier attempts. I worked with backend colleagues on expected data formats while keeping my implementation scope on the client."
+      },
+      {
+        "title": "Visual authoring and developer guidance",
+        "body": "After feedback on the crossword activity, I planned a visual authoring approach using ScriptableObjects so education colleagues could prepare puzzles outside Play Mode. I specified and documented the approach, then guided a junior developer who implemented the editor tool. I remember positive feedback on the resulting workflow."
+      },
+      {
+        "title": "Tracing synchronization issues to school workflows",
+        "body": "I helped investigate reports of missing pupil progress across tablets. Mapping the usage process showed that switching devices without synchronizing left the second tablet without the previous session’s local records. The team responded with a usage manual and teacher training. I recall complaints subsiding and more consistent progress appearing in reports after the synchronization routine was clarified."
+      }
+    ],
+    "period": "2017–2022",
+    "actions": [
+      {
+        "label": "Official product",
+        "href": "https://loja.alfaebeto.org.br/produto/ilhas-do-alfabeto.html"
+      },
+      {
+        "label": "Google Play",
+        "href": "https://play.google.com/store/apps/details?id=com.alfaebetosolucoes.ilhasgame"
+      },
+      {
+        "label": "Google Play · School edition",
+        "href": "https://play.google.com/store/apps/details?id=com.alfaebetosolucoes.ilhasgameescola"
+      }
+    ]
+  },
   {
     "id": "wallaces-quest",
     "name": "Wallace’s Quest",

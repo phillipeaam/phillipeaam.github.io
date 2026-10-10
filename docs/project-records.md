@@ -8,6 +8,8 @@ The merge into feature 006 preserves the canonical `projectRecords` model and mi
 
 - `workContext` stores the previously verified professional/independent/study facet.
 - `technologies` stores verified technology facts and is not inferred from product tags. For the portfolio's Technology filter, use one canonical `Unity` tag for confirmed Unity engine/stack facts, regardless of version; do not expose Unity versions as separate filter options or maintain a version registry. Preserve a confirmed exact version such as Unity 6 in project details only when that fact is intentionally displayed. This rule supersedes the earlier note that Unity and Unity 6 were separate pending taxonomy work.
+
+  Technology chips describe the verified project stack; Selected contributions establishes individual attribution. Include relevant technologies with observed use supported by the project's Source of Truth, even when they are not named in every selected example. A chip does not establish authorship of the dependency or personal integration of every system. Do not populate chips from package declarations alone, product size, another project's tag count, platforms, or generic engineering patterns. Record the evidence and snapshot/variant limitations in the project's evidence register; preserve consistent technology names across records.
 - `technicalHighlights` and optional `contributionOutcome` extend the shared contribution text for the catalog's Selected contributions section. No unsupported outcome was added.
 - `projectsIndexTitleIcon` is the canonical compact identity-icon path shared by the catalog and Featured when applicable; it is not the primary poster path. `catalogIconReuseApproved` records reuse approval for that exact icon on that record, not independent rights verification. See [Compact Project Identity Icon Standard](project-icon-standard.md).
 - `media[].catalogReuseApproved` records reuse approval on each existing catalog media item. It is not a legal rights/provenance audit; future media do not inherit approval. For animated previews, keep the static fallback in `src` and put the animation in `previewSrc`.
@@ -53,7 +55,7 @@ Employment history in `src/data/experience.ts` stores project IDs, not copied pr
 | `caseStudy` | Optional case-study area; publishing it requires a slug and at least two stories with non-empty titles and framings | No case-study CTA or generated route unless these requirements are met |
 | `type`, `context`, `period` | Classification and context | Omit the unavailable detail |
 | `contribution`, `engineeringFocus` | What the author contributed and technical focus | Omit the section |
-| `tags`, `specs` | Short descriptors and labeled facts | Omit empty lists/rows |
+| `tags`, `specs` | Shared descriptors and facts for explicit consumers; catalog reads Role from specs only | No automatic catalog publication of other labels |
 | `media` | Required ordered list of project media entries | Use `[]` when the project has no media; no media block is rendered |
 | `actions` | Declared non-case-study destinations and labels | No action links |
 | `archivePresentation` | Existing `rich`, `standard`, or `compact` archive treatment | `compact` |
@@ -62,6 +64,40 @@ Employment history in `src/data/experience.ts` stores project IDs, not copied pr
 | `mediaCaption`, `evidenceLabel`, `kind` | Optional media/presentation context | Omit or use the shared neutral treatment |
 
 The initial adoption sets `portfolioIncluded` explicitly for every current record, even though the shared rule treats any missing value as hidden. This protects the current public portfolio membership while making new records unpublished until deliberately included.
+
+## All Projects presentation contract
+
+The canonical data model is `ProjectRecord` in `src/data/projects.ts`; instances are `projectRecords`. It serves several pages and can store more data than any one page displays. `/projects/` renders every included entry with `src/components/ProjectRecord.astro`, called by `src/pages/projects/index.astro`. `RichProjectRecord.astro` is not the current catalog renderer.
+
+**The catalog has a closed presentation contract. Adding a property or a specs label to a record MUST NOT add a visible catalog field automatically.** The shared renderer applies this rule to every project, including entries with supplementary media. Do not use an exclusion list, enumerate arbitrary specs labels, or add project-specific display exceptions.
+
+| Presentation | Canonical source |
+| --- | --- |
+| Title | `name` |
+| Identity icon | `projectsIndexTitleIcon`, gated by `catalogIconReuseApproved` |
+| Preview / static first frame | Approved `media[]`; static `src`, animation `previewSrc` |
+| Description | `summary` |
+| CTAs | Shared ordered `actions`, plus eligible `caseStudy` link |
+| Role | Exact `Role` entry in `specs` |
+| Context | `context` |
+| Type | `type` |
+| Period | `period`, omitting absent/Undated |
+| Selected contributions | `contribution`, `technicalHighlights`, `contributionOutcome`; available supporting `additionalContext` remains prose rather than an extra metadata field |
+| Technology | `technologies` |
+
+Compact content is title/icon, primary preview, description and utility/CTA row. Expanded content presents Role, Context, Type, Period, Selected contributions and Technology, with approved supplementary media where available. Omit missing values and empty groups. The More details control is interface behavior, not a project action.
+
+`Company`, `Focus`, `Engine`, `Stack`, `Tools` and other arbitrary `specs` labels are not additional catalog rows. They may remain in the canonical record for case-study consumers that explicitly request them. Company is not a fallback for Context, and Focus is not inferred into Technology. Product/topic tags are not technology facts. The catalog search indexes its rendered public text, so removing an extra row also removes that row from the search corpus.
+
+For any future visible field: explicitly revise this contract and the feature 006 catalog contract, implement it in the shared renderer, justify the change, and validate affected entries. Merely populating data does not authorize a presentation change.
+
+### Review criteria
+
+- Ilhas displays Context once and has no separate Company or Focus rows; its case can still request Focus.
+- No catalog entry renders an unknown specs label, with or without supplementary media.
+- Existing Role/Context/Type/Period, contribution, technology, approved media and CTAs remain available.
+- A record with extra specs only must not create an empty disclosure.
+- Check desktop/mobile rendering and search; document observed results instead of assuming that typed data guarantees the presentation.
 
 ## Compact identity icon
 
@@ -159,7 +195,7 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 | --- | --- | --- |
 | Home featured work | `src/components/FeaturedProject.astro` | Project name, summary, contribution, media, case-study/action links |
 | Home supporting work | `src/components/SupportingProject.astro` | Project name, optional detail, media, actions, archive destination |
-| All Projects page | `src/components/ProjectRecord.astro`, `src/components/RichProjectRecord.astro` | Summary, metadata, contribution, media, actions, and optional title icon; catalog CTAs follow More details in the same left-grouped utility row using the shared itch.io → Official → Promo → stores → other actions → Case study order |
+| All Projects page | `src/components/ProjectRecord.astro` | Explicit catalog fields defined below; catalog CTAs follow More details in the same left-grouped utility row using the shared itch.io → Official → Promo → stores → other actions → Case study order |
 | Catalog media-entry identity | `ProjectRecord.astro` / `.archive-record__identity-link` | One link wraps the optional decorative icon and project title and targets the stable record hash; media, summary, details and actions remain separate |
 | Experience Selected work | `src/components/ExperienceEntry.astro`, `resolveExperienceWork`, and `resolveProjectArchiveHref` | Explicit reference label (otherwise canonical project name); included archive projects link to `/projects/#${anchorId ?? id}`, with plain-text fallback when missing, excluded, or not placed in the archive |
 | Case study | `src/pages/work/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |

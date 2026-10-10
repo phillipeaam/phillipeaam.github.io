@@ -12,6 +12,8 @@ const technologyFacetTags = getTechnologyFacetTags(technologies);
 const orderedActions = sortProjectActions(project.actions);
 const recordId = project.anchorId ?? project.id;
 const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
+// Catalog presentation is explicit: specs supplies Role only, never arbitrary metadata rows.
+// See docs/project-records.md#all-projects-presentation-contract.
 const role = project.specs?.find(({ label }) => label === 'Role')?.value;
 const { context, type: productType } = project;
 const period = project.period === 'Undated' ? undefined : project.period;
@@ -20,10 +22,9 @@ const titleId = `archive-title-${project.id}`;
 const summaryId = `archive-summary-${project.id}`;
 const eligibleMedia = approvedMedia.filter((media) => media.src && media.alt);
 const [primaryMedia, ...detailMedia] = eligibleMedia.filter((media, index, items) => items.findIndex((item) => item.src === media.src) === index);
-const publicMetadata = project.specs?.filter(({ label }) => !['Role', 'Context', 'Period', 'Type', 'Stack', 'Engine', 'Tools'].includes(label)) ?? [];
 const hasFacts = Boolean(role || context || productType || period);
 const hasEntryActions = Boolean(caseHref || orderedActions.length);
-const hasDetails = Boolean(narrative || project.additionalContext || hasFacts || publicMetadata.length || technologies.length || detailMedia.length);
+const hasDetails = Boolean(narrative || project.additionalContext || hasFacts || technologies.length || detailMedia.length);
 ---
 <li class="archive-record" id={recordId} data-project-record data-context={project.workContext} data-technologies={technologyFacetTags.join('|')}>
   <article class:list={['archive-record__entry', primaryMedia && 'archive-record__entry--media']} aria-labelledby={titleId}>
@@ -93,9 +94,6 @@ const hasDetails = Boolean(narrative || project.additionalContext || hasFacts ||
               {technologies.map((technology) => <li>{technology}</li>)}
             </ul>
           </div>}
-          {publicMetadata.length > 0 && <dl class="archive-record__specs">
-            {publicMetadata.map((spec) => <div><dt>{spec.label}</dt><dd>{spec.value}</dd></div>)}
-          </dl>}
 
         </div>
       </div>
