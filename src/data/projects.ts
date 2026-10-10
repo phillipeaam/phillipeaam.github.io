@@ -1,3 +1,5 @@
+import { caseStudyPath } from './caseStudyRoutes';
+
 export type StoryField = { label: string; text: string };
 export type NarrativeDiagram = {
   title: string;
@@ -1600,7 +1602,7 @@ export function resolveExperienceWork(projectId: string, baseUrl = '/') {
   const project = getProjectRecord(projectId);
   if (!project || !isPortfolioIncluded(project)) return { name: project?.name, included: false };
   const basePath = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
-  if (hasPublishableCaseStudy(project)) return { name: project.name, href: basePath + 'work/' + project.caseStudy.slug + '/', caseStudy: true, included: true };
+  if (hasPublishableCaseStudy(project)) return { name: project.name, href: caseStudyPath(project.caseStudy.slug, basePath), caseStudy: true, included: true };
   const anchor = project.anchorId ?? project.id;
   const href = project.archiveCategory
     ? project.homePlacement === 'supporting' ? basePath + '#' + anchor : basePath + 'projects/#' + anchor

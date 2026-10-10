@@ -1,5 +1,6 @@
 ---
+import { caseStudyPath } from '../data/caseStudyRoutes';
 import Icon from './Icon.astro';
 const { project } = Astro.props;
 ---
-<a class="next-project" data-kind={project.kind} href={`/work/${project.slug}/`}><span class="eyebrow">NEXT PROJECT</span><strong>{project.name} <Icon name="arrow-right" size={22} class="next-project__icon" /></strong></a>
+<a class="next-project" data-kind={project.kind} href={caseStudyPath(project.slug, import.meta.env.BASE_URL)}><span class="eyebrow">NEXT PROJECT</span><strong>{project.name} <Icon name="arrow-right" size={22} class="next-project__icon" /></strong></a>

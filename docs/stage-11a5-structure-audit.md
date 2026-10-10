@@ -155,3 +155,8 @@ make_contact_sheets.js             Stage 11B contact-sheet helper (dependency ga
 - Visual regression assessment: active Home/Work/case templates and data were not modified. Removed CSS selectors matched only the unrendered legacy ExperienceRow and old Experience layout, so they could not affect current rendered pages. No screenshot artifacts were regenerated or changed in this maintenance-only pass.
 - Working-tree baseline included `docs/.idea/`; it remains unmodified and is now ignored. No unrelated user files were staged.
 - Uncertain items intentionally untouched: source portrait JPEG, older evidence originals/crops, historical Penpot exports, and any media/preview fields or handlers reserved for Stage 11B.
+
+
+## Routing follow-up — 2026-10-10
+
+The route inventory above records the earlier audit. Current canonical case pages are in `src/pages/featured/[slug].astro`; `src/pages/work/[slug].astro` retains legacy static compatibility. The validated build now contains Home, Experience, Projects, four canonical cases and four compatibility pages (11 pages). See [case-study routing](case-study-routing.md).

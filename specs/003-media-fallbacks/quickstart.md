@@ -55,10 +55,10 @@ Review every generated page route that contains page content:
 
 1. `/`
 2. `/projects/`
-3. `/work/ilhas-do-alfabeto/`
-4. `/work/wallaces-quest/`
-5. `/work/read-with-ello/`
-6. `/work/craque-da-fluencia/`
+3. `/featured/ilhas-do-alfabeto/`
+4. `/featured/wallaces-quest/`
+5. `/featured/read-with-ello/`
+6. `/featured/craque-da-fluencia/`
 
 While recording `/`, scroll through the Experience section at `/#experience`.
 The build also emits a redirect document at `/experience/`; it redirects to

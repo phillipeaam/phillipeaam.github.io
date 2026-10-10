@@ -198,7 +198,7 @@ Each `ProjectAction` is an independently declared `{ href, label }` destination.
 | All Projects page | `src/components/ProjectRecord.astro` | Explicit catalog fields defined below; catalog CTAs follow More details in the same left-grouped utility row using the shared itch.io → Official → Promo → stores → other actions → Case study order |
 | Catalog media-entry identity | `ProjectRecord.astro` / `.archive-record__identity-link` | One link wraps the optional decorative icon and project title and targets the stable record hash; media, summary, details and actions remain separate |
 | Experience Selected work | `src/components/ExperienceEntry.astro`, `resolveExperienceWork`, and `resolveProjectArchiveHref` | Explicit reference label (otherwise canonical project name); included archive projects link to `/projects/#${anchorId ?? id}`, with plain-text fallback when missing, excluded, or not placed in the archive |
-| Case study | `src/pages/work/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |
+| Case study | `src/pages/featured/[slug].astro` plus case-specific story components | Canonical project facts/media and the nested case-study sections |
 
 ## Current branch repair
 
@@ -232,3 +232,8 @@ The `+`/`−` indicator follows the More details label on its right, matching th
 The catalog `View case study` action underlines only its text label on hover/focus. Keep the decorative SVG arrow separate from the underlined text label, hidden from assistive technology, and preserve the accessible link name.
 
 The More details control aligns with adjacent catalog CTAs: zero horizontal padding, a 36px minimum height above 700px and 40px at or below 700px, and the shared `--archive-action-icon-gap` between its label and trailing +/− symbol. The symbol uses its intrinsic glyph width, without an extra fixed-width slot. The utility row uses 4px between wrapped rows and 14px between controls.
+
+
+## Case-study URLs
+
+Canonical case pages use `/featured/<slug>/`, constructed by `src/data/caseStudyRoutes.ts` (`caseStudyPath`). Home Featured, catalog case CTAs, experience work links and next-case navigation share this helper and respect the configured base URL. `/#featured` remains the Home section; project IDs and catalog fragments are unchanged. `/work/<slug>/` is a static compatibility page, not the case renderer. See [routing contract and validation](case-study-routing.md).

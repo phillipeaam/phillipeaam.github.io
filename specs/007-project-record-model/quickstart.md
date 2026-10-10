@@ -20,7 +20,7 @@ npm run build
 
 Expected: no Astro errors, all static routes generate, and the production build completes.
 
-`npm run check:project-assets` scans project and case data for local `/projects/` and `/images/` references and confirms each file exists under `public/`. A browser review of `/`, `/projects/`, `/work/wallaces-quest/`, and `/work/read-with-ello/` must not show local media 404s.
+`npm run check:project-assets` scans project and case data for local `/projects/` and `/images/` references and confirms each file exists under `public/`. A browser review of `/`, `/projects/`, `/featured/wallaces-quest/`, and `/featured/read-with-ello/` must not show local media 404s.
 
 ## Shared-field propagation
 
@@ -34,7 +34,7 @@ Expected: no second edit to a page, card, or case copy is needed for the shared 
 
 ### Propagation check recorded for this feature
 
-For a temporary build check, the Read With Ello `name` and `summary` were changed in its canonical record to unique markers, with no edits to page or component data. The generated Home (`dist/index.html`), archive (`dist/projects/index.html`), and case-study (`dist/work/read-with-ello/index.html`) each contained both updated values. The original record was restored after the build.
+For a temporary build check, the Read With Ello `name` and `summary` were changed in its canonical record to unique markers, with no edits to page or component data. The generated Home (`dist/index.html`), archive (`dist/projects/index.html`), and case-study (`dist/featured/read-with-ello/index.html`) each contained both updated values. The original record was restored after the build.
 
 ## Visibility and destinations
 

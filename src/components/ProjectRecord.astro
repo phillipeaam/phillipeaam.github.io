@@ -1,4 +1,5 @@
 ---
+import { caseStudyPath } from '../data/caseStudyRoutes';
 import ExternalLink from './ExternalLink.astro';
 import ArchiveMedia from './ArchiveMedia.astro';
 import Icon from './Icon.astro';
@@ -11,7 +12,7 @@ const technologies = project.technologies ?? [];
 const technologyFacetTags = getTechnologyFacetTags(technologies);
 const orderedActions = sortProjectActions(project.actions);
 const recordId = project.anchorId ?? project.id;
-const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
+const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? caseStudyPath(project.caseStudy.slug, homePath) : undefined;
 // Catalog presentation is explicit: specs supplies Role only, never arbitrary metadata rows.
 // See docs/project-records.md#all-projects-presentation-contract.
 const role = project.specs?.find(({ label }) => label === 'Role')?.value;

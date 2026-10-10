@@ -1,11 +1,12 @@
 ---
+import { caseStudyPath } from '../data/caseStudyRoutes';
 import MediaPoster from './MediaPoster.astro';
 import ProjectMediaPreview from './ProjectMediaPreview.astro';
 import { hasPublishableCaseStudy, isPortfolioIncluded, type ProjectRecord } from '../data/projects';
 const { project } = Astro.props as { project: ProjectRecord };
 const [leadMedia] = project.media ?? [];
 const homePath = import.meta.env.BASE_URL;
-const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? `${homePath}work/${project.caseStudy.slug}/` : undefined;
+const caseHref = isPortfolioIncluded(project) && hasPublishableCaseStudy(project) ? caseStudyPath(project.caseStudy.slug, homePath) : undefined;
 const archiveHref = isPortfolioIncluded(project) && project.archiveCategory ? `${homePath}projects/#${project.anchorId ?? project.id}` : undefined;
 const projectHref = caseHref ?? archiveHref;
 const titleIcon = project.catalogIconReuseApproved ? project.projectsIndexTitleIcon : undefined;

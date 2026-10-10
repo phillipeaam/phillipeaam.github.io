@@ -6,6 +6,6 @@ At all viewport widths, eyebrow and title are separated by 4px, followed by one 
 
 Canonical and legacy mappings are in data-model.md. Generated Home section links use canonical fragments, prefixed with the Home base path from other pages. Canonical IDs match observer/menu datasets. Alias elements share target position and sticky offset; are aria-hidden; and do not duplicate accessible headings. Legacy URLs need not normalize. Native navigation works without scripts.
 
-Explicit recognized Home hash outranks restoration; no-hash Back restores, identity returns instantly. Local contextual Contact remains local. Keep same-page animation/reduced-motion and history behavior, /work/ routes, archive records, and work-* IDs.
+Explicit recognized Home hash outranks restoration; no-hash Back restores, identity returns instantly. Local contextual Contact remains local. Keep same-page animation/reduced-motion and history behavior, /featured/ case routes (with /work/ compatibility), archive records, and work-* IDs.
 
 Permanent reference: docs/section-heading-standard.md. Changes require rationale, affected consumers, revalidation, and human review. Evidence record distinguishes actual checks from pending checks and approval.

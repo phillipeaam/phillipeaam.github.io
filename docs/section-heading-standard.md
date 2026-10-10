@@ -41,7 +41,7 @@ Desktop/mobile links and section datasets use canonical names. Cross-page Home s
 
 Explicit recognized Home fragments override saved return intent in both loading and restoration checks. Arrival waits for layout/fonts before positioning the requested target without cross-page scroll animation. No-hash contextual Back retains saved-position restoration; avatar/name still return immediately to the fragment-free Home root. Preserve native history, existing same-page animation and reduced-motion behavior.
 
-Contextual Contact links intentionally reach their current page's contact area. Do not rewrite /work/ case-study routes, work-* card IDs, archive project fragments, or external recommendation URLs as Home section fragments.
+Contextual Contact links intentionally reach their current page's contact area. Do not rewrite /featured/ case-study routes, work-* card IDs, archive project fragments, or external recommendation URLs as Home section fragments.
 
 ## Validation and future changes
 
