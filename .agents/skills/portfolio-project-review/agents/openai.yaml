@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Project Review"
+  short_description: "Review entries, score evidence, and recover missing context"
+  default_prompt: "Use $portfolio-project-review to assess a catalog entry and its sources, recommend grounded improvements, and ask targeted questions about material evidence gaps."
