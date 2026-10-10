@@ -882,7 +882,22 @@ export const projectRecords: ProjectRecord[] = [
     "name": "Flui — A Cidade das Palavras",
     "archiveCategory": "professional-game",
     "summary": "A commercial Unity game that teaches literacy through exploration, character progression, and interactive minigames.",
-    "media": [],
+    "media": [
+      {
+        "type": "image",
+        "src": "/projects/flui/flui-first-frame.webp",
+        "previewSrc": "/projects/flui/flui-gameplay-preview.webp",
+        "alt": "Flui word-search activity with a grid of letters and a list of target words.",
+        "previewAlt": "Flui gameplay showing a word-search activity with letters and target words.",
+        "autoplayPreview": true,
+        "posterWidth": 960,
+        "posterHeight": 540,
+        "posterFit": "contain",
+        "catalogReuseApproved": true
+      }
+    ],
+    "projectsIndexTitleIcon": "/projects/flui/flui-icon.webp",
+    "catalogIconReuseApproved": true,
     "type": "Literacy game",
     "context": "Instituto Alfa e Beto",
     "period": "2017–2021",
