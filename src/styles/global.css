@@ -21,6 +21,7 @@
   --content-section-space-after: 24px;
   --section-content-top-gap: 26px;
   --section-utility-row-space: 12px;
+  --home-card-gap: 16px;
   --section-heading-content-gap: 0px;
   --section-heading-title-support-gap: 4px;
   --section-heading-eyebrow-title-gap: 4px;
@@ -740,15 +741,15 @@ main:has(.experience-preview) + .contact-section { margin-top: var(--s-8); }
 .section-utility-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; margin-block: var(--section-utility-row-space); }
 .section-utility-row--end { justify-content: flex-end; }
 .more-projects__guidance { flex: 1 1 auto; min-width: 0; margin: 0; color: var(--secondary); font-size: 13px; font-weight: 500; line-height: 1.4; }
-.more-projects__guidance--hover { display: none; }
+.more-projects__guidance--desktop { display: none; }
 .more-projects__guidance--touch { display: inline; }
 @media (hover: hover) and (pointer: fine) {
-  .more-projects__guidance--hover { display: inline; }
+  .more-projects__guidance--desktop { display: inline; }
   .more-projects__guidance--touch { display: none; }
 }
 .contact-section { margin-top: var(--s-16); }
 body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
-.supporting-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; }
+.supporting-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--home-card-gap); }
 .supporting-card { min-width: 0; padding-top: 16px; border-top: 1px solid var(--line-strong); }
 .supporting-card .media-figure { margin-bottom: 16px; }
 .supporting-card .media-poster { border-color: var(--line); background: linear-gradient(145deg, #252a34, #191c23); }
@@ -772,7 +773,7 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .supporting-card-media-link:hover .media-poster, .supporting-card-media-link:focus-visible .media-poster { border-color: var(--line-strong); }
 .supporting-card-media-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 5px; }
 .supporting-card:target { border-top-color: var(--accent); }
-.more-projects .supporting-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px 24px; }
+.more-projects .supporting-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--home-card-gap); }
 .more-projects .supporting-card { display: flex; flex-direction: column; min-width: 0; padding: 0; border: 0; }
 .more-projects .supporting-card .media-figure { width: 100%; margin: 0; }
 .more-projects .supporting-card .media-poster { width: 100%; aspect-ratio: 16 / 9; }
@@ -790,8 +791,8 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .contact-linkedin-label { display: inline-flex; align-items: center; gap: 10px; }
 .contact-linkedin-label img { width: 18px; height: 18px; object-fit: contain; }
 @media (max-width: 820px) {
-  .supporting-grid { grid-template-columns: minmax(0,1fr); gap: 22px; }
-  .more-projects .supporting-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .supporting-grid { grid-template-columns: minmax(0,1fr); }
+  .more-projects .supporting-grid { grid-template-columns: minmax(0,1fr); }
   .supporting-card { padding-top: 14px; }
   .supporting-card--recent { grid-template-columns: minmax(0,1fr); gap: 20px; }
   .experience-preview > .section-heading,
@@ -807,7 +808,7 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 }
 
 @media (max-width: 699px) {
-  .more-projects .supporting-grid { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .more-projects .supporting-grid { grid-template-columns: minmax(0,1fr); }
   .more-projects .supporting-card { padding: 0; }
 }
 
@@ -824,9 +825,9 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .care-note ul { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; color: var(--text); font-size: 14px; line-height: 1.55; }
 .care-note li { position: relative; padding-left: 15px; }
 .care-note li::before { content: ''; position: absolute; left: 0; top: .72em; width: 6px; height: 1px; background: var(--accent); }
-.testimonial-track { display: flex; align-items: stretch; gap: 16px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 1px; scrollbar-width: none; }
+.testimonial-track { display: flex; align-items: stretch; gap: var(--home-card-gap); overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 1px; scrollbar-width: none; }
 .testimonial-track::-webkit-scrollbar { display: none; }
-.recommendation-card { flex: 0 0 calc((100% - 32px) / 3); display: flex; flex-direction: column; min-width: 0; margin: 0; padding: 21px 21px 18px; border: 1px solid var(--line); border-top-color: var(--line-strong); background: linear-gradient(145deg,rgba(255,255,255,.025),transparent 58%),var(--elevated); scroll-snap-align: start; }
+.recommendation-card { flex: 0 0 calc((100% - var(--home-card-gap) - var(--home-card-gap)) / 3); display: flex; flex-direction: column; min-width: 0; margin: 0; padding: 21px 21px 18px; border: 1px solid var(--line); border-top-color: var(--line-strong); background: linear-gradient(145deg,rgba(255,255,255,.025),transparent 58%),var(--elevated); scroll-snap-align: start; }
 .testimonial-person { display: flex; align-items: flex-start; gap: 12px; min-width: 0; min-height: 68px; margin-bottom: 10px; }
 .testimonial-person-link { width: fit-content; max-width: 100%; align-self: flex-start; color: inherit; text-decoration: none; }
 .testimonial-person-link:hover .recommendation-name, .testimonial-person-link:focus-visible .recommendation-name { color: var(--accent); }
@@ -853,7 +854,7 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
 .testimonial-page-dot[hidden] { display: none; }
 .testimonial-page-status { min-width: 34px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 @media (min-width: 700px) and (max-width: 1099px) {
-  .recommendation-card { flex-basis: calc((100% - 16px) / 2); }
+  .recommendation-card { flex-basis: calc((100% - var(--home-card-gap)) / 2); }
 }
 @media (max-width: 820px) {
   .human-profile { grid-template-columns: minmax(0,1fr); gap: 24px; }
@@ -862,7 +863,7 @@ body:has(.archive-content) .contact-section { margin-top: var(--s-8); }
   .care-note { max-width: none; margin-top: 22px; }
 }
 @media (max-width: 820px) {
-  .testimonial-track { gap: 12px; }
+  :root { --home-card-gap: 12px; }
   .testimonial-toolbar { align-items: flex-start; }
 }
 
